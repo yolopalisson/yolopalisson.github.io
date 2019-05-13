@@ -595,6 +595,10 @@ pre code {
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
+    display: flex;
+    flex-wrap: wrap;
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
   }
 }
 
