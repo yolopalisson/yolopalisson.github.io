@@ -655,11 +655,11 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  flex-wrap: wrap;
-  display: flex;
 }
 
 .col {
+  flex-wrap: wrap;
+  display: flex;
   -ms-flex-preferred-size: 0;
   flex-basis: 0;
   -ms-flex-positive: 1;
