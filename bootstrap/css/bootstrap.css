@@ -660,11 +660,9 @@ pre code {
 .col {
   flex-wrap: wrap;
   display: flex;
+  flex: 100%;
+  -ms-flex: 100%;
   padding: 5px 5px 5px 5px; 
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
   max-width: 100%;
 }
 
@@ -868,6 +866,7 @@ pre code {
 
 @media (min-width: 576px) {
   .col {
+    -ms-flex: 100%;
     flex: 100%;
     max-width: 100%;
     padding: 5px 5px 5px 5px;
