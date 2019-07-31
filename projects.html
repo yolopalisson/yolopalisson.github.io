@@ -24,23 +24,29 @@
 
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
-    <!-- <link href="css/jquery-ui.css" rel="stylesheet"> -->
+    <link href="css/jquery-ui.css" rel="stylesheet">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- <script src="jquery/jquery-ui-min.js"></script> -->
-    <script>
+
+    <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.backtotop.js"></script>
+  <script src="js/dropper.js"></script>
+  <script src="js/toggler.js"></script>
+  <script src="jquery/jquery-ui-min.js"></script>
+  <script>
       $( function() {
       $( "#tabs" ).tabs();
       } );
     </script>
+    
 
     <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery.backtotop.js"></script>
+    <!-- <script src="js/jquery.backtotop.js"></script>
     <script src="js/dropper.js"></script>
-    <script src="js/toggler.js"></script>
+    <script src="js/toggler.js"></script> -->
 
     <!-- <script src="jquery/jquery.min.js"></script> -->
     <!-- <script src="bootstrap/js/bootstrap.bundle.min.js"></script> -->
@@ -94,25 +100,24 @@
       </div>
     </header>
 
+    <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Web Dev</a></li>
+          <li><a href="#tabs-2">UI Design</a></li>
+        </ul>
+        <div id="tabs-1">
+            <p class="mainText">As a web developer, I have an ongoing responsibility of learning adapting to new technologies. Web development is not limited to just designing end user interfaces, but it goes beyond as to being empathetic for the end user to understand
+                how they think whilst you are designing.</p>
+        </div>
+        <div id="tabs-2">
+          <p class="mainText">Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="container">
       <div class="row">
         <div class="col-md">
-            <div id="tabs">
-                <ul>
-                  <li><a href="#tabs-1">Web Dev</a></li>
-                  <li><a href="#tabs-2">UI Design</a></li>
-                </ul>
-                <div id="tabs-1">
-                    <p class="mainText">As a web developer, I have an ongoing responsibility of learning adapting to new technologies. Web development is not limited to just designing end user interfaces, but it goes beyond as to being empathetic for the end user to understand
-                        how they think whilst you are designing.</p>
-                </div>
-                <div id="tabs-2">
-                  <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-                </div>
-              </div>
-
-          
           <p class="mainText">The services I offer are as follows:
             <ul>
               <li> Web Development – coding in design languages such as: HTML, CSS, Bootstrap, WordPress, JavaScript.</li>
