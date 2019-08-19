@@ -87,7 +87,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 #backtotop:hover {
-  opacity: 1;
+  opacity: 5;
 }
 
 body {
