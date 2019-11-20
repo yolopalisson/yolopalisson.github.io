@@ -30,7 +30,7 @@ body {
   border-radius: 5px;
   text-align: center;
   background-color: whitesmoke;
-  width: 100%;
+  /*width: 100%;*/
   /*height: auto;*/
 }
 
@@ -40,7 +40,7 @@ body {
   border-radius: 5px;
   text-align: center;
   background-color: #f1f1f1;
-  width: 100%;
+  /*width: 100%;*/
   /*height: auto;*/
 }
 
