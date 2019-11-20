@@ -13,7 +13,7 @@ header {
 
 
 /* Grid styles -------------------------------------------------*/
-.cards {
+.cardz {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 30px;
@@ -39,7 +39,7 @@ header {
 }
 
 
-.cards {
+.cardz {
   max-width: 960px;
   margin: 0 auto 30px;
 }
@@ -179,12 +179,12 @@ header {
 
 .containers2 {
   width: 100%;
-  z-index: 3;
-  padding-left: 20px;
-  padding-right: 30px;
+  /*z-index: 3;*/
+  padding-left: auto;
+  padding-right: auto;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 150px;
+  margin-top: auto;
   display: -ms-flexbox;
   /*display: flex;*/
   -ms-flex-wrap: wrap;
