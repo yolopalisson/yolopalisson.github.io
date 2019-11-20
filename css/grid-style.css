@@ -51,7 +51,7 @@ header {
   grid-gap: 50px;
   font: 12px Arial, Helvetica;
   text-shadow: 0 1px rgba(255,255,255,.8);        
-  background: #DBE5F1;      
+  background: #FFFFFF;      
   border: 1px solid #ddd;
   border-radius: 25px;
   /*color: #333;*/
@@ -101,7 +101,7 @@ header {
   text-transform: uppercase;
   text-decoration: none;
   display: inline-block;       
-  background-color: #8C0E0E;
+  background-color: #FFFFFF;
   background-image: -moz-linear-gradient(#8C0E0E);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8C0E0E));    
   background-image: -webkit-linear-gradient(#8C0E0E);
@@ -144,7 +144,7 @@ header {
 }
 
 #main-table #most-popular h3 {
-  background-color: #ddd;
+  background-color: #FFFFFF;
   background-image: -moz-linear-gradient(#eee,#ddd);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));    
   background-image: -webkit-linear-gradient(#eee, #ddd);
