@@ -176,3 +176,26 @@ header {
   max-width: 100%; /* This is for the images to keep shape even when screen size decreaases */
   height: auto;
 }
+
+.containers2 {
+  width: 100%;
+  z-index: 3;
+  padding-left: 20px;
+  padding-right: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 150px;
+  display: -ms-flexbox;
+  /*display: flex;*/
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1000px) {
+  .containers2 {
+    max-width: 1000px;
+  }
+  .row20 {
+    max-width: 1000px;
+  }
+}
