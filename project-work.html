@@ -103,11 +103,11 @@
         <br><br>
 
     <div class="container">
-        <span><b>User Interface and Related Design</b></span>
+        <!-- <span><b>User Interface and Related Design</b></span>
         <br><br>
         <div class="row">
             <div class="col">
-                <img src="img/screen-poster.jpg" style="height:200px; width:350px;">
+                <img src="img/screen-poster.jpg" style="height:200px; width:350px;" class="responsive">
                 <img src="img/Final Business Card.jpg" style="height:200px; width:350px;">
                 <img src="img/mobile-home.png" style="height:200px; width:350px;">
             </div>
@@ -124,9 +124,83 @@
                   <img src="img/mobile3.png" style="height:200px; width:350px;">
             </div>
           </div>
-      </div>
+      </div> -->
 
     <hr>
+
+    <div id="main-table" class="cardbod">
+            <div class="plan" id="most-populars">
+              <img src="img/screen-poster.jpg" style="height:200px; width:350px;" class="responsive">
+            </div>
+            <div class="plan" id="most-populars">
+               <img src="img/screen-poster.jpg" style="height:200px; width:350px;" class="responsive">
+            </div>
+            <div class="plan" id="most-populars">
+               <h3><b>Mantis</b></h3>
+              <img src="img/screen-poster.jpg" style="height:200px; width:350px;" class="responsive">
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="main-table" class="cardbod">
+            <div class="plan" id="most-populars" th:if="${menuInfo.vs.lobPolicyAdministration == true}">
+               <h3><b>Policy Admin</b></h3>
+              <p class="mainText">Guides under this category explain all the necessary information regarding policy related activities.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuidePolicyAdmin.thyme?mc=help&ms=hg-guide&mm=helpPolicyAdmin}">Read More</a>
+            </div>
+            <div class="plan" id="most-populars" th:if="${menuInfo.vs.lobClaims == true}">
+               <h3><b>Claims</b></h3>
+              <p class="mainText">Guides under this category explain all the necessary information regarding claim related activities.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideClaimAdmin.thyme?mc=help&ms=hg-guide&mm=helpClaimAdmin}">Read More</a>
+            </div>
+            <div class="plan" id="most-populars">
+               <h3><b>Activities</b></h3>
+              <p class="mainText">The Activities guide will explain all the necesarry information regarding activities in PROFIDA.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideActivities.thyme?mc=help&ms=hg-guide&mm=helpActivities}">Read More</a>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="main-table" class="cardbod">
+             <div class="plan" id="most-populars" th:if="${menuInfo.vs.lobLifeAssurance == true or menuInfo.vs.lobFuneral == true}">
+               <h3><b>Life Assurance & Funeral</b></h3>
+              <p class="mainText">Guides under this category explain all the necessary information regarding life assurance & funeral activities.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideClaimAdminLife.thyme#claim?mc=help&ms=hg-guide&mm=claimAdminL10}">Read More</a>
+            </div>
+             <div class="plan" id="most-populars" th:if="${menuInfo.vs.isReportAdministrator == true}">
+               <h3><b>Report Administration</b></h3>
+              <p class="mainText">Guides under this category explain all the necessary information regarding reports related activities.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideCustomReports.thyme?mc=help&ms=hg-guide&mm=helpCustomReports}">Read More</a>
+            </div>
+             <div class="plan" id="most-populars" th:if="${menuInfo.vs.lobMedical == true}">
+               <h3><b>Medical Assurance</b></h3>
+              <p class="mainText">Guides under this category explain all the necessary information regarding medical related activities.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideMedicalAid.thyme?mc=help&ms=hg-guide&mm=helpMedicalAid}">Read More</a>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="main-table" class="cardbod">
+            <div class="plan" id="most-populars">
+               <h3><b>Remote Support</b></h3>
+              <p class="mainText">This guide will explain how to install and utilize PROFIDA remote support.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideRemoteSupport.thyme?mc=help&ms=hg-guide&mm=helpRemoteSupport}">Read More</a>
+            </div>
+            <div class="plan" id="most-populars" th:if="${menuInfo.vs.viewAndExecutePowerList == true}">
+               <h3><b>Power List</b></h3>
+              <p class="mainText">This guide will explain how to utilize PROFIDA power lists.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuidePowerList.thyme?mc=help&ms=hg-guide&mm=helpPowerList}">Read More</a>
+            </div>
+            <div class="plan" id="most-populars">
+               <h3><b>Event Based Actions</b></h3>
+              <p class="mainText">This guide will explain how to event based actions work.</p>
+              <a class="signup" th:href="@{/__${tenantName}__/helpGuideEventBasedActions.thyme?mc=help&ms=hg-guide&mm=helpEvents}">Read More</a>
+            </div>
+        </div>
+      </div>
 
     <!-- Footer -->
     <footer>
