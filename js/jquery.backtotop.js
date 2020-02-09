@@ -4,7 +4,7 @@ jQuery("#backtotop").click(function () {
     }, 600);
 });
 jQuery(window).scroll(function () {
-    if (jQuery(window).scrollTop() > 150) {
+    if (jQuery(window).scrollTop() > 100) {
         jQuery("#backtotop").addClass("visible");
     } else {
         jQuery("#backtotop").removeClass("visible");
