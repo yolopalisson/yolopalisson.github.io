@@ -4,6 +4,8 @@
     margin: auto;
     text-align: center;
     font-family: arial;
+    align-content: center;
+    border-radius: 5px;
   }
   
   .title {
