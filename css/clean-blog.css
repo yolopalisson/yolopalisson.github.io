@@ -52,6 +52,15 @@ section {
   justify-content: center;
 }
 
+.section2 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #868e96;
+}
+
 .section-heading {
   font-size: 36px;
   font-weight: 700;
