@@ -46,3 +46,7 @@
     border-top: 4px solid #bbb;
     border-radius: 5px;
   }
+
+  hr.dashed {
+    border-top: 3px dashed #bbb;
+  }
