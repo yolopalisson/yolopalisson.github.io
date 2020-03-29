@@ -13,10 +13,10 @@
     <title>Project Work</title>
 
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/w3.css">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/grid-style.css" rel="stylesheet">
-    <link href="css/modal-img.css" rel="stylesheet">
     <link href="css/flip.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
@@ -105,12 +105,15 @@
                 <img src="img/screen-poster.jpg" style="height:auto; width:auto;" class="responsive">
               </div>
               <div class="plan" id="most-populars">
-                <img id="myImg" src="img/Glitch.jpg" alt="Glitch" style="width:100%;max-width:300px">
-                <div id="myModal" class="modal">
-                  <span class="close">&times;</span>
-                  <img class="modal-content" id="img01">
-                  <div id="caption"></div>
+                <img src="img/Glitch.jpg" style="width:30%;cursor:zoom-in" onclick="document.getElementById('modal01').style.display='block'">
+                <!-- <img id="myImg" src="" alt="Glitch" style="width:100%;max-width:300px"> -->
+                <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+                  <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+                  <div class="w3-modal-content w3-animate-zoom">
+                    <img src="img/Glitch.jpg" style="width:100%">
+                  </div>
                 </div>
+              </div>
                   <!-- <img src="img/Glitch.jpg" style="height:auto; width:auto;" class="responsive"> -->
               </div>
               <div class="plan" id="most-populars">
@@ -158,7 +161,7 @@
       </div>
   
     <br><br><br><br>
-    
+
     <hr class="dashed">
 
     <!-- Footer -->
