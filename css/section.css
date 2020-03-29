@@ -1,0 +1,23 @@
+section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  section p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: medium;
+    color: #212529;
+    background: #fff;
+    padding: 10px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .5);
+  }
+  
+  section:nth-child(1) {
+    background: #0085A1;
+  }
