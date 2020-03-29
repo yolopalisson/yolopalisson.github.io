@@ -1,5 +1,5 @@
 .flip-box {
-    background-color: transparent;
+    background-color: whitesmoke;
     width: 300px;
     height: 200px;
     border: 2px solid #f1f1f1;
@@ -31,12 +31,12 @@
   }
   
   .flip-box-front {
-    background-color: #bbb;
+    background-color: whitesmoke;
     border-radius: 15px;
   }
   
   .flip-box-back {
-    background-color: dodgerblue;
+    background-color: whitesmoke;
     color: white;
     transform: rotateY(180deg);
     border-radius: 15px;
