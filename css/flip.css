@@ -42,3 +42,8 @@
     transform: rotateY(180deg);
     border-radius: 15px;
   }
+
+  hr.rounded {
+    border-top: 8px solid #bbb;
+    border-radius: 5px;
+  }
