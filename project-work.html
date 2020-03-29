@@ -10,8 +10,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="img/avatar.png">
 
-    <title>Project Gallery</title>
-
+    <title>Project Work</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/w3.css">
@@ -30,12 +29,7 @@
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery.backtotop.js"></script>
-    <script src="js/dropper.js"></script>
-    <script src="js/toggler.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="jquery/jquery-ui-min.js"></script>
+    <script type="text/javascript" src="js/modals.js"></script>
     
 
   </head>
@@ -79,7 +73,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>Project Gallery</h1>
+              <h1>Projects</h1>
               <span class="subheading">A gallery of my work to date</span>
             </div>
           </div>
@@ -91,28 +85,28 @@
     <div class="container">
       <div class="row">
         <div class="column">
-          <img src="img/Sliced text.jpg" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal01').style.display='block'">
+          <img src="img/Sliced text.jpg" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal01').style.display='block'">
           <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
             <div class="w3-modal-content w3-animate-zoom">
               <img src="img/Sliced text.jpg" style="width:100%">
             </div>
           </div>
-          <img src="img/home.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal05').style.display='block'">
-          <div id="modal05" class="w3-modal" onclick="this.style.display='none'">
+          <img src="img/Masking.jpg" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal02').style.display='block'">
+          <div id="modal02" class="w3-modal" onclick="this.style.display='none'">
             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
             <div class="w3-modal-content w3-animate-zoom">
-              <img src="img/home.png" style="width:100%">
+              <img src="img/Masking.jpg" style="width:100%">
             </div>
           </div>
-          <img src="img/Glitch.jpg" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal03').style.display='block'">
+          <img src="img/Glitch.jpg" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal03').style.display='block'">
           <div id="modal03" class="w3-modal" onclick="this.style.display='none'">
             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
             <div class="w3-modal-content w3-animate-zoom">
               <img src="img/Glitch.jpg" style="width:100%">
             </div>
           </div>
-          <img src="img/screen-poster.jpg" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal04').style.display='block'">
+          <img src="img/screen-poster.jpg" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal04').style.display='block'">
           <div id="modal04" class="w3-modal" onclick="this.style.display='none'">
             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
             <div class="w3-modal-content w3-animate-zoom">
@@ -121,22 +115,31 @@
           </div>
         </div>
 
+        <br><br>
+
         <div class="column">
-            <img src="img/home-mid.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal06').style.display='block'">
+            <img src="img/home.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal05').style.display='block'">
+            <div id="modal05" class="w3-modal" onclick="this.style.display='none'">
+              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+              <div class="w3-modal-content w3-animate-zoom">
+                <img src="img/home.png" style="width:100%">
+              </div>
+            </div>
+            <img src="img/home-mid.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal06').style.display='block'">
             <div id="modal06" class="w3-modal" onclick="this.style.display='none'">
               <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
               <div class="w3-modal-content w3-animate-zoom">
                 <img src="img/home-mid.png" style="width:100%">
               </div>
             </div>
-            <img src="img/home-bottom.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal07').style.display='block'">
+            <img src="img/home-bottom.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal07').style.display='block'">
             <div id="modal07" class="w3-modal" onclick="this.style.display='none'">
               <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
               <div class="w3-modal-content w3-animate-zoom">
                 <img src="img/home-bottom.png" style="width:100%">
               </div>
             </div>
-            <img src="img/mobile-home.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal08').style.display='block'">
+            <img src="img/mobile-home.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal08').style.display='block'">
             <div id="modal08" class="w3-modal" onclick="this.style.display='none'">
               <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
               <div class="w3-modal-content w3-animate-zoom">
@@ -145,59 +148,56 @@
             </div>
         </div>
 
-        <div class="column">
-            <img src="img/tech.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal12').style.display='block'">
-            <div id="modal12" class="w3-modal" onclick="this.style.display='none'">
-              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-              <div class="w3-modal-content w3-animate-zoom">
-                <img src="img/tech.png" style="width:100%">
-              </div>
-            </div>
-            <img src="img/tech-body.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal13').style.display='block'">
-            <div id="modal13" class="w3-modal" onclick="this.style.display='none'">
-              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-              <div class="w3-modal-content w3-animate-zoom">
-                <img src="img/tech-body.png" style="width:100%">
-              </div>
-            </div>
-            <img src="img/tech-bottom.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal14').style.display='block'">
-            <div id="modal14" class="w3-modal" onclick="this.style.display='none'">
-              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-              <div class="w3-modal-content w3-animate-zoom">
-                <img src="img/tech-bottom.png" style="width:100%">
-              </div>
-            </div>
-        </div>
+        <br><br>
 
         <div class="column">
-            <img src="img/mobile1.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal09').style.display='block'">
+            <img src="img/mobile1.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal09').style.display='block'">
             <div id="modal09" class="w3-modal" onclick="this.style.display='none'">
               <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
               <div class="w3-modal-content w3-animate-zoom">
                 <img src="img/mobile1.png" style="width:100%">
               </div>
             </div>
-            <img src="img/mobile2.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal10').style.display='block'">
+            <img src="img/mobile2.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal10').style.display='block'">
             <div id="modal10" class="w3-modal" onclick="this.style.display='none'">
               <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
               <div class="w3-modal-content w3-animate-zoom">
                 <img src="img/mobile2.png" style="width:100%">
               </div>
             </div>
-            <img src="img/mobile3.png" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal11').style.display='block'">
+            <img src="img/mobile3.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal11').style.display='block'">
             <div id="modal11" class="w3-modal" onclick="this.style.display='none'">
               <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
               <div class="w3-modal-content w3-animate-zoom">
                 <img src="img/mobile3.png" style="width:100%">
               </div>
             </div>
-            <img src="img/Masking.jpg" style="width:90%;cursor:zoom-in" onclick="document.getElementById('modal02').style.display='block'">
-          <div id="modal02" class="w3-modal" onclick="this.style.display='none'">
-            <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-            <div class="w3-modal-content w3-animate-zoom">
-              <img src="img/Masking.jpg" style="width:100%">
+        </div>
+
+        <br><br>
+
+        <div class="column">
+            <img src="img/tech.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal12').style.display='block'">
+            <div id="modal12" class="w3-modal" onclick="this.style.display='none'">
+              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+              <div class="w3-modal-content w3-animate-zoom">
+                <img src="img/tech.png" style="width:100%">
+              </div>
             </div>
-          </div>
+            <img src="img/tech-body.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal12').style.display='block'">
+            <div id="modal12" class="w3-modal" onclick="this.style.display='none'">
+              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+              <div class="w3-modal-content w3-animate-zoom">
+                <img src="img/tech-body.png" style="width:100%">
+              </div>
+            </div>
+            <img src="img/tech-bottom.png" style="width:100%;cursor:zoom-in" onclick="document.getElementById('modal13').style.display='block'">
+            <div id="modal13" class="w3-modal" onclick="this.style.display='none'">
+              <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+              <div class="w3-modal-content w3-animate-zoom">
+                <img src="img/tech-bottom.png" style="width:100%">
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -244,6 +244,10 @@
     </footer>
 
     <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+
+    <script src="js/jquery.backtotop.js"></script>
+    <script src="js/dropper.js"></script>
+    <script src="js/toggler.js"></script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="jquery/jquery.min.js"></script>
