@@ -16,15 +16,3 @@ section {
     padding: 10px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, .5);
   }
-  
-  section:nth-child(1) {
-    background: #0085A1;
-  }
-
-  section:nth-child(2) {
-    background: coral;
-  }
-
-  section:nth-child(3) {
-    background: whitesmoke;
-  }
