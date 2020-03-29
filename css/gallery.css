@@ -1,6 +1,7 @@
 .row {
     display: flex;
     flex-wrap: wrap;
+    max-width: 100%;
     padding: 0 4px;
   }
   
@@ -8,7 +9,7 @@
   .column {
     flex: 25%;
     max-width: 25%;
-    margin-left: 15px;
+    margin-left: 10px;
     padding-left: 10px;
     padding-right: 10px;
   }
