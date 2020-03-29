@@ -44,6 +44,14 @@ blockquote {
   color: #868e96;
 }
 
+section {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .section-heading {
   font-size: 36px;
   font-weight: 700;
