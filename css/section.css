@@ -21,3 +21,11 @@ section {
   section:nth-child(1) {
     background: #0085A1;
   }
+
+  section:nth-child(2) {
+    background: coral;
+  }
+
+  section:nth-child(3) {
+    background: whitesmoke;
+  }
