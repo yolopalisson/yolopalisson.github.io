@@ -52,12 +52,14 @@ section {
   justify-content: center;
 }
 
-section p {
+section h1 {
   text-align: center;
-  padding: 5px 5px 5px 5px;
+  padding: 0;
   margin: 5px 5px 5px 5px;
   font-size: medium;
-  background-color: #fff;
+  color: #212529;
+  background: #fff;
+  padding: 10px;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
