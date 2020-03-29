@@ -52,13 +52,14 @@ section {
   justify-content: center;
 }
 
-.section2 {
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #868e96;
+section p {
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  font-size: medium;
+  background-color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .section-heading {
