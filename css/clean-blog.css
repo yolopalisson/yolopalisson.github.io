@@ -64,6 +64,10 @@ section p {
   box-shadow: 0 5px 25px rgba(0, 0, 0, .5);
 }
 
+section:nth-child(1) {
+  background: #0085A1;
+}
+
 .section-heading {
   font-size: 36px;
   font-weight: 700;
