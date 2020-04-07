@@ -3,13 +3,15 @@
     max-width: 300px;
     margin: auto;
     text-align: center;
+    background-color: white;
+    color: black;
     font-family: arial;
     align-content: center;
     border-radius: 5px;
   }
   
   .title {
-    color: grey;
+    color: black;
     font-size: 18px;
   }
   
