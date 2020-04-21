@@ -2958,14 +2958,14 @@ fieldset[disabled] .button {
   margin-right: 0.25rem;
 }
 
-.container {
+.containers {
   flex-grow: 1;
   margin: 0 auto;
   position: relative;
   width: auto;
 }
 
-.container.is-fluid {
+.containers.is-fluid {
   max-width: none;
   padding-left: 32px;
   padding-right: 32px;
@@ -2973,31 +2973,31 @@ fieldset[disabled] .button {
 }
 
 @media screen and (min-width: 1024px) {
-  .container {
+  .containers {
     max-width: 960px;
   }
 }
 
 @media screen and (max-width: 1215px) {
-  .container.is-widescreen {
+  .containers.is-widescreen {
     max-width: 1152px;
   }
 }
 
 @media screen and (max-width: 1407px) {
-  .container.is-fullhd {
+  .containers.is-fullhd {
     max-width: 1344px;
   }
 }
 
 @media screen and (min-width: 1216px) {
-  .container {
+  .containers {
     max-width: 1152px;
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .container {
+  .containers {
     max-width: 1344px;
   }
 }
@@ -7043,7 +7043,7 @@ a.list-item {
   }
 }
 
-.navbar > .container {
+.navbar > .containers {
   align-items: stretch;
   display: flex;
   min-height: 3.25rem;
@@ -7259,7 +7259,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 }
 
 @media screen and (max-width: 1023px) {
-  .navbar > .container {
+  .navbar > .containers {
     display: block;
   }
   .navbar-brand .navbar-item,
@@ -7437,12 +7437,12 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   .navbar-divider {
     display: block;
   }
-  .navbar > .container .navbar-brand,
-  .container > .navbar .navbar-brand {
+  .navbar > .containers .navbar-brand,
+  .containers > .navbar .navbar-brand {
     margin-left: -.75rem;
   }
-  .navbar > .container .navbar-menu,
-  .container > .navbar .navbar-menu {
+  .navbar > .containers .navbar-menu,
+  .containers > .navbar .navbar-menu {
     margin-right: -.75rem;
   }
   .navbar.is-fixed-bottom-desktop, .navbar.is-fixed-top-desktop {
@@ -10764,7 +10764,7 @@ label.panel-block:hover {
   display: flex;
 }
 
-.hero.is-halfheight .hero-body > .container, .hero.is-fullheight .hero-body > .container, .hero.is-fullheight-with-navbar .hero-body > .container {
+.hero.is-halfheight .hero-body > .containers, .hero.is-fullheight .hero-body > .containers, .hero.is-fullheight-with-navbar .hero-body > .containers {
   flex-grow: 1;
   flex-shrink: 1;
 }
