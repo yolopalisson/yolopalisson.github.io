@@ -1,3 +1,4 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
 .mainText {
     font-family: 'Verdana';
     font-size: 15px;
@@ -25,7 +26,7 @@
     width: 100%; } */
   
   hr.new1 {
-    border: 2px solid black;
+    border: 1px solid black;
     width: 100%; }
 
 .btn-cont {
@@ -74,7 +75,7 @@
         border: 1px solid white;
         width: 100%; }
       
-      @media screen and (min-width: 1000px) {
+      /* @media screen and (min-width: 1000px) {
         hr.foot {
           border: 1px solid white;
           width: 100px; } }
@@ -87,5 +88,5 @@
       @media screen and (min-width: 1000px) {
         hr.footy {
           border: 1px solid white;
-          width: 250px; } }
+          width: 250px; } } */
       
