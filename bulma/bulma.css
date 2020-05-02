@@ -9966,7 +9966,7 @@ label.panel-block:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("img/home-bg.jpg");
+  background-image: url("../img/home-bg.jpg");
   background-size: 100%;
 }
 
