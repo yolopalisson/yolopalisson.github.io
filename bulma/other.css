@@ -9,35 +9,14 @@
     font-size: 15px;
     color: black; }
   
-/* .mainText2:hover {
+.mainText2:hover {
     box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    background-color: rgb(145, 145, 235);
-    color: black;
-    border-radius: 8px;
-    width: 100%; } */
-
-.right-side {
-    background-color: whitesmoke;
-    color: black;
-}
-
-.right-side:hover {
-    box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
     background-color: teal;
     color: white;
-}
-
-
-  
-  /* .mainText2:hover {
-    box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    background-color: white;
-    color: black;
     border-radius: 8px;
-    width: 100%; } */
-  
+    width: 100%; }
+    
   hr.new1 {
     border: 1px solid black;
     width: 250px; }
