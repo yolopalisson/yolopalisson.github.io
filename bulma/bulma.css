@@ -9960,6 +9960,7 @@ label.panel-block:hover {
   flex-direction: column;
   justify-content: space-between;
   background-size: cover;
+  text-align: center;
   height: 400px;
 }
 
