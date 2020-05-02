@@ -6,32 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Luyolo Paliso">
-    <meta name="description" lang="en" content="This is a website developed and designed by Luyolo Paliso, Luyolo Paliso,projects" />
-    <meta name="keywords" lang="en" content="ui design,web dev,graphic design,wireframing,skills,user experience,user experience design,web developer"/>
+    <meta name="description" lang="en" content="I am Luyolo Paliso - I am skilled in ReactJS, ES6, HTML5, Bulma, Bootstrap and other front end frameworks"/>
+    <meta name="keywords" lang="en" content="ui design, web dev, graphic design, wireframing, skills, user experience, user experience design, web developer"/>
     <meta name="robots" content="all" />
     <meta name="distribution" content="global">
     <meta name="subject" content="english" />
-    <meta name="copyright" content="2019, Luyolo Paliso" />
+    <meta name="copyright" content="2020, Luyolo Paliso" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/avatar.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/lp logo.png">
 
-    <title>Projects</title>
+    <title>Luyolo Paliso | Projects</title>
 
     <!-- Bootstrap core CSS -->
-    <!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/flip.css" rel="stylesheet">
-    <link href="css/slider.css" rel="stylesheet">
+    <link rel="stylesheet" href="bulma/bulma.css">
+    <link rel="stylesheet" href="bulma/other.css">
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
-    <link href="css/jquery-ui.css" rel="stylesheet">
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -41,9 +35,6 @@
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery.backtotop.js"></script>
-    <script src="js/dropper.js"></script>
-    <script src="js/toggler.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="jquery/jquery-ui-min.js"></script>
     <script>
@@ -51,43 +42,61 @@
         $( "#tabs" ).tabs();
         } );
     </script>
-    <script src="js/dark-mode.js"></script>
+     <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+          // Get all "navbar-burger" elements
+          var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+          // Check if there are any navbar burgers
+          if ($navbarBurgers.length > 0) {
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach( el => {
+              el.addEventListener('click', () => {
+
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+              });
+            });
+          }
+
+          });
+  </script>
 
   </head>
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand">
-          <label class="switch">
-            <input type="checkbox" onchange="myFunction()">
-            <span class="slider round"></span>
-          </label>
+     <!-- Navigation -->
+     <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation" style="padding: 5px;">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <b>Luyolo Paliso</b>
+          <br>
         </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="projects.html">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="accoms.html">Achievements</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-          </ul>
+    
+        <span role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </span>
+      </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="index.html">Home</a>
+                <a class="navbar-item" href="about.html">About</a>
+                <a class="navbar-item is-active" href="projects.html">Projects</a>
+                <a class="navbar-item" href="accoms.html">Achievements</a>
+                <a class="navbar-item" href="contact.html">Contact</a>
+            </div>
         </div>
       </div>
     </nav>
@@ -169,57 +178,44 @@
       </div>
     </div>
 
-    <br><br><br><br>
+    <br><br>
 
-    <hr class="dashed">
+    <a id="backtotop" href="#top"><img src="img/up.png"/></a>
+
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer is-dark">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/webdev_yolopal" target="_blank">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.facebook.com/lpaliso1" target="_blank">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/yolopalisson" target="_blank">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://wa.me/27842169522" target="_blank">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Luyolo Paliso</p>
+          <div class="columns">
+              <div class="column is-one-quarter">
+                <hr class="footy"></hr>
+                  <p>Copyright &copy; 2020. Luyolo Paliso.</p>
+                  <br></br>
+                  <br></br>
+              </div>
+
+              <div class="column"></div>
+
+              <div class="column">
+                  <hr class="foot"></hr>
+                    <a class="icon" href="https://github.com/yolopalisson" target="_blank"><i class="fab fa-github"></i></a>
+                    <!-- <a class="icon" href="https://www.facebook.com/lpaliso1" target="_blank"><i class="fab fa-facebook"></i></a> -->
+                    <a class="icon" href="https://twitter.com/webdev_yolopal" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a class="icon" href="https://wa.me/27842169522" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a class="icon" href="mailto:luyolopaliso@gmail.com?subject=I%20am%20interested%20in%20working%20with%20you" target="_blank"><i class="fas fa-envelope"></i></a>
+              </div>
+
+                <div class="column">
+                  <hr class="foot"></hr>
+                    <p>Developed by <a class="footerlink" href="https://yolopaliso.co.za" target="_blank" rel="noopener noreferrer"><b>Luyolo Paliso</b></a></p>
+                </div>
           </div>
-        </div>
       </div>
     </footer>
 
-    <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
-       
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/top.js"></script>
+
 
   </body>
 
