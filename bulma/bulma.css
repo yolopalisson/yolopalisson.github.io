@@ -9960,6 +9960,7 @@ label.panel-block:hover {
   flex-direction: column;
   justify-content: space-between;
   background-size: 100%;
+  height: 600px;
 }
 
 .hero .navbar {
