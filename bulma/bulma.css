@@ -9967,6 +9967,7 @@ label.panel-block:hover {
   flex-direction: column;
   justify-content: space-between;
   background-image: url('img/home-bg.jpg');
+  height: 300px;
 }
 
 .hero .navbar {
