@@ -42,3 +42,50 @@
     border-radius: 10px;
     color: black;
     width: 150px; }
+
+    footer {
+        background-color: #363636 !important;
+        color: #fff; }
+        footer .icon {
+          color: #fff;
+          margin-left: 20px; }
+      
+      .footerlink {
+        font-size: 16px;
+        color: whitesmoke; }
+      
+      .footerlink:hover {
+        opacity: 0.9;
+        color: blue; }
+      
+      a {
+        text-decoration: none;
+        font-size: 18px;
+        color: white; }
+      
+      button:hover, a:hover {
+        opacity: 0.7; }
+      
+      hr.foot {
+        border: 1px solid white;
+        width: 250px; }
+      
+      hr.footy {
+        border: 1px solid white;
+        width: 300px; }
+      
+      @media screen and (min-width: 1000px) {
+        hr.foot {
+          border: 1px solid white;
+          width: 100px; } }
+      
+      @media screen and (max-width: 768px) {
+        hr.footy {
+          border: 1px solid white;
+          width: 250px; } }
+      
+      @media screen and (min-width: 1000px) {
+        hr.footy {
+          border: 1px solid white;
+          width: 250px; } }
+      
