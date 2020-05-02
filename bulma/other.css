@@ -1,0 +1,44 @@
+.mainText {
+    font-family: 'Verdana';
+    font-size: 15px;
+    color: black; }
+  
+  .mainText2 {
+    font-family: 'Verdana';
+    font-size: 15px;
+    color: black; }
+  
+  .mainText2:hover {
+    box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: rgb(145, 145, 235);
+    color: black;
+    border-radius: 8px;
+    width: 100%; }
+  
+  /* .mainText2:hover {
+    box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    width: 100%; } */
+  
+  hr.new1 {
+    border: 2px solid black;
+    width: 100%; }
+
+.btn-cont {
+    background-color: #e28f25;
+    padding: 8px;
+    border-radius: 10px;
+    color: white;
+    width: 150px; }
+
+.btn-cont:hover {
+    background-color: #e28f25;
+    box-shadow: 3px 3px 5px 4px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 10px;
+    color: black;
+    width: 150px; }
