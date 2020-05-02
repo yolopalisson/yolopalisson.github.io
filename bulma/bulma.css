@@ -9959,7 +9959,7 @@ label.panel-block:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-size: 100%;
+  background-size: cover;
   height: 400px;
 }
 
