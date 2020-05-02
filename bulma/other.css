@@ -8,6 +8,11 @@
     font-family: 'Verdana';
     font-size: 15px;
     color: black; }
+
+.bodyText2 {
+    font-family: 'Verdana';
+    font-size: 15px;
+    color: black; }
   
 .bodyText:hover {
     box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
