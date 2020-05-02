@@ -4,19 +4,19 @@
     font-size: 15px;
     color: black; }
   
-.mainText2 {
+.bodyText {
     font-family: 'Verdana';
     font-size: 15px;
     color: black; }
   
-.mainText2:hover {
+.bodyText:hover {
     box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
     padding: 10px;
     background-color: teal;
     color: white;
     border-radius: 8px;
     width: 100%; }
-    
+
   hr.new1 {
     border: 1px solid black;
     width: 250px; }
