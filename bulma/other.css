@@ -60,6 +60,10 @@
         text-decoration: none;
         font-size: 18px;
         color: white; }
+
+        a.cardy {
+          text-decoration: none;
+          color: black; }  
       
       button:hover, a:hover {
         opacity: 0.7; }
