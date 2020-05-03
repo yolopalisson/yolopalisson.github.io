@@ -1,0 +1,37 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
+.carde {
+  box-shadow: 5px 4px 8px 7px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center; }
+
+.title1 {
+  color: black;
+  font-size: 35px;
+  text-align: center; }
+
+.title11 {
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center; }
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px; }
+
+/* a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black; } */
+
+button:hover, a:hover {
+  opacity: 0.7; }
