@@ -1,61 +1,91 @@
-* {
-  box-sizing: border-box;
+.flip-box {
+  background-color: transparent;
+  border-radius: 12px;
+  width: 100%;
+  height: 300px;
+  border: 1px solid #f1f1f1;
+  transition: all 0.5s ease-in-out;
+  perspective: 1000px;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: white;
+.flip-box-inner {
+  position: relative;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+  border-radius: 12px;
+}
+
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  background-color: #bbb;
   color: black;
+  text-align: center;
+  padding: 15px;
+  font-weight: bolder;
+  border-radius: 12px;
 }
 
-.dark-mode {
-  background-color: black;
+.flip-box-back {
+  background-color: teal;
   color: white;
-}
-
-/* Float four columns side by side */
-.column {
-  float: center;
-  width: 33.3%;
-  padding: 0 10px;
-}
-
-/* Remove extra left and right margins, due to padding in columns */
-.row {margin: 0 -5px;}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the counter cards */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 20px;
-  border-radius: 10px;
+  transform: rotateY(180deg);
+  border-radius: 12px;
   text-align: center;
-  background-color: whitesmoke;
-  /*width: 100%;*/
-  /*height: 250px;*/
+  padding: 15px;
+  height: 300px;
 }
 
-.card3 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 20px;
-  border-radius: 10px;
+.flip-box-back1 {
+  background-color: teal;
+  color: white;
+  transform: rotateY(180deg);
+  border-radius: 12px;
   text-align: center;
-  background-color: #f1f1f1;
-  /*width: 100%;*/
-  /*height: auto;*/
+  padding: 15px;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
 }
 
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+.flip-box-back1:hover {
+  background-color: teal;
+  color: white;
+  transform: rotateY(180deg);
+  border-radius: 12px;
+  text-align: center;
+  padding: 15px;
+  height: auto;
+  opacity: 1;
+}
+
+@media screen and (max-width: 425px) {
+  .flip-box-back1:hover {
+    z-index: 9999;
+  }
+}
+
+@media screen and (width: 1024px) {
+  .flip-box-back {
+    height: 350px;
+  }
+
+  .flip-box-back1 {
+    height: 100%;
   }
 }
