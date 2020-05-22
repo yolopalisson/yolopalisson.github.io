@@ -86,11 +86,11 @@
     }
       
 @keyframes text {
-  0%   {opacity: 0; left: 100px;}
-  25%  {opacity: 0.25; left: 75px;}
-  50%  {opacity: 0.5; left: 50px;}
-  75%  {opacity: 0.75; left: 25px;}
-  100% {opacity: 1; left: 0px;}
+  0%   {opacity: 0; margin-left: 200px;}
+  25%  {opacity: 0; margin-left: 175px;}
+  50%  {opacity: 0; margin-left: 150px;}
+  75%  {opacity: 0.75; margin-left: 100px;}
+  100% {opacity: 1; margin-left: 0px;}
 }
 #type {
   animation-name: text;
