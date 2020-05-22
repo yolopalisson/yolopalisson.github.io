@@ -85,18 +85,14 @@
     cursor: pointer; /* Add a mouse pointer on hover */
     }
       
-      /* @media screen and (min-width: 1000px) {
-        hr.foot {
-          border: 1px solid white;
-          width: 100px; } }
-      
-      @media screen and (max-width: 768px) {
-        hr.footy {
-          border: 1px solid white;
-          width: 250px; } }
-      
-      @media screen and (min-width: 1000px) {
-        hr.footy {
-          border: 1px solid white;
-          width: 250px; } } */
-      
+@keyframes text {
+  0%   {opacity: 0; left: 100px;}
+  25%  {opacity: 0; left: 75px;}
+  50%  {opacity: 0; left: 50px;}
+  75%  {opacity: 0; left: 25px;}
+  100% {opacity: 1; left: 0px;}
+}
+#type {
+  animation-name: text;
+  animation-duration: 4s;
+  }
