@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: 'myFont', 'myFontReg';
+  font-family: 'myFont', 'myFontReg', Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: normal;
   color: #888;
