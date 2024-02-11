@@ -20,12 +20,12 @@ body {
 
 @font-face {
   font-family: "myFont";
-  src: url("C:/Users/Luyolo.Paliso/Downloads/gilroy/Gilroy-Bold.ttf");
+  src: url("./fonts/Gilroy-Bold.ttf");
 }
 
 @font-face {
   font-family: "myFontReg";
-  src: url("C:/Users/Luyolo.Paliso/Downloads/gilroy/Gilroy-Regular.ttf");
+  src: url("./fonts/Gilroy-Regular.ttf");
 }
 
 .gilroy {
