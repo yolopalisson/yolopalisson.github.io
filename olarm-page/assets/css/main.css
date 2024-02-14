@@ -1995,11 +1995,43 @@ ol {
 .hero-area {
   position: relative;
   padding: 180px 0 120px 0;
-  background: #2facff;
+  /* background: #2facff; */
+  /* background-image: url("../images/hero/Cyber.jpeg"); */
+  background-image: url("../images/Family.mp4");
+}
+
+.hero-area-new {
+  position: relative;
+  padding: 180px 0 120px 0;
+  /* background: #2facff; */
+   background-image: url("../images/hero/Cyber.jpeg");
+  /* background-image: url("../images/Family.mp4"); */
+}
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-area {
+    padding: 150px 0 60px 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-area-new {
     padding: 150px 0 60px 0;
   }
 }
@@ -2010,12 +2042,29 @@ ol {
   }
 }
 
+@media (max-width: 767px) {
+  .hero-area-new {
+    padding: 120px 0 50px 0;
+  }
+}
+
+
 .hero-area .hero-image img {
+  width: 100%;
+}
+
+.hero-area-new .hero-image img {
   width: 100%;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-area .hero-image {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-area-new .hero-image {
     margin-top: 40px;
   }
 }
@@ -2026,14 +2075,36 @@ ol {
   }
 }
 
+@media (max-width: 767px) {
+  .hero-area-new .hero-image {
+    margin-top: 40px;
+  }
+}
+
 .hero-area .hero-content {
   border-radius: 0;
   position: relative;
   z-index: 1;
-  text-align: left;
+  text-align: center;
+}
+
+.hero-area-new .hero-content {
+  border-radius: 0;
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
 
 .hero-area .hero-content h1 {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 50px;
+  color: #fff;
+  text-shadow: 0px 3px 8px #00000017;
+  text-transform: capitalize;
+}
+
+.hero-area-new .hero-content h1 {
   font-size: 38px;
   font-weight: 800;
   line-height: 50px;
@@ -2046,7 +2117,17 @@ ol {
   display: block;
 }
 
+.hero-area-new .hero-content h1 span {
+  display: block;
+}
+
 .hero-area .hero-content p {
+  margin-top: 30px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.hero-area-new .hero-content p {
   margin-top: 30px;
   font-size: 15px;
   color: #fff;
@@ -2056,7 +2137,17 @@ ol {
   margin-top: 40px;
 }
 
+.hero-area-new .hero-content .button {
+  margin-top: 40px;
+}
+
 .hero-area .hero-content .button .btn {
+  background-color: #fff;
+  color: #2facff;
+  margin-right: 12px;
+}
+
+.hero-area-new .hero-content .button .btn {
   background-color: #fff;
   color: #2facff;
   margin-right: 12px;
@@ -2066,7 +2157,16 @@ ol {
   font-size: 17px;
 }
 
+.hero-area-new .hero-content .button .btn i {
+  font-size: 17px;
+}
+
 .hero-area .hero-content .button .btn:hover {
+  background-color: #081828;
+  color: #fff;
+}
+
+.hero-area-new .hero-content .button .btn:hover {
   background-color: #081828;
   color: #fff;
 }
@@ -2076,13 +2176,29 @@ ol {
   color: #fff;
 }
 
+.hero-area-new .hero-content .button .btn.btn-alt {
+  background-color: #ffffff6b;
+  color: #fff;
+}
+
 .hero-area .hero-content .button .btn.btn-alt:hover {
+  background-color: #fff;
+  color: #2facff;
+}
+
+.hero-area-new .hero-content .button .btn.btn-alt:hover {
   background-color: #fff;
   color: #2facff;
 }
 
 @media (max-width: 767px) {
   .hero-area .hero-content .button .video-button {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-area-new .hero-content .button .video-button {
     margin-top: 20px;
   }
 }
@@ -2094,7 +2210,26 @@ ol {
   font-weight: 500;
 }
 
+.hero-area-new .hero-content .button .video-button .text {
+  display: inline-block;
+  margin-left: 15px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.hero-area-new .hero-content .button .video-button .text {
+  display: inline-block;
+  margin-left: 15px;
+  color: #fff;
+  font-weight: 500;
+}
+
 .hero-area .hero-content .button .video-button:hover .video {
+  color: #fff;
+  background-color: #081828;
+}
+
+.hero-area-new .hero-content .button .video-button:hover .video {
   color: #fff;
   background-color: #081828;
 }
@@ -2205,11 +2340,26 @@ ol {
     padding: 0 10px;
     text-align: center;
   }
+
+  .hero-area-new .hero-content {
+    padding: 0 10px;
+    text-align: center;
+  }
   .hero-area .hero-content h1 {
     font-size: 24px;
     line-height: 32px;
   }
+
+  .hero-area-new .hero-content h1 {
+    font-size: 24px;
+    line-height: 32px;
+  }
   .hero-area .hero-content p {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .hero-area-new .hero-content p {
     margin-top: 15px;
     font-size: 14px;
     line-height: 22px;
@@ -2219,10 +2369,20 @@ ol {
     margin: 0;
     margin-bottom: 7px;
   }
+  .hero-area-new .hero-content .button .btn {
+    width: 60%;
+    margin: 0;
+    margin-bottom: 7px;
+  }
   .hero-area .hero-content .button .btn:last-child {
     margin: 0;
   }
+  .hero-area-new .hero-content .button .btn:last-child {
+    margin: 0;
+  }
 }
+
+
 
 /*======================================
     Features Area CSS
