@@ -1354,7 +1354,7 @@ a:active.learn-btn{
 	position: relative;
 }
 .contact:before{
-	background:#2fa72f86;
+	background:#2fa72fba;
 	position:absolute;
 	left:0;
 	top:0;
@@ -1413,7 +1413,7 @@ a:active.learn-btn{
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	background: #2fa72f;
+	background: #2fa72fbb;
 	height:50px;
 	width: 195px;
 	border:1px solid #2fa72f;
