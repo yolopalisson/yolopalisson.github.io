@@ -78,6 +78,7 @@
   padding: 10px 15px;
   border-radius: 30%;
   cursor: pointer;
+  border-color:aliceblue;
   transition: all 0.3s ease;
 }
 
