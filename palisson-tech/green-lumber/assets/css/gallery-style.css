@@ -20,11 +20,14 @@
 .gallery-item {
   position: relative;
   overflow: hidden;
+  height: 250px; /* Fixed height to ensure all items have the same height */
+  background-color: #f0f0f0; /* Placeholder background color for better visibility */
 }
 
 .gallery-image {
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
   display: block;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -62,7 +65,7 @@
   max-height: 80vh; /* Set max height to 80% of the viewport height */
   height: auto; /* Maintain aspect ratio */
   width: auto; /* Maintain aspect ratio */
-  object-fit: contain;
+  object-fit: contain; /* Ensure the image scales without cropping */
 }
 
 .close {
@@ -100,11 +103,13 @@
 
   .gallery-item {
     padding: 0;
+    height: 150px; /* Adjust height for smaller screens to maintain consistency */
   }
 
   .gallery-image {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and fill the container */
     transition: none; /* Disable hover effect on mobile */
   }
 
