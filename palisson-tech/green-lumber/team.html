@@ -52,6 +52,7 @@
         
         <!--style.css-->
         <link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="assets/css/gallery-style.css">
         
         <!--responsive.css-->
         <link rel="stylesheet" href="assets/css/responsive.css">
@@ -125,135 +126,72 @@
 		</section><!--/.about-part-->
 		<!--about-part end-->
 
+
+
 		<!--team start -->
 		<section id="team" class="team  team-main">
-			<div class="container">
+			<div class="container-gallery">
 				<div class="team-details">
 					<div class="project-header team-header team-head text-center">
 						<h2>Our expert team</h2>
 						<p>
-							Pallamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Meet the hardworking individuals of Green Lumber Holdings. 
 						</p>
 					</div><!--/.project-header-->
-					<div class="team-card">
-						<div class="container">
-							<div class="row">
-								<div class="owl-carousel  team-carousel">
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-1">
-											<div class="team-box-inner">
-												<h3>tom hanks</h3>
-												<p class="team-meta">Founder &  CEO</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
+					<div class="gallery">
+						<div class="gallery-item">
+						  <img src="assets/images/team/image1.jpg" alt="Image 1" class="gallery-image" onclick="openModal('modal1')">
+						</div>
+						<div class="gallery-item">
+						  <img src="assets/images/team/image2.jpg" alt="Image 2" class="gallery-image" onclick="openModal('modal2')">
+						</div>
+						<div class="gallery-item">
+						  <img src="assets/images/team/image3.jpg" alt="Image 3" class="gallery-image" onclick="openModal('modal3')">
+						</div>
+						<div class="gallery-item">
+						  <img src="assets/images/team/image4.jpg" alt="Image 4" class="gallery-image" onclick="openModal('modal4')">
+						<!-- </div>
+						<div class="gallery-item">
+							<img src="assets/images/team/image5.jpg" alt="Image 5" class="gallery-image" onclick="openModal('modal4')">
+						  </div> -->
+					  </div>
 
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-2">
-											<div class="team-box-inner">
-												<h3>alex browne</h3>
-												<p class="team-meta">
-													Director, Management & Research
-												</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-3">
-											<div class="team-box-inner">
-												<h3>darren j. stevens</h3>
-												<p class="team-meta">
-													Director, Finance Solution
-												</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-4">
-											<div class="team-box-inner">
-												<h3>kevin thomson</h3>
-												<p class="team-meta">
-													Head, Legal Advising
-												</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-								</div><!--/.team-carousel-->
-							</div><!--/.row-->
-						</div><!--/.container-->
-					</div><!--/.team-card-->
-					<div class="team-card team-mrt-70">
-						<div class="container">
-							<div class="row">
-								<div class="owl-carousel  team-carousel">
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-4">
-											<div class="team-box-inner">
-												<h3>tom hanks</h3>
-												<p class="team-meta">Founder &  CEO</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
+					   <!-- Modals -->
+		  <div id="modal1" class="modal">
+			<div class="modal-content">
+			  <span class="close" onclick="closeModal('modal1')">&times;</span>
+			  <img src="assets/images/team/image1.jpg" alt="Image 1">
+			</div>
+		  </div>
+		
+		  <div id="modal2" class="modal">
+			<div class="modal-content">
+			  <span class="close" onclick="closeModal('modal2')">&times;</span>
+			  <img src="assets/images/team/image2.jpg" alt="Image 2">
+			</div>
+		  </div>
+		
+		  <div id="modal3" class="modal">
+			<div class="modal-content">
+			  <span class="close" onclick="closeModal('modal3')">&times;</span>
+			  <img src="assets/images/team/image3.jpg" alt="Image 3">
+			</div>
+		  </div>
+		
+		  <div id="modal4" class="modal">
+			<div class="modal-content">
+			  <span class="close" onclick="closeModal('modal4')">&times;</span>
+			  <img src="assets/images/team/image4.jpg" alt="Image 4">
+			</div>
+		  </div>
 
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-3">
-											<div class="team-box-inner">
-												<h3>alex browne</h3>
-												<p class="team-meta">
-													Director, Management & Research
-												</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-2">
-											<div class="team-box-inner">
-												<h3>darren j. stevens</h3>
-												<p class="team-meta">
-													Director, Finance Solution
-												</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-									<div class="col-sm-3 col-xs-12">
-										<div class="single-team-box single-team-card team-box-bg-1">
-											<div class="team-box-inner">
-												<h3>kevin thomson</h3>
-												<p class="team-meta">
-													Head, Legal Advising
-												</p>
-												<a href="team.html" class="learn-btn">
-													learn more
-												</a>
-											</div><!--/.team-box-inner-->
-										</div><!--/.single-team-box-->
-									</div><!--.col-->
-								</div><!--/.team-carousel-->
-							</div><!--/.row-->
-						</div><!--/.container-->
-					</div><!--/.team-card-->
-				</div><!--/.team-details-->
+		  <!-- <div id="modal5" class="modal">
+			<div class="modal-content">
+			  <span class="close" onclick="closeModal('modal5')">&times;</span>
+			  <img src="assets/images/team/image5.jpg" alt="Image 5">
+			</div>
+		  </div> -->
+					
 			</div><!--/.container-->
 			
 		</section><!--/.team-->
@@ -422,6 +360,7 @@
         <!--Custom JS-->
         <script type="text/javascript" src="assets/js/jak-menusearch.js"></script>
         <script type="text/javascript" src="assets/js/custom.js"></script>
+		<script type="text/javascript" src="assets/js/gallery-script.js"></script>
 		
 
     </body>
