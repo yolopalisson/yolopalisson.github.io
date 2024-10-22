@@ -1,0 +1,106 @@
+/* Container for the testimonial section */
+.testimonial-section {
+  width: 100%;
+  padding: 40px 0;
+  background-color: #f4f4f4;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Slider holding the testimonial slides */
+.testimonial-slider {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%; /* Ensures the slider takes full width */
+}
+
+/* Each slide contains 3 cards */
+.testimonial-slide {
+  display: flex;
+  flex: 1 0 100%; /* Make each slide fill the full width */
+  justify-content: space-between; /* Space out the cards */
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.testimonial-slide.active {
+  opacity: 1;
+}
+
+.testimonial-card {
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 30%; /* Ensures 3 cards fit in a row */
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.testimonial-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.testimonial-author {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #333;
+  font-size: 1.2em;
+}
+
+/* Navigation buttons */
+.testimonial-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.testimonial-prev, .testimonial-next {
+  background-color: rgba(0, 0, 0, 0.271);
+  color: white;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 30%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonial-prev:hover, .testimonial-next:hover {
+  background-color: rgba(0, 0, 0, 0.247);
+}
+
+.testimonial-prev {
+  left: 10px;
+}
+
+.testimonial-next {
+  right: 10px;
+}
+
+/* Responsive styling for mobile screens */
+@media screen and (max-width: 768px) {
+  .testimonial-slide {
+    flex-direction: column; /* Stack cards vertically */
+  }
+
+  .testimonial-card {
+    max-width: 100%; /* Full width for each card */
+    margin-bottom: 20px; /* Spacing between stacked cards */
+  }
+}
