@@ -17,4 +17,4 @@ function changeTestimonialSlide(direction) {
 }
 
 // Optional auto-slide functionality
-setInterval(() => changeTestimonialSlide(1), 9000);
+setInterval(() => changeTestimonialSlide(1), 10000);
