@@ -62,6 +62,16 @@
   line-height: 1.5;
 }
 
+/* Company logo styling */
+.company-logo {
+    width: 100px; /* Fixed width for logos */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 10px; /* Space above the logo */
+    display: block; /* Ensure it behaves like a block element */
+    margin-left: auto; /* Center the logo horizontally */
+    margin-right: auto; /* Center the logo horizontally */
+  }
+
 /* Navigation buttons */
 .testimonial-nav {
   position: absolute;
@@ -104,5 +114,9 @@
   .testimonial-card {
     max-width: 100%; /* Full width for each card */
     margin-bottom: 20px; /* Spacing between stacked cards */
+  }
+
+  .company-logo {
+    width: 80px; /* Smaller logo on mobile */
   }
 }
