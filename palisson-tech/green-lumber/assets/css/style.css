@@ -202,9 +202,11 @@ html,body{
 .navbar-brand:hover,
 .navbar-brand:focus{
 	margin-top: 5px;
-	/* padding-bottom: 150px; */
+	padding-right: 50px;
+	margin-bottom: 15px;
 	position: relative;
 	top: 0;
+	bottom: 0;
 }/* navbar-brand */
 
 /* wrapper-sticky */
@@ -224,6 +226,9 @@ html,body{
 
 .sticky  .navbar-brand{
 	margin-top:20px;
+	padding-right: 100px;
+	margin-right: 20px;
+	margin-bottom: 15px;
 }
 .sticky  .navbar-default .navbar-nav li a,
 .sticky  .navbar-default .navbar-nav li a:active,
