@@ -1,13 +1,12 @@
-/* General Styling */
 
 
 /* Container for centering */
 .container-gallery {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  min-height: 100vh; /* Full viewport height */
-  padding: 20px; /* Add padding to prevent edges touching the screen */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 /* Gallery Grid */
@@ -16,8 +15,8 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 15px;
   padding: 20px;
-  max-width: 1000px; /* Set a max width for the grid */
-  width: 100%; /* Full width for responsive behavior */
+  max-width: 1000px;
+  width: 100%;
 }
 
 .gallery-item {
@@ -27,7 +26,7 @@
 
 .gallery-image {
   width: 100%;
-  height: auto;
+  height: auto; /* Maintain aspect ratio */
   display: block;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -48,7 +47,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
-  overflow: auto; /* Allow scrolling if image is too large */
+  overflow: auto;
 }
 
 .modal-content {
@@ -65,7 +64,7 @@
   max-height: 80vh; /* Set max height to 80% of the viewport height */
   height: auto; /* Maintain aspect ratio */
   width: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Ensure the image scales without cropping */
+  object-fit: contain;
 }
 
 .close {
@@ -94,11 +93,11 @@
 @media screen and (max-width: 480px) {
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    grid-gap: 10px; /* Reduce gap between items */
+    grid-gap: 10px;
   }
-  
+
   .container-gallery {
-    padding: 10px; /* Reduce padding for smaller screens */
+    padding: 10px;
   }
 
   .gallery-item {
@@ -106,10 +105,13 @@
   }
 
   .gallery-image {
-    transition: none; /* Remove hover effect on mobile for simplicity */
+    width: 100%; /* Ensure images are fully responsive */
+    height: auto; /* Maintain aspect ratio */
+    transition: none; /* Disable hover effect on mobile */
   }
 
   .modal img {
-    max-height: 70vh; /* Slightly reduce modal image height for mobile */
+    max-width: 100%; /* Ensure modal image fits fully in mobile */
+    max-height: 70vh;
   }
 }
