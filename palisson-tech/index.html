@@ -40,6 +40,9 @@
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
+  <!--PHP-->
+  <link href="send_email.php" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -1440,7 +1443,7 @@
                     </h5>
                   </div>
                   <div>
-                      <form action="" method="post" role="form" class="contactForm" data-netlify="true">
+                      <form action="send_email.php" method="post" role="form" class="contactForm">
                         <div id="sendmessage">Your message has been sent. Thank you!</div>
                         <div id="errormessage"></div>
                         <div class="row">
@@ -1469,7 +1472,7 @@
                             </div>
                           </div>
                           <div class="col-md-12">
-                            <button type="submit" class="button button-a button-big button-rouded" href="mailto:luyolopaliso@gmail.com">Send Message</button>
+                            <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
                           </div>
                         </div>
                     </form>
