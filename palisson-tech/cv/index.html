@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --glass-bg:rgba(255,255,255,0.055);
+  --glass-border:rgba(255,255,255,0.11);
+  --glass-hover:rgba(255,255,255,0.09);
+  --text-primary:rgba(255,255,255,0.95);
+  --text-secondary:rgba(255,255,255,0.55);
+  --text-tertiary:rgba(255,255,255,0.28);
+  --accent:#4FC3F7;
+  --accent2:#CE93D8;
+  --radius-lg:20px;
+  --radius-xl:26px;
+}
+body{
+  font-family:-apple-system,'Helvetica Neue',sans-serif;
+  background:#080A0F;
+  color:var(--text-primary);
+  overflow-x:hidden;
+  min-height:100vh;
+  line-height:1.6;
+}
+
+/* Ambient */
+.ambient{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:0;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(130px);opacity:0.15;animation:drift 20s ease-in-out infinite;}
+.orb1{width:650px;height:650px;background:#1a6fff;top:-200px;left:-120px;animation-delay:0s;}
+.orb2{width:550px;height:550px;background:#8b2ff8;top:300px;right:-180px;animation-delay:-7s;}
+.orb3{width:450px;height:450px;background:#00c6ff;bottom:-80px;left:35%;animation-delay:-14s;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(28px,-36px) scale(1.04);}66%{transform:translate(-18px,22px) scale(0.97);}}
+
+/* Nav */
+nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  z-index:100;
+  background:rgba(8,10,15,0.72);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  border:0.5px solid var(--glass-border);
+  border-radius:50px;
+  padding:10px 26px;
+  display:flex;align-items:center;gap:32px;
+  animation:fadeDown 0.8s cubic-bezier(0.16,1,0.3,1) forwards;opacity:0;
+}
+@keyframes fadeDown{from{opacity:0;transform:translateX(-50%) translateY(-14px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+.nav-logo{font-size:14px;font-weight:500;letter-spacing:-0.2px;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;cursor:pointer;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text-primary);}
+.nav-cta{font-size:13px;font-weight:500;color:#080A0F;background:var(--text-primary);border:none;border-radius:50px;padding:7px 18px;cursor:pointer;transition:opacity 0.2s;}
+.nav-cta:hover{opacity:0.85;}
+
+/* Hero */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:130px 24px 80px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;
+  opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
+}
+.hero-title{
+  font-size:clamp(48px,8.5vw,90px);font-weight:300;line-height:1.04;letter-spacing:-3px;
+  margin-bottom:16px;
+  opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.35s forwards;
+}
+.hero-title .name{
+  background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.55) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-title .role{
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(16px,2.2vw,20px);font-weight:300;color:var(--text-secondary);
+  max-width:580px;line-height:1.6;margin:0 auto 40px;letter-spacing:-0.1px;
+  opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+}
+.hero-btns{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.65s forwards;
+}
+.btn-primary{font-size:15px;font-weight:500;color:#080A0F;background:var(--text-primary);border:none;border-radius:50px;padding:13px 28px;cursor:pointer;transition:transform 0.2s,opacity 0.2s;letter-spacing:-0.1px;}
+.btn-primary:hover{transform:scale(1.03);opacity:0.88;}
+.btn-ghost{font-size:15px;font-weight:400;color:var(--text-primary);background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:50px;padding:13px 28px;cursor:pointer;transition:background 0.2s,transform 0.2s;backdrop-filter:blur(10px);}
+.btn-ghost:hover{background:var(--glass-hover);transform:scale(1.02);}
+
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s ease 1.3s forwards;}
+.scroll-hint span{font-size:10px;color:var(--text-tertiary);letter-spacing:2px;text-transform:uppercase;}
+.scroll-line{width:1px;height:38px;background:linear-gradient(to bottom,var(--text-tertiary),transparent);animation:pulse-line 2s ease-in-out infinite;}
+@keyframes pulse-line{0%,100%{opacity:0.3}50%{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+/* Page container */
+.page{position:relative;z-index:1;}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px;}
+
+/* Section commons */
+.sec{padding:80px 0;}
+.sec-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.sec-title{font-size:clamp(30px,4.5vw,46px);font-weight:300;letter-spacing:-1.8px;line-height:1.1;margin-bottom:48px;}
+.sec-title em{font-style:normal;color:var(--text-secondary);}
+
+/* Stats */
+.stats-wrap{display:flex;justify-content:center;padding:0 24px 72px;position:relative;z-index:1;}
+.stats-glass{
+  background:var(--glass-bg);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:0.5px solid var(--glass-border);
+  border-radius:var(--radius-xl);
+  padding:26px 48px;
+  display:flex;gap:52px;align-items:center;flex-wrap:wrap;justify-content:center;
+}
+.stat{text-align:center;}
+.stat-n{font-size:30px;font-weight:300;letter-spacing:-1.5px;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.55));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-l{font-size:11px;color:var(--text-tertiary);letter-spacing:1.2px;text-transform:uppercase;margin-top:4px;}
+.stat-div{width:1px;height:38px;background:var(--glass-border);}
+
+/* Skills chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.chip{font-size:12px;color:var(--text-secondary);background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:50px;padding:5px 14px;letter-spacing:0.2px;}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+.about-copy p{font-size:17px;font-weight:300;line-height:1.7;color:var(--text-secondary);letter-spacing:-0.2px;margin-bottom:16px;}
+.about-copy p strong{color:var(--text-primary);font-weight:400;}
+.about-copy p:last-child{margin-bottom:0;}
+.about-card{
+  background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:var(--radius-xl);
+  padding:28px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+}
+.about-card-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;}
+.skill-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.skill-row:last-child{border-bottom:none;}
+.skill-n{font-size:13px;color:var(--text-secondary);}
+.bar-wrap{width:110px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+
+/* Timeline */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(79,195,247,0.08));}
+.tl-item{position:relative;margin-bottom:36px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-32px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(79,195,247,0.15);}
+.tl-card{background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:var(--radius-lg);padding:22px 24px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background 0.3s,border-color 0.3s,transform 0.3s cubic-bezier(0.16,1,0.3,1);}
+.tl-card:hover{background:var(--glass-hover);border-color:rgba(255,255,255,0.18);transform:translateX(4px);}
+.tl-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px;}
+.tl-role{font-size:16px;font-weight:400;letter-spacing:-0.3px;}
+.tl-period{font-size:11px;color:var(--text-tertiary);letter-spacing:0.5px;}
+.tl-company{font-size:13px;color:var(--accent);margin-bottom:12px;letter-spacing:0.1px;}
+.tl-body{font-size:13px;color:var(--text-secondary);line-height:1.65;}
+.tl-body ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.tl-body li::before{content:"–";margin-right:8px;opacity:0.4;}
+.tl-stack{margin-top:12px;font-size:12px;color:var(--text-tertiary);line-height:1.6;}
+.tl-stack strong{color:rgba(255,255,255,0.35);font-weight:400;}
+
+/* Edu grid */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+.edu-card{background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:var(--radius-lg);padding:22px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background 0.3s,transform 0.3s cubic-bezier(0.16,1,0.3,1);}
+.edu-card:hover{background:var(--glass-hover);transform:translateY(-4px);}
+.edu-year{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.edu-title{font-size:14px;font-weight:400;letter-spacing:-0.2px;margin-bottom:4px;line-height:1.4;}
+.edu-inst{font-size:13px;color:var(--text-secondary);margin-bottom:14px;}
+.edu-link{font-size:12px;color:var(--accent);text-decoration:none;border:0.5px solid rgba(79,195,247,0.25);border-radius:50px;padding:5px 14px;display:inline-block;transition:background 0.2s;}
+.edu-link:hover{background:rgba(79,195,247,0.08);}
+
+/* Contact */
+.contact-card{
+  background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:var(--radius-xl);
+  padding:60px;text-align:center;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  position:relative;overflow:hidden;
+}
+.contact-card::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:360px;height:360px;background:radial-gradient(circle,rgba(79,195,247,0.10) 0%,transparent 70%);pointer-events:none;}
+.contact-title{font-size:clamp(32px,5vw,52px);font-weight:300;letter-spacing:-2px;margin-bottom:14px;}
+.contact-sub{font-size:17px;color:var(--text-secondary);margin-bottom:36px;font-weight:300;}
+.contact-methods{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.contact-item{
+  font-size:14px;color:var(--text-secondary);
+  background:var(--glass-bg);border:0.5px solid var(--glass-border);border-radius:50px;
+  padding:11px 22px;text-decoration:none;transition:background 0.2s,color 0.2s,transform 0.2s;
+}
+.contact-item:hover{background:var(--glass-hover);color:var(--text-primary);transform:translateY(-2px);}
+.contact-item .label{font-size:11px;color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:2px;}
+
+/* Footer */
+footer{padding:28px 24px;text-align:center;border-top:0.5px solid rgba(255,255,255,0.05);position:relative;z-index:1;}
+footer p{font-size:11px;color:var(--text-tertiary);}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.08s;}.d2{transition-delay:0.16s;}.d3{transition-delay:0.24s;}.d4{transition-delay:0.32s;}.d5{transition-delay:0.40s;}
+
+@media(max-width:700px){
+  .about-grid{grid-template-columns:1fr;}
+  .stats-glass{gap:28px;padding:22px 28px;}
+  .stat-div{display:none;}
+  .contact-card{padding:36px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">Luyolo Paliso</div>
+  <div class="nav-links">
+    <a>About</a>
+    <a>Experience</a>
+    <a>Education</a>
+    <a>Contact</a>
+  </div>
+  <button class="nav-cta">Download CV</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">UI Designer · Web Developer · Multimedia</div>
+  <h1 class="hero-title">
+    <span class="name">Luyolo Paliso</span><br>
+    <span class="role">Design-led development.</span>
+  </h1>
+  <p class="hero-sub">A multimedia professional with 6+ years of industry experience, bridging the gap between thoughtful interface design and production-ready code.</p>
+  <div class="hero-btns">
+    <button class="btn-primary">Download Resume</button>
+    <button class="btn-ghost">Get in touch →</button>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="page">
+
+  <!-- Stats -->
+  <div class="stats-wrap reveal">
+    <div class="stats-glass">
+      <div class="stat"><div class="stat-n">6+</div><div class="stat-l">Years exp.</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><div class="stat-n">5</div><div class="stat-l">Roles held</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><div class="stat-n">SMB+</div><div class="stat-l">Clients served</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Sites managed</div></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-eyebrow reveal">About</div>
+      <h2 class="sec-title reveal">A developer who <em>thinks</em><br>like a designer.</h2>
+      <div class="about-grid">
+        <div class="about-copy reveal d1">
+          <p>I am a <strong>Multimedia professional</strong> specialising in UI Design, Web Development, and Graphic Design. With a foundation in both design and engineering, I approach every project with a dual perspective — crafting interfaces that are not only visually compelling, but technically sound.</p>
+          <p>My design toolkit centres on <strong>Figma, Adobe XD, Photoshop, InDesign,</strong> and <strong>Illustrator</strong> — paired with front-end development in <strong>HTML, CSS, JavaScript (React), Webflow, Wix</strong> and <strong>WordPress</strong>.</p>
+          <p>Having a background in development has meaningfully sharpened my design instincts. I don't just conceptualise interfaces — I build them. That end-to-end capability allows me to make better design decisions earlier, reducing friction across the entire product lifecycle.</p>
+          <div class="chips" style="margin-top:20px;">
+            <span class="chip">Figma</span><span class="chip">Adobe XD</span><span class="chip">Photoshop</span>
+            <span class="chip">Illustrator</span><span class="chip">HTML / CSS</span><span class="chip">JavaScript</span>
+            <span class="chip">React</span><span class="chip">WordPress</span><span class="chip">Webflow</span>
+            <span class="chip">SEO</span><span class="chip">Salesforce</span><span class="chip">GitHub</span>
+          </div>
+        </div>
+        <div class="about-card reveal d2">
+          <div class="about-card-title">Core proficiencies</div>
+          <div class="skill-row"><span class="skill-n">UI / UX Design</span><div class="bar-wrap"><div class="bar" style="width:95%"></div></div></div>
+          <div class="skill-row"><span class="skill-n">Web Development</span><div class="bar-wrap"><div class="bar" style="width:90%"></div></div></div>
+          <div class="skill-row"><span class="skill-n">Graphic Design</span><div class="bar-wrap"><div class="bar" style="width:88%"></div></div></div>
+          <div class="skill-row"><span class="skill-n">WordPress / CMS</span><div class="bar-wrap"><div class="bar" style="width:92%"></div></div></div>
+          <div class="skill-row"><span class="skill-n">Technical SEO</span><div class="bar-wrap"><div class="bar" style="width:78%"></div></div></div>
+          <div class="skill-row"><span class="skill-n">React / JS</span><div class="bar-wrap"><div class="bar" style="width:82%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-eyebrow reveal">Experience</div>
+      <h2 class="sec-title reveal">A career built on <em>craft</em><br>and curiosity.</h2>
+      <div class="timeline">
+
+        <div class="tl-item reveal d1">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-role">Web Developer</span>
+              <span class="tl-period">Jul 2022 – Feb 2026</span>
+            </div>
+            <div class="tl-company">MRI Software</div>
+            <div class="tl-body">
+              <ul>
+                <li>Maintained 10+ regional WordPress sites and 20+ post-merger web properties, ensuring performance and consistency across all digital touchpoints.</li>
+                <li>Managed WordPress and WP Engine installations, updates, and theme customisations using JavaScript, JSON, and jQuery.</li>
+                <li>Conducted technical SEO audits leveraging Ahrefs, GA4, and Google Search Console to identify and resolve organic performance gaps.</li>
+                <li>Designed and developed high-converting landing pages within Salesforce, in close collaboration with marketing stakeholders.</li>
+              </ul>
+              <div class="tl-stack"><strong>Stack: </strong>HTML · CSS · JavaScript · WordPress · Salesforce · Figma · Photoshop · Illustrator · VS Code</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal d2">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-role">Graphic Designer</span>
+              <span class="tl-period">Mar 2021 – Jun 2022</span>
+            </div>
+            <div class="tl-company">Mission Holding Group</div>
+            <div class="tl-body">
+              <ul>
+                <li>Delivered end-to-end print and digital design across a broad range of brand communications.</li>
+                <li>Produced real estate photography and video editing assets for property marketing campaigns.</li>
+                <li>Managed WordPress properties and administered Facebook Ads campaigns to support digital outreach objectives.</li>
+              </ul>
+              <div class="tl-stack"><strong>Stack: </strong>Photoshop · InDesign · Illustrator · Adobe XD · WordPress</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal d3">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-role">Founder & Web Developer / UI Designer</span>
+              <span class="tl-period">Mar 2020 – Present</span>
+            </div>
+            <div class="tl-company">Palisson Technologies (Own Business)</div>
+            <div class="tl-body">
+              <p>Founded and operated a boutique digital studio delivering bespoke websites and UI design for small to medium-sized businesses. Beyond client delivery, this venture has been instrumental in cultivating skills in project management, client engagement, documentation, and end-to-end ownership of the creative process.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal d4">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-role">Customer Service Associate</span>
+              <span class="tl-period">Jun 2020 – Mar 2021</span>
+            </div>
+            <div class="tl-company">Amazon</div>
+            <div class="tl-body">
+              <p>Supported customers in the North American market with queries relating to physical and digital orders. Additionally trained to handle technical troubleshooting escalations, developing strong communication and problem-solving skills in a high-volume environment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal d5">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-role">Web Developer (Intern)</span>
+              <span class="tl-period">Nov 2018 – Dec 2019</span>
+            </div>
+            <div class="tl-company">Computer Science Software (Pty) Ltd</div>
+            <div class="tl-body">
+              <ul>
+                <li>Led the redesign of the company's public-facing website, modernising its UI and enhancing core functionality.</li>
+                <li>Developed an HTML/JSP-based in-app help section integrated into the company's proprietary software suite.</li>
+                <li>Produced interactive video tutorials to guide new clients through the software onboarding experience.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-eyebrow reveal">Education & Certifications</div>
+      <h2 class="sec-title reveal">Continuous <em>learning,</em><br>validated.</h2>
+      <div class="edu-grid">
+
+        <div class="edu-card reveal d1">
+          <div class="edu-year">2019</div>
+          <div class="edu-title">Diploma in ICT: Multimedia Applications</div>
+          <div class="edu-inst">CPUT</div>
+          <a class="edu-link" href="https://yolopalisson.github.io/palisson-tech/resume/assets/docs/Luyolo Diploma.pdf" target="_blank">View certificate →</a>
+        </div>
+
+        <div class="edu-card reveal d2">
+          <div class="edu-year">2022</div>
+          <div class="edu-title">Figma UI/UX Design Essentials</div>
+          <div class="edu-inst">Udemy</div>
+          <a class="edu-link" href="https://yolopalisson.github.io/palisson-tech/resume/assets/docs/Figma Certiticate - Udemy.pdf" target="_blank">View certificate →</a>
+        </div>
+
+        <div class="edu-card reveal d3">
+          <div class="edu-year">2021</div>
+          <div class="edu-title">HTML5 – Basics to Advanced</div>
+          <div class="edu-inst">Udemy</div>
+          <a class="edu-link" href="https://yolopalisson.github.io/palisson-tech/resume/assets/docs/HTML Course - Udemy.pdf" target="_blank">View certificate →</a>
+        </div>
+
+        <div class="edu-card reveal d1">
+          <div class="edu-year">2020</div>
+          <div class="edu-title">The Complete JavaScript Course 2020</div>
+          <div class="edu-inst">Udemy</div>
+          <a class="edu-link" href="https://yolopalisson.github.io/palisson-tech/resume/assets/docs/JavaScript Course - Udemy.pdf" target="_blank">View certificate →</a>
+        </div>
+
+        <div class="edu-card reveal d2">
+          <div class="edu-year">2020</div>
+          <div class="edu-title">Advanced Google Analytics</div>
+          <div class="edu-inst">Google Analytics Academy</div>
+          <a class="edu-link" href="https://analytics.google.com/analytics/academy/certificate/MQuxAkmBRta8A_10Le_Yzg" target="_blank">View certificate →</a>
+        </div>
+
+        <div class="edu-card reveal d3">
+          <div class="edu-year">2020</div>
+          <div class="edu-title">Google Web Designer Basics</div>
+          <div class="edu-inst">Google</div>
+          <span class="edu-link" style="opacity:0.4;cursor:default;">Certificate</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <div class="sec-eyebrow" style="margin-bottom:18px;">Get in touch</div>
+        <div class="contact-title">Let's build something<br>worth remembering.</div>
+        <p class="contact-sub">Open to freelance projects, contract roles, and full-time opportunities.</p>
+        <div class="contact-methods">
+          <a class="contact-item" href="mailto:luyolopaliso@gmail.com">
+            <span class="label">Email</span>
+            luyolopaliso@gmail.com
+          </a>
+          <a class="contact-item" href="tel:27763704031">
+            <span class="label">Phone</span>
+            076 370 4031
+          </a>
+          <a class="contact-item" href="https://wa.me/2752185340" target="_blank">
+            <span class="label">WhatsApp</span>
+            075 218 5340
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2026 Palisson Tech and Media (Pty) Ltd. All rights reserved. · Designed by Palisson Technologies.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
