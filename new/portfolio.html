@@ -182,7 +182,7 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
 @media(max-width:768px){
   .nav-links{display:none}
   .nav-hamburger{display:flex}
-  nav.menu-open .nav-links{display:flex;flex-direction:column;position:fixed;inset:58px 0 0;background:var(--glass-nav);backdrop-filter:blur(24px);padding:2.5rem 2rem;gap:2rem;align-items:center;z-index:999}
+  nav.menu-open .nav-links{display:flex;flex-direction:column;position:fixed;inset:58px 0 0;background:var(--bg-base);backdrop-filter: var(--bg-base);padding:2.5rem 2rem;gap:2rem;align-items:center;z-index:999}
   .nav-links a{font-size:16px}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .about-img-wrap{aspect-ratio:16/9}
@@ -201,7 +201,7 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#home" class="nav-logo">Palisson <span>&amp;</span> Tech</a>
+  <a href="#home" class="nav-logo">Palisson Tech <span>&amp;</span> Media</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
@@ -220,7 +220,7 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <span class="hero-eyebrow">Cape Town &amp; Eastern Cape · South Africa</span>
+    <span class="hero-eyebrow">Web Development · User Interface Design</span>
     <h1 class="hero-title">Design That<br><em>Moves</em> People<br>to Act.</h1>
     <p class="hero-subtitle">Palisson Technologies crafts world-class digital experiences — from pixel-perfect UI design to full-stack web development — built to make your brand impossible to ignore.</p>
     <div class="hero-actions">
@@ -234,7 +234,7 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
 <!-- STATS -->
 <div class="stats-band" id="statsBand">
   <div class="stat-item"><div class="stat-number"><span id="count1">0</span>+</div><div class="stat-label">Projects Completed</div></div>
-  <div class="stat-item"><div class="stat-number"><span id="count2">0</span></div><div class="stat-label">Years of Experience</div></div>
+  <div class="stat-item"><div class="stat-number"><span id="count2">0</span>+</div><div class="stat-label">Years of Experience</div></div>
   <div class="stat-item"><div class="stat-number"><span id="count3">0</span>+</div><div class="stat-label">Satisfied Clients</div></div>
 </div>
 
@@ -458,7 +458,7 @@ function observeAll(){document.querySelectorAll('.reveal,.stat-item,.service-car
 observeAll();
 
 /* COUNTER */
-const targets=[29,5,19],ids=['count1','count2','count3'];
+const targets=[29,6,19],ids=['count1','count2','count3'];
 let counted=false;
 new IntersectionObserver(entries=>{
   if(!entries[0].isIntersecting||counted)return;
@@ -467,7 +467,7 @@ new IntersectionObserver(entries=>{
     let n=0;const step=Math.ceil(targets[i]/40);
     const t=setInterval(()=>{n=Math.min(n+step,targets[i]);document.getElementById(id).textContent=n;if(n>=targets[i])clearInterval(t);},38);
   });
-  document.querySelectorAll('.stat-item').forEach((el,i)=>{el.style.transitionDelay=i*0.12+'s';el.classList.add('visible');});
+  document.querySelectorAll('.stat-item').forEach((el,i)=>{el.style.transitionDelay=i*0.15+'s';el.classList.add('visible');});
 },{threshold:0.3}).observe(document.getElementById('statsBand'));
 
 /* NAV */
