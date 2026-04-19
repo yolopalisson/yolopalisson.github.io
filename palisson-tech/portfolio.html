@@ -63,8 +63,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:58px;display:flex;al
 .nav-links a:hover{color:var(--teal)}
 .nav-cta{color:var(--teal)!important;border:1px solid rgba(0,201,177,0.35);padding:6px 16px;border-radius:980px;font-weight:500!important;transition:background 0.2s,border-color 0.2s!important}
 .nav-cta:hover{background:var(--teal-subtle)!important;border-color:var(--teal)!important;color:var(--teal-bright)!important}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--text-primary);border-radius:2px;transition:all 0.3s}
 
 /* HERO */
 #home{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 1.5rem 0;background:var(--bg-base);position:relative;overflow:hidden}
@@ -183,7 +181,7 @@ section{padding:8rem clamp(1.5rem,5vw,5rem)}
 .form-success{display:none;background:rgba(0,201,177,0.08);border:1px solid rgba(0,201,177,0.3);color:var(--teal);padding:14px;border-radius:var(--r-sm);font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-align:center}
 
 /* FOOTER */
-footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);padding:3rem clamp(1.5rem,5vw,5rem) 2rem;text-align:center}
+footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);padding:3rem clamp(1.5rem,5vw,5rem) 2rem;text-align:center;position:relative}
 .footer-logo{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-primary);margin-bottom:1rem}
 .footer-logo span{color:var(--teal)}
 .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;list-style:none;margin-bottom:1.5rem}
@@ -192,16 +190,19 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
 .footer-divider{width:40px;height:1px;background:var(--teal);opacity:0.3;margin:1.2rem auto}
 .footer-copy{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.7}
 
+/* SCROLL TO TOP */
+.scroll-to-top{position:absolute;bottom:1rem;right:1rem;width:50px;height:50px;background:var(--teal);color:var(--bg-base);border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,201,177,0.3);transition:transform 0.2s,opacity 0.3s;opacity:0;pointer-events:none;z-index:1000}
+.scroll-to-top:hover{transform:translateY(-2px)}
+.scroll-to-top.visible{opacity:1;pointer-events:auto}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .nav-links{display:none}
-  .nav-hamburger{display:flex}
-  nav.menu-open .nav-links{display:flex;flex-direction:column;position:fixed;inset:58px 0 0;background:var(--bg-base);backdrop-filter: var(--bg-base);padding:2.5rem 2rem;gap:2rem;align-items:center;z-index:999}
-  .nav-links a{font-size:16px}
+  .nav-links{display:flex}
+  .nav-links li:not(:last-child){display:none}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .about-img-wrap{aspect-ratio:16/9}
   .form-row{grid-template-columns:1fr}
@@ -228,9 +229,6 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
     <li><a href="#cases">Case Studies</a></li>
     <li><a href="#contact" class="nav-cta">Work With Us</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <!-- HERO -->
@@ -369,6 +367,7 @@ footer{background:var(--bg-surface);border-top:0.5px solid var(--divider);paddin
   </ul>
   <div class="footer-divider"></div>
   <p class="footer-copy">2026 © Palisson Tech and Media (Pty) Ltd. All Rights Reserved.<br>Designed &amp; developed by Palisson Technologies.</p>
+  <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 </footer>
 
 <script>
@@ -491,8 +490,6 @@ new IntersectionObserver(entries=>{
 },{threshold:0.3}).observe(document.getElementById('statsBand'));
 
 /* NAV */
-document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navbar').classList.toggle('menu-open'));
-document.getElementById('navLinks').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navbar').classList.remove('menu-open')));
 
 /* FORM */
 document.getElementById('contactForm').addEventListener('submit',e=>{
@@ -503,6 +500,18 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
 });
 
 setTimeout(observeAll,120);
+
+// Scroll to top
+const scrollBtn = document.getElementById('scrollToTop');
+const serviceSection = document.getElementById('service');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > serviceSection.offsetTop) {
+    scrollBtn.classList.add('visible');
+  } else {
+    scrollBtn.classList.remove('visible');
+  }
+});
+scrollBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
 // Form submission with FormSubmit.co
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
@@ -557,5 +566,6 @@ setTimeout(observeAll,120);
             }
         });
 </script>
+
 </body>
 </html>
