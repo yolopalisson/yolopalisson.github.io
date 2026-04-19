@@ -486,7 +486,7 @@ new IntersectionObserver(entries=>{
     let n=0;const step=Math.ceil(targets[i]/40);
     const t=setInterval(()=>{n=Math.min(n+step,targets[i]);document.getElementById(id).textContent=n;if(n>=targets[i])clearInterval(t);},38);
   });
-  document.querySelectorAll('.stat-item').forEach((el,i)=>{el.style.transitionDelay=i*0.15+'s';el.classList.add('visible');});
+  document.querySelectorAll('.stat-item').forEach((el,i)=>{el.style.transitionDelay=i*0.12+'s';el.classList.add('visible');});
 },{threshold:0.3}).observe(document.getElementById('statsBand'));
 
 /* NAV */
