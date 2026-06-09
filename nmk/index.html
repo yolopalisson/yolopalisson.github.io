@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NMK Chartered Accountants — Professional audit, accounting, tax, advisory and compliance services across South Africa. Based in Johannesburg, Bruma.">
+<meta name="keywords" content="chartered accountants South Africa, audit services Johannesburg, tax services SARS, accounting firm Bruma, NMK Chartered Accountants">
+<meta property="og:title" content="NMK Chartered Accountants | Professional Excellence. Sustainable Solutions.">
+<meta property="og:description" content="Empowering businesses through financial excellence. Audit, accounting, tax, advisory and compliance services across South Africa.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nmkca.co.za">
+<title>NMK Chartered Accountants | Professional Excellence. Sustainable Solutions. Trusted Partnerships.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════ */
+:root {
+  --ink:        #0B0B0B;
+  --orange:     #F4A536;
+  --orange-dk:  #C65804;
+  --orange-acc: #D84904;
+  --gold:       #E4980D;
+  --cream:      #FFEDD4;
+  --cream-dk:   #F5E4C4;
+  --surface:    #FAFAF8;
+  --white:      #FFFFFF;
+  --muted:      #6B6B64;
+  --rule:       #E4E4DC;
+  --dark:       #0F0F0A;
+  --dark-mid:   #1A1A12;
+  --card-bg:    #FFFFFF;
+  --nav-h:      72px;
+  --r:          8px;
+  --r-lg:       16px;
+  --shadow-sm:  0 2px 12px rgba(11,11,11,0.08);
+  --shadow-md:  0 8px 32px rgba(11,11,11,0.12);
+  --shadow-lg:  0 20px 60px rgba(11,11,11,0.18);
+  --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+ul { list-style: none; }
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY SCALE
+═══════════════════════════════════════════════════ */
+.display-xl {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+.display-lg {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+.display-md {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.display-sm {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 500;
+  line-height: 1.25;
+}
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.body-lg  { font-size: 18px; line-height: 1.7; }
+.body-md  { font-size: 16px; line-height: 1.65; }
+.body-sm  { font-size: 14px; line-height: 1.6; }
+.caption  { font-size: 12px; font-weight: 500; letter-spacing: 0.04em; }
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT UTILITIES
+═══════════════════════════════════════════════════ */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+.container-sm { max-width: 860px; margin: 0 auto; padding: 0 48px; }
+.section-pad { padding: 96px 0; }
+.section-pad-sm { padding: 64px 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.gap-8  { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.gap-32 { gap: 32px; }
+.mt-8   { margin-top: 8px; }
+.mt-16  { margin-top: 16px; }
+.mt-24  { margin-top: 24px; }
+.mt-32  { margin-top: 32px; }
+.mt-48  { margin-top: 48px; }
+.mt-64  { margin-top: 64px; }
+.text-center { text-align: center; }
+.text-white  { color: var(--white); }
+.text-muted  { color: var(--muted); }
+.text-orange { color: var(--orange); }
+.text-gold   { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--r);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(244,165,54,0.35);
+}
+.btn-primary:hover {
+  background: var(--orange-dk);
+  box-shadow: 0 6px 24px rgba(198,88,4,0.4);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.35);
+}
+.btn-ghost:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: rgba(244,165,54,0.06);
+}
+.btn-whatsapp {
+  background: #075E54;
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(7,94,84,0.4);
+}
+.btn-whatsapp:hover {
+  background: #128C7E;
+  transform: translateY(-1px);
+}
+.btn-outline-orange {
+  background: transparent;
+  color: var(--orange-dk);
+  border: 1.5px solid var(--orange);
+}
+.btn-outline-orange:hover {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn-dark:hover {
+  background: var(--dark-mid);
+  transform: translateY(-1px);
+}
+.btn-lg { padding: 18px 40px; font-size: 15px; }
+.btn-sm { padding: 10px 20px; font-size: 13px; }
+
+/* ═══════════════════════════════════════════════════
+   SECTION EYEBROW BLOCK
+═══════════════════════════════════════════════════ */
+.section-header { margin-bottom: 56px; }
+.section-header.centered { text-align: center; }
+.eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.eyebrow-row.centered { justify-content: center; }
+.eyebrow-bar {
+  width: 32px;
+  height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════ */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  transition: background var(--transition), box-shadow var(--transition);
+  background: transparent;
+}
+#navbar.scrolled {
+  background: var(--ink);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+}
+#navbar .container { width: 100%; }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 42px;
+  height: 42px;
+  background: var(--orange);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo-mark svg { width: 28px; height: 28px; }
+.nav-logo-text { display: flex; flex-direction: column; }
+.nav-logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.nav-logo-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  line-height: 1;
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+  position: relative;
+  cursor: pointer;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transition: transform var(--transition);
+  transform-origin: left;
+}
+.nav-link:hover, .nav-link.active { color: var(--white); }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+.nav-cta { margin-left: 16px; }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  background: var(--ink);
+  padding: 24px 32px 32px;
+  z-index: 999;
+  border-top: 1px solid rgba(244,165,54,0.2);
+  flex-direction: column;
+  gap: 8px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.mobile-link:hover { color: var(--orange); }
+.mobile-menu .btn { margin-top: 16px; width: 100%; }
+
+/* ═══════════════════════════════════════════════════
+   PAGES (SPA)
+═══════════════════════════════════════════════════ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--nav-h);
+}
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(244,165,54,1) 40px,
+      rgba(244,165,54,1) 41px
+    );
+}
+.hero-glow {
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(244,165,54,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute;
+  bottom: -300px;
+  left: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(228,152,13,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 80px 0 100px;
+}
+.hero-content { max-width: 760px; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.hero-eyebrow-pill {
+  background: rgba(244,165,54,0.12);
+  border: 1px solid rgba(244,165,54,0.3);
+  padding: 6px 16px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.4); }
+}
+.hero-headline { color: var(--white); }
+.hero-headline .line-1 { display: block; opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards; }
+.hero-headline .line-2 { display: block; opacity: 0; animation: fadeUp 0.7s 0.4s ease forwards; }
+.hero-headline .line-highlight {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  padding: 0 16px 4px;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.6s ease forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-sub {
+  color: rgba(255,255,255,0.62);
+  margin-top: 28px;
+  max-width: 560px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.85s ease forwards;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 44px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 1.05s ease forwards;
+}
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  opacity: 0;
+  animation: fadeUp 0.7s 1.25s ease forwards;
+}
+.hero-stat {
+  flex: 1;
+  padding-right: 40px;
+  position: relative;
+}
+.hero-stat + .hero-stat {
+  padding-left: 40px;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hero-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════
+   WHY CHOOSE NMK
+═══════════════════════════════════════════════════ */
+.why-section { background: var(--cream); }
+.feature-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid rgba(244,165,54,0.1);
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--cream);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  transition: background var(--transition);
+}
+.feature-card:hover .feature-icon { background: rgba(244,165,54,0.15); }
+.feature-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.feature-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════════
+   SERVICES GRID
+═══════════════════════════════════════════════════ */
+.services-section { background: var(--surface); }
+.service-card {
+  background: var(--card-bg);
+  border-radius: var(--r-lg);
+  padding: 32px 28px;
+  border: 1px solid var(--rule);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: pointer;
+}
+.service-card:hover {
+  border-color: var(--orange);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-3px);
+}
+.service-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.service-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--cream);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.service-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 14px;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.service-card:hover .service-arrow {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+.service-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.service-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.service-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  background: var(--cream);
+  color: var(--orange-dk);
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════
+   ABOUT / DARK BAND
+═══════════════════════════════════════════════════ */
+.about-band { background: var(--dark); }
+.about-left { max-width: 540px; }
+.about-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.value-chip {
+  padding: 8px 18px;
+  background: rgba(244,165,54,0.1);
+  border: 1px solid rgba(244,165,54,0.2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  transition: var(--transition);
+}
+.value-chip:hover { background: rgba(244,165,54,0.18); }
+.about-right {
+  background: var(--dark-mid);
+  border-radius: var(--r-lg);
+  padding: 48px 44px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.vision-mission-card {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.vision-mission-card:last-child { border-bottom: none; padding-bottom: 0; }
+.vm-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.vm-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════════════════
+   INDUSTRIES
+═══════════════════════════════════════════════════ */
+.industries-section { background: var(--surface); }
+.industry-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.industry-item {
+  padding: 12px 24px;
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--r);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.industry-item::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.industry-item:hover {
+  border-color: var(--orange);
+  color: var(--orange-dk);
+  background: var(--cream);
+}
+
+/* ═══════════════════════════════════════════════════
+   LEADERSHIP
+═══════════════════════════════════════════════════ */
+.leadership-section { background: var(--cream); }
+.leader-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+  border: 1px solid rgba(244,165,54,0.1);
+}
+.leader-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.leader-header {
+  background: var(--dark);
+  padding: 40px 40px 32px;
+  position: relative;
+}
+.leader-avatar {
+  width: 80px;
+  height: 80px;
+  background: rgba(244,165,54,0.15);
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.leader-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.leader-title { font-size: 13px; color: var(--orange); font-weight: 500; letter-spacing: 0.03em; }
+.leader-body { padding: 36px 40px; }
+.leader-bio { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+.leader-strengths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.strength-badge {
+  padding: 6px 14px;
+  background: var(--cream);
+  color: var(--orange-dk);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════ */
+.testimonials-section { background: var(--dark); }
+.testimonial-card {
+  background: var(--dark-mid);
+  border-radius: var(--r-lg);
+  padding: 36px 32px;
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  transition: border-color var(--transition);
+}
+.testimonial-card:hover { border-color: rgba(244,165,54,0.25); }
+.testimonial-card::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 120px;
+  color: var(--orange);
+  opacity: 0.12;
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  line-height: 1;
+  pointer-events: none;
+}
+.testimonial-stars { font-size: 16px; color: var(--gold); margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.testimonial-author { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 500; }
+
+/* ═══════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════ */
+.faq-section { background: var(--surface); }
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  background: none;
+  cursor: pointer;
+  transition: color var(--transition);
+  font-family: inherit;
+}
+.faq-question:hover { color: var(--orange-dk); }
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--muted);
+  transition: var(--transition);
+}
+.faq-item.open .faq-icon {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+  transform: rotate(45deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.faq-answer-inner { padding: 0 0 24px; font-size: 15px; color: var(--muted); line-height: 1.7; }
+.faq-item.open .faq-answer { max-height: 300px; }
+
+/* ═══════════════════════════════════════════════════
+   CTA BAND
+═══════════════════════════════════════════════════ */
+.cta-band {
+  background: linear-gradient(135deg, var(--orange-dk) 0%, var(--orange) 50%, var(--gold) 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.cta-inner { position: relative; z-index: 1; text-align: center; }
+.cta-inner .display-md { color: var(--white); margin-bottom: 12px; }
+.cta-inner p { color: rgba(255,255,255,0.82); margin-bottom: 36px; font-size: 17px; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════════════
+   CONTACT PAGE
+═══════════════════════════════════════════════════ */
+.contact-hero {
+  background: var(--dark);
+  padding: 120px 0 80px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+}
+.contact-info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.contact-info-item:last-child { border-bottom: none; }
+.contact-info-icon {
+  width: 42px;
+  height: 42px;
+  background: rgba(244,165,54,0.12);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.contact-info-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
+.contact-info-value { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.5; }
+.contact-info-value a { color: rgba(255,255,255,0.82); transition: color var(--transition); }
+.contact-info-value a:hover { color: var(--orange); }
+.contact-form-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 48px 44px;
+  box-shadow: var(--shadow-lg);
+}
+.contact-form-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.contact-form-card p { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+.form-group { margin-bottom: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.form-control {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--r);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+.form-control:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(244,165,54,0.12);
+  background: var(--white);
+}
+.form-control::placeholder { color: #BCBCB4; }
+textarea.form-control { resize: vertical; min-height: 120px; }
+select.form-control { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B64' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px;
+  color: #1E7E34;
+  font-size: 15px;
+}
+.map-section { background: var(--surface); }
+.map-container {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  height: 420px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--rule);
+}
+.map-container iframe { width: 100%; height: 100%; border: none; }
+.social-strip {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: var(--r);
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.social-fb  { background: #1877F2; color: var(--white); }
+.social-li  { background: #0A66C2; color: var(--white); }
+.social-wa  { background: #25D366; color: var(--white); }
+.social-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════════════
+   SERVICES PAGE DETAIL
+═══════════════════════════════════════════════════ */
+.services-page-hero {
+  background: var(--dark);
+  padding: 120px 0 72px;
+}
+.services-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-bottom: 56px;
+}
+.services-tabs::-webkit-scrollbar { display: none; }
+.stab {
+  padding: 16px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition);
+  background: none;
+  font-family: inherit;
+}
+.stab:hover { color: var(--ink); }
+.stab.active { color: var(--orange-dk); border-bottom-color: var(--orange); font-weight: 600; }
+.stab-panel { display: none; }
+.stab-panel.active { display: block; }
+.service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.service-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px;
+  background: var(--white);
+  border-radius: var(--r);
+  border: 1px solid var(--rule);
+  transition: var(--transition);
+}
+.service-detail-item:hover {
+  border-color: var(--orange);
+  background: #FFFDF9;
+}
+.service-detail-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.service-detail-text { font-size: 15px; color: var(--ink); font-weight: 500; }
+.service-detail-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+/* ═══════════════════════════════════════════════════
+   LEADERSHIP PAGE
+═══════════════════════════════════════════════════ */
+.leadership-page-hero { background: var(--dark); padding: 120px 0 72px; }
+
+/* ═══════════════════════════════════════════════════
+   TRUST STATS
+═══════════════════════════════════════════════════ */
+.trust-band { background: var(--orange); padding: 64px 0; }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.trust-stat {
+  text-align: center;
+  padding: 16px;
+  position: relative;
+}
+.trust-stat + .trust-stat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10%; bottom: 10%;
+  width: 1px;
+  background: rgba(255,255,255,0.3);
+}
+.trust-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.trust-label { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; margin-top: 8px; letter-spacing: 0.04em; }
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer { background: var(--ink); }
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding: 72px 0 56px;
+}
+.footer-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; margin-top: 12px; max-width: 280px; }
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.footer-link:hover { color: var(--orange); }
+.footer-contact-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+.footer-contact-item span:first-child { font-size: 14px; margin-top: 1px; }
+.footer-contact-val { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.footer-contact-val a { color: rgba(255,255,255,0.55); transition: color var(--transition); }
+.footer-contact-val a:hover { color: var(--orange); }
+.footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); }
+.footer-bottom {
+  padding: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+.footer-reg { font-size: 11px; color: rgba(255,255,255,0.22); letter-spacing: 0.02em; }
+.footer-orange-bar { height: 3px; background: linear-gradient(90deg, var(--orange-dk), var(--orange), var(--gold)); }
+
+/* ═══════════════════════════════════════════════════
+   WHATSAPP FLOATING BUTTON
+═══════════════════════════════════════════════════ */
+.wa-float {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 900;
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+.wa-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.6);
+}
+.wa-float svg { width: 28px; height: 28px; fill: var(--white); }
+.wa-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+.wa-float:hover .wa-tooltip { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════════════
+   PAGE TRANSITION SECTION HEADERS (inner pages)
+═══════════════════════════════════════════════════ */
+.page-hero-band {
+  background: var(--dark);
+  padding: 120px 0 72px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero-band::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange-dk), var(--orange), var(--gold));
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .container-sm { padding: 0 32px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-stat + .trust-stat::before { display: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .service-detail-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  :root { --nav-h: 64px; }
+  .container { padding: 0 20px; }
+  .container-sm { padding: 0 20px; }
+  .section-pad { padding: 64px 0; }
+  .section-pad-sm { padding: 40px 0; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero-stats { flex-direction: column; gap: 28px; }
+  .hero-stat + .hero-stat { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .about-band .grid-2 { grid-template-columns: 1fr; }
+  .footer-main { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .cta-actions .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-form-card { padding: 32px 24px; }
+  .leader-header { padding: 28px 28px 24px; }
+  .leader-body { padding: 28px; }
+  .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="2" y="22" font-family="serif" font-size="20" font-weight="bold" fill="white">N</text>
+          </svg>
+        </div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">NMK</span>
+          <span class="nav-logo-sub">Chartered Accountants</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <span class="nav-link active" onclick="showPage('home')" data-page="home">Home</span>
+        <span class="nav-link" onclick="showPage('home'); scrollToSection('about-section')" data-page="">About Us</span>
+        <span class="nav-link" onclick="showPage('services')" data-page="services">Services</span>
+        <span class="nav-link" onclick="showPage('leadership')" data-page="leadership">Leadership</span>
+        <span class="nav-link" onclick="showPage('contact')" data-page="contact">Contact</span>
+      </div>
+      <a href="https://wa.me/27619656109" target="_blank" class="btn btn-primary nav-cta btn-sm">Get Consultation</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-link" onclick="showPage('home'); toggleMenu()">Home</span>
+  <span class="mobile-link" onclick="showPage('home'); scrollToSection('about-section'); toggleMenu()">About Us</span>
+  <span class="mobile-link" onclick="showPage('services'); toggleMenu()">Services</span>
+  <span class="mobile-link" onclick="showPage('leadership'); toggleMenu()">Leadership</span>
+  <span class="mobile-link" onclick="showPage('contact'); toggleMenu()">Contact</span>
+  <a href="https://wa.me/27619656109" target="_blank" class="btn btn-primary">WhatsApp Us</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-pill">
+              <span class="hero-eyebrow-dot"></span>
+              <span class="eyebrow" style="color:var(--orange);">South African Chartered Accountants</span>
+            </div>
+          </div>
+          <h1 class="display-xl hero-headline">
+            <span class="line-1">Empowering</span>
+            <span class="line-2">Businesses Through</span>
+            <span class="line-highlight">Financial Excellence</span>
+          </h1>
+          <p class="body-lg hero-sub">NMK Chartered Accountants provides professional audit, accounting, taxation, compliance, payroll and business advisory services to businesses across South Africa.</p>
+          <div class="hero-actions">
+            <a href="#" onclick="showPage('contact'); return false;" class="btn btn-primary btn-lg">Request Consultation</a>
+            <a href="https://wa.me/27619656109" target="_blank" class="btn btn-whatsapp btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp Us
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">24+</div>
+              <div class="hero-stat-label">Years of Excellence</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">500+</div>
+              <div class="hero-stat-label">Clients Served</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">8</div>
+              <div class="hero-stat-label">Service Disciplines</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">100%</div>
+              <div class="hero-stat-label">Compliance Focus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE NMK -->
+  <section class="why-section section-pad">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="eyebrow-row centered"><div class="eyebrow-bar"></div><span class="eyebrow">Why Choose Us</span><div class="eyebrow-bar"></div></div>
+        <h2 class="display-md">Why Choose NMK Chartered Accountants</h2>
+        <p class="body-md text-muted mt-16" style="max-width:540px;margin-left:auto;margin-right:auto;">Four pillars that define our commitment to your financial success.</p>
+      </div>
+      <div class="grid-4">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Experienced Professionals</div>
+          <p class="feature-desc">Over 24 years of industry experience in accounting, auditing and financial management. Our directors bring expertise from Eskom, SAA Technical, Transnet, Nedbank and more.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-title">Client-Focused Approach</div>
+          <p class="feature-desc">Tailored solutions designed around your unique business needs. We don't offer generic advice — we understand your sector, your challenges and your goals.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">⚖️</div>
+          <div class="feature-title">Regulatory Compliance</div>
+          <p class="feature-desc">Ensuring full compliance with SARS, Companies Act, PFMA, MFMA and all applicable professional standards — so you can focus on running your business.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-4">
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">Sustainable Growth</div>
+          <p class="feature-desc">Helping businesses improve financial performance, strengthen governance and create measurable, long-term value for their stakeholders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="services-section section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Our Services</span></div>
+        <h2 class="display-md">Comprehensive Financial &amp; Advisory Services</h2>
+        <p class="body-md text-muted mt-16" style="max-width:580px;">End-to-end professional services to keep your business compliant, informed and growing across South Africa.</p>
+      </div>
+      <div class="grid-3">
+        <div class="service-card reveal reveal-delay-1" onclick="showPage('services'); setServiceTab('audit')">
+          <div class="service-card-top">
+            <div class="service-icon">🔍</div>
+            <div class="service-arrow">→</div>
+          </div>
+          <div class="service-title">Audit Services</div>
+          <p class="service-desc">Independent, professional audit and assurance services that build confidence in your financial reporting.</p>
+          <div class="service-tags"><span class="service-tag">Internal Audit</span><span class="service-tag">External Audit</span><span class="service-tag">Independent Reviews</span></div>
+        </div>
+        <div class="service-card reveal reveal-delay-2" onclick="showPage('services'); setServiceTab('tax')">
+          <div class="service-card-top">
+            <div class="service-icon">📊</div>
+            <div class="service-arrow">→</div>
+          </div>
+          <div class="service-title">Tax Services</div>
+          <p class="service-desc">Full-spectrum SARS compliance, tax planning and submission services for individuals and businesses.</p>
+          <div class="service-tags"><span class="service-tag">SARS Compliance</span><span class="service-tag">VAT</span><span class="service-tag">PAYE</span></div>
+        </div>
+        <div class="service-card reveal reveal-delay-3" onclick="showPage('services'); setServiceTab('accounting')">
+          <div class="service-card-top">
+            <div class="service-icon">📒</div>
+            <div class="service-arrow">→</div>
+          </div>
+          <div class="service-title">Accounting &amp; Reporting</div>
+          <p class="service-desc">Accurate financial statements, management accounts, bookkeeping and payroll management services.</p>
+          <div class="service-tags"><span class="service-tag">AFS</span><span class="service-tag">Bookkeeping</span><span class="service-tag">Payroll</span></div>
+        </div>
+        <div class="service-card reveal reveal-delay-1" onclick="showPage('services'); setServiceTab('consulting')">
+          <div class="service-card-top">
+            <div class="service-icon">🏛️</div>
+            <div class="service-arrow">→</div>
+          </div>
+          <div class="service-title">Consulting Services</div>
+          <p class="service-desc">Risk management, governance reviews, public finance management and compliance advisory for complex organisations.</p>
+          <div class="service-tags"><span class="service-tag">Risk</span><span class="service-tag">Governance</span><span class="service-tag">PFMA</span></div>
+        </div>
+        <div class="service-card reveal reveal-delay-2" onclick="showPage('services'); setServiceTab('advisory')">
+          <div class="service-card-top">
+            <div class="service-icon">💼</div>
+            <div class="service-arrow">→</div>
+          </div>
+          <div class="service-title">Business Advisory</div>
+          <p class="service-desc">Business plans, feasibility studies, mentorship and financial management support to drive strategic growth.</p>
+          <div class="service-tags"><span class="service-tag">Business Plans</span><span class="service-tag">Feasibility</span><span class="service-tag">Mentorship</span></div>
+        </div>
+        <div class="service-card reveal reveal-delay-3" onclick="showPage('services'); setServiceTab('secretarial')">
+          <div class="service-card-top">
+            <div class="service-icon">📋</div>
+            <div class="service-arrow">→</div>
+          </div>
+          <div class="service-title">Company Secretarial &amp; Trusts</div>
+          <p class="service-desc">Company registration, annual returns, MOI amendments, director changes, and full trust administration services.</p>
+          <div class="service-tags"><span class="service-tag">CIPC</span><span class="service-tag">Annual Returns</span><span class="service-tag">Trusts</span></div>
+        </div>
+      </div>
+      <div class="text-center mt-48">
+        <a href="#" onclick="showPage('services'); return false;" class="btn btn-outline-orange btn-lg">View All Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STATS -->
+  <div class="trust-band reveal">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-stat"><div class="trust-num">24+</div><div class="trust-label">Years Experience</div></div>
+        <div class="trust-stat"><div class="trust-num">9</div><div class="trust-label">Industries Served</div></div>
+        <div class="trust-stat"><div class="trust-num">2</div><div class="trust-label">Registered Auditors</div></div>
+        <div class="trust-stat"><div class="trust-num">500+</div><div class="trust-label">Clients Served</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-band section-pad" id="about-section">
+    <div class="container">
+      <div class="grid-2" style="gap:64px; align-items:start;">
+        <div class="about-left reveal">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">About NMK</span></div>
+          <h2 class="display-md text-white mt-16">A Legacy of Professional Excellence</h2>
+          <p class="body-md mt-24" style="color:rgba(255,255,255,0.62);">NMK Chartered Accountants is a professional services company founded to enhance financial management capabilities and support businesses in achieving sustainable growth.</p>
+          <p class="body-md mt-16" style="color:rgba(255,255,255,0.62);">We work closely with our clients to develop practical solutions that strengthen financial systems, improve governance, manage risk and enhance internal controls across diverse industries.</p>
+          <div class="about-values mt-32">
+            <span class="value-chip">Integrity</span>
+            <span class="value-chip">Independence</span>
+            <span class="value-chip">Sustainability</span>
+            <span class="value-chip">Service Excellence</span>
+            <span class="value-chip">Quality</span>
+          </div>
+          <div class="mt-40">
+            <a href="#" onclick="showPage('leadership'); return false;" class="btn btn-primary">Meet Our Team →</a>
+          </div>
+        </div>
+        <div class="about-right reveal reveal-delay-2">
+          <div class="vision-mission-card">
+            <div class="vm-label">Our Vision</div>
+            <div class="vm-text">"To be a leading professional services company in South Africa and globally."</div>
+          </div>
+          <div class="vision-mission-card">
+            <div class="vm-label">Our Mission</div>
+            <div class="vm-text">"To support our clients through professional and excellent service while creating value for their stakeholders."</div>
+          </div>
+          <div class="vision-mission-card">
+            <div class="vm-label">Our Practice</div>
+            <div style="color:rgba(255,255,255,0.55); font-size:14px; line-height:1.7; margin-top:6px;">
+              Registered with IRBA · Practice Number: 958732-0000<br>
+              Registration Number: 2014/100864/21<br>
+              3rd Floor, H Santos Building, Bruma, Johannesburg
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="industries-section section-pad">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="eyebrow-row centered"><div class="eyebrow-bar"></div><span class="eyebrow">Industries We Serve</span><div class="eyebrow-bar"></div></div>
+        <h2 class="display-md">Serving Diverse Sectors Across South Africa</h2>
+        <p class="body-md text-muted mt-16">Our expertise spans private sector, public sector and non-profit organisations.</p>
+      </div>
+      <div class="industry-grid reveal">
+        <div class="industry-item">SMEs</div>
+        <div class="industry-item">Medium to Large Businesses</div>
+        <div class="industry-item">Government Entities</div>
+        <div class="industry-item">Municipalities</div>
+        <div class="industry-item">Non-Profit Organisations</div>
+        <div class="industry-item">Trusts</div>
+        <div class="industry-item">Professional Services</div>
+        <div class="industry-item">Retail Businesses</div>
+        <div class="industry-item">Manufacturing Businesses</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP TEASER -->
+  <section class="leadership-section section-pad">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="eyebrow-row centered"><div class="eyebrow-bar"></div><span class="eyebrow">Our Leadership</span><div class="eyebrow-bar"></div></div>
+        <h2 class="display-md">Guided by Registered Auditors</h2>
+        <p class="body-md text-muted mt-16">Our directors bring combined experience of over 54 years in audit, governance and financial management.</p>
+      </div>
+      <div class="grid-2">
+        <div class="leader-card reveal reveal-delay-1">
+          <div class="leader-header">
+            <div class="leader-avatar">👤</div>
+            <div class="leader-name">Nomzamo Mkiva CA(SA)</div>
+            <div class="leader-title">Founder &amp; Director · Registered Auditor</div>
+          </div>
+          <div class="leader-body">
+            <p class="leader-bio">With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, Nomzamo has worked with leading South African organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.</p>
+            <div class="leader-strengths">
+              <span class="strength-badge">Audit &amp; Assurance</span>
+              <span class="strength-badge">Financial Management</span>
+              <span class="strength-badge">Governance</span>
+              <span class="strength-badge">Risk Management</span>
+              <span class="strength-badge">Compliance</span>
+              <span class="strength-badge">Strategic Planning</span>
+            </div>
+          </div>
+        </div>
+        <div class="leader-card reveal reveal-delay-2">
+          <div class="leader-header">
+            <div class="leader-avatar">👤</div>
+            <div class="leader-name">Hale Qangule CA(SA)</div>
+            <div class="leader-title">Director · Registered Auditor</div>
+          </div>
+          <div class="leader-body">
+            <p class="leader-bio">Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. Former Head of Audit at SizweNtsaluba VSP with extensive expertise in audit strategy, governance and professional standards.</p>
+            <div class="leader-strengths">
+              <span class="strength-badge">Audit Strategy</span>
+              <span class="strength-badge">Corporate Governance</span>
+              <span class="strength-badge">Professional Standards</span>
+              <span class="strength-badge">Risk Advisory</span>
+              <span class="strength-badge">Compliance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section section-pad">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="eyebrow-row centered"><div class="eyebrow-bar"></div><span class="eyebrow">Client Testimonials</span><div class="eyebrow-bar"></div></div>
+        <h2 class="display-md text-white">What Our Clients Say</h2>
+      </div>
+      <div class="grid-3">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"NMK Chartered Accountants helped streamline our financial processes and improved our compliance significantly."</div>
+          <div class="testimonial-author">— Verified Client, Johannesburg</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"Professional, responsive and highly knowledgeable team. They understand the unique challenges of South African business."</div>
+          <div class="testimonial-author">— Verified Client, Gauteng</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"Their tax and accounting support has been invaluable to our business. We have complete confidence in NMK's expertise."</div>
+          <div class="testimonial-author">— Verified Client, South Africa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section section-pad">
+    <div class="container-sm">
+      <div class="section-header centered reveal">
+        <div class="eyebrow-row centered"><div class="eyebrow-bar"></div><span class="eyebrow">FAQ</span><div class="eyebrow-bar"></div></div>
+        <h2 class="display-md">Common Questions About Our Services</h2>
+      </div>
+      <div id="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What accounting standards does NMK follow?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">NMK Chartered Accountants applies IFRS (International Financial Reporting Standards), IFRS for SMEs, and SA GAAP where applicable. Our work complies with IRBA standards, the Companies Act (71 of 2008), PFMA, MFMA and SARS requirements depending on client type and sector.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How do I register for VAT or income tax through NMK?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We manage the full SARS registration process on your behalf — including Income Tax, VAT (if your turnover exceeds the threshold) and PAYE. Contact us to schedule a consultation and we'll assess your obligations and handle all submissions with SARS eFiling.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is the typical turnaround for annual financial statements?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Turnaround depends on the complexity of your business and the completeness of underlying records. For well-maintained books, we typically deliver management accounts within 5–10 working days and full annual financial statements within 3–6 weeks of receiving complete trial balances and supporting documentation.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do you serve government entities, municipalities and NPOs?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. NMK has significant expertise in public sector financial management, including PFMA compliance, MFMA compliance, audit preparation for AG submissions, and financial reporting for municipalities, government departments and non-profit organisations. Our leadership has worked extensively with public sector clients.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can NMK assist with SARS disputes and objections?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. We provide full SARS dispute resolution support including the preparation of objections (NOO), appeals (NOA), and representation in Alternative Dispute Resolution (ADR) proceedings. Our tax professionals have extensive experience navigating SARS assessments across income tax, VAT and PAYE disputes.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How do I book a consultation with NMK?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">You can request a consultation through our Contact page, by emailing info@nmkca.co.za, calling 011 492 0358, or via WhatsApp on 061 965 6109. We offer in-person consultations at our Bruma, Johannesburg office and virtual meetings for clients based elsewhere in South Africa.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2 class="display-md">Ready to Strengthen Your Financial Foundation?</h2>
+        <p>Our chartered accountants are ready to help your business grow, stay compliant and thrive.</p>
+        <div class="cta-actions">
+          <a href="#" onclick="showPage('contact'); return false;" class="btn btn-dark btn-lg">Book a Free Consultation</a>
+          <a href="https://wa.me/27619656109" target="_blank" class="btn btn-ghost btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp: 061 965 6109
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: SERVICES
+═══════════════════════════════════════════════════ -->
+<div id="page-services" class="page">
+
+  <div class="page-hero-band">
+    <div class="container">
+      <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">What We Offer</span></div>
+      <h1 class="display-lg text-white mt-16">Professional Services<br>Built for South African Business</h1>
+      <p class="body-lg mt-20" style="color:rgba(255,255,255,0.6); max-width:560px;">From audit and tax to business advisory and company secretarial — comprehensive services delivered with precision and care.</p>
+    </div>
+  </div>
+
+  <section class="section-pad" style="background:var(--surface);">
+    <div class="container">
+      <div class="services-tabs" id="services-tabs">
+        <button class="stab active" onclick="setServiceTab('audit')" data-tab="audit">Audit Services</button>
+        <button class="stab" onclick="setServiceTab('tax')" data-tab="tax">Tax Services</button>
+        <button class="stab" onclick="setServiceTab('accounting')" data-tab="accounting">Accounting &amp; Reporting</button>
+        <button class="stab" onclick="setServiceTab('consulting')" data-tab="consulting">Consulting</button>
+        <button class="stab" onclick="setServiceTab('advisory')" data-tab="advisory">Business Advisory</button>
+        <button class="stab" onclick="setServiceTab('secretarial')" data-tab="secretarial">Company Secretarial</button>
+        <button class="stab" onclick="setServiceTab('trust')" data-tab="trust">Trust Services</button>
+      </div>
+
+      <!-- AUDIT -->
+      <div class="stab-panel active" id="tab-audit">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Audit Services</span></div>
+          <h2 class="display-sm">Independent. Rigorous. Trusted.</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">NMK provides independent audit and assurance services that give stakeholders confidence in the accuracy and reliability of financial information.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Internal Audit</div><div class="service-detail-sub">Risk-based internal audit planning, execution and reporting to strengthen governance</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">External Audit</div><div class="service-detail-sub">Statutory external audits in accordance with ISA and IRBA standards</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Independent Reviews</div><div class="service-detail-sub">ISRE 2400 independent reviews for entities that don't require a full audit</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Audit Committee Support</div><div class="service-detail-sub">Secretarial and advisory support to audit committees</div></div></div>
+        </div>
+      </div>
+
+      <!-- TAX -->
+      <div class="stab-panel" id="tab-tax">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Tax Services</span></div>
+          <h2 class="display-sm">Full-Spectrum SARS Compliance</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">From registration to submission, disputes to planning — comprehensive tax services keeping your business compliant with SARS requirements.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Income Tax Registration</div><div class="service-detail-sub">Register individuals, companies and trusts for Income Tax with SARS</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">VAT Registration &amp; VAT201 Submissions</div><div class="service-detail-sub">VAT registration and monthly/bi-monthly VAT return submissions</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">PAYE Registration &amp; EMP201</div><div class="service-detail-sub">Employer registration and monthly payroll tax submissions</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Income Tax Returns</div><div class="service-detail-sub">Individual and corporate income tax return preparation and submission</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Tax Planning</div><div class="service-detail-sub">Legitimate tax structuring to minimise liability within SARS regulations</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">PAYE Reconciliations</div><div class="service-detail-sub">EMP501 bi-annual reconciliations and employee IRP5 certificates</div></div></div>
+        </div>
+      </div>
+
+      <!-- ACCOUNTING -->
+      <div class="stab-panel" id="tab-accounting">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Accounting &amp; Financial Reporting</span></div>
+          <h2 class="display-sm">Accurate. Timely. Actionable.</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">Reliable financial reporting and accounting services that give business owners and management the insight they need to make confident decisions.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Annual Financial Statements</div><div class="service-detail-sub">IFRS/IFRS for SMEs compliant AFS preparation</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Management Accounts</div><div class="service-detail-sub">Monthly or quarterly management reporting for decision-making</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Bookkeeping</div><div class="service-detail-sub">Accurate day-to-day transaction recording and ledger maintenance</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Payroll Management</div><div class="service-detail-sub">Full payroll processing including payslips, UIF and PAYE</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Cash Flow Projections &amp; Budgeting</div><div class="service-detail-sub">Forward-looking financial modelling to support planning</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Financial Clean-Up</div><div class="service-detail-sub">Rectification of historical accounting errors and backlog clearing</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Accounting Systems Support</div><div class="service-detail-sub">Implementation and support for Xero, Sage, QuickBooks and Pastel</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Financial Forecasting</div><div class="service-detail-sub">Multi-year revenue and cost forecasts for strategic planning</div></div></div>
+        </div>
+      </div>
+
+      <!-- CONSULTING -->
+      <div class="stab-panel" id="tab-consulting">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Consulting Services</span></div>
+          <h2 class="display-sm">Governance, Risk &amp; Public Finance</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">Specialist consulting for organisations that need structured risk management, governance frameworks and public finance expertise.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Risk Management</div><div class="service-detail-sub">Enterprise risk assessments, risk registers and mitigation frameworks</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Compliance Reviews</div><div class="service-detail-sub">Regulatory compliance assessments across multiple frameworks</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Supply Chain Management</div><div class="service-detail-sub">SCM policy reviews and procurement compliance support</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Public Finance Management (PFMA)</div><div class="service-detail-sub">Advisory and compliance for national and provincial government entities</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Municipal Finance Management (MFMA)</div><div class="service-detail-sub">MFMA compliance, Section 71/72 reporting and AG preparation</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Governance Reviews</div><div class="service-detail-sub">King IV™ governance assessments and board advisory services</div></div></div>
+        </div>
+      </div>
+
+      <!-- ADVISORY -->
+      <div class="stab-panel" id="tab-advisory">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Business Advisory</span></div>
+          <h2 class="display-sm">Strategy, Growth &amp; Support</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">Practical business advice from professionals who understand both the financial and operational realities of running a business in South Africa.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Business Plans</div><div class="service-detail-sub">Investor-ready business plans and financial projections</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Feasibility Studies</div><div class="service-detail-sub">Commercial viability assessments for new ventures and projects</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Mentorship &amp; Coaching</div><div class="service-detail-sub">One-on-one financial management mentorship for business owners</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Financial Management</div><div class="service-detail-sub">Outsourced CFO and financial management advisory services</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Procurement Advisory</div><div class="service-detail-sub">Preferential procurement, B-BBEE advisory and tender support</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Legal &amp; Compliance Support</div><div class="service-detail-sub">Coordination with legal advisors on corporate compliance matters</div></div></div>
+        </div>
+      </div>
+
+      <!-- SECRETARIAL -->
+      <div class="stab-panel" id="tab-secretarial">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Company Secretarial</span></div>
+          <h2 class="display-sm">CIPC &amp; Corporate Governance</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">Complete company secretarial services ensuring your entity remains in good standing with CIPC and complies with the Companies Act.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Company Registration</div><div class="service-detail-sub">New entity registration with CIPC including NPC and PTY Ltd</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Annual Returns</div><div class="service-detail-sub">Timely CIPC annual return filings to maintain good standing</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Director Changes</div><div class="service-detail-sub">Appointment, resignation and change of director submissions</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Share Certificates</div><div class="service-detail-sub">Issue, transfer and cancellation of share certificates</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">MOI Amendments</div><div class="service-detail-sub">Memorandum of Incorporation amendments and CIPC registration</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Board Resolutions &amp; Meeting Minutes</div><div class="service-detail-sub">Drafting and maintenance of formal corporate records</div></div></div>
+        </div>
+      </div>
+
+      <!-- TRUST -->
+      <div class="stab-panel" id="tab-trust">
+        <div class="section-header">
+          <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Trust Services</span></div>
+          <h2 class="display-sm">Professional Trust Administration</h2>
+          <p class="body-md text-muted mt-12" style="max-width:560px;">Specialist trust services from registration through to annual audits — ensuring your trust remains compliant with the Trust Property Control Act and SARS.</p>
+        </div>
+        <div class="service-detail-grid">
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Trust Registration</div><div class="service-detail-sub">Master of the High Court trust registration and Letters of Authority</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Trust Tax Services</div><div class="service-detail-sub">Trust income tax registration, returns and SARS compliance</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Trust Financial Statements</div><div class="service-detail-sub">Annual financial statements for inter vivos and testamentary trusts</div></div></div>
+          <div class="service-detail-item"><div class="service-detail-dot"></div><div><div class="service-detail-text">Trust Audits</div><div class="service-detail-sub">Independent audits of trust assets, distributions and compliance</div></div></div>
+        </div>
+      </div>
+
+      <div class="mt-64 text-center">
+        <p class="body-md text-muted mb-24">Not sure which service you need? Our team will assess your situation and recommend the right solution.</p>
+        <a href="#" onclick="showPage('contact'); return false;" class="btn btn-primary btn-lg">Request a Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="display-md">Let's Discuss Your Requirements</h2>
+        <p>Our team is ready to provide a tailored proposal for your business.</p>
+        <div class="cta-actions">
+          <a href="#" onclick="showPage('contact'); return false;" class="btn btn-dark btn-lg">Contact Us Today</a>
+          <a href="https://wa.me/27619656109" target="_blank" class="btn btn-ghost btn-lg">WhatsApp Us Directly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-services -->
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: LEADERSHIP
+═══════════════════════════════════════════════════ -->
+<div id="page-leadership" class="page">
+
+  <div class="page-hero-band">
+    <div class="container">
+      <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Our Leadership</span></div>
+      <h1 class="display-lg text-white mt-16">Guided by Experience.<br>Driven by Excellence.</h1>
+      <p class="body-lg mt-20" style="color:rgba(255,255,255,0.6); max-width:560px;">NMK is led by two Registered Auditors with a combined professional experience of over 54 years across auditing, governance and financial management.</p>
+    </div>
+  </div>
+
+  <section class="section-pad" style="background:var(--surface);">
+    <div class="container">
+      <div class="grid-2" style="gap:48px; align-items:start;">
+        <div class="leader-card">
+          <div class="leader-header">
+            <div class="leader-avatar">👤</div>
+            <div class="leader-name">Nomzamo Mkiva CA(SA)</div>
+            <div class="leader-title">Founder &amp; Director · Registered Auditor · Practice No. 958732-0000</div>
+          </div>
+          <div class="leader-body">
+            <p class="leader-bio">Nomzamo Mkiva is the Founder and Director of NMK Chartered Accountants. With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, she has worked with leading South African organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.</p>
+            <p class="leader-bio" style="margin-top:16px;">Her deep expertise spans both private sector financial management and public sector governance, making NMK uniquely positioned to serve a broad range of clients with complex financial and compliance requirements.</p>
+            <h4 style="font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px; margin-top:24px;">Professional Strengths</h4>
+            <div class="leader-strengths">
+              <span class="strength-badge">Audit &amp; Assurance</span>
+              <span class="strength-badge">Financial Management</span>
+              <span class="strength-badge">Governance</span>
+              <span class="strength-badge">Risk Management</span>
+              <span class="strength-badge">Compliance</span>
+              <span class="strength-badge">Strategic Planning</span>
+              <span class="strength-badge">Financial Reporting</span>
+              <span class="strength-badge">PFMA</span>
+            </div>
+          </div>
+        </div>
+        <div class="leader-card">
+          <div class="leader-header">
+            <div class="leader-avatar">👤</div>
+            <div class="leader-name">Hale Qangule CA(SA)</div>
+            <div class="leader-title">Director · Registered Auditor</div>
+          </div>
+          <div class="leader-body">
+            <p class="leader-bio">Hale Qangule is an Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. As the former Head of Audit at SizweNtsaluba VSP, one of South Africa's leading audit firms, Hale brings extensive expertise in audit strategy, governance and professional standards.</p>
+            <p class="leader-bio" style="margin-top:16px;">His deep understanding of corporate governance frameworks, including King IV™, and his extensive audit leadership experience strengthens NMK's ability to deliver world-class professional services to public and private sector clients.</p>
+            <h4 style="font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px; margin-top:24px;">Professional Strengths</h4>
+            <div class="leader-strengths">
+              <span class="strength-badge">Audit Strategy</span>
+              <span class="strength-badge">Corporate Governance</span>
+              <span class="strength-badge">Professional Standards</span>
+              <span class="strength-badge">Risk Advisory</span>
+              <span class="strength-badge">Compliance</span>
+              <span class="strength-badge">King IV™</span>
+              <span class="strength-badge">IRBA Standards</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries on leadership page -->
+  <section class="section-pad" style="background:var(--dark);">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="eyebrow-row centered"><div class="eyebrow-bar"></div><span class="eyebrow">Industries We Serve</span><div class="eyebrow-bar"></div></div>
+        <h2 class="display-md text-white">Expertise Across Diverse Sectors</h2>
+        <p class="body-md mt-16" style="color:rgba(255,255,255,0.55);">Our leadership's breadth of experience spans nine key sectors of the South African economy.</p>
+      </div>
+      <div class="industry-grid" style="justify-content:center;">
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">SMEs</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Medium to Large Businesses</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Government Entities</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Municipalities</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Non-Profit Organisations</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Trusts</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Professional Services</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Retail Businesses</div>
+        <div class="industry-item" style="background:#1A1A12; border-color:rgba(244,165,54,0.2); color:rgba(255,255,255,0.75);">Manufacturing Businesses</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="display-md">Work Directly With Our Directors</h2>
+        <p>Benefit from hands-on partner-level service on every engagement.</p>
+        <div class="cta-actions">
+          <a href="#" onclick="showPage('contact'); return false;" class="btn btn-dark btn-lg">Schedule a Meeting</a>
+          <a href="https://wa.me/27619656109" target="_blank" class="btn btn-ghost btn-lg">WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-leadership -->
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: CONTACT
+═══════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <div class="page-hero-band">
+    <div class="container">
+      <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Get In Touch</span></div>
+      <h1 class="display-lg text-white mt-16">Let's Start a Conversation</h1>
+      <p class="body-lg mt-20" style="color:rgba(255,255,255,0.6); max-width:500px;">Whether you need a consultation, a quote, or just have a question — our team is ready to help.</p>
+    </div>
+  </div>
+
+  <section class="section-pad" style="background:var(--dark);">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Left: info -->
+        <div>
+          <h2 class="display-sm text-white" style="margin-bottom:36px;">Our Office</h2>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div>
+              <div class="contact-info-label">Physical Address</div>
+              <div class="contact-info-value">3rd Floor, H Santos Building, East Wing<br>30 Arena Close, Bruma<br>Johannesburg, 2198</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📞</div>
+            <div>
+              <div class="contact-info-label">Telephone</div>
+              <div class="contact-info-value"><a href="tel:+27114920358">011 492 0358</a> / <a href="tel:+27114921324">011 492 1324</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">💬</div>
+            <div>
+              <div class="contact-info-label">WhatsApp</div>
+              <div class="contact-info-value"><a href="https://wa.me/27619656109" target="_blank">061 965 6109</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">✉️</div>
+            <div>
+              <div class="contact-info-label">Email Address</div>
+              <div class="contact-info-value"><a href="mailto:info@nmkca.co.za">info@nmkca.co.za</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🌐</div>
+            <div>
+              <div class="contact-info-label">Website</div>
+              <div class="contact-info-value"><a href="https://www.nmkca.co.za" target="_blank">www.nmkca.co.za</a></div>
+            </div>
+          </div>
+          <div class="social-strip">
+            <a href="#" target="_blank" class="social-btn social-fb">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+            <a href="#" target="_blank" class="social-btn social-li">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://wa.me/27619656109" target="_blank" class="social-btn social-wa">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="contact-form-card">
+          <h3>Book a Consultation</h3>
+          <p>Complete the form below and a member of our team will be in touch within one business day.</p>
+          <div id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name *</label>
+                <input type="text" class="form-control" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name *</label>
+                <input type="text" class="form-control" placeholder="Your last name" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-control" placeholder="name@company.co.za" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" placeholder="+27 __ ___ ____">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company Name</label>
+              <input type="text" class="form-control" placeholder="Your organisation name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service of Interest</label>
+              <select class="form-control">
+                <option value="" disabled selected>Select a service...</option>
+                <option>Audit Services</option>
+                <option>Tax Services</option>
+                <option>Accounting &amp; Financial Reporting</option>
+                <option>Consulting Services</option>
+                <option>Business Advisory</option>
+                <option>Company Secretarial</option>
+                <option>Trust Services</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" placeholder="Tell us about your business needs and how we can help..."></textarea>
+            </div>
+            <button class="btn btn-primary btn-lg" style="width:100%;" onclick="submitForm()">Send Enquiry →</button>
+          </div>
+          <div class="form-success" id="form-success">
+            <div style="font-size:40px; margin-bottom:16px;">✅</div>
+            <h4 style="font-size:20px; font-weight:600; margin-bottom:8px; font-family:'Cormorant Garamond',serif;">Thank you for reaching out!</h4>
+            <p style="color:var(--muted);">A member of our team will contact you within one business day. In the meantime, feel free to WhatsApp us on <strong>061 965 6109</strong> for urgent enquiries.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section section-pad-sm">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow-row"><div class="eyebrow-bar"></div><span class="eyebrow">Find Us</span></div>
+        <h2 class="display-sm">Our Johannesburg Office</h2>
+        <p class="body-md text-muted mt-8">3rd Floor, H Santos Building, 30 Arena Close, Bruma, Johannesburg</p>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.6714895284!2d28.102329!3d-26.189527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c6fbe15e2b3%3A0xcd7b9b5f75a9ec5a!2s30%20Arena%20Cres%2C%20Bruma%2C%20Johannesburg%2C%202198!5e0!3m2!1sen!2sza!4v1700000000000!5m2!1sen!2sza"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="NMK Chartered Accountants Office Location">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-contact -->
+
+<!-- ═══ FOOTER (shown on all pages) ═══════════════ -->
+<footer>
+  <div class="footer-orange-bar"></div>
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <div class="flex gap-12" style="align-items:center; margin-bottom:16px;">
+          <div class="nav-logo-mark" style="width:36px;height:36px;">
+            <svg viewBox="0 0 28 28" fill="none"><text x="2" y="22" font-family="serif" font-size="18" font-weight="bold" fill="white">N</text></svg>
+          </div>
+          <div class="footer-brand-name">NMK Chartered Accountants</div>
+        </div>
+        <p class="footer-tagline">Professional Excellence. Sustainable Solutions. Trusted Partnerships.<br><br>Registered Auditors and Professional Accountants serving South Africa.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <span class="footer-link" onclick="showPage('home')">Home</span>
+          <span class="footer-link" onclick="showPage('home'); scrollToSection('about-section')">About Us</span>
+          <span class="footer-link" onclick="showPage('services')">Services</span>
+          <span class="footer-link" onclick="showPage('leadership')">Leadership</span>
+          <span class="footer-link" onclick="showPage('contact')">Contact Us</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <span class="footer-link" onclick="showPage('services'); setServiceTab('audit')">Audit Services</span>
+          <span class="footer-link" onclick="showPage('services'); setServiceTab('tax')">Tax Services</span>
+          <span class="footer-link" onclick="showPage('services'); setServiceTab('accounting')">Accounting</span>
+          <span class="footer-link" onclick="showPage('services'); setServiceTab('consulting')">Consulting</span>
+          <span class="footer-link" onclick="showPage('services'); setServiceTab('advisory')">Business Advisory</span>
+          <span class="footer-link" onclick="showPage('services'); setServiceTab('secretarial')">Secretarial</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <div class="footer-contact-val">30 Arena Close, Bruma<br>Johannesburg, 2198</div>
+        </div>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <div class="footer-contact-val"><a href="tel:+27114920358">011 492 0358</a></div>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span>
+          <div class="footer-contact-val"><a href="mailto:info@nmkca.co.za">info@nmkca.co.za</a></div>
+        </div>
+        <div class="footer-contact-item">
+          <span>💬</span>
+          <div class="footer-contact-val"><a href="https://wa.me/27619656109">061 965 6109</a></div>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 NMK Chartered Accountants. All Rights Reserved. Professional Accounting, Audit, Tax and Advisory Services Across South Africa.</div>
+      <div class="footer-reg">Reg: 2014/100864/21 · Practice: 958732-0000 · Directors: MN Mkiva CA(SA), HL Qangule CA(SA)</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/27619656109" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-tooltip">Chat with us</span>
+</a>
+
+<script>
+// ═══ SPA NAVIGATION ═══════════════════════════════
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const active = document.querySelector('[data-page="' + name + '"]');
+  if (active) active.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Re-trigger reveal on new page
+  setTimeout(initReveal, 50);
+}
+
+function scrollToSection(id) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+// ═══ SERVICE TABS ══════════════════════════════════
+function setServiceTab(tab) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.stab-panel').forEach(p => p.classList.remove('active'));
+  const btn = document.querySelector('[data-tab="' + tab + '"]');
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById('tab-' + tab);
+  if (panel) panel.classList.add('active');
+}
+
+// ═══ NAVBAR SCROLL ════════════════════════════════
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ═══ HAMBURGER MENU ═══════════════════════════════
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+
+// ═══ FAQ ACCORDION ════════════════════════════════
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ═══ FORM SUBMIT ══════════════════════════════════
+function submitForm() {
+  const inputs = document.querySelectorAll('#contact-form input[required], #contact-form select[required]');
+  let valid = true;
+  inputs.forEach(inp => {
+    if (!inp.value.trim()) { inp.style.borderColor = 'var(--orange-acc)'; valid = false; }
+    else inp.style.borderColor = '';
+  });
+  if (!valid) return;
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+// ═══ SCROLL REVEAL ════════════════════════════════
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.page.active .reveal').forEach(el => {
+    if (!el.classList.contains('visible')) observer.observe(el);
+  });
+}
+document.addEventListener('DOMContentLoaded', initReveal);
+window.addEventListener('scroll', initReveal, { passive: true });
+</script>
+</body>
+</html>
