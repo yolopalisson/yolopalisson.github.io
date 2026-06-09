@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMK Chartered Accountants | Professional Financial Excellence</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #0B0B0B;
+            overflow-x: hidden;
+        }
+        .bg-cream { background-color: #FFEDD4; }
+        .text-primary-orange { color: #F4A536; }
+        .bg-primary-orange { background-color: #F4A536; }
+        .bg-dark-orange { background-color: #C65804; }
+        .border-cream { border-color: #FFEDD4; }
+        .text-dark-charcoal { color: #0B0B0B; }
+
+        /* --- Scroll Animation Engine --- */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Custom UI Micro-Interactions --- */
+        .nav-link-underline {
+            position: relative;
+        }
+        .nav-link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F4A536;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .nav-link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* FAQ Smooth Collapse Acceleration */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-top: 0.5rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180px);
+            color: #F4A536;
+        }
+    </style>
+</head>
+<body class="antialiased text-dark-charcoal selection:bg-[#F4A536] selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex flex-col group relative overflow-hidden">
+                    <span class="text-2xl font-extrabold tracking-tight text-dark-charcoal group-hover:text-[#F4A536] transition-colors duration-300">NMK</span>
+                    <span class="text-xs font-semibold tracking-widest text-gray-500 uppercase -mt-1 group-hover:text-gray-800 transition-colors duration-300">Chartered Accountants</span>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#" class="text-[#F4A536] nav-link-underline font-semibold">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-[#F4A536] transition-colors nav-link-underline">About Us</a>
+                    <a href="#services" class="text-gray-600 hover:text-[#F4A536] transition-colors nav-link-underline">Services</a>
+                    <a href="#leadership" class="text-gray-600 hover:text-[#F4A536] transition-colors nav-link-underline">Leadership</a>
+                    <a href="#contact" class="text-gray-600 hover:text-[#F4A536] transition-colors nav-link-underline">Contact Us</a>
+                </nav>
+
+                <div class="hidden md:block">
+                    <a href="#contact" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#F4A536] to-[#C65804] hover:shadow-lg hover:shadow-orange-500/20 rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0">
+                        Request Consultation
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-[#F4A536] focus:outline-none transition-transform active:scale-90">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#F4A536] bg-[#FFEDD4]/40">Home</a>
+            <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-[#F4A536]">About Us</a>
+            <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-[#F4A536]">Services</a>
+            <a href="#leadership" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-[#F4A536]">Leadership</a>
+            <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-[#F4A536]">Contact Us</a>
+            <div class="pt-4 border-t border-gray-100">
+                <a href="#contact" class="block w-full text-center px-4 py-3 text-base font-semibold text-white bg-[#F4A536] rounded-lg shadow-md">Request Consultation</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative bg-gradient-to-b from-[#FFEDD4]/30 via-white to-white overflow-hidden py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-[#FFEDD4] px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#C65804] animate-fade-in">
+                        <span class="flex h-2 w-2 rounded-full bg-[#D84904] animate-pulse"></span>
+                        <span>Registered Auditors & CAs (SA)</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-dark-charcoal tracking-tight leading-none">
+                        Empowering Businesses Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F4A536] via-[#DA8D1C] to-[#C65804] bg-size-200 transition-all duration-500 hover:bg-right">Financial Excellence</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        NMK Chartered Accountants provides professional audit, accounting, taxation, compliance, payroll and business advisory services to businesses across South Africa.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-[#F4A536] hover:bg-[#C65804] rounded-xl shadow-lg shadow-orange-500/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-orange-500/20 active:translate-y-0">
+                            Request Consultation <i class="fa-solid fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                        <a href="https://wa.me/27619656109" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-[#0B0B0B] bg-white border border-gray-200 hover:border-emerald-500 hover:text-emerald-600 rounded-xl shadow-sm transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fa-brands fa-whatsapp text-emerald-500 text-xl mr-2 animate-bounce"></i> WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-5 relative hidden lg:block">
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-[#FFEDD4] to-orange-100 rounded-3xl transform rotate-3 scale-95 opacity-70 -z-10 transition-transform duration-700 hover:rotate-1"></div>
+                    <div class="bg-white border border-orange-100 p-8 rounded-2xl shadow-xl space-y-6 transition-all duration-500 hover:shadow-2xl">
+                        <div class="border-l-4 border-[#F4A536] pl-4">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Tagline Identity</p>
+                            <p class="text-lg font-semibold italic text-gray-700 mt-1">"Professional Excellence. Sustainable Solutions. Trusted Partnerships."</p>
+                        </div>
+                        <hr class="border-gray-100">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 rounded-xl text-center transition-transform hover:scale-105 duration-300">
+                                <span class="block text-3xl font-black text-[#C65804]">24+</span>
+                                <span class="text-xs font-medium text-gray-500">Years Industry Experience</span>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-xl text-center transition-transform hover:scale-105 duration-300">
+                                <span class="block text-3xl font-black text-[#C65804]">100%</span>
+                                <span class="text-xs font-medium text-gray-500">Regulatory Compliant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#C65804] mb-2">Value Drivers</h2>
+                <p class="text-3xl font-extrabold text-dark-charcoal sm:text-4xl tracking-tight">Why Partner With NMK Chartered Accountants</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-orange-200 transition-all duration-300 transform hover:-translate-y-2 group reveal-on-scroll">
+                    <div class="w-12 h-12 rounded-xl bg-[#FFEDD4] flex items-center justify-center text-[#C65804] mb-6 font-bold group-hover:bg-[#F4A536] group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-user-tie text-xl transition-transform group-hover:rotate-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-dark-charcoal mb-2">Experienced Professionals</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Over 24 years of industry experience in accounting, auditing and financial management.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-orange-200 transition-all duration-300 transform hover:-translate-y-2 group reveal-on-scroll">
+                    <div class="w-12 h-12 rounded-xl bg-[#FFEDD4] flex items-center justify-center text-[#C65804] mb-6 font-bold group-hover:bg-[#F4A536] group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-sliders text-xl transition-transform group-hover:rotate-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-dark-charcoal mb-2">Client-Focused Approach</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Tailored solutions structurally mapped and designed around your unique corporate needs.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-orange-200 transition-all duration-300 transform hover:-translate-y-2 group reveal-on-scroll">
+                    <div class="w-12 h-12 rounded-xl bg-[#FFEDD4] flex items-center justify-center text-[#C65804] mb-6 font-bold group-hover:bg-[#F4A536] group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-gavel text-xl transition-transform group-hover:rotate-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-dark-charcoal mb-2">Regulatory Compliance</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Ensuring airtight legal alignment with SARS, Companies Act, PFMA, MFMA and related frameworks.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-orange-200 transition-all duration-300 transform hover:-translate-y-2 group reveal-on-scroll">
+                    <div class="w-12 h-12 rounded-xl bg-[#FFEDD4] flex items-center justify-center text-[#C65804] mb-6 font-bold group-hover:bg-[#F4A536] group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-chart-line text-xl transition-transform group-hover:rotate-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-dark-charcoal mb-2">Sustainable Growth</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Helping entities significantly optimize performance analytics and engineer long-term asset value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-[#FFEDD4]/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-6 space-y-6 reveal-on-scroll">
+                    <div class="inline-block px-3 py-1 bg-white border border-orange-200 rounded-full text-xs font-bold uppercase text-[#C65804] tracking-wider">Corporate Identity</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-dark-charcoal tracking-tight">About NMK Chartered Accountants</h2>
+                    <p class="text-gray-700 leading-relaxed font-normal">
+                        NMK Chartered Accountants is a professional services company founded to enhance financial management capabilities and support businesses in achieving sustainable growth.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        We work closely with clients to develop practical solutions that strengthen financial systems, improve corporate governance, systematically manage institutional risk, and enhance comprehensive internal controls.
+                    </p>
+                    
+                    <div class="pt-4">
+                        <span class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Our Structural Values</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold shadow-sm text-gray-800 hover:border-[#F4A536] hover:text-[#F4A536] transition-colors duration-300 cursor-default">Integrity</span>
+                            <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold shadow-sm text-gray-800 hover:border-[#F4A536] hover:text-[#F4A536] transition-colors duration-300 cursor-default">Independence</span>
+                            <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold shadow-sm text-gray-800 hover:border-[#F4A536] hover:text-[#F4A536] transition-colors duration-300 cursor-default">Sustainability</span>
+                            <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold shadow-sm text-gray-800 hover:border-[#F4A536] hover:text-[#F4A536] transition-colors duration-300 cursor-default">Service Excellence</span>
+                            <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold shadow-sm text-gray-800 hover:border-[#F4A536] hover:text-[#F4A536] transition-colors duration-300 cursor-default">Quality</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 grid grid-cols-1 gap-6 lg:mt-12 reveal-on-scroll">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 text-dark-charcoal group-hover:opacity-10 group-hover:scale-110 transition-all duration-300"><i class="fa-solid fa-eye text-7xl"></i></div>
+                        <h3 class="text-xl font-bold text-dark-charcoal mb-3 flex items-center"><i class="fa-solid fa-eye text-[#F4A536] mr-3"></i> Vision Statement</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">To be a leading professional services company in South Africa and globally.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 text-dark-charcoal group-hover:opacity-10 group-hover:scale-110 transition-all duration-300"><i class="fa-solid fa-bullseye text-7xl"></i></div>
+                        <h3 class="text-xl font-bold text-dark-charcoal mb-3 flex items-center"><i class="fa-solid fa-bullseye text-[#F4A536] mr-3"></i> Mission Statement</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">To support our clients through professional and excellent service while creating value for their stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#C65804] mb-2">Practice Offerings</h2>
+                <p class="text-3xl font-extrabold text-dark-charcoal sm:text-4xl tracking-tight">Comprehensive Professional Frameworks</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-12 border-b border-gray-100 pb-4 reveal-on-scroll">
+                <button onclick="switchServiceTab('audit')" id="tab-audit" class="service-tab-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 bg-[#0B0B0B] text-white cursor-pointer shadow-sm">Audit & Assurance</button>
+                <button onclick="switchServiceTab('tax')" id="tab-tax" class="service-tab-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer">Tax Services</button>
+                <button onclick="switchServiceTab('accounting')" id="tab-accounting" class="service-tab-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer">Accounting & Financial Reporting</button>
+                <button onclick="switchServiceTab('consulting')" id="tab-consulting" class="service-tab-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer">Consulting & Advisory</button>
+                <button onclick="switchServiceTab('legal')" id="tab-legal" class="service-tab-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer">Company Secretarial & Trusts</button>
+            </div>
+
+            <div id="service-content-wrapper" class="bg-gray-50 p-8 rounded-3xl border border-gray-100 min-h-[320px] reveal-on-scroll transition-all duration-500">
+                
+                <div id="content-audit" class="service-content-pane space-y-6 transition-opacity duration-300">
+                    <div class="max-w-2xl"><h3 class="text-2xl font-black text-dark-charcoal mb-2">Audit Services</h3><p class="text-sm text-gray-600">Statutory and specialized assurance workflows to maximize internal systems integrity.</p></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 flex items-start transform hover:translate-x-1 transition-transform"><i class="fa-solid fa-circle-check text-[#F4A536] mt-1 mr-3"></i> <span class="font-semibold text-gray-800">Internal Audit</span></div>
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 flex items-start transform hover:translate-x-1 transition-transform"><i class="fa-solid fa-circle-check text-[#F4A536] mt-1 mr-3"></i> <span class="font-semibold text-gray-800">External Audit</span></div>
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 flex items-start transform hover:translate-x-1 transition-transform"><i class="fa-solid fa-circle-check text-[#F4A536] mt-1 mr-3"></i> <span class="font-semibold text-gray-800">Independent Reviews</span></div>
+                    </div>
+                </div>
+
+                <div id="content-tax" class="service-content-pane hidden space-y-6 transition-opacity duration-300">
+                    <div class="max-w-2xl"><h3 class="text-2xl font-black text-dark-charcoal mb-2">Tax Services</h3><p class="text-sm text-gray-600">Complete corporate and specialized compliance pathways alongside optimization planning.</p></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">Income Tax Registration</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">VAT Registration</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">PAYE Registration</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">Tax Returns</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">Tax Planning</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">SARS Compliance</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">VAT201 Submissions</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">EMP201 Submissions</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-calculator text-[#C65804]"></i><span class="text-sm font-semibold text-gray-700">PAYE Reconciliations</span></div>
+                    </div>
+                </div>
+
+                <div id="content-accounting" class="service-content-pane hidden space-y-6 transition-opacity duration-300">
+                    <div class="max-w-2xl"><h3 class="text-2xl font-black text-dark-charcoal mb-2">Accounting & Financial Reporting</h3><p class="text-sm text-gray-600">Enterprise bookkeeping, management metrics, and comprehensive forecasting systems.</p></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Annual Financial Statements</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Management Accounts</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Bookkeeping</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Payroll Management</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Cash Flow Projections</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Financial Forecasting</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Budgeting</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Financial Clean-Up</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-folder-open text-[#F4A536]"></i><span class="text-sm font-medium text-gray-700">Accounting Systems Support</span></div>
+                    </div>
+                </div>
+
+                <div id="content-consulting" class="service-content-pane hidden space-y-6 transition-opacity duration-300">
+                    <div class="max-w-2xl"><h3 class="text-2xl font-black text-dark-charcoal mb-2">Consulting Services & Business Advisory</h3><p class="text-sm text-gray-600">High-level systemic engineering for risk oversight, public framework alignment, and coaching.</p></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Risk Management</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Compliance Reviews</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Supply Chain Management</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Public/Municipal Finance (PFMA/MFMA)</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Governance Reviews</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Business Plans & Feasibility</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Mentorship & Financial Coaching</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Procurement Advisory</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-briefcase text-orange-900"></i><span class="text-sm font-medium text-gray-700">Marketing Support</span></div>
+                    </div>
+                </div>
+
+                <div id="content-legal" class="service-content-pane hidden space-y-6 transition-opacity duration-300">
+                    <div class="max-w-2xl"><h3 class="text-2xl font-black text-dark-charcoal mb-2">Legal, Secretarial & Trust Services</h3><p class="text-sm text-gray-600">Company lifecycle management, secretarial alignment, resolutions, and optimized trust audits.</p></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-shield text-amber-600"></i><span class="text-sm font-medium text-gray-700">Company Registration & Returns</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-shield text-amber-600"></i><span class="text-sm font-medium text-gray-700">Director Changes & Share Certs</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-shield text-amber-600"></i><span class="text-sm font-medium text-gray-700">MOI Amendments & Resolutions</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-shield text-amber-600"></i><span class="text-sm font-medium text-gray-700">Trust Registration</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-shield text-amber-600"></i><span class="text-sm font-medium text-gray-700">Trust Tax Frameworks</span></div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center space-x-3 hover:shadow-sm transition-shadow"><i class="fa-solid fa-shield text-amber-600"></i><span class="text-sm font-medium text-gray-700">Trust Financials & Audits</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="py-20 bg-[#FFEDD4]/20 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#C65804] mb-2">Executive Council</h2>
+                <p class="text-3xl font-extrabold text-dark-charcoal sm:text-4xl tracking-tight">Our Leadership Team</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-md space-y-6 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-100 reveal-on-scroll group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#FFEDD4]/40 rounded-bl-full -z-0 transition-transform duration-500 group-hover:scale-110"></div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-extrabold text-[#C65804] uppercase tracking-wider block mb-1">Founder & Director</span>
+                        <h3 class="text-2xl font-black text-dark-charcoal transition-colors group-hover:text-[#F4A536] duration-300">Nomzamo Mkiva CA(SA)</h3>
+                        <p class="text-xs font-semibold text-gray-400 mt-0.5">Registered Auditor</p>
+                        
+                        <p class="text-sm text-gray-600 mt-4 leading-relaxed">
+                            With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, Nomzamo has worked with leading organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.
+                        </p>
+                        
+                        <div class="pt-6">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Core Executive Strengths:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Audit & Assurance</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Financial Management</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Governance</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Risk Management</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Compliance</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Strategic Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-md space-y-6 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-100 reveal-on-scroll group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#FFEDD4]/40 rounded-bl-full -z-0 transition-transform duration-500 group-hover:scale-110"></div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-extrabold text-[#C65804] uppercase tracking-wider block mb-1">Director</span>
+                        <h3 class="text-2xl font-black text-dark-charcoal transition-colors group-hover:text-[#F4A536] duration-300">Hale Qangule CA(SA)</h3>
+                        <p class="text-xs font-semibold text-gray-400 mt-0.5">Registered Auditor</p>
+                        
+                        <p class="text-sm text-gray-600 mt-4 leading-relaxed">
+                            Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. Former Head of Audit at SizweNtsaluba VSP with extensive expertise in audit strategy, governance and professional standards.
+                        </p>
+                        
+                        <div class="pt-6">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Core Executive Strengths:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Corporate Governance</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Audit Strategy</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Professional Standards</span>
+                                <span class="px-2.5 py-1 bg-gray-50 rounded text-xs font-semibold text-gray-700 border border-gray-100 hover:bg-[#FFEDD4]/50 transition-colors">Risk Mitigation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#C65804] mb-2">Market Footprint</h2>
+                <p class="text-3xl font-extrabold text-dark-charcoal sm:text-4xl tracking-tight">Industries We Serve</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 reveal-on-scroll">
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-store text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">SMEs</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-building text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Medium & Large Orgs</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-landmark text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Government Entities</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-city text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Municipalities</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-hands-holding-child text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Non-Profits (NPOs)</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-scale-balanced text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Trusts</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-user-gear text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Professional Services</span>
+                </div>
+                <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl flex items-center space-x-4 hover:bg-[#FFEDD4]/40 transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-[#F4A536]"><i class="fa-solid fa-cart-shopping text-lg"></i></div>
+                    <span class="font-bold text-sm text-gray-800">Retail Businesses</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4 reveal-on-scroll hover:shadow-md transition-shadow">
+                    <div class="flex text-[#F4A536] space-x-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-sm italic text-gray-600">"NMK Chartered Accountants helped streamline our financial processes and improved our compliance significantly."</p>
+                    <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">— Corporate Client</span>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4 reveal-on-scroll hover:shadow-md transition-shadow">
+                    <div class="flex text-[#F4A536] space-x-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-sm italic text-gray-600">"Professional, responsive and highly knowledgeable team."</p>
+                    <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">— Enterprise Partner</span>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4 reveal-on-scroll hover:shadow-md transition-shadow">
+                    <div class="flex text-[#F4A536] space-x-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-sm italic text-gray-600">"Their tax and accounting support has been invaluable to our business."</p>
+                    <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">— Operations Director</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#C65804] mb-2">Information Center</h2>
+                <p class="text-3xl font-extrabold text-dark-charcoal tracking-tight">Frequently Asked Questions</p>
+            </div>
+            
+            <div class="space-y-4 reveal-on-scroll">
+                <div class="faq-item border border-gray-200 rounded-xl p-5 bg-gray-50 cursor-pointer transition-colors duration-300 hover:border-orange-200" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-dark-charcoal text-base">How long does a standard corporate financial clean-up process take?</h4>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm text-gray-600 leading-relaxed">Timeline variance hinges fully on system architecture state and documentation records; typical frameworks achieve complete execution cleanups inside 2 to 4 business weeks.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-gray-200 rounded-xl p-5 bg-gray-50 cursor-pointer transition-colors duration-300 hover:border-orange-200" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-dark-charcoal text-base">Does NMK support compliance audits for PFMA and MFMA entities?</h4>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-sm faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm text-gray-600 leading-relaxed">Yes. Our executive directors have high-level historic tracking expertise dealing inside public infrastructure sectors, ensuring perfect alignment with municipal financial frameworks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gradient-to-br from-[#FFEDD4]/60 to-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-8 reveal-on-scroll">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-[#C65804] mb-2">Get In Touch</h2>
+                        <p class="text-3xl font-black text-dark-charcoal tracking-tight">Let's Build a Trusted Partnership</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 group">
+                            <div class="p-3 bg-white rounded-xl text-[#F4A536] shadow-sm transition-transform group-hover:scale-110"><i class="fa-solid fa-location-dot text-lg"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-400 uppercase tracking-wider">Office Address</h4>
+                                <p class="text-sm font-medium text-gray-700 mt-1">3rd Floor, H Santos Building, East Wing, 30 Arena Close, Bruma, Johannesburg, 2198</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 group">
+                            <div class="p-3 bg-white rounded-xl text-[#F4A536] shadow-sm transition-transform group-hover:scale-110"><i class="fa-solid fa-phone text-lg"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-400 uppercase tracking-wider">Contact Information</h4>
+                                <p class="text-sm font-medium text-gray-700 mt-1">Tel: 011 492 0358 / 011 492 1324</p>
+                                <p class="text-sm font-medium text-emerald-600 mt-0.5"><i class="fa-brands fa-whatsapp animate-pulse"></i> WhatsApp: 061 965 6109</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 group">
+                            <div class="p-3 bg-white rounded-xl text-[#F4A536] shadow-sm transition-transform group-hover:scale-110"><i class="fa-solid fa-envelope text-lg"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-400 uppercase tracking-wider">Digital Channels</h4>
+                                <p class="text-sm font-medium text-gray-700 mt-1">Email: info@nmkca.co.za</p>
+                                <p class="text-sm font-medium text-gray-700">Website: www.nmkca.co.za</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white/80 rounded-2xl border border-orange-100 text-xs text-gray-500 space-y-1 shadow-inner">
+                        <p><strong>Registration Number:</strong> 2014/100864/21</p>
+                        <p><strong>Practice Number:</strong> 958732-0000</p>
+                        <p><strong>Directors:</strong> MN Mkiva CA (SA), HL Qangule CA (SA)</p>
+                        <p class="pt-2"><strong>Fax Baseline Endpoint:</strong> 086 619 9179</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 reveal-on-scroll">
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl relative overflow-hidden">
+                        <h3 class="text-xl font-bold text-dark-charcoal mb-6">Online Consultation Booking Form</h3>
+                        <form onsubmit="event.preventDefault(); alert('Thank you for reaching out. An NMK executive consultant will contact you shortly.');" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Full Name</label>
+                                    <input type="text" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#F4A536] focus:bg-white transition-all duration-300">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Corporate Email</label>
+                                    <input type="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#F4A536] focus:bg-white transition-all duration-300">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Required Practice Area Service</label>
+                                <select class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#F4A536] focus:bg-white transition-all duration-300">
+                                    <option>Audit & Assurance frameworks</option>
+                                    <option>Tax Structure & Submissions</option>
+                                    <option>Accounting & Financial Statements</option>
+                                    <option>Corporate Advisory & Public Finance</option>
+                                    <option>Company Secretarial / Trust Setup</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Brief Description of Needs</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#F4A536] focus:bg-white transition-all duration-300"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-[#0B0B0B] hover:bg-[#F4A536] text-white font-bold text-sm rounded-xl tracking-wide shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform active:scale-[0.99]">
+                                Submit Consultation Intent
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0B0B0B] text-white pt-16 pb-8 border-t-4 border-[#F4A536]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-gray-800">
+                <div class="md:col-span-5 space-y-4">
+                    <span class="text-2xl font-black tracking-tight text-white">NMK</span>
+                    <p class="text-xs text-gray-400 max-w-sm">Professional Accounting, Audit, Tax and Advisory Services Across South Africa.</p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-[#F4A536] transition-colors duration-300 flex items-center justify-center text-sm transform hover:scale-110"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-[#F4A536] transition-colors duration-300 flex items-center justify-center text-sm transform hover:scale-110"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-[#F4A536]">Navigation Pathways</h4>
+                    <div class="grid grid-cols-2 gap-2 text-sm text-gray-400">
+                        <a href="#" class="hover:text-white transition-colors duration-200">Home</a>
+                        <a href="#about" class="hover:text-white transition-colors duration-200">About Us</a>
+                        <a href="#services" class="hover:text-white transition-colors duration-200">Services</a>
+                        <a href="#leadership" class="hover:text-white transition-colors duration-200">Leadership</a>
+                        <a href="#contact" class="hover:text-white transition-colors duration-200">Contact Us</a>
+                    </div>
+                </div>
+                <div class="md:col-span-3 space-y-3 text-sm text-gray-400">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-[#F4A536]">Legal Protections</h4>
+                    <div class="flex flex-col space-y-1">
+                        <a href="#" class="hover:text-white transition-colors text-xs duration-200">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors text-xs duration-200">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-xs text-gray-500">
+                © 2026 NMK Chartered Accountants. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/27619656109" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 text-white p-4 rounded-full shadow-2xl hover:bg-emerald-600 transition-all transform hover:scale-110 flex items-center justify-center group" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 text-xs font-bold uppercase tracking-wider whitespace-nowrap">Chat Now</span>
+    </a>
+
+    <script>
+        // Native Scroll-Driven Reveal Engine Using IntersectionObserver 
+        // This watches element placements dynamically when scrolling down AND up.
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        // Reverse animation on scroll out (up or down past viewing bounds)
+                        // Remove this line if you want elements to stay permanently static once shown
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // Mobile Toggle Menu 
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Interactive Service Selector Tab Grid 
+        function switchServiceTab(tabId) {
+            const wrapper = document.getElementById('service-content-wrapper');
+            wrapper.style.opacity = 0; // Micro-fade effect
+            
+            setTimeout(() => {
+                // Hide all panes
+                document.querySelectorAll('.service-content-pane').forEach(pane => {
+                    pane.classList.add('hidden');
+                });
+                
+                // Show target pane
+                document.getElementById('content-' + tabId).classList.remove('hidden');
+                wrapper.style.opacity = 1;
+            }, 200);
+
+            // Toggle Tab Activation Visuals
+            document.querySelectorAll('.service-tab-btn').forEach(button => {
+                button.classList.remove('bg-[#0B0B0B]', 'text-white', 'shadow-sm');
+                button.classList.add('bg-gray-50', 'text-gray-600', 'hover:bg-gray-100');
+            });
+            
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.remove('bg-gray-50', 'text-gray-600', 'hover:bg-gray-100');
+            activeBtn.classList.add('bg-[#0B0B0B]', 'text-white', 'shadow-sm');
+        }
+
+        // Accordion FAQ Toggle Micro-Interaction Routine
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Close active items if needed (Optional accordion functionality)
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
