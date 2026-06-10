@@ -2024,13 +2024,13 @@ footer { background: var(--ink); }
               <div class="contact-info-value"><a href="mailto:info@nmkca.co.za">info@nmkca.co.za</a></div>
             </div>
           </div>
-          <div class="contact-info-item">
+          <!-- <div class="contact-info-item">
             <div class="contact-info-icon">🌐</div>
             <div>
               <div class="contact-info-label">Website</div>
               <div class="contact-info-value"><a href="https://www.nmkca.co.za" target="_blank">www.nmkca.co.za</a></div>
             </div>
-          </div>
+          </div> -->
           <div class="social-strip">
             <a href="#" target="_blank" class="social-btn social-fb">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -2051,34 +2051,34 @@ footer { background: var(--ink); }
         <div class="contact-form-card">
           <h3>Book a Consultation</h3>
           <p>Complete the form below and a member of our team will be in touch within one business day.</p>
-          <div id="contact-form">
+          <form id="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">First Name *</label>
-                <input type="text" class="form-control" placeholder="Your first name" required>
+                <input type="text" name="first_name" class="form-control" placeholder="Your first name" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Last Name *</label>
-                <input type="text" class="form-control" placeholder="Your last name" required>
+                <input type="text" name="last_name" class="form-control" placeholder="Your last name" required>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">Email Address *</label>
-                <input type="email" class="form-control" placeholder="name@company.co.za" required>
+                <input type="email" name="email" class="form-control" placeholder="name@company.co.za" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" placeholder="+27 __ ___ ____">
+                <input type="tel" name="phone" class="form-control" placeholder="+27 __ ___ ____">
               </div>
             </div>
             <div class="form-group">
               <label class="form-label">Company Name</label>
-              <input type="text" class="form-control" placeholder="Your organisation name">
+              <input type="text" name="company" class="form-control" placeholder="Your organisation name">
             </div>
             <div class="form-group">
               <label class="form-label">Service of Interest</label>
-              <select class="form-control">
+              <select name="service" class="form-control">
                 <option value="" disabled selected>Select a service...</option>
                 <option>Audit Services</option>
                 <option>Tax Services</option>
@@ -2092,10 +2092,10 @@ footer { background: var(--ink); }
             </div>
             <div class="form-group">
               <label class="form-label">Message</label>
-              <textarea class="form-control" placeholder="Tell us about your business needs and how we can help..."></textarea>
+              <textarea name="message" class="form-control" placeholder="Tell us about your business needs and how we can help..."></textarea>
             </div>
-            <button class="btn btn-primary btn-lg" style="width:100%;" onclick="submitForm()">Send Enquiry →</button>
-          </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Enquiry →</button>
+          </form>
           <div class="form-success" id="form-success">
             <div style="font-size:40px; margin-bottom:16px;">✅</div>
             <h4 style="font-size:20px; font-weight:600; margin-bottom:8px; font-family:'Cormorant Garamond',serif;">Thank you for reaching out!</h4>
@@ -2252,17 +2252,57 @@ function toggleFaq(btn) {
 }
 
 // ═══ FORM SUBMIT ══════════════════════════════════
-function submitForm() {
-  const inputs = document.querySelectorAll('#contact-form input[required], #contact-form select[required]');
+function submitForm(e) {
+  if (e) e.preventDefault();
+  
+  const form = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+  
+  // Validate required fields
+  const inputs = form.querySelectorAll('input[required], select[required]');
   let valid = true;
+  
   inputs.forEach(inp => {
-    if (!inp.value.trim()) { inp.style.borderColor = 'var(--orange-acc)'; valid = false; }
-    else inp.style.borderColor = '';
+    if (!inp.value.trim()) {
+      inp.style.borderColor = 'var(--orange-acc)';
+      valid = false;
+    } else {
+      inp.style.borderColor = '';
+    }
   });
+  
   if (!valid) return;
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
+  
+  // Submit form to Formspree
+  const formData = new FormData(form);
+  
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
+      form.reset();
+    } else {
+      alert('There was an error submitting the form. Please try again.');
+    }
+  }).catch(error => {
+    console.error('Error:', error);
+    alert('There was an error submitting the form. Please try again.');
+  });
 }
+
+// Attach form submission handler
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', submitForm);
+  }
+});
 
 // ═══ SCROLL REVEAL ════════════════════════════════
 function initReveal() {
