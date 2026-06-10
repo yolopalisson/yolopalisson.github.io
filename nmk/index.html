@@ -250,8 +250,15 @@ ul { list-style: none; }
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-shrink: 0;
+  padding: 10px 0;
+}
+.nav-logo img {
+  display: block;
+  width: 150px;
+  height: auto;
+  /* max-height: 48px; */
 }
 .nav-logo-mark {
   width: 42px;
@@ -263,8 +270,15 @@ ul { list-style: none; }
   justify-content: center;
   flex-shrink: 0;
 }
-.nav-logo-mark svg { width: 28px; height: 28px; }
-.nav-logo-text { display: flex; flex-direction: column; }
+.nav-logo-mark svg { 
+  width: 28px; 
+  height: 28px; 
+}
+.nav-logo-text { 
+  display: flex; 
+  flex-direction: column;
+  padding: 0; 
+}
 .nav-logo-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
@@ -1356,7 +1370,7 @@ footer { background: var(--ink); }
     <div class="nav-inner">
       <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
         <div class="nav-logo-text">
-          <img src="nmk_white_logo.png" alt="NMK Logo" style="height:auto; width:150px;padding-top: 15px;padding-bottom: 15px;">
+          <img src="nmk_white_logo.png" alt="NMK Logo" style="height:auto; width:150px;">
         </div>
       </div>
       <div class="nav-links">
