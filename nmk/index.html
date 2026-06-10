@@ -734,7 +734,7 @@ ul { list-style: none; }
 }
 .value-chip:hover { background: rgba(244,165,54,0.18); }
 .about-right {
-  background: var(--dark-mid);
+  background: white;
   border-radius: var(--r-lg);
   corner-shape: squircle;
   padding: 48px 44px;
@@ -745,6 +745,31 @@ ul { list-style: none; }
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .vision-mission-card:last-child { border-bottom: none; padding-bottom: 0; }
+.license-badges {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 22px;
+  flex-wrap: nowrap;
+}
+.license-badges img {
+  max-width: 140px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 768px) {
+  .license-badges {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  .license-badges img {
+    max-width: 45%;
+  }
+}
 .vm-label {
   font-size: 10px;
   font-weight: 700;
@@ -758,7 +783,7 @@ ul { list-style: none; }
   font-size: 20px;
   font-weight: 400;
   font-style: italic;
-  color: rgba(255,255,255,0.85);
+  color: var(--dark);
   line-height: 1.55;
 }
 
@@ -1188,6 +1213,47 @@ select.form-control { cursor: pointer; appearance: none; background-image: url("
 .trust-label { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; margin-top: 8px; letter-spacing: 0.04em; }
 
 /* ═══════════════════════════════════════════════════
+   CREDENTIALS & BADGES
+═══════════════════════════════════════════════════ */
+.credentials-band { 
+  background: var(--surface); 
+  padding: 48px 0; 
+  border-top: 1px solid var(--rule);
+}
+.credentials-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 32px;
+  align-items: center;
+  justify-items: center;
+}
+.credential-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--white);
+  border: 2px solid var(--rule);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.credential-item:hover {
+  border-color: var(--orange);
+  box-shadow: 0 8px 24px rgba(244,165,54,0.1);
+  transform: translateY(-2px);
+}
+.credential-item img {
+  max-width: 100%;
+  height: auto;
+  /* max-height: 120px; */
+  display: block;
+}
+@media (max-width: 768px) {
+  .credentials-grid { grid-template-columns: 1fr; gap: 20px; }
+  .credential-item { padding: 20px; }
+}
+
+/* ═══════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════ */
 footer { background: var(--ink); }
@@ -1488,10 +1554,14 @@ footer { background: var(--ink); }
           </div>
           <div class="vision-mission-card">
             <div class="vm-label">Our Practice</div>
-            <div style="color:rgba(255,255,255,0.55); font-size:14px; line-height:1.7; margin-top:6px;">
+            <div style="color:black; font-size:14px; line-height:1.7; margin-top:6px;">
               Registered with IRBA · Practice Number: 958732-0000<br>
               Registration Number: 2014/100864/21<br>
               3rd Floor, H Santos Building, Bruma, Johannesburg
+            </div>
+            <div class="license-badges">
+              <img src="saica-logo.svg" alt="SAICA - South African Institute of Chartered Accountants" title="SAICA Member Firm">
+              <img src="IRBA-Logo.jpg" alt="IRBA - Independent Regulatory Board for Auditors" title="IRBA Member Firm">
             </div>
           </div>
         </div>
@@ -1615,6 +1685,23 @@ footer { background: var(--ink); }
     </div>
   </div>
 
+  <!-- CREDENTIALS & PROFESSIONAL MEMBERSHIPS -->
+  <!-- <div class="credentials-band reveal">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <h3 class="display-sm">Professional Credentials</h3>
+        <p style="color: var(--muted); margin-top: 12px; font-size: 15px;">Registered with and regulated by South Africa's leading professional bodies</p>
+      </div>
+      <div class="credentials-grid">
+        <div class="credential-item">
+          <img src="irba-logo.png" alt="IRBA - Independent Regulatory Board for Auditors" title="IRBA Member Firm">
+        </div>
+        <div class="credential-item">
+          <img src="saica-logo.svg" alt="SAICA - South African Institute of Chartered Accountants" title="SAICA Member Firm">
+        </div>
+      </div>
+    </div>
+  </div> -->
 
   <!-- INDUSTRIES -->
   <section class="industries-section section-pad">
