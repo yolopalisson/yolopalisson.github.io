@@ -867,42 +867,75 @@ ul { list-style: none; }
   border-radius: var(--r-lg);
   corner-shape: squircle;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   transition: box-shadow var(--transition), transform var(--transition);
-  border: 1px solid rgba(244,165,54,0.1);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: stretch;
+  gap: 0;
 }
 .leader-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  box-shadow: 0 20px 38px rgba(15, 23, 42, 0.10);
+  transform: translateY(-2px);
 }
-.leader-header {
-  background: var(--dark);
-  padding: 40px 40px 32px;
-  position: relative;
-}
-.leader-avatar {
-  width: 80px;
-  height: 80px;
-  background: rgba(244,165,54,0.15);
-  border-radius: 50%;
-  corner-shape: squircle;
-  border: 2px solid var(--orange);
+.leader-image {
+  width: 36%;
+  min-width: 180px;
+  max-width: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  margin-bottom: 20px;
+  overflow: hidden;
+  background: rgba(244, 165, 54, 0.08);
+  border-right: 1px solid rgba(15, 23, 42, 0.05);
+}
+.leader-image img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+.leader-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.leader-header {
+  background: var(--white);
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
 }
 .leader-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--dark);
   margin-bottom: 4px;
 }
-.leader-title { font-size: 13px; color: var(--orange); font-weight: 500; letter-spacing: 0.03em; }
-.leader-body { padding: 36px 40px; }
-.leader-bio { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+.leader-title {
+  font-size: 13px;
+  color: var(--orange);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 0;
+}
+.leader-body {
+  padding: 22px 28px 28px;
+}
+@media (max-width: 900px) {
+  .leader-card {
+    flex-direction: column;
+  }
+  .leader-image {
+    width: 100%;
+    max-width: 100%;
+    min-height: 180px;
+    border-right: none;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+  }
+}.leader-bio { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
 .leader-strengths {
   display: flex;
   flex-wrap: wrap;
@@ -1795,37 +1828,41 @@ footer { background: var(--ink); }
       </div>
       <div class="grid-2">
         <div class="leader-card reveal reveal-delay-1">
-          <div class="leader-header">
-            <div class="leader-avatar">👤</div>
-            <div class="leader-name">Nomzamo Mkiva CA(SA)</div>
-            <div class="leader-title">Founder &amp; Director · Registered Auditor</div>
-          </div>
-          <div class="leader-body">
-            <p class="leader-bio">With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, Nomzamo has worked with leading South African organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.</p>
-            <div class="leader-strengths">
-              <span class="strength-badge">Audit &amp; Assurance</span>
-              <span class="strength-badge">Financial Management</span>
-              <span class="strength-badge">Governance</span>
-              <span class="strength-badge">Risk Management</span>
-              <span class="strength-badge">Compliance</span>
-              <span class="strength-badge">Strategic Planning</span>
+          <div class="leader-image"><img src="Nomzamo.jpeg" alt="Nomzamo Mkiva"></div>
+          <div class="leader-content">
+            <div class="leader-header">
+              <div class="leader-name">Nomzamo Mkiva CA(SA)</div>
+              <div class="leader-title">Founder &amp; Director · Registered Auditor</div>
+            </div>
+            <div class="leader-body">
+              <p class="leader-bio">With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, Nomzamo has worked with leading South African organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.</p>
+              <div class="leader-strengths">
+                <span class="strength-badge">Audit &amp; Assurance</span>
+                <span class="strength-badge">Financial Management</span>
+                <span class="strength-badge">Governance</span>
+                <span class="strength-badge">Risk Management</span>
+                <span class="strength-badge">Compliance</span>
+                <span class="strength-badge">Strategic Planning</span>
+              </div>
             </div>
           </div>
         </div>
         <div class="leader-card reveal reveal-delay-2">
-          <div class="leader-header">
-            <div class="leader-avatar">👤</div>
-            <div class="leader-name">Hale Qangule CA(SA)</div>
-            <div class="leader-title">Director · Registered Auditor</div>
-          </div>
-          <div class="leader-body">
-            <p class="leader-bio">Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. Former Head of Audit at SizweNtsaluba VSP with extensive expertise in audit strategy, governance and professional standards.</p>
-            <div class="leader-strengths">
-              <span class="strength-badge">Audit Strategy</span>
-              <span class="strength-badge">Corporate Governance</span>
-              <span class="strength-badge">Professional Standards</span>
-              <span class="strength-badge">Risk Advisory</span>
-              <span class="strength-badge">Compliance</span>
+          <div class="leader-image"><img src="Hale.jpeg" alt="Hale Qangule"></div>
+          <div class="leader-content">
+            <div class="leader-header">
+              <div class="leader-name">Hale Qangule CA(SA)</div>
+              <div class="leader-title">Director · Registered Auditor</div>
+            </div>
+            <div class="leader-body">
+              <p class="leader-bio">Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. Former Head of Audit at SizweNtsaluba VSP with extensive expertise in audit strategy, governance and professional standards.</p>
+              <div class="leader-strengths">
+                <span class="strength-badge">Audit Strategy</span>
+                <span class="strength-badge">Corporate Governance</span>
+                <span class="strength-badge">Professional Standards</span>
+                <span class="strength-badge">Risk Advisory</span>
+                <span class="strength-badge">Compliance</span>
+              </div>
             </div>
           </div>
         </div>
@@ -2114,47 +2151,43 @@ footer { background: var(--ink); }
 
   <section class="section-pad" style="background:var(--surface);">
     <div class="container">
-      <div class="grid-2" style="gap:48px; align-items:start;">
-        <div class="leader-card">
-          <div class="leader-header">
-            <div class="leader-avatar">👤</div>
-            <div class="leader-name">Nomzamo Mkiva CA(SA)</div>
-            <div class="leader-title">Founder &amp; Director · Registered Auditor · Practice No. 958732-0000</div>
-          </div>
-          <div class="leader-body">
-            <p class="leader-bio">Nomzamo Mkiva is the Founder and Director of NMK Chartered Accountants. With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, she has worked with leading South African organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.</p>
-            <p class="leader-bio" style="margin-top:16px;">Her deep expertise spans both private sector financial management and public sector governance, making NMK uniquely positioned to serve a broad range of clients with complex financial and compliance requirements.</p>
-            <h4 style="font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px; margin-top:24px;">Professional Strengths</h4>
-            <div class="leader-strengths">
-              <span class="strength-badge">Audit &amp; Assurance</span>
-              <span class="strength-badge">Financial Management</span>
-              <span class="strength-badge">Governance</span>
-              <span class="strength-badge">Risk Management</span>
-              <span class="strength-badge">Compliance</span>
-              <span class="strength-badge">Strategic Planning</span>
-              <span class="strength-badge">Financial Reporting</span>
-              <span class="strength-badge">PFMA</span>
+      <div class="grid-2" style="gap:48px;">
+        <div class="leader-card reveal reveal-delay-1">
+          <div class="leader-image"><img src="Nomzamo.jpeg" alt="Nomzamo Mkiva"></div>
+          <div class="leader-content">
+            <div class="leader-header">
+              <div class="leader-name">Nomzamo Mkiva CA(SA)</div>
+              <div class="leader-title">Founder &amp; Director · Registered Auditor</div>
+            </div>
+            <div class="leader-body">
+              <p class="leader-bio">With over 24 years of experience in auditing, accounting, financial reporting, governance, risk management and compliance, Nomzamo has worked with leading South African organisations including Eskom, SAA Technical, Transnet Pension Fund, Hollard Insurance, Sasria and Nedbank.</p>
+              <div class="leader-strengths">
+                <span class="strength-badge">Audit &amp; Assurance</span>
+                <span class="strength-badge">Financial Management</span>
+                <span class="strength-badge">Governance</span>
+                <span class="strength-badge">Risk Management</span>
+                <span class="strength-badge">Compliance</span>
+                <span class="strength-badge">Strategic Planning</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="leader-card">
-          <div class="leader-header">
-            <div class="leader-avatar">👤</div>
-            <div class="leader-name">Hale Qangule CA(SA)</div>
-            <div class="leader-title">Director · Registered Auditor</div>
-          </div>
-          <div class="leader-body">
-            <p class="leader-bio">Hale Qangule is an Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. As the former Head of Audit at SizweNtsaluba VSP, one of South Africa's leading audit firms, Hale brings extensive expertise in audit strategy, governance and professional standards.</p>
-            <p class="leader-bio" style="margin-top:16px;">His deep understanding of corporate governance frameworks, including King IV™, and his extensive audit leadership experience strengthens NMK's ability to deliver world-class professional services to public and private sector clients.</p>
-            <h4 style="font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px; margin-top:24px;">Professional Strengths</h4>
-            <div class="leader-strengths">
-              <span class="strength-badge">Audit Strategy</span>
-              <span class="strength-badge">Corporate Governance</span>
-              <span class="strength-badge">Professional Standards</span>
-              <span class="strength-badge">Risk Advisory</span>
-              <span class="strength-badge">Compliance</span>
-              <span class="strength-badge">King IV™</span>
-              <span class="strength-badge">IRBA Standards</span>
+        <div class="leader-card reveal reveal-delay-2">
+          <div class="leader-image"><img src="Hale.jpeg" alt="Hale Qangule"></div>
+          <div class="leader-content">
+            <div class="leader-header">
+              <div class="leader-name">Hale Qangule CA(SA)</div>
+              <div class="leader-title">Director · Registered Auditor</div>
+            </div>
+            <div class="leader-body">
+              <p class="leader-bio">Experienced Registered Auditor and Corporate Governance Consultant with over 30 years of industry experience. Former Head of Audit at SizweNtsaluba VSP with extensive expertise in audit strategy, governance and professional standards.</p>
+              <div class="leader-strengths">
+                <span class="strength-badge">Audit Strategy</span>
+                <span class="strength-badge">Corporate Governance</span>
+                <span class="strength-badge">Professional Standards</span>
+                <span class="strength-badge">Risk Advisory</span>
+                <span class="strength-badge">Compliance</span>
+              </div>
             </div>
           </div>
         </div>
