@@ -1512,6 +1512,155 @@ footer { background: var(--ink); }
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+.nmk-scene {
+    background: linear-gradient(180deg, #050607 0%, #07090d 45%, #090b0f 100%);
+    padding: 1.5rem;
+    border-radius: 28px;
+    corner-shape: squircle;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.15);
+  }
+
+  .nmk-scene::before,
+  .nmk-scene::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.14;
+    filter: blur(12px);
+  }
+
+  .nmk-scene::before {
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    corner-shape: squircle;
+    background: rgba(244,165,54,0.14);
+    top: -80px; right: -50px;
+  }
+
+  .nmk-scene::after {
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    corner-shape: squircle;
+    background: rgba(255,255,255,0.08);
+    bottom: -50px; left: 10px;
+  }
+
+  .nmk-glass {
+    background: rgba(7, 10, 15, 0.86);
+    backdrop-filter: blur(26px) saturate(190%);
+    -webkit-backdrop-filter: blur(26px) saturate(190%);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 24px;
+    corner-shape: squircle;
+    padding: 2rem 1.8rem;
+    max-width: 1140px;
+    margin: 0 auto;
+    box-shadow: 0 32px 75px rgba(0,0,0,0.32);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: nmkFadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;
+  }
+
+  @keyframes nmkFadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .nmk-quote-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    opacity: 0;
+    animation: nmkFadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.35s forwards;
+  }
+
+  .nmk-quote-bar {
+    width: 4px;
+    border-radius: 2px;
+    corner-shape: squircle;
+    background: linear-gradient(to bottom, var(--orange), var(--gold));
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+
+  .nmk-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.98);
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.24);
+  }
+
+  .nmk-stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    gap: 18px;
+  }
+
+  .nmk-stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 20px;
+    corner-shape: squircle;
+    padding: 1.4rem 1rem;
+    text-align: center;
+    cursor: default;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease;
+    opacity: 0;
+    animation: nmkFadeUp 0.45s cubic-bezier(0.22,1,0.36,1) var(--d) forwards;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.14);
+  }
+
+  .nmk-stat:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.22);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .nmk-num {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--orange);
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    transition: color 0.25s ease;
+  }
+
+  .nmk-lbl {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 940px) {
+    .nmk-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .nmk-stat:last-child { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 680px) {
+    .nmk-quote-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nmk-stats { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -1576,7 +1725,7 @@ footer { background: var(--ink); }
           </h1>
           <p class="body-lg hero-sub">NMK Chartered Accountants provides professional audit, accounting, taxation, compliance, payroll and business advisory services to businesses across South Africa.</p>
         
-          <div class="hero-stats">
+          <!-- <div class="hero-stats">
             <div class="hero-stat">
               <div class="hero-stat-icon">🏆</div>
               <div class="hero-stat-num">24+</div>
@@ -1601,6 +1750,39 @@ footer { background: var(--ink); }
               <div class="hero-stat-icon">🌍</div>
               <div class="hero-stat-num">9</div>
               <div class="hero-stat-label">Industries Served</div>
+            </div>
+          </div> -->
+
+          <br/>
+
+          <div class="nmk-scene">
+            <div class="nmk-glass">
+              <div class="nmk-quote-row">
+                <div class="nmk-quote-bar"></div>
+                <p class="nmk-quote-text">"Professional Excellence. Sustainable Solutions. Trusted Partnerships."</p>
+              </div>
+              <div class="nmk-stats">
+                <div class="nmk-stat" style="--d:0.50s">
+                  <span class="nmk-num" data-target="24" data-suffix="+">0</span>
+                  <span class="nmk-lbl">Years of Excellence</span>
+                </div>
+                <div class="nmk-stat" style="--d:0.60s">
+                  <span class="nmk-num" data-target="500" data-suffix="+">0</span>
+                  <span class="nmk-lbl">Clients Served</span>
+                </div>
+                <div class="nmk-stat" style="--d:0.70s">
+                  <span class="nmk-num" data-target="8" data-suffix="">0</span>
+                  <span class="nmk-lbl">Service Disciplines</span>
+                </div>
+                <div class="nmk-stat" style="--d:0.80s">
+                  <span class="nmk-num" data-target="100" data-suffix="%">0</span>
+                  <span class="nmk-lbl">Compliance Focus</span>
+                </div>
+                <div class="nmk-stat" style="--d:0.90s">
+                  <span class="nmk-num" data-target="9" data-suffix="">0</span>
+                  <span class="nmk-lbl">Industries Served</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2593,5 +2775,62 @@ function initReveal() {
 document.addEventListener('DOMContentLoaded', initReveal);
 window.addEventListener('scroll', initReveal, { passive: true });
 </script>
+
+<script>
+  function countUp(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('[data-target]').forEach(el => countUp(el));
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector('.nmk-scene'));
+</script>
+
+<script>
+  function countUp(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('[data-target]').forEach(el => countUp(el));
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector('.nmk-scene'));
+</script>
+
 </body>
 </html>
