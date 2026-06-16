@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Co-developer · Palisson Technologies</title>
+<style>
+:root {
+  --teal:#008080;--teal-dark:#005f5f;--teal-light:#e0f2f2;--teal-mid:#00a0a0;
+  --black:#111;--gray-900:#1a1a1a;--gray-800:#2a2a2a;--gray-700:#3a3a3a;
+  --gray-600:#555;--gray-400:#999;--gray-300:#ccc;--gray-200:#e8e8e8;--gray-100:#f4f4f4;
+  --white:#fff;--red:#c0392b;--red-light:#fff1f0;--red-border:#ffa39e;
+  --font:-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'Fira Mono','Courier New',monospace;
+  --r:8px;--rl:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--gray-100);color:var(--black);min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+
+/* ── GATE ── */
+#gate{position:fixed;inset:0;background:var(--gray-100);display:flex;align-items:center;justify-content:center;z-index:2000;padding:24px;}
+#gate.hidden{display:none;}
+.gate-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--rl);padding:36px 40px;max-width:460px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.gate-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.gate-logo svg{width:34px;height:34px;}
+.gate-logo span{font-size:16px;font-weight:700;color:var(--black);}
+.gate-logo em{color:var(--teal);font-style:normal;}
+.gate-card h2{font-size:17px;font-weight:700;margin-bottom:6px;}
+.gate-card p{font-size:13px;color:var(--gray-600);line-height:1.6;margin-bottom:20px;}
+.gate-card a{color:var(--teal);text-decoration:none;font-weight:600;}
+.gate-card a:hover{text-decoration:underline;}
+.gate-steps{background:var(--gray-100);border-radius:var(--r);padding:12px 14px;margin-bottom:20px;font-size:12px;color:var(--gray-600);line-height:1.8;}
+.gate-steps strong{color:var(--black);}
+.glabel{font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:.04em;margin-bottom:5px;display:block;text-transform:uppercase;}
+.key-wrap{display:flex;gap:7px;align-items:center;}
+.key-inp{flex:1;border:1.5px solid var(--gray-200);border-radius:var(--r);padding:10px 12px;font-size:13px;font-family:var(--mono);color:var(--black);background:var(--gray-100);outline:none;transition:border-color .15s;letter-spacing:.03em;}
+.key-inp:focus{border-color:var(--teal);background:var(--white);}
+.key-inp::placeholder{font-family:var(--font);letter-spacing:normal;color:var(--gray-400);}
+.icon-btn{background:none;border:1px solid var(--gray-200);border-radius:var(--r);padding:9px 10px;cursor:pointer;color:var(--gray-600);font-size:13px;flex-shrink:0;transition:all .15s;}
+.icon-btn:hover{border-color:var(--teal);color:var(--teal);}
+.gate-note{font-size:11px;color:var(--gray-400);margin-top:7px;}
+.gate-err{color:var(--red);font-size:12px;margin-top:7px;display:none;}
+.gate-submit{width:100%;margin-top:18px;background:var(--teal);color:var(--white);border:none;border-radius:var(--r);padding:12px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;}
+.gate-submit:hover{background:var(--teal-dark);}
+.gate-submit:disabled{background:var(--gray-200);color:var(--gray-400);cursor:not-allowed;}
+
+/* model switcher */
+.model-switcher{display:flex;gap:6px;align-items:center;}
+.model-switcher label{font-size:11px;color:#888;white-space:nowrap;}
+.model-select{background:var(--gray-800);border:1px solid #444;color:var(--white);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;cursor:pointer;outline:none;transition:border-color .15s;}
+.model-select:hover{border-color:var(--teal);}
+.model-select option{background:var(--gray-900);color:var(--white);}
+
+/* ── LAYOUT ── */
+header{background:var(--black);padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--teal);flex-shrink:0;z-index:1100;}
+.hlogo svg{width:28px;height:28px;}
+header h1{font-size:14px;font-weight:700;color:var(--white);letter-spacing:.02em;}
+header h1 span{color:var(--teal-mid);}
+.hbadge{background:var(--teal);color:var(--white);font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;letter-spacing:.05em;}
+.hbtn{background:none;border:1px solid #444;color:#aaa;font-size:11px;padding:3px 10px;border-radius:20px;cursor:pointer;transition:all .15s;margin-left:6px;}
+.hbtn:hover{border-color:var(--teal);color:var(--teal-mid);}
+.ml-auto{margin-left:auto;display:flex;align-items:center;gap:6px;}
+
+.app{display:flex;flex:1;overflow:hidden;height:calc(100vh - 54px);position:relative;}
+
+/* ── LEFT NAV ── */
+.leftnav{width:210px;flex-shrink:0;background:var(--white);border-right:1px solid var(--gray-200);display:flex;flex-direction:column;overflow:hidden;z-index:1000;}
+.nav-section{padding:14px 12px 6px;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gray-400);text-transform:uppercase;}
+.nav-btn{background:none;border:none;cursor:pointer;text-align:left;padding:8px 12px;border-radius:var(--r);font-size:12.5px;color:var(--gray-600);display:flex;align-items:center;gap:7px;transition:all .15s;width:calc(100% - 8px);margin:0 4px;}
+.nav-btn:hover{background:var(--gray-100);color:var(--black);}
+.nav-btn.active{background:var(--teal-light);color:var(--teal-dark);font-weight:600;}
+.nav-icon{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.stack-tags{display:flex;flex-wrap:wrap;gap:4px;padding:0 12px 10px;}
+.stag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);}
+.stag.on{background:var(--teal-light);color:var(--teal-dark);border-color:var(--teal);}
+.ctx-box{padding:10px 12px;font-size:11px;color:var(--gray-600);line-height:1.6;border-top:1px solid var(--gray-200);margin-top:auto;}
+
+/* ── NAV OVERLAY MASK ── */
+.nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:995;display:none;opacity:0;transition:opacity 0.25s ease;}
+.nav-overlay.visible{display:block;opacity:1;}
+
+/* ── MAIN PANEL ── */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;}
+
+/* ── TABS (History / Projects) ── */
+.panel-tabs{display:flex;border-bottom:1px solid var(--gray-200);background:var(--white);flex-shrink:0;}
+.ptab{flex:1;padding:12px 10px;font-size:12px;font-weight:600;color:var(--gray-400);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;letter-spacing:.02em;text-align:center;}
+.ptab.active{color:var(--teal-dark);border-bottom-color:var(--teal);}
+.ptab:hover:not(.active){color:var(--black);}
+
+/* ── CHAT PANEL ── */
+#chatPanel{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.chat-topbar{padding:8px 16px;background:var(--white);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.session-name{font-size:13px;font-weight:600;color:var(--black);flex:1;cursor:pointer;padding:3px 6px;border-radius:4px;transition:background .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.session-name:hover{background:var(--gray-100);}
+.session-name-input{flex:1;font-size:13px;font-weight:600;border:1.5px solid var(--teal);border-radius:4px;padding:3px 6px;outline:none;font-family:var(--font);min-width:0;}
+.tbar-btn{background:none;border:1px solid var(--gray-200);border-radius:var(--r);padding:5px 10px;font-size:11.5px;color:var(--gray-600);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.tbar-btn:hover{border-color:var(--teal);color:var(--teal-dark);}
+.tbar-btn.danger:hover{border-color:var(--red);color:var(--red);}
+
+.chat-window{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px;}
+.msg{display:flex;gap:10px;max-width:800px;width:100%;}
+.msg.user{flex-direction:row-reverse;align-self:flex-end;}
+.avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:2px;}
+.avatar.agent{background:var(--teal);color:var(--white);}
+.avatar.user{background:var(--black);color:var(--white);}
+.bubble{padding:11px 15px;border-radius:var(--rl);font-size:13.5px;line-height:1.65;max-width:85%;word-wrap:break-word;}
+.msg.agent .bubble{background:var(--white);border:1px solid var(--gray-200);border-radius:4px var(--rl) var(--rl) var(--rl);}
+.msg.user .bubble{background:var(--teal);color:var(--white);border-radius:var(--rl) 4px var(--rl) var(--rl);}
+.bubble pre{background:var(--gray-900);color:#e0f2f2;border-radius:6px;padding:12px 14px;font-size:12px;line-height:1.5;overflow-x:auto;margin:8px 0;font-family:var(--mono);position:relative;}
+.bubble pre .copy-code{position:absolute;top:6px;right:6px;background:var(--gray-700);color:#ccc;border:none;border-radius:4px;padding:2px 8px;font-size:10px;cursor:pointer;transition:all .15s;}
+.bubble pre .copy-code:hover{background:var(--teal);color:var(--white);}
+.bubble code{background:var(--gray-100);color:var(--teal-dark);padding:1px 5px;border-radius:4px;font-size:12px;font-family:var(--mono);word-break:break-all;}
+.bubble pre code{background:none;color:inherit;padding:0;word-break:normal;}
+.bubble ul,.bubble ol{padding-left:18px;margin:5px 0;}
+.bubble li{margin:3px 0;}
+.bubble strong{font-weight:700;}
+.bubble p{margin:4px 0;}
+.mode-divider{font-size:11px;font-weight:600;letter-spacing:.07em;color:var(--gray-400);text-transform:uppercase;text-align:center;padding:4px 0;}
+.thinking{display:flex;gap:5px;align-items:center;padding:12px 15px;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:bounce 1.2s infinite;}
+.dot:nth-child(2){animation-delay:.2s;}.dot:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.err-bubble{background:var(--red-light);border:1px solid var(--red-border);color:var(--red);padding:10px 14px;border-radius:var(--r);font-size:13px;}
+
+.quick-prompts{display:flex;gap:6px;padding:10px 20px;background:var(--white);border-top:1px solid var(--gray-200);overflow-x:auto;scrollbar-width:none;}
+.quick-prompts::-webkit-scrollbar{display:none;}
+.qp{font-size:11.5px;color:var(--teal-dark);background:var(--teal-light);border:1px solid var(--teal);border-radius:20px;padding:5px 12px;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0;}
+.qp:hover{background:var(--teal);color:var(--white);}
+.input-bar{border-top:1px solid var(--gray-200);background:var(--white);padding:12px 18px;display:flex;gap:8px;align-items:flex-end;flex-shrink:0;}
+.input-wrap{flex:1;background:var(--gray-100);border:1.5px solid var(--gray-200);border-radius:var(--rl);display:flex;align-items:flex-end;transition:border-color .15s;overflow:hidden;}
+.input-wrap:focus-within{border-color:var(--teal);}
+textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(--font);font-size:14px;color:var(--black);padding:10px 12px;line-height:1.5;max-height:130px;outline:none;}
+textarea::placeholder{color:var(--gray-400);}
+.send-btn{background:var(--teal);border:none;color:var(--white);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin:5px 5px 5px 0;flex-shrink:0;transition:background .15s;}
+.send-btn:hover{background:var(--teal-dark);}
+.send-btn:disabled{background:var(--gray-200);cursor:not-allowed;}
+
+/* ── HISTORY PANEL ── */
+#historyPanel{flex:1;display:none;flex-direction:column;overflow:hidden;}
+#historyPanel.visible{display:flex;}
+.panel-toolbar{padding:12px 16px;background:var(--white);border-bottom:1px solid var(--gray-200);display:flex;gap:8px;align-items:center;flex-shrink:0;}
+.panel-toolbar input{flex:1;border:1.5px solid var(--gray-200);border-radius:var(--r);padding:8px 12px;font-size:14px;outline:none;font-family:var(--font);transition:border-color .15s;min-width:0;}
+.panel-toolbar input:focus{border-color:var(--teal);}
+.session-list{flex:1;overflow-y:auto;padding:12px;}
+.session-item{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r);padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:all .15s;display:flex;align-items:flex-start;gap:10px;}
+.session-item:hover{border-color:var(--teal);box-shadow:0 2px 8px rgba(0,128,128,.08);}
+.session-item.current{border-color:var(--teal);background:var(--teal-light);}
+.si-info{flex:1;min-width:0;}
+.si-name{font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.si-meta{font-size:11px;color:var(--gray-400);}
+.si-preview{font-size:12px;color:var(--gray-600);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.si-del{background:none;border:none;color:var(--gray-300);cursor:pointer;font-size:15px;padding:2px 4px;border-radius:4px;transition:color .15s;flex-shrink:0;}
+.si-del:hover{color:var(--red);}
+.empty-state{text-align:center;padding:48px 24px;color:var(--gray-400);}
+.empty-state .es-icon{font-size:36px;margin-bottom:12px;}
+.empty-state p{font-size:13px;line-height:1.6;}
+
+/* ── PROJECTS PANEL ── */
+#projectsPanel{flex:1;display:none;flex-direction:column;overflow:hidden;}
+#projectsPanel.visible{display:flex;}
+.projects-split{display:flex;flex:1;overflow:hidden;}
+.projects-list{width:220px;flex-shrink:0;border-right:1px solid var(--gray-200);display:flex;flex-direction:column;overflow:hidden;}
+.pl-toolbar{padding:12px;border-bottom:1px solid var(--gray-200);background:var(--white);}
+.pl-title{font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;letter-spacing:.02em;}
+.new-proj-btn{width:100%;background:var(--teal);color:var(--white);border:none;border-radius:var(--r);padding:8px;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;}
+.new-proj-btn:hover{background:var(--teal-dark);}
+.pl-items{flex:1;overflow-y:auto;padding:8px;}
+.proj-item{padding:9px 10px;border-radius:var(--r);cursor:pointer;transition:all .15s;margin-bottom:4px;border:1px solid transparent;}
+.proj-item:hover{background:var(--gray-100);}
+.proj-item.active{background:var(--teal-light);border-color:var(--teal);}
+.proj-name{font-size:12.5px;font-weight:600;color:var(--black);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.proj-client{font-size:11px;color:var(--gray-400);margin-top:1px;}
+.proj-detail{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--gray-100);}
+.no-proj{flex:1;display:flex;align-items:center;justify-content:center;color:var(--gray-400);font-size:13px;text-align:center;padding:24px;}
+.proj-header{padding:16px 20px;background:var(--white);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.proj-title-inp{flex:1;font-size:15px;font-weight:700;border:none;background:transparent;outline:none;color:var(--black);font-family:var(--font);min-width:0;}
+.proj-del-btn{background:none;border:1px solid var(--gray-200);border-radius:var(--r);padding:5px 10px;font-size:11px;color:var(--gray-400);cursor:pointer;transition:all .15s;}
+.proj-del-btn:hover{border-color:var(--red);color:var(--red);}
+.proj-body{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:14px;}
+.proj-field label{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray-400);text-transform:uppercase;display:block;margin-bottom:5px;}
+.proj-field input,.proj-field textarea,.proj-field select{width:100%;border:1.5px solid var(--gray-200);border-radius:var(--r);padding:8px 10px;font-size:14px;font-family:var(--font);outline:none;transition:border-color .15s;background:var(--white);color:var(--black);resize:vertical;}
+.proj-field input:focus,.proj-field textarea:focus,.proj-field select:focus{border-color:var(--teal);}
+.proj-field textarea{min-height:80px;line-height:1.5;}
+.status-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.status-active{background:#e6f4ea;color:#1e7e34;}
+.status-prospect{background:#fff3cd;color:#856404;}
+.status-completed{background:var(--gray-100);color:var(--gray-600);}
+.proj-tags-inp{width:100%;border:1.5px solid var(--gray-200);border-radius:var(--r);padding:8px 10px;font-size:14px;font-family:var(--font);outline:none;transition:border-color .15s;background:var(--white);}
+.proj-tags-inp:focus{border-color:var(--teal);}
+.tags-display{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
+.ptag{background:var(--teal-light);color:var(--teal-dark);border:1px solid var(--teal);border-radius:20px;font-size:11px;font-weight:600;padding:2px 9px;display:flex;align-items:center;gap:4px;}
+.ptag button{background:none;border:none;color:var(--teal-dark);cursor:pointer;font-size:12px;padding:0;line-height:1;}
+.proj-chat-btn{background:var(--teal);color:var(--white);border:none;border-radius:var(--r);padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;align-self:flex-start;}
+.proj-chat-btn:hover{background:var(--teal-dark);}
+.save-indicator{font-size:11px;color:var(--gray-400);margin-left:auto;}
+
+/* ── EXPORT MODAL ── */
+#exportModal{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:3000;padding:20px;}
+#exportModal.hidden{display:none;}
+.modal-card{background:var(--white);border-radius:var(--rl);padding:28px 32px;max-width:420px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.15);}
+.modal-card h3{font-size:16px;font-weight:700;margin-bottom:6px;}
+.modal-card p{font-size:13px;color:var(--gray-600);margin-bottom:20px;line-height:1.5;}
+.export-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.export-opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:var(--r);cursor:pointer;transition:all .15s;}
+.export-opt:hover,.export-opt.selected{border-color:var(--teal);background:var(--teal-light);}
+.export-opt input[type=radio]{accent-color:var(--teal);}
+.export-opt-label{font-size:13px;font-weight:600;color:var(--black);}
+.export-opt-desc{font-size:11px;color:var(--gray-400);}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;}
+.modal-cancel{background:none;border:1px solid var(--gray-200);border-radius:var(--r);padding:8px 16px;font-size:13px;cursor:pointer;transition:all .15s;}
+.modal-cancel:hover{border-color:var(--gray-400);}
+.modal-export-btn{background:var(--teal);color:var(--white);border:none;border-radius:var(--r);padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;}
+.modal-export-btn:hover{background:var(--teal-dark);}
+
+/* ── RESPONSIVE DESIGN ── */
+.nav-toggle{background:none;border:none;color:var(--white);font-size:20px;cursor:pointer;padding:6px 10px;display:none;border-radius:var(--r);transition:background .15s;align-items:center;justify-content:center;}
+.nav-toggle:hover{background:rgba(255,255,255,.1);}
+
+@media (max-width:768px){
+  header{padding:10px 16px;}
+  .nav-toggle{display:inline-flex;}
+  
+  .leftnav{
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:240px;
+    transform:translateX(-100%);
+    transition:transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:4px 0 16px rgba(0,0,0,0.15);
+  }
+  .leftnav.open{
+    transform:translateX(0);
+  }
+  
+  .chat-window{padding:16px;gap:14px;}
+  .bubble{max-width:90%;font-size:13px;}
+  
+  .projects-split{flex-direction:column;}
+  .projects-list{width:100%;max-height:220px;border-right:none;border-bottom:1px solid var(--gray-200);}
+}
+
+@media (max-width:480px) {
+  header{padding:8px 12px;}
+  header h1{font-size:13px;}
+  .hbadge{display:none;}
+  .model-switcher label{display:none;}
+  
+  .chat-topbar{padding:6px 10px;gap:4px;flex-wrap:wrap;}
+  .tbar-btn{padding:4px 8px;font-size:11px;}
+  
+  .input-bar{padding:10px;gap:6px;}
+  .quick-prompts{padding:6px 10px;}
+  
+  .proj-header{padding:12px;flex-wrap:wrap;}
+  .proj-body{padding:12px;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- GATE (Key Check Interface) -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 13h22V5a5 5 0 0 0-5-5H50z" fill="#111"/>
+        <path d="M28 35h22V13H5a5 5 0 0 0-5 5v12a5 5 0 0 0 5 5zm50 4a22 22 0 0 1 22 22v4H50V39z" fill="#008080"/>
+        <path d="M50 39h22a22 22 0 0 1-22 22z" fill="#008080"/>
+      </svg>
+      <span>Palisson <em>Co-developer</em></span>
+    </div>
+    <h2>Connect via OpenRouter</h2>
+    <p>This agent runs on <strong>Qwen3-coder</strong> via <a href="https://openrouter.ai" target="_blank">OpenRouter</a>. You need an API key to get started.</p>
+    <div class="gate-steps">
+      <strong>Get your key in 2 minutes:</strong><br>
+      1. Go to <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a><br>
+      2. Sign up → click <strong>Create key</strong><br>
+      3. Add a small credit (a few $ goes a long way)<br>
+      4. Copy your key and paste it below
+    </div>
+    <label class="glabel" for="apiKeyInput">OpenRouter API key</label>
+    <div class="key-wrap">
+      <input class="key-inp" id="apiKeyInput" type="password" placeholder="sk-or-v1-…" autocomplete="off" oninput="validateKey()" onpaste="setTimeout(validateKey,0)" onkeydown="if(event.key==='Enter')saveKey()"/>
+      <button class="icon-btn" onclick="toggleKeyVis()" title="Show/hide key">👁</button>
+    </div>
+    <div class="gate-note">🔒 Stored locally on this device only.</div>
+    <div class="gate-err" id="gateErr">OpenRouter keys start with <code>sk-or-</code></div>
+    <button class="gate-submit" id="gateSubmit" onclick="saveKey()" disabled>Start building →</button>
+  </div>
+</div>
+
+<!-- SIDEBAR OVERLAY FOR MOBILE/TABLET TAPS -->
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav(false)"></div>
+
+<!-- HEADER BAR -->
+<header>
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()">☰</button>
+  <div class="hlogo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M28 75V35a22 22 0 1 1 0 40z" fill="#fff"/>
+      <path d="M50 39v22H28V39z" fill="#00a0a0"/>
+      <path d="M50 13v26H28V13z" fill="#008080"/>
+    </svg>
+  </div>
+  <h1>Palisson <span>Technologies</span></h1>
+  <div class="hbadge">DEV HUB</div>
+  
+  <div class="ml-auto">
+    <div class="model-switcher">
+      <label for="modelSelect">Engine</label>
+      <select class="model-select" id="modelSelect" onchange="saveModel(this.value)">
+        <option value="qwen/qwen-2.5-coder-32b-instruct">Qwen 2.5 Coder 32B</option>
+        <option value="anthropic/claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+        <option value="google/gemini-2.5-pro">Gemini 2.5 Pro</option>
+      </select>
+    </div>
+    <button class="hbtn" onclick="forgetKey()">Logout Key</button>
+  </div>
+</header>
+
+<!-- APPLICATION WRAPPER -->
+<div class="app">
+  <!-- INTERACTIVE COLLAPSIBLE SIDE NAVIGATION -->
+  <aside class="leftnav" id="leftNav">
+    <div class="nav-section">Co-Developer Modes</div>
+    <button class="nav-btn active" data-mode="general" onclick="setMode('general'); toggleNav(false)">
+      <span class="nav-icon">💬</span> General Architecture
+    </button>
+    <button class="nav-btn" data-mode="component" onclick="setMode('component'); toggleNav(false)">
+      <span class="nav-icon">🧩</span> React Component Engine
+    </button>
+    <button class="nav-btn" data-mode="css" onclick="setMode('css'); toggleNav(false)">
+      <span class="nav-icon">🎨</span> Mobile-First CSS
+    </button>
+    <button class="nav-btn" data-mode="seo" onclick="setMode('seo'); toggleNav(false)">
+      <span class="nav-icon">🔍</span> Semantic SEO / Audit
+    </button>
+    <button class="nav-btn" data-mode="brief" onclick="setMode('brief'); toggleNav(false)">
+      <span class="nav-icon">📄</span> Client Brief Parser
+    </button>
+    
+    <div class="nav-section">Active Tech Stack</div>
+    <div class="stack-tags">
+      <span class="stag on">React</span><span class="stag on">HTML5</span>
+      <span class="stag on">CSS3</span><span class="stag on">JS (ES6)</span>
+      <span class="stag">Node.js</span><span class="stag">Tailwind</span>
+    </div>
+    
+    <div class="ctx-box">
+      Cape Town · Studio Hub<br>
+      Teal #008080 · Clean Minimalism<br>
+      End-User First Layout Prototyping
+    </div>
+  </aside>
+
+  <!-- WORKSPACE CONTENT AREA -->
+  <main class="main">
+    <!-- PANEL TAB SWITCHER -->
+    <div class="panel-tabs">
+      <button class="ptab active" id="tab-chat" onclick="showPanel('chat')">💬 Workspace Chat</button>
+      <button class="ptab" id="tab-history" onclick="showPanel('history')">🕐 History Log</button>
+      <button class="ptab" id="tab-projects" onclick="showPanel('projects')">📁 Project Manager</button>
+    </div>
+
+    <!-- CHAT VIEW SECTION -->
+    <div id="chatPanel">
+      <div class="chat-topbar">
+        <span class="session-name" id="sessionNameDisplay" onclick="editSessionName()">New session</span>
+        <input class="session-name-input" id="sessionNameInput" style="display:none" onblur="saveSessionName()" onkeydown="if(event.key==='Enter')saveSessionName()"/>
+        <button class="tbar-btn" onclick="newSession()">+ New chat</button>
+        <button class="tbar-btn" onclick="openExport()">⬇ Export</button>
+        <button class="tbar-btn danger" onclick="clearCurrentSession()">Clear</button>
+      </div>
+      
+      <div class="chat-window" id="chatWindow"></div>
+      
+      <div class="quick-prompts" id="quickPrompts">
+        <button class="qp" onclick="usePrompt('Scaffold a responsive navbar with logo and 4 nav links in React')">React navbar</button>
+        <button class="qp" onclick="usePrompt('Write a reusable Card component in React with title, description and CTA button')">Card component</button>
+        <button class="qp" onclick="usePrompt('What HTML meta tags should every client site have for SEO?')">SEO meta checklist</button>
+        <button class="qp" onclick="usePrompt('Create a mobile-first hero section in HTML and CSS using Palisson brand colours')">Brand hero section</button>
+      </div>
+      
+      <div class="input-bar">
+        <div class="input-wrap">
+          <textarea id="userInput" placeholder="Ask me anything — paste structural code layouts..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}" oninput="autoResize(this)"></textarea>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORY VIEW SECTION -->
+    <div id="historyPanel">
+      <div class="panel-toolbar">
+        <input type="text" id="historySearch" placeholder="Search sessions…" oninput="renderHistory()"/>
+        <button class="tbar-btn" onclick="newSession();showPanel('chat')">+ New chat</button>
+      </div>
+      <div class="session-list" id="sessionList"></div>
+    </div>
+
+    <!-- PROJECTS VIEW SECTION -->
+    <div id="projectsPanel">
+      <div class="projects-split">
+        <div class="projects-list">
+          <div class="pl-toolbar">
+            <div class="pl-title">Client Projects</div>
+            <button class="new-proj-btn" onclick="newProject()">+ New project</button>
+          </div>
+          <div class="pl-items" id="projList"></div>
+        </div>
+        <div class="proj-detail" id="projDetail">
+          <div class="no-proj">Select a client profile or generate a new project scope parameters context window card.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- EXPORT CONVERSATION INTERACTIVE FORMAT OVERLAY MODAL -->
+<div id="exportModal" class="hidden">
+  <div class="modal-card">
+    <h3>Export conversation</h3>
+    <p>Choose a file extension type package layout to transfer session threads.</p>
+    <div class="export-opts">
+      <label class="export-opt selected" onclick="selectExport(this)">
+        <input type="radio" name="expfmt" value="md" checked>
+        <div><div class="export-opt-label">Markdown (.md)</div><div class="export-opt-desc">Clean readable text blocks</div></div>
+      </label>
+      <label class="export-opt" onclick="selectExport(this)">
+        <input type="radio" name="expfmt" value="txt">
+        <div><div class="export-opt-label">Plain text (.txt)</div><div class="export-opt-desc">Simple structural text logs</div></div>
+      </label>
+      <label class="export-opt" onclick="selectExport(this)">
+        <input type="radio" name="expfmt" value="json">
+        <div><div class="export-opt-label">JSON (.json)</div><div class="export-opt-desc">Raw payload object data array</div></div>
+      </label>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeExport()">Cancel</button>
+      <button class="modal-export-btn" onclick="doExport()">Download</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// STORAGE PERSISTENCE HANDLERS
+const KEY_API = 'pt_or_key';
+const KEY_SESS = 'pt_sessions';
+const KEY_CURRID = 'pt_current_session';
+const KEY_PROJS = 'pt_projects';
+const KEY_MODEL = 'pt_selected_model';
+
+// API VALIDATION MANAGEMENT
+function loadKey(){ 
+  return localStorage.getItem(KEY_API)||''; 
+}
+
+function validateKey(){
+  const inp = document.getElementById('apiKeyInput');
+  const btn = document.getElementById('gateSubmit');
+  const err = document.getElementById('gateErr');
+  const val = inp.value.trim();
+  
+  if(val.startsWith('sk-or-')){
+    btn.disabled = false;
+    err.style.display = 'none';
+  } else {
+    btn.disabled = true;
+    if(val.length > 0){
+      err.style.display = 'block';
+    } else {
+      err.style.display = 'none';
+    }
+  }
+}
+
+function saveKey(){
+  const inp = document.getElementById('apiKeyInput');
+  const val = inp.value.trim();
+  if(val.startsWith('sk-or-')){
+    localStorage.setItem(KEY_API, val);
+    document.getElementById('gate').classList.add('hidden');
+  }
+}
+
+function toggleKeyVis(){
+  const inp = document.getElementById('apiKeyInput');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function forgetKey(){
+  localStorage.removeItem(KEY_API);
+  location.reload();
+}
+
+function saveModel(m){ localStorage.setItem(KEY_MODEL, m); }
+function loadModel(){
+  const m = localStorage.getItem(KEY_MODEL) || 'qwen/qwen-2.5-coder-32b-instruct';
+  document.getElementById('modelSelect').value = m;
+}
+
+// DEVICE RESPONSIVE DRAWER MANAGER
+function toggleNav(forcedState) {
+  const nav = document.getElementById('leftNav');
+  const overlay = document.getElementById('navOverlay');
+  const btn = document.getElementById('navToggle');
+  
+  let isOpen = nav.classList.contains('open');
+  if (typeof forcedState === 'boolean') isOpen = !forcedState;
+  
+  if (isOpen) {
+    nav.classList.remove('open');
+    overlay.classList.remove('visible');
+    btn.textContent = '☰';
+  } else {
+    nav.classList.add('open');
+    overlay.classList.add('visible');
+    btn.textContent = '✕';
+  }
+}
+
+// PANEL VIEWS HANDLERS
+function showPanel(panelName) {
+  document.getElementById('chatPanel').style.display = panelName === 'chat' ? 'flex' : 'none';
+  document.getElementById('historyPanel').className = panelName === 'history' ? 'visible' : '';
+  document.getElementById('projectsPanel').className = panelName === 'projects' ? 'visible' : '';
+  
+  document.querySelectorAll('.panel-tabs .ptab').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `tab-${panelName}`);
+  });
+}
+
+function getSessions(){
+  try{return JSON.parse(localStorage.getItem(KEY_SESS))||[];}catch{return[];}
+}
+function saveSessions(s){ localStorage.setItem(KEY_SESS,JSON.stringify(s)); }
+function getCurrentId(){ return localStorage.getItem(KEY_CURRID)||null; }
+function setCurrentId(id){ localStorage.setItem(KEY_CURRID,id); }
+
+let conversation=[];
+let currentSessionId=null;
+let currentSessionName='New session';
+
+function newSession(){
+  const id='sess_'+Date.now();
+  const sess={id,name:'New session',mode:'general',messages:[],created:Date.now(),updated:Date.now()};
+  const sessions=getSessions();
+  sessions.unshift(sess);
+  saveSessions(sessions);
+  loadSession(id);
+}
+
+function loadSession(id){
+  const sessions=getSessions();
+  const sess=sessions.find(s=>s.id===id);
+  if(!sess)return;
+  currentSessionId=id;
+  setCurrentId(id);
+  conversation=sess.messages||[];
+  currentSessionName=sess.name||'New session';
+  document.getElementById('sessionNameDisplay').textContent=currentSessionName;
+  setMode(sess.mode||'general',true);
+  renderChatFromHistory();
+  renderHistory();
+}
+
+function saveCurrentSession(){
+  if(!currentSessionId)return;
+  const sessions=getSessions();
+  const idx=sessions.findIndex(s=>s.id===currentSessionId);
+  if(idx===-1)return;
+  sessions[idx].messages=conversation;
+  sessions[idx].name=currentSessionName;
+  sessions[idx].mode=currentMode;
+  sessions[idx].updated=Date.now();
+  saveSessions(sessions);
+  renderHistory();
+}
+
+function deleteSession(id,e){
+  e.stopPropagation();
+  if(!confirm('Delete this session?'))return;
+  let sessions=getSessions().filter(s=>s.id!==id);
+  saveSessions(sessions);
+  if(currentSessionId===id){
+    conversation=[];
+    currentSessionId=null;
+    if(sessions.length>0)loadSession(sessions[0].id);
+    else{newSession();}
+  }else renderHistory();
+}
+
+// EDIT CONVERSATION TILES
+function editSessionName(){
+  const disp=document.getElementById('sessionNameDisplay');
+  const inp=document.getElementById('sessionNameInput');
+  inp.value=currentSessionName;
+  disp.style.display='none';
+  inp.style.display='block';
+  inp.focus();inp.select();
+}
+
+function saveSessionName(){
+  const inp=document.getElementById('sessionNameInput');
+  const disp=document.getElementById('sessionNameDisplay');
+  const v=inp.value.trim()||'Untitled session';
+  currentSessionName=v;
+  disp.textContent=v;
+  inp.style.display='none';
+  disp.style.display='';
+  saveCurrentSession();
+}
+
+function clearCurrentSession(){
+  if(!confirm('Clear this chat? This cannot be undone.'))return;
+  conversation=[];
+  document.getElementById('chatWindow').innerHTML='';
+  appendWelcome();
+  saveCurrentSession();
+}
+
+function renderChatFromHistory(){
+  const cw=document.getElementById('chatWindow');
+  cw.innerHTML='';
+  if(conversation.length===0){appendWelcome();return;}
+  conversation.forEach(m=>{
+    appendMessage(m.role=='assistant'?'agent':'user',m.content,false);
+  });
+  cw.scrollTop=cw.scrollHeight;
+}
+
+function esc(t){
+  return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderHistory(){
+  const q=(document.getElementById('historySearch')||{}).value||'';
+  const sessions=getSessions().filter(s=>!q||s.name.toLowerCase().includes(q.toLowerCase()));
+  const list=document.getElementById('sessionList');
+  if(sessions.length===0){
+    list.innerHTML=`<div class="empty-state"><div class="es-icon">🕐</div><p>No sessions found.</p></div>`;
+    return;
+  }
+  list.innerHTML=sessions.map(s=>{
+    const d=new Date(s.updated);
+    const date=d.toLocaleDateString('en-ZA',{day:'numeric',month:'short'});
+    const preview=s.messages.length>0?s.messages[s.messages.length-1].content.slice(0,60)+'…':'No messages yet';
+    const isCurrent=s.id===currentSessionId;
+    return `<div class="session-item${isCurrent?' current':''}" onclick="loadSession('${s.id}');showPanel('chat')">
+      <div class="si-info">
+        <div class="si-name">${esc(s.name)}</div>
+        <div class="si-meta">${date} · ${s.messages.length} msgs</div>
+        <div class="si-preview">${esc(preview)}</div>
+      </div>
+      <button class="si-del" onclick="deleteSession('${s.id}',event)">✕</button>
+    </div>`;
+  }).join('');
+}
+
+// PROJECT CONTROLLER FUNCTIONS
+function getProjects(){
+  try{return JSON.parse(localStorage.getItem(KEY_PROJS))||[];}catch{return[];}
+}
+function saveProjects(p){ localStorage.setItem(KEY_PROJS,JSON.stringify(p)); }
+
+let activeProjectId=null;
+
+function newProject(){
+  const id='proj_'+Date.now();
+  const proj={id,name:'New Client Project',client:'',status:'prospect',url:'',stack:'',deadline:'',notes:'',tags:[]};
+  const projs=getProjects();
+  projs.unshift(proj);
+  saveProjects(projs);
+  renderProjects();
+  selectProject(id);
+}
+
+function renderProjects(){
+  const projs=getProjects();
+  const list=document.getElementById('projList');
+  if(projs.length===0){
+    list.innerHTML=`<div class="empty-state">No projects setup.</div>`;
+    return;
+  }
+  list.innerHTML=projs.map(p=>{
+    const isActive=p.id===activeProjectId;
+    return `<div class="proj-item${isActive?' active':''}" onclick="selectProject('${p.id}')">
+      <div class="proj-name">${esc(p.name)}</div>
+      <div class="proj-client">${esc(p.client)||'No client associated'}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectProject(id){
+  activeProjectId=id;
+  renderProjects();
+  const projs=getProjects();
+  const p=projs.find(p=>p.id===id);
+  const det=document.getElementById('projDetail');
+  if(!p){det.innerHTML=`<div class="no-proj">Select a project.</div>`;return;}
+  
+  det.innerHTML=`
+    <div class="proj-header">
+      <input class="proj-title-inp" value="${esc(p.name)}" placeholder="Project name" oninput="saveProjectField('${p.id}','name',this.value)"/>
+      <span class="save-indicator" id="saveIndicator"></span>
+      <button class="proj-del-btn" onclick="deleteProject('${p.id}')">Delete</button>
+    </div>
+    <div class="proj-body">
+      <div class="proj-field"><label>Client name</label><input value="${esc(p.client)}" placeholder="e.g. Local Business" onchange="saveProjectField('${p.id}','client',this.value)"/></div>
+      <div class="proj-field">
+        <label>Status</label>
+        <select onchange="saveProjectField('${p.id}','status',this.value)">
+          <option value="prospect"${p.status==='prospect'?' selected':''}>Prospect</option>
+          <option value="active"${p.status==='active'?' selected':''}>Active</option>
+          <option value="completed"${p.status==='completed'?' selected':''}>Completed</option>
+        </select>
+      </div>
+      <div class="proj-field"><label>Live URL</label><input value="${esc(p.url)}" type="url" placeholder="https://client.co.za" onchange="saveProjectField('${p.id}','url',this.value)"/></div>
+      <div class="proj-field"><label>Tech Stack</label><input value="${esc(p.stack)}" placeholder="React, HTML, CSS" onchange="saveProjectField('${p.id}','stack',this.value)"/></div>
+      <div class="proj-field"><label>Notes</label><textarea onchange="saveProjectField('${p.id}','notes',this.value)">${esc(p.notes)}</textarea></div>
+      <button class="proj-chat-btn" onclick="openProjectChat('${p.id}')">💬 Load Context into Workspace</button>
+    </div>`;
+}
+
+function saveProjectField(id,f,v){
+  const projs=getProjects();
+  const idx=projs.findIndex(p=>p.id===id);
+  if(idx===-1)return;
+  projs[idx][f]=v;
+  saveProjects(projs);
+  if(f==='name'||f==='client') renderProjects();
+  const ind=document.getElementById('saveIndicator');
+  if(ind){ind.textContent='Saved';setTimeout(()=>{ind.textContent=''},1000);}
+}
+
+function deleteProject(id){
+  if(!confirm('Delete project data?'))return;
+  const projs=getProjects().filter(p=>p.id!==id);
+  saveProjects(projs);
+  activeProjectId=null;
+  renderProjects();
+  document.getElementById('projDetail').innerHTML=`<div class="no-proj">Select a project.</div>`;
+}
+
+function openProjectChat(id){
+  const projs=getProjects();
+  const p=projs.find(p=>p.id===id);
+  if(!p)return;
+  newSession();
+  currentSessionName=p.name;
+  document.getElementById('sessionNameDisplay').textContent=p.name;
+  saveCurrentSession();
+  const brief=`System Studio Workspace Inject Context Package:\nClient: ${p.client||'TBD'}\nProject: ${p.name}\nStack: ${p.stack}\nNotes: ${p.notes||'None'}`;
+  document.getElementById('userInput').value=brief;
+  autoResize(document.getElementById('userInput'));
+  showPanel('chat');
+}
+
+// AGENT MODE SPECIFIC DIRECTIVES
+const MODES={
+  general:{
+    label:'Architecture',
+    icon:'💬',
+    system:'Focus on overall web architecture, layout trees, solid state design engineering, and framework-agnostic architectural compositions.'
+  },
+  component:{
+    label:'React Design',
+    icon:'🧩',
+    system:'Focus on writing production-ready, clean React structural components using pure logic hook modules, structured TypeScript interfaces, and robust modular hooks.'
+  },
+  css:{
+    label:'Responsive CSS',
+    icon:'🎨',
+    system:'Focus purely on writing responsive, mobile-first CSS blocks. Rely heavily on flexbox layouts, grid alignments, variable design systems, and absolute modular clean frameworks without layout bloat.'
+  },
+  seo:{
+    label:'SEO/Audit',
+    icon:'🔍',
+    system:'Focus heavily on absolute parsing execution, semantic tag architecture checklist items, fast core web vitals metadata injections, and high-performance site layout access audits.'
+  },
+  brief:{
+    label:'Brief Parsing',
+    icon:'📄',
+    system:'Focus on translating layout briefs directly into code requirements blueprints.'
+  }
+};
+
+let currentMode='general';
+function setMode(mode,silent=false){
+  currentMode=mode;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+  if(!silent){
+    const div=document.createElement('div');
+    div.className='mode-divider';
+    div.textContent=`— Switched to ${MODES[mode].label} Node —`;
+    document.getElementById('chatWindow').appendChild(div);
+    document.getElementById('chatWindow').scrollTop=99999;
+  }
+}
+
+const SYSTEM_PROMPT=`You are the Palisson Technologies co-developer agent. Focus on clean minimalism, standard ES6+, and mobile-first CSS architecture structures.`;
+
+let thinking=false;
+
+function appendWelcome(){
+  appendMessage('agent',`**Hey, I'm your studio co-developer engine built for Palisson Technologies.**\n\nI run with full environment presets loaded: Clean functional components, fast responsive grid frameworks, and minimalistic layout semantics.`);
+}
+
+function appendMessage(role,text,scroll=true){
+  const cw=document.getElementById('chatWindow');
+  const msg=document.createElement('div');
+  msg.className=`msg ${role}`;
+  
+  const av=document.createElement('div');
+  av.className=`avatar ${role}`;
+  av.textContent=role==='agent'?'PT':'U';
+  
+  const bub=document.createElement('div');
+  bub.className='bubble';
+  bub.innerHTML=formatContent(text);
+  
+  msg.appendChild(av);
+  msg.appendChild(bub);
+  cw.appendChild(msg);
+  if(scroll) cw.scrollTop=cw.scrollHeight;
+}
+
+function showError(errMsg) {
+  const cw = document.getElementById('chatWindow');
+  const errDiv = document.createElement('div');
+  errDiv.className = 'msg agent';
+  errDiv.innerHTML = `<div class="err-bubble">⚠️ ${esc(errMsg)}</div>`;
+  cw.appendChild(errDiv);
+  cw.scrollTop = cw.scrollHeight;
+}
+
+function autoResize(el){
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,130)+'px';
+}
+
+function usePrompt(p){
+  document.getElementById('userInput').value=p;
+  autoResize(document.getElementById('userInput'));
+}
+
+function formatContent(text){
+  let t=esc(text);
+  t=t.replace(/```(\w+)?\n?([\s\S]*?)```/g,(_,l,c)=>`<pre><code>${c.trim()}</code></pre>`);
+  t=t.replace(/`([^`]+)`/g,'<code>$1</code>');
+  t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  return t;
+}
+
+// ORIGINAL EXECUTION SEQUENCE
+async function sendMessage() {
+  if (thinking) return;
+  const inp = document.getElementById('userInput');
+  const text = inp.value.trim();
+  if (!text) return;
+
+  appendMessage('user', text);
+  conversation.push({ role: 'user', content: text });
+  inp.value = '';
+  autoResize(inp);
+  saveCurrentSession();
+
+  await runAPI();
+}
+
+// RESTORED API CALL LOGIC
+async function runAPI() {
+  const apiKey = loadKey();
+  if (!apiKey) {
+    showError('API key not found. Please re-enter it at the gate.');
+    return;
+  }
+  
+  showThinking();
+  thinking = true;
+  document.getElementById('sendBtn').disabled = true;
+
+  const modelSelect = document.getElementById('modelSelect');
+  const model = modelSelect ? modelSelect.value : 'qwen/qwen3-coder';
+  
+  const sys = SYSTEM_PROMPT + "\n\n" + MODES[currentMode].system;
+  
+  try {
+    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'HTTP-Referer': 'https://palisson.tech',
+        'X-Title': 'Palisson Co-developer'
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: 1000,
+        messages: [{ role: 'system', content: sys }, ...conversation]
+      })
+    });
+    
+    const data = await res.json();
+    hideThinking();
+    thinking = false;
+    document.getElementById('sendBtn').disabled = false;
+    
+    if (data.choices && data.choices[0]) {
+      const reply = data.choices[0].message.content;
+      conversation.push({ role: 'assistant', content: reply });
+      appendMessage('agent', reply);
+      saveCurrentSession();
+    } else if (data.error) {
+      showError(`API error: ${data.error.message || JSON.stringify(data.error)}`);
+    } else {
+      showError('No response received. Check your connection and try again.');
+    }
+  } catch (err) {
+    hideThinking();
+    thinking = false;
+    document.getElementById('sendBtn').disabled = false;
+    showError('Connection error: ' + err.message);
+  }
+}
+
+function showThinking(){
+  const cw=document.getElementById('chatWindow');
+  const msg=document.createElement('div');
+  msg.className='msg agent';
+  msg.id='thinkingMsg';
+  
+  const av=document.createElement('div');
+  av.className='avatar agent';
+  av.textContent='PT';
+  
+  const bub=document.createElement('div');
+  bub.className='bubble thinking';
+  bub.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  
+  msg.appendChild(av);
+  msg.appendChild(bub);
+  cw.appendChild(msg);
+  cw.scrollTop=cw.scrollHeight;
+}
+
+function hideThinking(){
+  const e=document.getElementById('thinkingMsg');
+  if(e)e.remove();
+}
+
+// TRANSLATION SYSTEM EXPORT FILE PACKAGING
+function openExport(){ document.getElementById('exportModal').classList.remove('hidden'); }
+function closeExport(){ document.getElementById('exportModal').classList.add('hidden'); }
+function selectExport(el){
+  document.querySelectorAll('.export-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked=true;
+}
+function doExport(){
+  const fmt=document.querySelector('input[name="expfmt"]:checked').value;
+  let out='', mime='text/plain', ext='txt';
+  if(fmt==='md'){
+    out=conversation.map(m=>`### ${m.role}\n${m.content}\n`).join('\n');
+    ext='md';
+  } else if(fmt==='json'){
+    out=JSON.stringify(conversation,null,2);
+    mime='application/json'; ext='json';
+  } else {
+    out=conversation.map(m=>`[${m.role}]: ${m.content}`).join('\n');
+  }
+  const blob=new Blob([out],{type:mime});
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(blob);
+  link.download=`conversation_${Date.now()}.${ext}`;
+  link.click();
+  closeExport();
+}
+
+// INTRINSIC LOADER SYSTEM INITS
+window.addEventListener('DOMContentLoaded',()=>{
+  loadModel();
+  if(loadKey()){
+    document.getElementById('gate').classList.add('hidden');
+  }
+  const savedId=getCurrentId();
+  const sessions=getSessions();
+  if(savedId && sessions.find(s=>s.id===savedId)){
+    loadSession(savedId);
+  } else if(sessions.length>0){
+    loadSession(sessions[0].id);
+  } else {
+    newSession();
+  }
+  renderProjects();
+});
+</script>
+</body>
+</html>
