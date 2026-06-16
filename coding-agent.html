@@ -15,7 +15,9 @@
   --r:8px;--rl:14px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--font);background:var(--gray-100);color:var(--black);min-height:100vh;display:flex;flex-direction:column;overflow:hidden;-webkit-text-size-adjust:100%;}
+
+/* Dynamic viewport height units ensure absolute mobile safety boundaries */
+body{font-family:var(--font);background:var(--gray-100);color:var(--black);height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;-webkit-text-size-adjust:100%;}
 
 /* ── GATE ── */
 #gate{position:fixed;inset:0;background:var(--gray-100);display:flex;align-items:center;justify-content:center;z-index:2000;padding:16px;overflow-y:auto;}
@@ -53,9 +55,9 @@ header h1 span{color:var(--teal-mid);}
 .model-select{background:var(--gray-800);border:1px solid #444;color:var(--white);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:600;outline:none;max-width:140px;}
 
 /* ── LAYOUT STRUCTURE ── */
-.app{display:flex;flex:1;overflow:hidden;height:calc(100vh - 56px);position:relative;}
+.app{display:flex;flex:1;overflow:hidden;position:relative;}
 
-/* ── LEFT DRAWER / SIDE NAVIGATION ── */
+/* ── LEFT NAV SIDEBAR ── */
 .leftnav{width:240px;flex-shrink:0;background:var(--white);border-right:1px solid var(--gray-200);display:flex;flex-direction:column;overflow:hidden;z-index:1000;}
 .nav-section{padding:16px 14px 6px;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gray-400);text-transform:uppercase;}
 .nav-btn{background:none;border:none;cursor:pointer;text-align:left;padding:10px 14px;border-radius:var(--r);font-size:13px;color:var(--gray-600);display:flex;align-items:center;gap:8px;width:calc(100% - 16px);margin:2px 8px;}
@@ -67,27 +69,28 @@ header h1 span{color:var(--teal-mid);}
 .stag.on{background:var(--teal-light);color:var(--teal-dark);border-color:var(--teal);}
 .ctx-box{padding:12px 14px;font-size:11px;color:var(--gray-600);line-height:1.6;border-top:1px solid var(--gray-200);margin-top:auto;background:var(--gray-100);}
 
-/* MOBILE MASK OVERLAY */
+/* MOBILE NAVIGATION OVERLAY */
 .nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:995;display:none;opacity:0;transition:opacity 0.2s ease;}
 .nav-overlay.visible{display:block;opacity:1;}
 
-/* ── MAIN WORKSPACE PANEL ── */
-.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;background:var(--white);}
+/* ── MAIN WORKSPACE CONTAINER ── */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;background:var(--white);position:relative;}
 
-/* ── TOP LAYER TAB MECHANICS ── */
+/* ── INTERACTIVE TAB TRACK ── */
 .panel-tabs{display:flex;border-bottom:1px solid var(--gray-200);background:var(--white);flex-shrink:0;}
 .ptab{flex:1;padding:14px 8px;font-size:12px;font-weight:600;color:var(--gray-400);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ptab.active{color:var(--teal-dark);border-bottom-color:var(--teal);background:var(--white);}
 
 /* ── WORKSPACE CHAT PANEL ── */
-#chatPanel{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;}
+#chatPanel{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;position:relative;}
 .chat-topbar{padding:10px 16px;background:var(--white);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .session-name{font-size:13px;font-weight:600;color:var(--black);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .session-name-input{flex:1;font-size:13px;font-weight:600;border:1.5px solid var(--teal);border-radius:4px;padding:4px 8px;outline:none;min-width:0;}
 .tbar-btn{background:none;border:1px solid var(--gray-200);border-radius:var(--r);padding:6px 12px;font-size:12px;color:var(--gray-600);cursor:pointer;white-space:nowrap;min-height:32px;display:inline-flex;align-items:center;}
 .tbar-btn.danger:hover{border-color:var(--red);color:var(--red);}
 
-.chat-window{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;background:var(--gray-100);min-height:0;}
+/* Viewport isolated scrolling track for thousands of messages without frame expansion */
+.chat-window{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px;display:flex;flex-direction:column;gap:16px;background:var(--gray-100);min-height:0;-webkit-overflow-scrolling:touch;}
 .msg{display:flex;gap:10px;max-width:850px;width:100%;align-items:flex-start;}
 .msg.user{flex-direction:row-reverse;align-self:flex-end;}
 .avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
@@ -97,7 +100,7 @@ header h1 span{color:var(--teal-mid);}
 .msg.agent .bubble{background:var(--white);border:1px solid var(--gray-200);border-radius:4px var(--rl) var(--rl) var(--rl);color:var(--black);}
 .msg.user .bubble{background:var(--teal);color:var(--white);border-radius:var(--rl) 4px var(--rl) var(--rl);}
 
-/* CODE EMBED FIXES FOR RESPONSIVENESS */
+/* CODE EMBED LINE WRAPPING DEFIANCE */
 .bubble pre{background:var(--gray-900);color:#e0f2f2;border-radius:8px;padding:12px;font-size:12.5px;line-height:1.5;overflow-x:auto;margin:8px 0;font-family:var(--mono);max-width:100%;white-space:pre-wrap;word-break:break-all;}
 .bubble code{background:var(--gray-200);color:var(--teal-dark);padding:2px 5px;border-radius:4px;font-size:12px;font-family:var(--mono);word-break:break-word;}
 .bubble pre code{background:none;color:inherit;padding:0;word-break:normal;white-space:pre;}
@@ -112,12 +115,13 @@ header h1 span{color:var(--teal-mid);}
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
 .err-bubble{background:var(--red-light);border:1px solid var(--red-border);color:var(--red);padding:12px;border-radius:var(--r);font-size:13px;width:100%;}
 
-/* QUICK PROMPTS & INPUT FOOTER GRID */
-.quick-prompts{display:flex;gap:8px;padding:10px 16px;background:var(--white);border-top:1px solid var(--gray-200);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+/* FIXED HORIZONTAL PROMPT CHIPS */
+.quick-prompts{display:flex;gap:8px;padding:10px 16px;background:var(--white);border-top:1px solid var(--gray-200);overflow-x:auto;flex-shrink:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .quick-prompts::-webkit-scrollbar{display:none;}
 .qp{font-size:12px;color:var(--teal-dark);background:var(--teal-light);border:1px solid var(--teal);border-radius:20px;padding:6px 14px;cursor:pointer;white-space:nowrap;flex-shrink:0;min-height:32px;}
 
-.input-bar{border-top:1px solid var(--gray-200);background:var(--white);padding:12px 16px;display:flex;gap:10px;align-items:flex-end;flex-shrink:0;}
+/* BOTTOM ANCHORED CHAT FOOTER INTERFACE */
+.input-bar{border-top:1px solid var(--gray-200);background:var(--white);padding:12px 16px;display:flex;gap:10px;align-items:flex-end;flex-shrink:0;position:relative;z-index:10;}
 .input-wrap{flex:1;background:var(--gray-100);border:1.5px solid var(--gray-200);border-radius:22px;display:flex;align-items:flex-end;overflow:hidden;}
 .input-wrap:focus-within{border-color:var(--teal);background:var(--white);}
 textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(--font);font-size:14px;color:var(--black);padding:10px 14px;line-height:1.4;max-height:100px;outline:none;min-height:38px;}
@@ -179,21 +183,20 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
 .modal-cancel{background:none;border:1px solid var(--gray-200);border-radius:var(--r);padding:10px 16px;font-size:13px;cursor:pointer;}
 .modal-export-btn{background:var(--teal);color:var(--white);border:none;border-radius:var(--r);padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;}
 
-/* ── MOBILE NAV RESPONSIVE TRIGGER BUTTON ── */
+/* ── TOGGLE HEADER ACTION BUTTON FOR DRAWERS ── */
 .nav-toggle{background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;width:40px;height:40px;display:none;align-items:center;justify-content:center;flex-shrink:0;}
 
 /* ═══════════════════════════════════════════════
-   CRITICAL TABLET & MOBILE VIEWPORT BREAKPOINTS
+   RESPONSIVE VIEWPORT BREAKPOINTS & OVERRIDES
    ═══════════════════════════════════════════════ */
 @media (max-width:992px){
   .projects-split{flex-direction:column;}
   .projects-list{width:100%;max-height:240px;border-right:none;border-bottom:1px solid var(--gray-200);}
 }
 
-@media (max-width:768px){
+@media (max-width:768px) {
   .nav-toggle{display:inline-flex;}
-  
-  .leftnav{
+  .leftnav {
     position:fixed;
     left:0;
     top:56px;
@@ -205,12 +208,10 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
     z-index:1005;
   }
   .leftnav.open{transform:translateX(0);}
-  
-  /* Prevent background interactions during mobile menu presentation state */
-  body.nav-active {overflow: hidden;}
+  body.nav-active {overflow:hidden;}
 }
 
-@media (max-width:576px){
+@media (max-width:576px) {
   header{padding:0 8px;gap:6px;}
   header h1{font-size:13px;}
   .hbadge{display:none;}
@@ -228,15 +229,16 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
   
   .quick-prompts{padding:8px 12px;gap:6px;}
   .qp{font-size:11px;padding:4px 10px;min-height:28px;}
-  .input-bar{padding:8px 12px;gap:8px;}
-  textarea{font-size:13px;padding:8px 10px;min-height:34px;}
-  .send-btn{width:32px;height:32px;}
+  
+  /* Retain complete view integrity inside dynamic standalone mobile inputs */
+  .input-bar{padding:10px 12px;gap:8px;background:var(--white);}
+  textarea{font-size:13px;padding:8px 10px;min-height:36px;}
+  .send-btn{width:34px;height:34px;}
 }
 </style>
 </head>
 <body>
 
-<!-- GATE -->
 <div id="gate">
   <div class="gate-card">
     <div class="gate-logo">
@@ -248,29 +250,26 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
       <span>Palisson <em>Co-developer</em></span>
     </div>
     <h2>Connect via OpenRouter</h2>
-    <p>This agent runs on <strong>Qwen3-coder</strong> via <a href="https://openrouter.ai" target="_blank">OpenRouter</a>. You need an API key to get started.</p>
+    <p>This agent runs on your chosen engine via <a href="https://openrouter.ai" target="_blank">OpenRouter</a>. An API key is required to establish backend calls.</p>
     <div class="gate-steps">
       <strong>Get your key in 2 minutes:</strong><br>
       1. Go to <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a><br>
       2. Sign up → click <strong>Create key</strong><br>
-      3. Add a small credit (a few $ goes a long way)<br>
-      4. Copy your key and paste it below
+      3. Copy your key and paste it below
     </div>
     <label class="glabel" for="apiKeyInput">OpenRouter API key</label>
     <div class="key-wrap">
       <input class="key-inp" id="apiKeyInput" type="password" placeholder="sk-or-v1-…" autocomplete="off" oninput="validateKey()" onkeydown="if(event.key==='Enter')saveKey()"/>
       <button class="icon-btn" onclick="toggleKeyVis()" title="Show/hide key">👁</button>
     </div>
-    <div class="gate-note">🔒 Stored locally on this device only.</div>
+    <div class="gate-note" style="font-size:11px; color:var(--gray-400); margin-top:6px;">🔒 Stored locally on this device only.</div>
     <div class="gate-err" id="gateErr">OpenRouter keys start with <code>sk-or-</code></div>
     <button class="gate-submit" id="gateSubmit" onclick="saveKey()" disabled>Start building →</button>
   </div>
 </div>
 
-<!-- NAV OVERLAY MASK -->
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav(false)"></div>
 
-<!-- HEADER BAR -->
 <header>
   <button class="nav-toggle" id="navToggle" onclick="toggleNav()">☰</button>
   <div class="hlogo">
@@ -296,9 +295,7 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
   </div>
 </header>
 
-<!-- APPLICATION WRAPPER -->
 <div class="app">
-  <!-- SIDE BAR NAVIGATION DRAWER -->
   <aside class="leftnav" id="leftNav">
     <div class="nav-section">Co-Developer Modes</div>
     <button class="nav-btn active" data-mode="general" onclick="setMode('general'); toggleNav(false)">
@@ -331,7 +328,6 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
     </div>
   </aside>
 
-  <!-- CONTENT WORKSPACE CONTAINER -->
   <main class="main">
     <div class="panel-tabs">
       <button class="ptab active" id="tab-chat" onclick="showPanel('chat')">💬 Chat View</button>
@@ -339,7 +335,6 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
       <button class="ptab" id="tab-projects" onclick="showPanel('projects')">📁 Projects</button>
     </div>
 
-    <!-- WORKSPACE CHAT PANEL -->
     <div id="chatPanel">
       <div class="chat-topbar">
         <span class="session-name" id="sessionNameDisplay" onclick="editSessionName()">New session</span>
@@ -368,7 +363,6 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
       </div>
     </div>
 
-    <!-- HISTORY LOG PANEL -->
     <div id="historyPanel">
       <div class="panel-toolbar">
         <input type="text" id="historySearch" placeholder="Search saved sessions…" oninput="renderHistory()"/>
@@ -376,7 +370,6 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
       <div class="session-list" id="sessionList"></div>
     </div>
 
-    <!-- PROJECT MANAGER PANEL -->
     <div id="projectsPanel">
       <div class="projects-split">
         <div class="projects-list">
@@ -394,7 +387,6 @@ textarea{flex:1;border:none;background:transparent;resize:none;font-family:var(-
   </main>
 </div>
 
-<!-- EXPORT OVERLAY INTERACTIVE MODAL -->
 <div id="exportModal" class="hidden">
   <div class="modal-card">
     <h3>Export conversation</h3>
@@ -498,6 +490,11 @@ function showPanel(panelName) {
     btn.classList.toggle('active', btn.id === `tab-${panelName}`);
   });
   toggleNav(false);
+  
+  if(panelName === 'chat') {
+    const cw = document.getElementById('chatWindow');
+    cw.scrollTop = cw.scrollHeight;
+  }
 }
 
 function getSessions(){
@@ -607,7 +604,7 @@ function renderHistory(){
   const sessions=getSessions().filter(s=>!q||s.name.toLowerCase().includes(q.toLowerCase()));
   const list=document.getElementById('sessionList');
   if(sessions.length===0){
-    list.innerHTML=`<div class="empty-state">No matching logs found.</div>`;
+    list.innerHTML=`<div class="empty-state" style="padding:24px; text-align:center; color:var(--gray-400); font-size:13px;">No matching logs found.</div>`;
     return;
   }
   list.innerHTML=sessions.map(s=>{
@@ -648,7 +645,7 @@ function renderProjects(){
   const projs=getProjects();
   const list=document.getElementById('projList');
   if(projs.length===0){
-    list.innerHTML=`<div class="empty-state">No projects setup.</div>`;
+    list.innerHTML=`<div class="empty-state" style="padding:16px; text-align:center; color:var(--gray-400); font-size:13px;">No projects setup.</div>`;
     return;
   }
   list.innerHTML=projs.map(p=>{
@@ -813,7 +810,7 @@ async function sendMessage() {
   await runAPI();
 }
 
-// RE-INSTATED API LOGIC
+// API CALL EXECUTION OVER OPENROUTER
 async function runAPI() {
   const apiKey = loadKey();
   if (!apiKey) {
@@ -826,7 +823,7 @@ async function runAPI() {
   document.getElementById('sendBtn').disabled = true;
 
   const modelSelect = document.getElementById('modelSelect');
-  const model = modelSelect ? modelSelect.value : 'qwen/qwen3-coder';
+  const model = modelSelect ? modelSelect.value : 'qwen/qwen-2.5-coder-32b-instruct';
   const sys = SYSTEM_PROMPT + "\n\n" + MODES[currentMode].system;
   
   try {
@@ -840,7 +837,7 @@ async function runAPI() {
       },
       body: JSON.stringify({
         model,
-        max_tokens: 1000,
+        max_tokens: 1500,
         messages: [{ role: 'system', content: sys }, ...conversation]
       })
     });
