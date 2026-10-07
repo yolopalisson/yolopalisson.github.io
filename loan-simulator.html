@@ -854,7 +854,6 @@
     <div class="card">
       <h3><span class="icon">♿</span> Accessibility</h3>
       <ul>
-        <li>Skip-to-content link</li>
         <li>Error summary with focus management</li>
         <li>aria-live results region</li>
         <li>Reduced-motion support</li>
@@ -1021,7 +1020,7 @@
     },
     {
       title: "The UX and Accessibility",
-      text: "For the design, I went with a frosted-glass aesthetic, translucent white cards with a subtle blur, because it feels premium and modern without being flashy. Each card lifts slightly on hover, and the corners use the CSS corner-shape: squircle property where supported, with a border-radius fallback everywhere else. But the real work is in accessibility. There's a skip link at the top for keyboard users. When the form fails validation, an error summary appears, gets focus, and lists every issue, that's critical for screen reader users. Results arrive in an aria-live region so assistive tech announces them. And the whole thing respects prefers-reduced-motion. Financial products have to be usable by everyone. It's not optional."
+      text: "For the design, I went with a frosted-glass aesthetic, translucent white cards with a subtle blur, because it feels premium and modern without being flashy. Each card lifts slightly on hover, and the corners use the CSS corner-shape: squircle property where supported, with a border-radius fallback everywhere else. But the real work is in accessibility. When the form fails validation, an error summary appears, gets focus, and lists every issue, that's critical for screen reader users. Results arrive in an aria-live region so assistive tech announces them. And the whole thing respects prefers-reduced-motion. Financial products have to be usable by everyone. It's not optional."
     },
     {
       title: "Testing",
@@ -1042,7 +1041,7 @@
     { q: "Why fetch validation rules from the API instead of hardcoding them?", a: "Because business rules change. In a real bank, the min age, max loan amount, interest rate bands, those are product decisions. If they live only in the frontend, every product change becomes a code deployment. By driving them from the API, the backend stays the source of truth and the frontend adapts." },
     { q: "How did you handle the ambiguous parts of the spec?", a: "I documented every assumption in the README and wrote unit tests around them. For example, the spec's example response showed disposableIncome as income minus expenses, but didn't subtract existing debt. I went with the literal reading and noted it. If my interpretation is wrong, the tests fail and it's easy to change." },
     { q: "What would break first if this went to production?", a: "Probably the mocked endpoints, because they'd need to be replaced with real ones. That's why I built the API client as a separate layer. Swapping to a real backend is a URL change in src/api/loans.ts. Everything else — the hooks, the components, the tests — stays intact." },
-    { q: "How did you approach accessibility?", a: "As a hard requirement, not an add-on. Skip link, error summary with focus management, aria-live regions for results, keyboard navigation for everything, respect for reduced motion. The goal is that someone using a screen reader or navigating by keyboard gets the same experience as a mouse user." },
+    { q: "How did you approach accessibility?", a: "As a hard requirement, not an add-on. Error summary with focus management, aria-live regions for results, keyboard navigation for everything, respect for reduced motion. The goal is that someone using a screen reader or navigating by keyboard gets the same experience as a mouse user." },
     { q: "What was the hardest part?", a: "Probably getting the calculation engine right while the spec had a few internal inconsistencies. It forced me to be explicit about assumptions and test everything, which is a good habit anyway." },
     { q: "Why Tailwind over styled-components or plain CSS?", a: "Speed and consistency. Tailwind gives me a design system out of the box; spacing, colors, typography, all constrained so the UI stays coherent. With plain CSS I'd be reinventing that, and with styled-components I'd still need to define the scale. Tailwind also handles responsive breakpoints elegantly with prefixes like sm: and lg:." },
     { q: "Walk me through what happens when a user submits the form.", a: "The user clicks Submit. React Hook Form validates all fields against the Zod schema built from the API rules. If there are errors, an error summary appears and gets focus, and we stop. If it passes, the form values go to useCheckEligibility, which POSTs to /api/loans/eligibility. MSW intercepts and returns the eligibility result. That triggers a second call to /api/loans/calculate-rate to get the payment schedule. Both results render side-by-side with the form on desktop, and below it on mobile. Results are announced to screen readers via aria-live." },
