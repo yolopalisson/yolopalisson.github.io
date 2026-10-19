@@ -67,21 +67,28 @@
   }
 
   @media (max-width: 640px) {
-    .container { padding: 0 16px; }
+    .container { padding: 0 20px; } /* Slightly more horizontal padding for mobile text */
   }
 
-  /* --- HERO SECTION --- */
+  /* --- HERO SECTION (FIXED SPACING & NESTING) --- */
   .hero { 
-    padding: 120px 0 80px;
+    padding-top: 140px;
+    padding-bottom: 100px;
     text-align: center; 
   }
   
   @media (max-width: 768px) {
-    .hero { padding: 88px 0 64px; }
+    .hero { 
+      padding-top: 110px; 
+      padding-bottom: 80px; 
+    }
   }
 
   @media (max-width: 480px) {
-    .hero { padding: 72px 0 56px; }
+    .hero { 
+      padding-top: 88px; 
+      padding-bottom: 64px; 
+    }
   }
 
   .hero-badge {
@@ -94,7 +101,7 @@
     border-radius: 100px; 
     font-size: 13px; 
     font-weight: 700; 
-    margin-bottom: 24px;
+    margin-bottom: 32px; /* Increased from 24px */
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--capitec-blue-light);
   }
@@ -114,7 +121,7 @@
     font-size: clamp(16px, 2vw, 20px); 
     color: var(--capitec-navy-light);
     max-width: 680px; 
-    margin: 0 auto 40px;
+    margin: 0 auto 48px; /* Increased from 40px to give buttons more space */
     line-height: 1.5;
   }
 
@@ -507,15 +514,18 @@
 
 <div class="progress-bar" id="progress"></div>
 
-<header class="hero container">
-  <div class="hero-badge squircle">
-    <span>●</span> Capitec Bank · UX Developer Assessment
-  </div>
-  <h1>Capitec Loan <span>Simulator</span></h1>
-  <p>A responsive, compliance-first loan simulation tool that guides customers through dynamic credit tiers and delivers indicative estimates with an accessibility-first mindset.</p>
-  <div class="btn-group">
-    <a href="#strategy" class="btn btn-primary squircle">Start the Walkthrough</a>
-    <button class="btn btn-secondary squircle" onclick="window.print()">Save as PDF</button>
+<!-- NESTED CONTAINER TO FIX PADDING -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge squircle">
+      <span>●</span> Capitec Bank · UX Developer Assessment
+    </div>
+    <h1>Capitec Loan <span>Simulator</span></h1>
+    <p>A responsive, compliance-first loan simulation tool that guides customers through dynamic credit tiers and delivers indicative estimates with an accessibility-first mindset.</p>
+    <div class="btn-group">
+      <a href="#strategy" class="btn btn-primary squircle">Start the Walkthrough</a>
+      <button class="btn btn-secondary squircle" onclick="window.print()">Save as PDF</button>
+    </div>
   </div>
 </header>
 
