@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Capitec Loan Simulator — Project Explainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Capitec Brand Palette */
+    --capitec-green: #00A651;
+    --capitec-green-dark: #00823F;
+    --capitec-green-light: #E6F6ED;
+    --capitec-navy: #002B49;
+    --capitec-navy-light: #4A6572;
+    --capitec-gray: #F4F6F8;
+    --white: #FFFFFF;
+    
+    /* Spacing & Shadows */
+    --radius: 24px;
+    --shadow-sm: 0 2px 4px rgba(0,43,73,0.04), 0 1px 2px rgba(0,43,73,0.02);
+    --shadow-md: 0 8px 16px -4px rgba(0,43,73,0.08), 0 4px 8px -4px rgba(0,43,73,0.04);
+    --shadow-lg: 0 24px 48px -12px rgba(0,43,73,0.15), 0 12px 24px -8px rgba(0,43,73,0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html { 
+    scroll-behavior: smooth; 
+    -webkit-text-size-adjust: 100%; 
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--capitec-gray);
+    background-image: 
+      radial-gradient(circle at 10% 10%, rgba(0, 166, 81, 0.08), transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(0, 43, 73, 0.04), transparent 40%);
+    background-attachment: fixed;
+    color: var(--capitec-navy);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- SQUIRCLE UTILITY --- */
+  .squircle {
+    border-radius: var(--radius);
+  }
+  
+  @supports (corner-shape: squircle) {
+    .squircle {
+      corner-shape: squircle;
+    }
+  }
+
+  /* --- LAYOUT & CONTAINERS --- */
+  .container { 
+    width: 100%;
+    max-width: 1140px; 
+    margin: 0 auto; 
+    padding: 0 24px; 
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 16px; }
+  }
+
+  /* --- HERO SECTION --- */
+  .hero { 
+    padding: 100px 0 60px; 
+    text-align: center; 
+  }
+  
+  @media (max-width: 640px) {
+    .hero { padding: 60px 0 40px; }
+  }
+
+  .hero-badge {
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 8px 16px;
+    background: var(--white); 
+    color: var(--capitec-green-dark);
+    border-radius: 100px; 
+    font-size: 13px; 
+    font-weight: 700; 
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--capitec-green-light);
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 64px); 
+    font-weight: 800; 
+    letter-spacing: -0.04em;
+    line-height: 1.1; 
+    margin-bottom: 24px; 
+    color: var(--capitec-navy);
+  }
+  
+  .hero h1 span { color: var(--capitec-green); }
+  
+  .hero p {
+    font-size: clamp(16px, 2vw, 20px); 
+    color: var(--capitec-navy-light);
+    max-width: 680px; 
+    margin: 0 auto 40px;
+    line-height: 1.5;
+  }
+
+  /* --- BUTTONS --- */
+  .btn-group { 
+    display: flex; 
+    gap: 16px; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+  }
+
+  .btn {
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    gap: 8px; 
+    padding: 16px 28px;
+    font-size: 16px; 
+    font-weight: 600; 
+    border: none;
+    cursor: pointer; 
+    transition: var(--transition); 
+    text-decoration: none;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: var(--capitec-green); 
+    color: var(--white); 
+    box-shadow: 0 8px 24px -8px rgba(0,166,81,0.5);
+  }
+  
+  .btn-primary:hover { 
+    background: var(--capitec-green-dark); 
+    transform: translateY(-2px); 
+    box-shadow: 0 12px 32px -8px rgba(0,166,81,0.6); 
+  }
+
+  .btn-secondary {
+    background: var(--white); 
+    color: var(--capitec-navy); 
+    border: 1px solid rgba(0,43,73,0.1);
+  }
+  
+  .btn-secondary:hover { 
+    transform: translateY(-2px); 
+    box-shadow: var(--shadow-md); 
+  }
+
+  /* --- STICKY NAVIGATION --- */
+  .nav-wrapper {
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    padding: 16px 0;
+    background: rgba(244, 246, 248, 0.85); 
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(0, 43, 73, 0.06); 
+    margin-bottom: 48px;
+  }
+
+  .nav-scroll { 
+    display: flex; 
+    gap: 8px; 
+    overflow-x: auto; 
+    scrollbar-width: none; 
+    padding: 0 24px;
+    max-width: 1140px;
+    margin: 0 auto;
+    scroll-behavior: smooth;
+  }
+  
+  .nav-scroll::-webkit-scrollbar { display: none; }
+
+  .nav-scroll button {
+    padding: 10px 20px; 
+    border-radius: 100px; 
+    background: transparent;
+    border: 1px solid transparent; 
+    color: var(--capitec-navy-light);
+    font-size: 14px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    white-space: nowrap;
+    transition: var(--transition); 
+    font-family: inherit;
+  }
+  
+  .nav-scroll button:hover { 
+    background: var(--white); 
+    color: var(--capitec-navy);
+  }
+  
+  .nav-scroll button.active { 
+    background: var(--capitec-green); 
+    color: var(--white); 
+    box-shadow: 0 4px 12px rgba(0,166,81,0.3);
+  }
+
+  /* --- SECTIONS & CARDS --- */
+  section { 
+    padding: 48px 0; 
+    scroll-margin-top: 100px; 
+  }
+
+  .section-header { 
+    margin-bottom: 40px; 
+    max-width: 800px;
+  }
+  
+  .section-tag { 
+    font-size: 12px; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+    color: var(--capitec-green); 
+    margin-bottom: 12px; 
+    display: block;
+  }
+  
+  .section-header h2 { 
+    font-size: clamp(28px, 4vw, 40px); 
+    font-weight: 800; 
+    letter-spacing: -0.03em; 
+    color: var(--capitec-navy); 
+    margin-bottom: 16px; 
+    line-height: 1.2;
+  }
+  
+  .section-header p { 
+    color: var(--capitec-navy-light); 
+    font-size: 18px; 
+    line-height: 1.6;
+  }
+
+  .grid-layout {
+    display: grid;
+    gap: 24px;
+  }
+
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+  .card {
+    background: var(--white); 
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.8); 
+    padding: 32px; 
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: var(--shadow-lg); 
+  }
+
+  .card-icon { 
+    width: 48px; 
+    height: 48px; 
+    border-radius: 16px; 
+    background: var(--capitec-green-light); 
+    color: var(--capitec-green-dark); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 24px; 
+    margin-bottom: 24px; 
+  }
+
+  .card h3 { 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: var(--capitec-navy); 
+    margin-bottom: 12px; 
+  }
+  
+  .card p, .card li { 
+    font-size: 16px; 
+    color: var(--capitec-navy-light); 
+    line-height: 1.6; 
+  }
+  
+  .card ul { list-style: none; padding: 0; margin-top: 16px; }
+  .card li { padding: 8px 0 8px 28px; position: relative; }
+  .card li::before { 
+    content: "✓"; 
+    position: absolute; 
+    left: 0; 
+    color: var(--capitec-green); 
+    font-weight: 800; 
+    font-size: 18px;
+  }
+
+  /* --- TECH PILLS --- */
+  .tech-pill {
+    background: var(--white);
+    border: 1px solid rgba(0,43,73,0.06);
+    padding: 16px;
+    border-radius: 12px;
+    transition: var(--transition);
+  }
+  .tech-pill:hover {
+    border-color: var(--capitec-green);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+  .tech-name {
+    font-weight: 700;
+    color: var(--capitec-navy);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .tech-why {
+    font-size: 13px;
+    color: var(--capitec-navy-light);
+    line-height: 1.5;
+  }
+
+  /* --- QUICK REF --- */
+  .ref-item {
+    background: var(--white);
+    border-left: 4px solid var(--capitec-green);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .ref-q {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--capitec-green);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .ref-a {
+    font-size: 14px;
+    color: var(--capitec-navy);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* --- ACCORDION (SCRIPTS & QA) --- */
+  .accordion-item {
+    background: var(--white); 
+    border: 1px solid rgba(0,43,73,0.06); 
+    margin-bottom: 16px; 
+    overflow: hidden; 
+    transition: var(--transition);
+  }
+
+  .accordion-item:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .accordion-header {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 24px 32px; 
+    cursor: pointer; 
+    user-select: none; 
+    gap: 24px;
+    transition: background 0.2s;
+  }
+
+  @media (max-width: 640px) {
+    .accordion-header { padding: 20px; }
+  }
+
+  .accordion-header:hover { background: rgba(244,246,248,0.5); }
+  
+  .accordion-title { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    font-size: 18px; 
+    font-weight: 700; 
+    color: var(--capitec-navy);
+    line-height: 1.4;
+  }
+
+  .accordion-num { 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 12px; 
+    background: var(--capitec-gray); 
+    color: var(--capitec-navy); 
+    font-size: 15px; 
+    font-weight: 800; 
+    flex-shrink: 0; 
+  }
+
+  .chevron { 
+    font-size: 14px; 
+    color: var(--capitec-navy-light); 
+    transition: transform 0.3s ease; 
+  }
+  
+  .accordion-item.open .chevron { transform: rotate(180deg); }
+
+  .accordion-body { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.4s ease; 
+  }
+  
+  .accordion-item.open .accordion-body { 
+    max-height: 1000px; 
+  }
+
+  .accordion-content {
+    padding: 0 32px 32px 88px; 
+    font-size: 16px; 
+    color: var(--capitec-navy-light);
+    line-height: 1.7; 
+    border-top: 1px solid rgba(0,43,73,0.06); 
+    padding-top: 24px;
+  }
+
+  @media (max-width: 640px) {
+    .accordion-content { padding: 20px; padding-top: 20px; }
+  }
+
+  .copy-btn {
+    padding: 10px 16px; 
+    border-radius: 10px; 
+    background: var(--capitec-gray); 
+    color: var(--capitec-navy);
+    border: none; 
+    font-size: 14px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  
+  .copy-btn:hover { 
+    background: var(--capitec-green); 
+    color: var(--white); 
+  }
+
+  /* --- FOOTER & PROGRESS --- */
+  footer { 
+    padding: 80px 0 60px; 
+    text-align: center; 
+    color: var(--capitec-navy-light); 
+    font-size: 15px; 
+    border-top: 1px solid rgba(0,43,73,0.08); 
+    margin-top: 80px; 
+  }
+  
+  .progress-bar { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    height: 4px; 
+    background: var(--capitec-green); 
+    z-index: 999; 
+    transition: width 0.1s linear; 
+    width: 0; 
+  }
+
+  /* --- PRINT STYLES (PDF EXPORT) --- */
+  @media print {
+    @page { margin: 20mm; size: A4; }
+    body { background: white !important; font-size: 11pt; }
+    .nav-wrapper, .btn-group, .copy-btn, footer, .progress-bar { display: none !important; }
+    .hero { padding: 0 0 40px; }
+    section { padding: 20px 0; page-break-inside: avoid; }
+    .card, .accordion-item { 
+      background: white !important; 
+      border: 1px solid #ddd !important; 
+      box-shadow: none !important; 
+      transform: none !important; 
+      page-break-inside: avoid; 
+    }
+    .accordion-body { max-height: none !important; overflow: visible !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="hero container">
+  <div class="hero-badge squircle">
+    <span>●</span> Capitec Bank · UX Developer Assessment
+  </div>
+  <h1>Capitec Loan <span>Simulator</span></h1>
+  <p>A responsive, compliance-first loan simulation tool that guides customers through dynamic credit tiers and delivers indicative estimates with an accessibility-first mindset.</p>
+  <div class="btn-group">
+    <a href="#strategy" class="btn btn-primary squircle">Start the Walkthrough</a>
+    <button class="btn btn-secondary squircle" onclick="window.print()">Save as PDF</button>
+  </div>
+</header>
+
+<nav class="nav-wrapper">
+  <div class="nav-scroll" id="nav">
+    <button data-target="strategy" class="active squircle">Strategy</button>
+    <button data-target="built" class="squircle">What I Built</button>
+    <button data-target="architecture" class="squircle">Architecture</button>
+    <button data-target="stack" class="squircle">Tech Stack</button>
+    <button data-target="tiers" class="squircle">Credit Tiers</button>
+    <button data-target="compliance" class="squircle">Compliance</button>
+    <button data-target="ux" class="squircle">UX Edge Cases</button>
+    <button data-target="testing" class="squircle">Testing</button>
+    <button data-target="deploy" class="squircle">Deployment</button>
+    <button data-target="decisions" class="squircle">Decisions</button>
+    <button data-target="skills" class="squircle">Skills</button>
+    <button data-target="script" class="squircle">The Script</button>
+    <button data-target="qa" class="squircle">Panel Q&A</button>
+    <button data-target="quickref" class="squircle">Quick Ref</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- SECTION 1: STRATEGY -->
+  <section id="strategy">
+    <div class="section-header">
+      <span class="section-tag">01 · The Strategy</span>
+      <h2>From Generic Calculator to Capitec Product</h2>
+      <p>The original brief asked for a standard eligibility calculator. I re-engineered it to reflect the strict compliance and brand guidelines of Capitec Bank.</p>
+    </div>
+    <div class="grid-layout grid-2">
+      <div class="card squircle">
+        <div class="card-icon squircle">🛡️</div>
+        <h3>Compliance First</h3>
+        <p>Removed the self-reported credit score input. In a real bank, credit scores must be queried securely from a bureau. The mock API simulates this check at submission.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">🎨</div>
+        <h3>Brand Identity</h3>
+        <p>Implemented Capitec's exact color palette (<code>#00A651</code> Green, <code>#002B49</code> Navy), Inter typography, and modern UI elements like frosted glass and squircles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: WHAT I BUILT -->
+  <section id="built">
+    <div class="section-header">
+      <span class="section-tag">02 · Deliverable</span>
+      <h2>What I Built</h2>
+      <p>A full loan application flow; from dynamic product selection to an indicative amortisation schedule, fully compliance-aware.</p>
+    </div>
+    <div class="grid-layout grid-3">
+      <div class="card squircle">
+        <div class="card-icon squircle">📝</div>
+        <h3>Dynamic Input Form</h3>
+        <p>Personal, financial, and loan details. The form automatically adapts its min/max validation rules based on the selected NCA credit tier.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">🛡️</div>
+        <h3>Compliance Notice</h3>
+        <p>A mandatory notice replaces the self-reported credit score input, informing users that a secure bureau check will be performed.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">⚖️</div>
+        <h3>Indicative Verdict</h3>
+        <p>Approval likelihood, risk category, and a clear "indicative estimate only" disclaimer wrapped around the results.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">💰</div>
+        <h3>Indicative Offer</h3>
+        <p>Recommended amount, indicative interest rate, estimated monthly repayment, and total cost over the term.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">📈</div>
+        <h3>Affordability Analysis</h3>
+        <p>Disposable income, DTI, LTI, and an affordability score, visualised with progress bars. Includes a real-time warning if expenses exceed income.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">📅</div>
+        <h3>Payment Schedule</h3>
+        <p>Full month-by-month amortisation. Table on desktop, cards on mobile. Expandable. Hidden entirely if the user is not eligible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ARCHITECTURE -->
+  <section id="architecture">
+    <div class="section-header">
+      <span class="section-tag">03 · Architecture</span>
+      <h2>Backend-Ready Frontend</h2>
+      <p>Built using a strict 3-layer architecture. Swapping the mock for a real Capitec backend is a one-line change in the API client.</p>
+    </div>
+    <div class="grid-layout grid-3">
+      <div class="card squircle">
+        <div class="card-icon squircle">1</div>
+        <h3>UI Layer</h3>
+        <p>React components. Focused purely on presentation, accessibility, and interactive forms driven by React Hook Form + Zod.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">2</div>
+        <h3>State Layer</h3>
+        <p>TanStack Query manages caching, API loading states, error resilience, and mutations.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">3</div>
+        <h3>API Layer</h3>
+        <p>Mock Service Worker (MSW) intercepts standard network requests, powering both the dev environment and the automated test suite.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: TECH STACK -->
+  <section id="stack">
+    <div class="section-header">
+      <span class="section-tag">04 · Tools</span>
+      <h2>Tech Stack & Reasoning</h2>
+      <p>Every tool earned its place in building this compliance-first product.</p>
+    </div>
+    <div class="grid-layout grid-4">
+      <div class="tech-pill squircle"><div class="tech-name">React 18</div><div class="tech-why">Component model matches the form structure. Enables clean conditional rendering for state changes.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">TypeScript</div><div class="tech-why">Typed domain objects catch bugs at compile time, ensuring strict compliance payloads.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">Vite</div><div class="tech-why">Fastest dev server and build toolchain.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">Tailwind v4</div><div class="tech-why">Design system out of the box. Brand tokens configured directly via the new @theme directive.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">React Hook Form</div><div class="tech-why">Performant — re-renders only changed fields. Handles dynamic form resets seamlessly.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">Zod</div><div class="tech-why">Schema validation built dynamically from the API rules, enforcing strict input boundaries.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">TanStack Query</div><div class="tech-why">Caching, retries, loading & error states for free. Powers the resilient "Try again" screen.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">MSW</div><div class="tech-why">Real network layer. Same mocks power dev AND tests. Simulates the bureau check.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">Vitest + RTL</div><div class="tech-why">Unit, component, and integration tests covering the math and UX edge cases.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">Docker + Nginx</div><div class="tech-why">Self-hostable production container with SPA fallback.</div></div>
+      <div class="tech-pill squircle"><div class="tech-name">Vercel</div><div class="tech-why">Auto-deploy on push. Clean Vite integration. Handles SPA rewrites.</div></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: TIERS -->
+  <section id="tiers">
+    <div class="section-header">
+      <span class="section-tag">05 · Product Logic</span>
+      <h2>Dynamic Credit Tiers</h2>
+      <p>The form adapts its validation rules dynamically based on the selected NCA credit tier. Minimum and maximum boundaries update instantly.</p>
+    </div>
+    <div class="grid-layout grid-3">
+      <div class="card squircle">
+        <div class="card-icon squircle">⚡</div>
+        <h3>Short-Term</h3>
+        <ul>
+          <li>Max R8,000</li>
+          <li>Max 6 months</li>
+          <li>Higher interest range</li>
+        </ul>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">💳</div>
+        <h3>Unsecured</h3>
+        <ul>
+          <li>R8,001 – R250k</li>
+          <li>12 – 84 months</li>
+          <li>Standard personal loan</li>
+        </ul>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">🚗</div>
+        <h3>Secured</h3>
+        <ul>
+          <li>R250k+</li>
+          <li>Asset-backed</li>
+          <li>Lower interest rates</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: COMPLIANCE -->
+  <section id="compliance">
+    <div class="section-header">
+      <span class="section-tag">06 · Compliance</span>
+      <h2>Indicative Language</h2>
+      <p>Banking regulations require clear communication that estimates are not binding offers.</p>
+    </div>
+    <div class="card squircle">
+      <div class="card-icon squircle">⚖️</div>
+      <h3>The Disclaimer</h3>
+      <p>Every result is wrapped in a prominent amber disclaimer: <em>"The results below are an indicative estimate only. Your final offer is subject to a full credit and affordability assessment."</em></p>
+      <p style="margin-top: 16px;">Labels were also changed: <strong>"Recommended Loan"</strong> became <strong>"Indicative Offer"</strong>, and <strong>"Interest Rate"</strong> became <strong>"Indicative Interest Rate"</strong>.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 7: UX -->
+  <section id="ux">
+    <div class="section-header">
+      <span class="section-tag">07 · UX Edge Cases</span>
+      <h2>Handling Failure States</h2>
+      <p>A production-grade app must handle things going wrong gracefully.</p>
+    </div>
+    <div class="grid-layout grid-2">
+      <div class="card squircle">
+        <div class="card-icon squircle">🚫</div>
+        <h3>Not Eligible State</h3>
+        <p>If a user is declined, we never show a payment schedule for a loan they can't get. Instead, the UI hides the offer and renders a <strong>"How to improve your chances"</strong> card with actionable advice.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">📉</div>
+        <h3>Expenses > Income</h3>
+        <p>If monthly expenses exceed income, a real-time red warning appears instantly in the form, preventing the user from submitting a guaranteed decline.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">📡</div>
+        <h3>API Resilience</h3>
+        <p>If the initial API load fails, the app displays a dedicated "Connection Error" screen with a "Try again" button to refetch the product data.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">♿</div>
+        <h3>Accessibility (ARIA)</h3>
+        <p>Changing the credit tier resets the form. An invisible <code>aria-live</code> region announces the new min/max limits to screen readers so they aren't confused by the sudden change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: TESTING -->
+  <section id="testing">
+    <div class="section-header">
+      <span class="section-tag">08 · Testing</span>
+      <h2>Three Layers of Quality</h2>
+    </div>
+    <div class="grid-layout grid-3">
+      <div class="card squircle">
+        <div class="card-icon squircle">1</div>
+        <h3>Unit</h3>
+        <p>Math engine: amortisation, interest bands, DTI/LTI ratios, eligibility logic.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">2</div>
+        <h3>Component</h3>
+        <p>Form renders, Zod validation fires, HTML5 min/max constraints work, error summaries appear.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">3</div>
+        <h3>Integration</h3>
+        <p>Full user journey through MSW: loading products, submitting, and rendering the indicative results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: DEPLOYMENT -->
+  <section id="deploy">
+    <div class="section-header">
+      <span class="section-tag">09 · Ship</span>
+      <h2>Deployment Pipeline</h2>
+      <p>Local → GitHub → Vercel → Live URL.</p>
+    </div>
+    <div class="card squircle">
+      <ul>
+        <li><strong>Dockerfile</strong> — multi-stage build, Nginx runtime, SPA fallback</li>
+        <li><strong>vercel.json</strong> — SPA rewrites so client-side routing works on refresh</li>
+        <li><strong>VITE_ENABLE_MSW=true</strong> — env var that activates MSW in production builds</li>
+        <li><strong>.gitignore</strong> — excludes <code>node_modules</code>, <code>dist</code>, env files</li>
+        <li><strong>Auto-deploy</strong> — every push to main triggers a Vercel rebuild</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 10: DECISIONS -->
+  <section id="decisions">
+    <div class="section-header">
+      <span class="section-tag">10 · Reasoning</span>
+      <h2>Key Decisions & Why</h2>
+    </div>
+    <div class="grid-layout grid-2">
+      <div class="card squircle">
+        <div class="card-icon squircle">◈</div>
+        <h3>MSW, not hardcoded data</h3>
+        <p>Exercises the real network layer. Testable. Swaps to a real backend in one line.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">◈</div>
+        <h3>API-driven validation</h3>
+        <p>Business rules live in one place. Backend changes ripple forward automatically without a frontend deployment.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">◈</div>
+        <h3>Compliance over convenience</h3>
+        <p>Removed the self-reported credit score. Banks must query bureaus. The mock API simulates this securely at submission.</p>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">◈</div>
+        <h3>Accessibility first</h3>
+        <p>Not bolted on. Every component was designed with keyboard and screen readers in mind, including dynamic ARIA announcements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 11: SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-tag">11 · Evidence</span>
+      <h2>Skills Demonstrated</h2>
+    </div>
+    <div class="grid-layout grid-4">
+      <div class="card squircle">
+        <div class="card-icon squircle">◆</div>
+        <h3>Frontend</h3>
+        <ul>
+          <li>React</li>
+          <li>TypeScript</li>
+          <li>Tailwind v4</li>
+          <li>Forms</li>
+          <li>Zod schemas</li>
+        </ul>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">◆</div>
+        <h3>Architecture</h3>
+        <ul>
+          <li>Layered design</li>
+          <li>API contracts</li>
+          <li>State management</li>
+          <li>Caching</li>
+          <li>Mocking</li>
+        </ul>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">◆</div>
+        <h3>Quality</h3>
+        <ul>
+          <li>Unit tests</li>
+          <li>Integration tests</li>
+          <li>Accessibility</li>
+          <li>Reduced motion</li>
+          <li>Error handling</li>
+        </ul>
+      </div>
+      <div class="card squircle">
+        <div class="card-icon squircle">◆</div>
+        <h3>DevOps</h3>
+        <ul>
+          <li>Docker</li>
+          <li>Vercel</li>
+          <li>Env vars</li>
+          <li>Git flow</li>
+          <li>CI/CD</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 12: SCRIPT -->
+  <section id="script">
+    <div class="section-header">
+      <span class="section-tag">12 · Presentation</span>
+      <h2>The Pitch Script</h2>
+      <p>Click any section to expand. Use the copy button to grab a block for your notes.</p>
+    </div>
+    <div id="script-list"></div>
+  </section>
+
+  <!-- SECTION 13: Q&A -->
+  <section id="qa">
+    <div class="section-header">
+      <span class="section-tag">13 · Defense</span>
+      <h2>Panel Q&A</h2>
+      <p>Anticipated technical questions and prepared answers.</p>
+    </div>
+    <div id="qa-list"></div>
+  </section>
+
+  <!-- SECTION 14: QUICK REF -->
+  <section id="quickref">
+    <div class="section-header">
+      <span class="section-tag">14 · Cheat Sheet</span>
+      <h2>Quick Reference</h2>
+      <p>One-line answers. Keep this open during the panel.</p>
+    </div>
+    <div class="grid-layout grid-3">
+      <div class="ref-item squircle"><div class="ref-q">Why React?</div><div class="ref-a">Component model matches the form structure.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why TypeScript?</div><div class="ref-a">Structured domain. Bugs caught at compile time.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why Tailwind v4?</div><div class="ref-a">Design system out of the box. Mobile-first responsive.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why MSW?</div><div class="ref-a">Real network layer, testable, swappable in one line.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why RHF + Zod?</div><div class="ref-a">Performant forms with API-driven validation.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why TanStack Query?</div><div class="ref-a">Caching, loading, errors, retries — handled.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why accessibility?</div><div class="ref-a">Financial products must work for everyone.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Why Vercel?</div><div class="ref-a">Clean Vite deploy. Auto-deploy on push.</div></div>
+      <div class="ref-item squircle"><div class="ref-q">Key metric?</div><div class="ref-a">Zero rewrite to swap to a real backend.</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p><strong>Capitec Loan Eligibility Simulator</strong> · UX Developer Assessment</p>
+    <p style="margin-top: 8px; opacity: 0.8;">Built with React, TypeScript, Tailwind v4, MSW, and an accessibility-first mindset.</p>
+  </div>
+</footer>
+
+<script>
+  // -------- DATA --------
+  const scriptSections = [
+    {
+      title: "The Pivot",
+      text: "The original brief asked for a generic UI with mocked data. But I wanted to treat this like a real Capitec product. So I made two major pivots: First, I researched Capitec's exact brand identity—the #00A651 green, the navy, and the clean typography—and applied it using Tailwind v4's new @theme directive. Second, I addressed compliance. A real bank cannot let a user self-report their credit score. So I removed the input entirely and simulated a secure credit bureau check at the API layer."
+    },
+    {
+      title: "Dynamic Product Tiers",
+      text: "Instead of a one-size-fits-all loan, I implemented the National Credit Act tiers. The user selects between Short-Term Unsecured, Unsecured, and Secured credit. When they change the dropdown, the form's minimum and maximum boundaries—like the R8,000 cap on short-term loans—update instantly. This is driven by the mock API, so if the backend updates the rules, the frontend adapts automatically without a deployment."
+    },
+    {
+      title: "The Architecture",
+      text: "The app uses a strict three-layer architecture: UI, State, and API. For the API layer, I used MSW—Mock Service Worker. MSW intercepts fetch requests at the browser level, meaning the exact same network code runs in development, in production on Vercel, and in my automated tests. Swapping this to a real Capitec backend is literally a one-line change in the API client."
+    },
+    {
+      title: "Handling Edge Cases (UX)",
+      text: "I focused heavily on failure states. If a user's expenses exceed their income, a red warning appears instantly to save them time. If they are not eligible for the loan, the app does not show them a payment schedule they can't afford. Instead, it hides the offer and shows a 'How to improve your chances' card with actionable advice. Even if the API fails to load, the user gets a 'Try again' screen instead of a dead end."
+    },
+    {
+      title: "Compliance & Indicative Language",
+      text: "To ensure the app is not misconstrued as a binding offer, I wrapped all results in a prominent amber disclaimer. I also changed the language: 'Interest Rate' became 'Indicative Interest Rate', and 'Recommended Loan' became 'Indicative Offer'. This shows an understanding of financial regulations and user expectation management."
+    },
+    {
+      title: "Accessibility",
+      text: "Accessibility is not an afterthought here. Beyond WCAG AA contrast and keyboard navigation, I handled dynamic changes. When a screen reader user changes the credit product tier, the entire form resets with new min/max limits. I added a visually hidden aria-live region that announces the new limits to the user so they aren't confused by the sudden change."
+    }
+  ];
+
+  const qaItems = [
+    { q: "Why didn't you use a real backend?", a: "The brief specifically requested mocked data. However, I architected it so that swapping to a real backend is trivial. MSW intercepts real HTTP requests, so the app is already using standard fetch calls, JSON serialization, and HTTP status codes. I prioritized building a robust, accessible, compliance-first frontend rather than splitting focus on a database schema." },
+    { q: "How did you handle the Capitec brand?", a: "I researched their digital design language. I extracted their exact primary green (#00A651) and navy (#002B49), integrated the Inter font for clean typography, and used modern CSS features like backdrop-blur and corner-shape: squircle to give it a premium, app-like feel." },
+    { q: "Why remove the credit score input?", a: "In a real banking environment, a customer cannot self-report their credit score. It must be securely queried from a bureau like TransUnion or Experian. Removing it and simulating the bureau check at the API layer demonstrates a mature understanding of financial compliance and data integrity." },
+    { q: "What was the hardest part?", a: "The math engine. The API spec provided in the brief had a few internal inconsistencies regarding rounding and how disposable income was calculated. I had to implement standard financial formulas, document my assumptions in the unit tests, and ensure the UI displayed the exact mathematical output rather than the rounded spec example." },
+    { q: "Walk me through the form submission.", a: "The user clicks submit. React Hook Form validates the inputs against the Zod schema, which is built dynamically from the API rules. If it passes, it fires a POST request to /api/loans/eligibility. MSW intercepts this, calculates the math, and returns the result. The UI then conditionally renders the offer and fetches the payment schedule, or shows the 'Not Eligible' advice card." },
+    { q: "How would you extend this to production?", a: "First, swap MSW for real Capitec endpoints. Second, add authentication (OAuth) so we know which customer is applying. Third, add error tracking (like Sentry) and analytics. Finally, implement E2E testing with Playwright to ensure the full journey works across real devices." }
+  ];
+
+  // -------- RENDER SCRIPT & QA --------
+  const buildAccordion = (data, containerId, isQA = false) => {
+    const container = document.getElementById(containerId);
+    data.forEach((item, i) => {
+      const el = document.createElement('div');
+      el.className = 'accordion-item squircle';
+      
+      const titleContent = isQA 
+        ? `<span class="accordion-num squircle" style="background:var(--capitec-navy); color:white;">Q</span> <span>${item.q}</span>`
+        : `<span class="accordion-num squircle">${String(i + 1).padStart(2, '0')}</span> <span>${item.title}</span>`;
+        
+      const bodyContent = isQA ? item.a : item.text;
+      
+      el.innerHTML = `
+        <div class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+          <div class="accordion-title">${titleContent}</div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            ${!isQA ? `<button class="copy-btn squircle" data-copy="${i}">Copy</button>` : ''}
+            <span class="chevron">▼</span>
+          </div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-content">${bodyContent}</div>
+        </div>
+      `;
+      container.appendChild(el);
+    });
+  };
+
+  buildAccordion(scriptSections, 'script-list', false);
+  buildAccordion(qaItems, 'qa-list', true);
+
+  // -------- ACCORDION LOGIC --------
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    const toggle = () => {
+      const item = header.parentElement;
+      const isOpen = item.classList.toggle('open');
+      header.setAttribute('aria-expanded', String(isOpen));
+    };
+    header.addEventListener('click', (e) => { 
+      if (!e.target.classList.contains('copy-btn')) toggle(); 
+    });
+    header.addEventListener('keydown', (e) => { 
+      if (e.key === 'Enter' || e.key === ' ') { 
+        e.preventDefault(); 
+        toggle(); 
+      } 
+    });
+  });
+
+  // -------- COPY LOGIC --------
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const text = scriptSections[btn.dataset.copy].text;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ Copied';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+      });
+    });
+  });
+
+  // -------- SCROLL & NAVIGATION FIX --------
+  const navButtons = document.querySelectorAll('#nav button');
+  const navContainer = document.querySelector('.nav-scroll');
+  const sections = document.querySelectorAll('section');
+  
+  // 1. Handle Nav Clicks
+  navButtons.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault(); 
+    const targetId = btn.dataset.target;
+    const targetSection = document.getElementById(targetId);
+    
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+      
+      navButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      if (navContainer) {
+        const scrollLeft = btn.offsetLeft - (navContainer.offsetWidth / 2) + (btn.offsetWidth / 2);
+        navContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      }
+    }
+  }));
+
+  // 2. Handle Scroll Spy
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const activeBtn = document.querySelector(`#nav button[data-target="${entry.target.id}"]`);
+        if (activeBtn && !activeBtn.classList.contains('active')) {
+          navButtons.forEach(b => b.classList.remove('active'));
+          activeBtn.classList.add('active');
+          
+          if (navContainer) {
+            const scrollLeft = activeBtn.offsetLeft - (navContainer.offsetWidth / 2) + (activeBtn.offsetWidth / 2);
+            navContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  }, { 
+    rootMargin: '-20% 0px -60% 0px' 
+  });
+  
+  sections.forEach(s => observer.observe(s));
+
+  // 3. Scroll Progress Bar
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (window.scrollY / h) * 100 + '%';
+  }, { passive: true });
+</script>
+</body>
+</html>
