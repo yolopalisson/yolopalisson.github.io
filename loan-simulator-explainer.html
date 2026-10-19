@@ -9,20 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Capitec Brand Palette */
-    --capitec-green: #00A651;
-    --capitec-green-dark: #00823F;
-    --capitec-green-light: #E6F6ED;
-    --capitec-navy: #002B49;
-    --capitec-navy-light: #4A6572;
-    --capitec-gray: #F4F6F8;
+    /* Capitec Brand Palette - Corporate Blue */
+    --capitec-blue: #0F204B;
+    --capitec-blue-dark: #0A1730;
+    --capitec-blue-light: #E8EDF5;
+    --capitec-navy: #0F204B;
+    --capitec-navy-light: #4A5568;
+    --capitec-gray: #F7F9FC;
     --white: #FFFFFF;
+    --accent: #E53E3E; /* Capitec's secondary red accent, used sparingly */
     
     /* Spacing & Shadows */
     --radius: 24px;
-    --shadow-sm: 0 2px 4px rgba(0,43,73,0.04), 0 1px 2px rgba(0,43,73,0.02);
-    --shadow-md: 0 8px 16px -4px rgba(0,43,73,0.08), 0 4px 8px -4px rgba(0,43,73,0.04);
-    --shadow-lg: 0 24px 48px -12px rgba(0,43,73,0.15), 0 12px 24px -8px rgba(0,43,73,0.08);
+    --shadow-sm: 0 2px 4px rgba(15,32,75,0.04), 0 1px 2px rgba(15,32,75,0.02);
+    --shadow-md: 0 8px 16px -4px rgba(15,32,75,0.08), 0 4px 8px -4px rgba(15,32,75,0.04);
+    --shadow-lg: 0 24px 48px -12px rgba(15,32,75,0.15), 0 12px 24px -8px rgba(15,32,75,0.08);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -37,8 +38,8 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--capitec-gray);
     background-image: 
-      radial-gradient(circle at 10% 10%, rgba(0, 166, 81, 0.08), transparent 40%),
-      radial-gradient(circle at 90% 90%, rgba(0, 43, 73, 0.04), transparent 40%);
+      radial-gradient(circle at 10% 10%, rgba(15,32,75,0.06), transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(15,32,75,0.03), transparent 40%);
     background-attachment: fixed;
     color: var(--capitec-navy);
     line-height: 1.6;
@@ -71,12 +72,16 @@
 
   /* --- HERO SECTION --- */
   .hero { 
-    padding: 100px 0 60px; 
+    padding: 120px 0 80px;
     text-align: center; 
   }
   
-  @media (max-width: 640px) {
-    .hero { padding: 60px 0 40px; }
+  @media (max-width: 768px) {
+    .hero { padding: 88px 0 64px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 72px 0 56px; }
   }
 
   .hero-badge {
@@ -85,13 +90,13 @@
     gap: 8px; 
     padding: 8px 16px;
     background: var(--white); 
-    color: var(--capitec-green-dark);
+    color: var(--capitec-blue);
     border-radius: 100px; 
     font-size: 13px; 
     font-weight: 700; 
     margin-bottom: 24px;
     box-shadow: var(--shadow-sm);
-    border: 1px solid var(--capitec-green-light);
+    border: 1px solid var(--capitec-blue-light);
   }
 
   .hero h1 {
@@ -103,7 +108,7 @@
     color: var(--capitec-navy);
   }
   
-  .hero h1 span { color: var(--capitec-green); }
+  .hero h1 span { color: var(--capitec-blue); }
   
   .hero p {
     font-size: clamp(16px, 2vw, 20px); 
@@ -137,21 +142,21 @@
   }
 
   .btn-primary {
-    background: var(--capitec-green); 
+    background: var(--capitec-blue); 
     color: var(--white); 
-    box-shadow: 0 8px 24px -8px rgba(0,166,81,0.5);
+    box-shadow: 0 8px 24px -8px rgba(15,32,75,0.5);
   }
   
   .btn-primary:hover { 
-    background: var(--capitec-green-dark); 
+    background: var(--capitec-blue-dark); 
     transform: translateY(-2px); 
-    box-shadow: 0 12px 32px -8px rgba(0,166,81,0.6); 
+    box-shadow: 0 12px 32px -8px rgba(15,32,75,0.6); 
   }
 
   .btn-secondary {
     background: var(--white); 
     color: var(--capitec-navy); 
-    border: 1px solid rgba(0,43,73,0.1);
+    border: 1px solid rgba(15,32,75,0.1);
   }
   
   .btn-secondary:hover { 
@@ -165,10 +170,10 @@
     top: 0; 
     z-index: 100; 
     padding: 16px 0;
-    background: rgba(244, 246, 248, 0.85); 
+    background: rgba(247,249,252,0.85); 
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(0, 43, 73, 0.06); 
+    border-bottom: 1px solid rgba(15,32,75,0.06); 
     margin-bottom: 48px;
   }
 
@@ -205,9 +210,9 @@
   }
   
   .nav-scroll button.active { 
-    background: var(--capitec-green); 
+    background: var(--capitec-blue); 
     color: var(--white); 
-    box-shadow: 0 4px 12px rgba(0,166,81,0.3);
+    box-shadow: 0 4px 12px rgba(15,32,75,0.3);
   }
 
   /* --- SECTIONS & CARDS --- */
@@ -226,7 +231,7 @@
     font-weight: 800; 
     text-transform: uppercase; 
     letter-spacing: 0.1em; 
-    color: var(--capitec-green); 
+    color: var(--capitec-blue); 
     margin-bottom: 12px; 
     display: block;
   }
@@ -275,8 +280,8 @@
     width: 48px; 
     height: 48px; 
     border-radius: 16px; 
-    background: var(--capitec-green-light); 
-    color: var(--capitec-green-dark); 
+    background: var(--capitec-blue-light); 
+    color: var(--capitec-blue); 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -303,7 +308,7 @@
     content: "✓"; 
     position: absolute; 
     left: 0; 
-    color: var(--capitec-green); 
+    color: var(--capitec-blue); 
     font-weight: 800; 
     font-size: 18px;
   }
@@ -311,13 +316,13 @@
   /* --- TECH PILLS --- */
   .tech-pill {
     background: var(--white);
-    border: 1px solid rgba(0,43,73,0.06);
+    border: 1px solid rgba(15,32,75,0.06);
     padding: 16px;
     border-radius: 12px;
     transition: var(--transition);
   }
   .tech-pill:hover {
-    border-color: var(--capitec-green);
+    border-color: var(--capitec-blue);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
   }
@@ -336,7 +341,7 @@
   /* --- QUICK REF --- */
   .ref-item {
     background: var(--white);
-    border-left: 4px solid var(--capitec-green);
+    border-left: 4px solid var(--capitec-blue);
     padding: 16px;
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
@@ -344,7 +349,7 @@
   .ref-q {
     font-size: 12px;
     font-weight: 800;
-    color: var(--capitec-green);
+    color: var(--capitec-blue);
     text-transform: uppercase;
     letter-spacing: 0.04em;
     margin-bottom: 4px;
@@ -359,7 +364,7 @@
   /* --- ACCORDION (SCRIPTS & QA) --- */
   .accordion-item {
     background: var(--white); 
-    border: 1px solid rgba(0,43,73,0.06); 
+    border: 1px solid rgba(15,32,75,0.06); 
     margin-bottom: 16px; 
     overflow: hidden; 
     transition: var(--transition);
@@ -384,7 +389,7 @@
     .accordion-header { padding: 20px; }
   }
 
-  .accordion-header:hover { background: rgba(244,246,248,0.5); }
+  .accordion-header:hover { background: rgba(247,249,252,0.5); }
   
   .accordion-title { 
     display: flex; 
@@ -433,7 +438,7 @@
     font-size: 16px; 
     color: var(--capitec-navy-light);
     line-height: 1.7; 
-    border-top: 1px solid rgba(0,43,73,0.06); 
+    border-top: 1px solid rgba(15,32,75,0.06); 
     padding-top: 24px;
   }
 
@@ -455,7 +460,7 @@
   }
   
   .copy-btn:hover { 
-    background: var(--capitec-green); 
+    background: var(--capitec-blue); 
     color: var(--white); 
   }
 
@@ -465,7 +470,7 @@
     text-align: center; 
     color: var(--capitec-navy-light); 
     font-size: 15px; 
-    border-top: 1px solid rgba(0,43,73,0.08); 
+    border-top: 1px solid rgba(15,32,75,0.08); 
     margin-top: 80px; 
   }
   
@@ -474,7 +479,7 @@
     top: 0; 
     left: 0; 
     height: 4px; 
-    background: var(--capitec-green); 
+    background: var(--capitec-blue); 
     z-index: 999; 
     transition: width 0.1s linear; 
     width: 0; 
@@ -551,7 +556,7 @@
       <div class="card squircle">
         <div class="card-icon squircle">🎨</div>
         <h3>Brand Identity</h3>
-        <p>Implemented Capitec's exact color palette (<code>#00A651</code> Green, <code>#002B49</code> Navy), Inter typography, and modern UI elements like frosted glass and squircles.</p>
+        <p>Implemented Capitec's exact color palette (<code>#0F204B</code> Corporate Blue), Inter typography, and modern UI elements like frosted glass and squircles.</p>
       </div>
     </div>
   </section>
@@ -910,7 +915,7 @@
   const scriptSections = [
     {
       title: "The Pivot",
-      text: "The original brief asked for a generic UI with mocked data. But I wanted to treat this like a real Capitec product. So I made two major pivots: First, I researched Capitec's exact brand identity—the #00A651 green, the navy, and the clean typography—and applied it using Tailwind v4's new @theme directive. Second, I addressed compliance. A real bank cannot let a user self-report their credit score. So I removed the input entirely and simulated a secure credit bureau check at the API layer."
+      text: "The original brief asked for a generic UI with mocked data. But I wanted to treat this like a real Capitec product. So I made two major pivots: First, I researched Capitec's exact brand identity—the Corporate Blue (#0F204B), the clean typography—and applied it using Tailwind v4's new @theme directive. Second, I addressed compliance. A real bank cannot let a user self-report their credit score. So I removed the input entirely and simulated a secure credit bureau check at the API layer."
     },
     {
       title: "Dynamic Product Tiers",
@@ -936,7 +941,7 @@
 
   const qaItems = [
     { q: "Why didn't you use a real backend?", a: "The brief specifically requested mocked data. However, I architected it so that swapping to a real backend is trivial. MSW intercepts real HTTP requests, so the app is already using standard fetch calls, JSON serialization, and HTTP status codes. I prioritized building a robust, accessible, compliance-first frontend rather than splitting focus on a database schema." },
-    { q: "How did you handle the Capitec brand?", a: "I researched their digital design language. I extracted their exact primary green (#00A651) and navy (#002B49), integrated the Inter font for clean typography, and used modern CSS features like backdrop-blur and corner-shape: squircle to give it a premium, app-like feel." },
+    { q: "How did you handle the Capitec brand?", a: "I researched their digital design language. I extracted their exact primary Corporate Blue (#0F204B), integrated the Inter font for clean typography, and used modern CSS features like backdrop-blur and corner-shape: squircle to give it a premium, app-like feel." },
     { q: "Why remove the credit score input?", a: "In a real banking environment, a customer cannot self-report their credit score. It must be securely queried from a bureau like TransUnion or Experian. Removing it and simulating the bureau check at the API layer demonstrates a mature understanding of financial compliance and data integrity." },
     { q: "What was the hardest part?", a: "The math engine. The API spec provided in the brief had a few internal inconsistencies regarding rounding and how disposable income was calculated. I had to implement standard financial formulas, document my assumptions in the unit tests, and ensure the UI displayed the exact mathematical output rather than the rounded spec example." },
     { q: "Walk me through the form submission.", a: "The user clicks submit. React Hook Form validates the inputs against the Zod schema, which is built dynamically from the API rules. If it passes, it fires a POST request to /api/loans/eligibility. MSW intercepts this, calculates the math, and returns the result. The UI then conditionally renders the offer and fetches the payment schedule, or shows the 'Not Eligible' advice card." },
@@ -1010,7 +1015,6 @@
   const navContainer = document.querySelector('.nav-scroll');
   const sections = document.querySelectorAll('section');
   
-  // 1. Handle Nav Clicks
   navButtons.forEach(btn => btn.addEventListener('click', (e) => {
     e.preventDefault(); 
     const targetId = btn.dataset.target;
@@ -1029,7 +1033,6 @@
     }
   }));
 
-  // 2. Handle Scroll Spy
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1051,7 +1054,6 @@
   
   sections.forEach(s => observer.observe(s));
 
-  // 3. Scroll Progress Bar
   const progress = document.getElementById('progress');
   window.addEventListener('scroll', () => {
     const h = document.documentElement.scrollHeight - window.innerHeight;
