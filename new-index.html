@@ -336,15 +336,16 @@ section{padding-block:var(--section-y)}
   display:grid;grid-template-columns:repeat(3,1fr);gap:0.5;
 }
 .stats__cell{
-  padding:clamp(1.25rem,2.5vw,1.75rem) clamp(1rem,2vw,1.5rem);
+  padding:clamp(1.15rem,2.5vw,1.75rem) clamp(1rem,2vw,1.5rem);
   /* padding-left: 20px; */
-  display:flex;flex-direction:column;gap:.45rem;
+  justify-content:center;align-items:center;
+  display:flex;flex-direction:column;gap:.35rem;
   border-left:1px solid var(--hairline);
   transition:background .35s var(--ease-soft);
 }
 .stats__cell:first-child{
-  border-left:50px;
-  padding-left:50px;
+  border-left:0;
+  padding-left:0;
 }
 .stats__cell:last-child{padding-right:0}
 .stats__cell:hover{
@@ -835,7 +836,7 @@ section{padding-block:var(--section-y)}
   .stats__cell:nth-child(3){border-left:0;padding-left:0}
   .stats__cell:nth-child(-n+2){border-bottom:1px solid var(--hairline)}
   .stats__cell:nth-child(2n){padding-right:0}
-  .stats__cell:nth-child(2n+1){padding-left:50px;}
+  .stats__cell:nth-child(2n+1){padding-left:0;}
   .clients__inner{flex-direction:column;align-items:flex-start;gap:1rem}
   .clients__label{border-right:0;border-bottom:1px solid var(--hairline);padding-right:0;padding-bottom:.75rem;width:100%}
 }
@@ -981,7 +982,7 @@ section{padding-block:var(--section-y)}
       <!-- RIGHT COLUMN — LOGO -->
       <div class="hero__logo-col">
         <a class="hero__logo" href="#top" aria-label="Palisson Tech — back to top">
-          <img src="img/Palisson Technologies_New Logo.jpg">
+          <img src="img/Palisson Tech.jpeg">
         </a>
       </div>
 
@@ -1016,7 +1017,7 @@ section{padding-block:var(--section-y)}
 
 <section class="clients" aria-label="Selected clients">
   <div class="clients__inner">
-    <span class="clients__label">Selected clients</span>
+    <span class="clients__label">Selected work</span>
     <ul class="clients__logos" data-reveal>
       <li><a href="#case-nmk" class="logo--nmk">NMK</a></li>
       <li><a href="#case-expert17" class="logo--expert">Expert17</a></li>
