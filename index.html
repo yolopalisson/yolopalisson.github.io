@@ -1024,7 +1024,7 @@ section{padding-block:var(--section-y)}
     <ul class="clients__logos" data-reveal>
       <li><a href="#case-nmk" class="logo--nmk">NMK</a></li>
       <li><a href="#case-expert17" class="logo--expert">Expert17</a></li>
-      <li><a href="#case-green-lumber" class="logo--green">GREEN LUMBER</a></li>
+      <li><a href="#case-fintrack" class="logo--fintrack">FinTrack</a></li>
       <!-- <li><a href="#case-lm-holdings" class="logo--lm">LM HOLDINGS</a></li> -->
       <li><a href="#case-bitfit" class="logo--bitfit">BitFit<span>.</span></a></li>
       <li><a href="#case-harbourline" class="logo--harbourline">HARBOURLINE</a></li>
@@ -1051,7 +1051,7 @@ section{padding-block:var(--section-y)}
     <nav class="work__index" data-reveal aria-label="Jump to case study">
       <a href="#case-nmk"><span>01</span>NMK</a>
       <a href="#case-expert17"><span>02</span>Expert17</a>
-      <a href="#case-green-lumber"><span>03</span>Green Lumber</a>
+      <a href="#case-fintrack"><span>03</span>FinTrack</a>
       <a href="#case-loan-simulator"><span>04</span>Loan Eligibility Simulator</a>
       <a href="#case-bitfit"><span>05</span>BitFit</a>
       <a href="#case-harbourline"><span>06</span>Harbourline</a>
@@ -1158,30 +1158,46 @@ section{padding-block:var(--section-y)}
       </div>
     </article>
 
-    <article class="case" id="case-green-lumber" data-reveal>
+    <article class="case" id="case-fintrack" data-reveal>
       <header class="case__head">
         <span class="case__num">03</span>
-        <h3 class="case__name">Green Lumber Holdings</h3>
-        <span class="case__scope">Website · 2024</span>
+        <h3 class="case__name">FinTrack</h3>
+        <span class="case__scope">Web Application · 2026</span>
       </header>
       <div class="case__grid">
         <div class="case__image">
-          <img src="img/Green Lumber.jpg" alt="Green Lumber ecommerce site" width="1200" height="900" loading="lazy" decoding="async">
+          <img src="img/fintrack.jpeg" alt="FinTrack financial application" width="1200" height="900" loading="lazy" decoding="async">
         </div>
         <div class="case__content">
-          <p class="case__brief">A complete <em>website overhaul</em>, modernising Green Lumber Holdings’ <em>digital presence</em> while preserving <em>brand equity</em> and sharpening the commercial message.</p>
+          <p class="case__brief">A <em>mobile-first</em> budget tracker that opens straight to the month's balance and formats currency the way South Africans actually read it.</p>
           <ol class="case__journey">
-            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">01</span><div><h4>Challenge</h4><p>Website rebrands risk alienating existing customers if too aggressive, and failing to attract new audiences if too conservative. Retaining what worked while replacing what didn’t was a delicate balance.</p></div></div></li>
-            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">02</span><div><h4>Approach</h4><p>A content audit identified high-value pages from analytics data. The visual design was evolved, not replaced: colour palette retained but refined, and a new typography system introduced hierarchy and polish. Structured data markup was added throughout. Rebuild in standard HTML, CSS, and JavaScript significantly improved load performance.</p></div></div></li>
-            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">03</span><div><h4>Outcome</h4><p>Page load times improved substantially. The client reported a marked increase in professional enquiries. Green Lumber Holdings have since become a retained client.</p></div></div></li>
+            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">01</span><div><h4>Challenge</h4><p>Budgeting apps assume two things: that you want a configurable dashboard, and that you bank in dollars or euros. The dashboard buries this month's balance behind setup screens; the currency assumption shows up in everything from digit grouping to decimal separators. I wanted to know how much of a budgeting app survives without those assumptions. One user, one month at a time, one currency. Opens to the balance. Works one-handed on a phone.</p></div></div></li>
+            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">02</span><div><h4>Approach</h4><p>Vanilla HTML, CSS and JavaScript, with Chart.js for the breakdowns and localStorage for persistence. No framework, no build step.
+                <br/><br/>
+          State lives in a single month-filtered array, and every card, chart and row derives from it — so the summary can never disagree with the transaction list. The visual direction is frosted glass: cards are backdrop-filter layers over a fixed ambient gradient, so they pick up colour from behind and gain depth without heavy chrome. Theming runs on CSS custom properties, so light and dark swap from one attribute on the root element. Corner geometry uses corner-shape: squircle where supported, falling back to border-radius elsewhere.</p></div></div></li>
+            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">03</span><div><h4>Outcome</h4><p>The app loads to a populated screen, navigates months in one tap, and never asks the user to configure anything before it's useful.
+                <br/><br/>
+            Most of the work went into mobile, because that's where a budget tracker either succeeds or gets deleted:
+               <br/><br/> 
+              <ul>
+                  <li>· The header collapses to one row below 760px with icon-only controls, so the balance is visible without scrolling.</li>
+                  <li>· Every touch target is at least 44×44px, and modals size to dvh so they don't slide behind mobile browser chrome.</li>
+                  <li>· An empty dashboard offers sample data in one tap; a blank screen is a bad first impression.</li>
+              </ul>
+
+              <br/>
+
+                <p>Accessibility got the same treatment: animations respect prefers-reduced-motion, focus states use :focus-visible, and muted text contrast was raised after the first palette failed WCAG AA.</p>
+          
+          </p></div></div></li>
           </ol>
-          <button class="case__cta" type="button" aria-expanded="false" aria-controls="case-green-lumber-expand" data-label-open="Read the full case study" data-label-close="Close case study">
+          <button class="case__cta" type="button" aria-expanded="false" aria-controls="case-fintrack-expand" data-label-open="Read the full case study" data-label-close="Close case study">
             <span class="case__cta-label">Read the full case study</span>
             <span class="case__cta-icon" aria-hidden="true">+</span>
           </button>
         </div>
       </div>
-      <div class="case__expand" id="case-green-lumber-expand" aria-hidden="true">
+      <div class="case__expand" id="case-fintrack-expand" aria-hidden="true">
         <div class="case__expand-inner">
           <div class="case__expand-content">
             <!-- <figure class="case__quote">
@@ -1189,14 +1205,14 @@ section{padding-block:var(--section-y)}
               <figcaption><span class="case__quote-name">[Client name]</span><span>Operations, Green Lumber</span></figcaption>
             </figure> -->
             <div class="case__narrative-wrap">
-              <p class="case__narrative">Green Lumber Holdings had an existing website that no longer reflected the growth and professionalism of the business. The rebrand required careful stakeholder management while delivering a meaningfully more capable digital presence.</p>
+              <p class="case__narrative">A mobile-first budget tracker that opens straight to the month's balance and formats currency the way South Africans actually read it.</p>
             </div>
             <dl class="case__meta">
-              <div><dt>Stack</dt><dd>HTML · CSS · JavaScript</dd></div>
-              <div><dt>Duration</dt><dd>6 weeks</dd></div>
+              <div><dt>Stack</dt><dd>HTML · CSS · JavaScript · Chart.js · localStorage</dd></div>
+              <div><dt>Duration</dt><dd>1 week</dd></div>
               <div><dt>Team</dt><dd>Studio end to end</dd></div>
-              <div><dt>Live</dt><dd>2024 → present</dd></div>
-              <div><dt>View website</dt><dd><a href="https://www.greenlumberholdings.co.za/" target="_blank" rel="noopener noreferrer">Open →</a></dd></div>
+              <div><dt>Live</dt><dd>2025 → present</dd></div>
+              <div><dt>View website</dt><dd><a href="/fintrack.html" target="_blank" rel="noopener noreferrer">Open →</a></dd></div>
             </dl>
             <!-- <div class="case__gallery">
               <img src="img/green-lumber-01.jpeg" alt="Green Lumber catalogue" width="800" height="600" loading="lazy" decoding="async">
