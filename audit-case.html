@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit &amp; Opportunity Report · Cybit / NMKCA / Palisson</title>
+<style>
+  :root {
+    --text: #eef2f8;
+    --muted: #95a2b8;
+    --soft: #bfcbdf;
+    --accent: #7dd3c0;
+    --accent-2: #8ba8e0;
+    --danger: #f1837f;
+    --success: #86e0b3;
+    --warn: #f0c96b;
+    --glass: rgba(20, 27, 42, 0.55);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+    color: var(--text);
+    line-height: 1.65;
+    padding: 3rem 1.5rem 5rem;
+    min-height: 100vh;
+    background:
+      radial-gradient(900px 500px at 15% 8%, rgba(90, 130, 220, 0.30), transparent 60%),
+      radial-gradient(1000px 600px at 88% 15%, rgba(125, 211, 192, 0.14), transparent 65%),
+      radial-gradient(700px 500px at 40% 100%, rgba(140, 100, 220, 0.16), transparent 60%),
+      linear-gradient(160deg, #070b14 0%, #0c1320 55%, #090e18 100%);
+    background-attachment: fixed;
+  }
+
+  .page { max-width: 1120px; margin: 0 auto; }
+
+  header { margin-bottom: 1.8rem; }
+
+  .doc-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(1.55rem, 3.3vw, 2.15rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.22;
+    margin-bottom: 0.55rem;
+  }
+
+  h1 .dim { color: var(--muted); font-weight: 500; }
+
+  .lead {
+    color: var(--soft);
+    max-width: 70ch;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .meta-item {
+    font-size: 0.76rem;
+    color: var(--muted);
+    padding: 0.3rem 0.7rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .meta-item strong { color: var(--soft); font-weight: 600; }
+
+  .stance {
+    background: rgba(125, 211, 192, 0.05);
+    border-left: 2px solid var(--accent);
+    padding: 0.85rem 1.1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    color: var(--soft);
+    margin-bottom: 1.2rem;
+  }
+
+  .stance strong { color: var(--accent); }
+
+  .supplement {
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding: 0.6rem 0.9rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.6rem;
+    line-height: 1.5;
+  }
+
+  .supplement strong { color: var(--accent-2); font-weight: 600; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0.15rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+    padding: 0.28rem;
+    background: var(--glass);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .tab {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.48rem 0.85rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tab:hover { color: var(--text); }
+
+  .tab:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .tab.active {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.12);
+    font-weight: 600;
+  }
+
+  /* Panels */
+  .panel {
+    display: none;
+    background: var(--glass);
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.9rem 1.75rem;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  }
+
+  .panel.active {
+    display: block;
+    animation: fade 0.3s ease;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  h2 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 1.9rem 0 0.7rem;
+    letter-spacing: -0.01em;
+  }
+
+  h2:first-child { margin-top: 0; }
+
+  h3 {
+    font-size: 0.94rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+
+  p {
+    color: var(--soft);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    overflow-wrap: break-word;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.72rem;
+    margin: 1rem 0 1.4rem;
+  }
+
+  .stat {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 0.95rem 1rem;
+  }
+
+  .stat .lbl {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .stat .big {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .stat .sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    line-height: 1.4;
+  }
+
+  .danger { color: var(--danger); }
+  .success { color: var(--success); }
+  .warn { color: var(--warn); }
+  .accent { color: var(--accent); }
+  .accent2 { color: var(--accent-2); }
+
+  .pri {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.14rem 0.5rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-right: 0.4rem;
+    vertical-align: 1px;
+  }
+
+  .pri.p0 { background: rgba(241, 131, 127, 0.15); color: var(--danger); }
+  .pri.p1 { background: rgba(240, 201, 107, 0.14); color: var(--warn); }
+  .pri.p2 { background: rgba(139, 168, 224, 0.14); color: var(--accent-2); }
+
+  .tbl {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 13px;
+    border: 1px solid var(--border);
+    margin: 0.85rem 0 1.3rem;
+  }
+
+  table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.72rem 0.85rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  th {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td.num { font-family: ui-monospace, monospace; font-size: 0.79rem; color: var(--soft); }
+  td.site { font-weight: 600; white-space: nowrap; }
+
+  .finding {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .finding p {
+    font-size: 0.86rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .finding p:last-child { margin-bottom: 0; }
+
+  .finding .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.9rem;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  .col-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 1rem 1.1rem;
+  }
+
+  .col-box h3 {
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .col-box p {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .col-box p:last-child { margin-bottom: 0; }
+
+  .col-box.working h3 { color: var(--success); }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0.3rem 0 0;
+  }
+
+  .list li {
+    padding: 0.65rem 0 0.65rem 1.25rem;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--soft);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+    overflow-wrap: break-word;
+  }
+
+  .list li:last-child { border-bottom: none; }
+
+  .list li::before {
+    content: "";
+    position: absolute;
+    left: 0.3rem;
+    top: 1.1rem;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .quote {
+    background: rgba(139, 168, 224, 0.04);
+    border-left: 2px solid var(--accent-2);
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.88rem;
+    color: var(--soft);
+    margin: 0.9rem 0 1.2rem;
+    line-height: 1.65;
+    overflow-wrap: break-word;
+  }
+
+  .quote strong { color: var(--text); font-weight: 600; }
+
+  .timeline {
+    position: relative;
+    padding-left: 1.6rem;
+    margin: 1rem 0;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.4rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent), transparent);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .tl-item:last-child { margin-bottom: 0; }
+
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -1.45rem;
+    top: 0.35rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(125, 211, 192, 0.15);
+  }
+
+  .tl-item .tl-head {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-item h3 { font-size: 0.92rem; margin-bottom: 0.4rem; }
+
+  .tl-item p { font-size: 0.86rem; }
+
+  .cite {
+    font-size: 0.68rem;
+    color: var(--accent-2);
+    font-weight: 600;
+    vertical-align: 1px;
+    margin-left: 0.15rem;
+  }
+
+  .note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+    line-height: 1.55;
+  }
+
+  .bar-block { margin-bottom: 0.85rem; }
+  .bar-head { display: flex; justify-content: space-between; font-size: 0.79rem; margin-bottom: 0.28rem; color: var(--soft); }
+  .bar-head .val { color: var(--muted); font-family: ui-monospace, monospace; font-size: 0.75rem; }
+  .bar { height: 7px; background: rgba(255,255,255,.04); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+  .bar > span { display: block; height: 100%; border-radius: 999px; transition: width .7s cubic-bezier(.2,.8,.2,1); }
+  .bar.good > span { background: linear-gradient(90deg, #2e9c7f, var(--success)); }
+  .bar.bad > span { background: linear-gradient(90deg, #b34b48, var(--danger)); }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    body { padding: 1.7rem 1rem 3rem; }
+
+    .panel { padding: 1.3rem 1.05rem; border-radius: 16px; }
+
+    .stat .big { font-size: 1.2rem; }
+
+    .tabs {
+      width: 100%;
+      max-width: 100%;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x proximity;
+      padding-right: 1.5rem;
+    }
+
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tab {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      font-size: 0.78rem;
+      padding: 0.45rem 0.75rem;
+    }
+
+    table { font-size: 0.78rem; min-width: 560px; }
+    th, td { padding: 0.55rem 0.55rem; }
+
+    .tl-item::before { left: -1.4rem; }
+  }
+
+  @media (max-width: 420px) {
+    body { padding: 1.4rem 0.8rem 2.5rem; }
+    .panel { padding: 1.1rem 0.9rem; }
+    h1 { font-size: 1.35rem; }
+    table { min-width: 620px; font-size: 0.74rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+    .bar > span { transition: none; }
+  }
+
+  @media print {
+    body { background: white; color: black; padding: 0; }
+    .tabs { display: none; }
+    .panel {
+      display: block !important;
+      break-inside: avoid;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: none;
+      backdrop-filter: none;
+      margin-bottom: 1rem;
+      page-break-inside: avoid;
+    }
+    .stat, .finding, .col-box, .tbl { background: white; }
+    h1, h2, h3 { color: black; }
+    p, .stat .sub, .list li { color: #333; }
+    .supplement, .stance { background: #f5f5f5; border-color: #ccc; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="doc-label">Audit &amp; Opportunity Report</div>
+  <h1>A candidate-initiated growth review <span class="dim">of Cybit, NMKCA and Palisson Tech &amp; Media</span></h1>
+  <p class="lead">
+    Focus: technical SEO, search demand, AI search visibility, website conversion, measurement integrity and revenue attribution. The website is treated as a commercial system, not a collection of scores.
+  </p>
+
+  <div class="meta-strip">
+    <span class="meta-item"><strong>Prepared by</strong> Luyolo Paliso</span>
+    <span class="meta-item"><strong>Role</strong> Digital Growth Lead · Potentiam / Cybit</span>
+    <span class="meta-item"><strong>Evidence cut-off</strong> 27 October 2026</span>
+  </div>
+
+  <div class="stance">
+    <strong>Executive stance.</strong> Make the right pages discoverable, help the buyer understand the value, reduce friction to the next step, and connect every meaningful interaction to qualified leads and pipeline.
+  </div>
+
+  <div class="supplement">
+    <strong>Supplement note.</strong> This report accompanies the earlier three-site comparison, which framed Cybit as leaking, NMKCA as missing and Palisson as unfed. Where that document used a single number to make a point, this one adds depth, evidence and defensible method. The job description referenced throughout is the Potentiam specification for the Digital Growth Lead role, reporting to the Cybit CMO.
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Report sections">
+  <button type="button" class="tab active" data-tab="summary" role="tab" aria-selected="true" aria-controls="summary">Summary</button>
+  <button type="button" class="tab" data-tab="fit" role="tab" aria-selected="false" aria-controls="fit">Role fit</button>
+  <button type="button" class="tab" data-tab="method" role="tab" aria-selected="false" aria-controls="method">Method</button>
+  <button type="button" class="tab" data-tab="cybit" role="tab" aria-selected="false" aria-controls="cybit">Cybit</button>
+  <button type="button" class="tab" data-tab="nmkca" role="tab" aria-selected="false" aria-controls="nmkca">NMKCA</button>
+  <button type="button" class="tab" data-tab="palisson" role="tab" aria-selected="false" aria-controls="palisson">Palisson</button>
+  <button type="button" class="tab" data-tab="plan" role="tab" aria-selected="false" aria-controls="plan">30/60/90</button>
+  <button type="button" class="tab" data-tab="measure" role="tab" aria-selected="false" aria-controls="measure">Measurement</button>
+  <button type="button" class="tab" data-tab="interview" role="tab" aria-selected="false" aria-controls="interview">Interview</button>
+</nav>
+
+<!-- SUMMARY -->
+<div class="panel active" id="summary" role="tabpanel">
+
+  <h2>Executive summary</h2>
+  <p>
+    The opportunity for a Digital Growth Lead is not simply to improve traffic or chase a Lighthouse score. It is to connect technical quality, search intent, content, user journeys, data capture and CRM outcomes into a measurable revenue-generation loop. That is the through-line across this review.
+  </p>
+
+  <h2>Prioritised findings</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th style="width:10%">Priority</th><th>Finding</th><th>Why it matters</th><th>First move</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pri p0">P0</span></td>
+          <td class="site">Measurement (Palisson)</td>
+          <td>GA4 snapshot reports 3.4k events but no key-event data. Traffic and engagement cannot be tied to commercial outcomes.</td>
+          <td>Verify event definitions, key-event configuration and CRM hand-off. Define lead events that match the sales process.</td>
+        </tr>
+        <tr>
+          <td><span class="pri p0">P0</span></td>
+          <td class="site">Index pollution (NMKCA)</td>
+          <td>Search Console export contains URLs like "?goods/…", "?jp/…", "/outlet/…" that do not match an accounting firm's service taxonomy.</td>
+          <td>Inspect response codes, canonical/indexing, CMS records and server/security logs before assuming cause.</td>
+        </tr>
+        <tr>
+          <td><span class="pri p1">P1</span></td>
+          <td class="site">Core Web Vitals (Cybit and NMKCA)</td>
+          <td>Both sites show CLS around 0.9 in PageSpeed Insights, nine times the "good" threshold of 0.1. Layout shifts on load suppress form completion.</td>
+          <td>Trace the shift source, reserve space for HubSpot forms, audit third-party script loading on interaction.</td>
+        </tr>
+        <tr>
+          <td><span class="pri p1">P1</span></td>
+          <td class="site">Non-brand SEO (NMKCA)</td>
+          <td>Strong brand demand. Non-brand queries carry high impressions and zero clicks despite page-one positions.</td>
+          <td>Build a query-to-page map for audit, accounting, tax and advisory terms in Johannesburg and Gauteng.</td>
+        </tr>
+        <tr>
+          <td><span class="pri p1">P1</span></td>
+          <td class="site">Conversion (Cybit)</td>
+          <td>Useful content foundation exists. Evidence does not show how well those journeys convert.</td>
+          <td>Instrument CTA, form, assessment, webinar and CRM events. Identify drop-offs by landing page and intent.</td>
+        </tr>
+        <tr>
+          <td><span class="pri p1">P1</span></td>
+          <td class="site">Traffic quality (Palisson)</td>
+          <td>90% direct traffic, top three cities are known data-centre locations. Real audience is closer to 55 than 676.</td>
+          <td>Filter bot traffic, apply UTMs consistently, track AI assistant referrals separately.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Evidence-backed headline metrics</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Source</th><th>Snapshot</th><th>Interpretation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="site">NMKCA Search Console</td>
+          <td>235 clicks / 5,275 impressions across 11 Jun – 25 Oct 2026. Calculated CTR <strong>4.45%</strong>.</td>
+          <td>Directional baseline. Chart sheet and dimension tables can differ due to aggregation.</td>
+        </tr>
+        <tr>
+          <td class="site">NMKCA brand query</td>
+          <td>"nmk chartered accountants": <strong>113 clicks</strong>, 394 impressions, <strong>28.68% CTR</strong>, position 1.45.</td>
+          <td>Brand demand converts in search. Non-brand expansion is the growth opportunity.</td>
+        </tr>
+        <tr>
+          <td class="site">Palisson GA4</td>
+          <td><strong>676 active users</strong>, 677 new users, <strong>23s</strong> average engagement, <strong>3.4k</strong> events for 1 Jan – 27 Oct 2026.</td>
+          <td>Engagement short enough to investigate by landing page and traffic source. Event count is not lead generation.</td>
+        </tr>
+        <tr>
+          <td class="site">PageSpeed Insights</td>
+          <td>Cybit and NMKCA both show <strong>CLS ≈ 0.9</strong> on desktop. Palisson shows <strong>CLS ≈ 0</strong>.</td>
+          <td>Layout instability is a platform-configuration problem, not a platform inevitability.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quote">
+    <strong>What I would say in the interview.</strong> My approach is to establish a trustworthy baseline first, prioritise the issues closest to qualified demand and conversion, ship the smallest high-impact fixes, and report the result in lead quality and pipeline terms. Technical SEO, UX and analytics are not separate workstreams; they are parts of the same growth system.
+  </div>
+</div>
+
+<!-- ROLE FIT -->
+<div class="panel" id="fit" role="tabpanel">
+
+  <h2>Where the evidence maps to the Digital Growth Lead brief</h2>
+  <p>
+    The Potentiam specification frames the role around hands-on WordPress and Elementor development, technical SEO, performance and Core Web Vitals, tracking and integrations, conversion improvement, reliable delivery, and commercial ownership of qualified enquiries, webinar registrations and pipeline. The table below maps each requirement against the candidate's evidence.
+  </p>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th style="width:26%">Job requirement</th><th>Evidence</th><th>How to frame it</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="site">5–8+ years WordPress + technical SEO + analytics</td>
+          <td>6+ years across MRI Software and independent practice. 10+ regional WordPress sites and 20+ merger properties.</td>
+          <td>Meets the experience band. Bring one MRI example and one independent build.</td>
+        </tr>
+        <tr>
+          <td class="site">WordPress and Elementor development</td>
+          <td>4 years of hands-on Elementor and WordPress at MRI Software.</td>
+          <td>Direct match. Site operations at scale, controlled releases, technical trade-offs affecting discoverability and UX.</td>
+        </tr>
+        <tr>
+          <td class="site">JavaScript and PHP capability</td>
+          <td>JavaScript, TypeScript and React confirmed. PHP not yet evidenced.</td>
+          <td>Be honest. Frame PHP as proof-of-concept work in progress. Keep the conversation on diagnosis and prioritisation.</td>
+        </tr>
+        <tr>
+          <td class="site">Core Web Vitals and technical SEO</td>
+          <td>Ahrefs, GA4, GSC audits. This audit shows CLS diagnosis, Lighthouse reading, and a structured priority model.</td>
+          <td>Demonstrate the pattern, not just the scores. The Palisson and NMKCA comparison is the proof.</td>
+        </tr>
+        <tr>
+          <td class="site">GA4, GSC and GTM measurement</td>
+          <td>GA4 and GSC confirmed. GTM not yet evidenced.</td>
+          <td>Frame GTM as the next proof-of-concept. Keep the conversation on the measurement model and the QA discipline.</td>
+        </tr>
+        <tr>
+          <td class="site">Conversion, CRO and A/B testing</td>
+          <td>VWO listed in toolset. Salesforce landing pages. This audit proposes a structured test backlog.</td>
+          <td>Show the hypothesis, test design and success metric. One concrete example beats a tool list.</td>
+        </tr>
+        <tr>
+          <td class="site">APIs, webhooks, CRM integrations</td>
+          <td>Salesforce landing page experience. HubSpot forms identified on Cybit but not yet owned.</td>
+          <td>Be candid. Distinguish direct experience from a first-30-day data-flow audit plan.</td>
+        </tr>
+        <tr>
+          <td class="site">Website operations: Git, staging, hosting, DNS, SSL</td>
+          <td>Handled hosting, DNS, SSL, backups, security and accessibility across multiple WordPress estates.</td>
+          <td>Direct match. Name specific tasks in the interview.</td>
+        </tr>
+        <tr>
+          <td class="site">Commercial ownership of enquiries and pipeline</td>
+          <td>This audit connects CLS to form completion, SERP capture to qualified enquiries, and traffic quality to pipeline.</td>
+          <td>This is the differentiator. Most candidates can build. Fewer can connect build to commercial outcome.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quote">
+    <strong>Strength to emphasise.</strong> A rare blend of practical web implementation, UI/UX thinking and technical SEO across multiple WordPress sites and mergers. For this role, connect that execution skill to commercial measurement and prioritisation.
+  </div>
+</div>
+
+<!-- METHOD -->
+<div class="panel" id="method" role="tabpanel">
+
+  <h2>Method, evidence quality and limitations</h2>
+  <p>
+    Review date: 27 October 2026. The analysis combines (a) live PageSpeed Insights runs on all three sites, mobile and desktop, (b) the Google Analytics 4 snapshot for Palisson, (c) the Search Console workbook for NMKCA, (d) the public service architecture and page source of cybit.com, and (e) Google's published guidance on Core Web Vitals and AI search.
+  </p>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th style="width:22%">Evidence tier</th><th>What it supports</th><th>Limits</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="site">PageSpeed Insights runs</td>
+          <td>CLS, LCP, TBT and TTFB ratings for all three sites, mobile and desktop.</td>
+          <td>Lab data. Field data (CrUX) may differ, particularly on mobile. Treat the ratings as directional rather than definitive.</td>
+        </tr>
+        <tr>
+          <td class="site">Direct uploaded evidence</td>
+          <td>Palisson GA4 snapshot, NMKCA Search Console export and filters.</td>
+          <td>GA4 PDF is a screenshot without event definitions or page-path drill-down. GSC workbook covers only the dimensions and rows included.</td>
+        </tr>
+        <tr>
+          <td class="site">Public-page observation</td>
+          <td>Cybit service page structure and CTAs. NMKCA and Palisson homepage text and counters.</td>
+          <td>No CMS, server logs, private analytics, CRM, user testing, crawl export or source-code audit was available. Crawler-extracted text can differ from fully rendered browser state.</td>
+        </tr>
+        <tr>
+          <td class="site">Recommendations / hypotheses</td>
+          <td>Prioritised next tests and fixes based on the evidence and role brief.</td>
+          <td>Proposed actions, not claims that an unverified defect exists. Validate before implementation.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Core Web Vitals thresholds used for evaluation</h2>
+  <p>
+    At the 75th percentile, "good" targets are <strong>LCP ≤ 2.5s</strong>, <strong>INP ≤ 200ms</strong> and <strong>CLS ≤ 0.1</strong>. These are evaluation targets. The measured values for Cybit and NMKCA (CLS ≈ 0.9) sit outside the "good" band by a factor of nine.
+  </p>
+
+  <h2>Google's guidance on AI search</h2>
+  <p>
+    Google's own guidance says the established SEO fundamentals remain relevant for AI search features, and that there are no additional technical requirements or special AI-specific schema needed for eligibility. The recommendations here therefore focus on crawlability, helpful content, clear text, internal linking, evidence, and structured data that accurately matches visible content. <span class="cite">[S5]</span>
+  </p>
+
+  <h2>Scope note</h2>
+  <p class="note">
+    This report distinguishes source evidence, direct page observations and hypotheses requiring validation. It is a working interview document. It does not claim access to the three organisations' CMS, private analytics properties, CRM or server logs. All PageSpeed readings are lab runs taken on 27 October 2026 and should be re-run before quoting as final.
+  </p>
+</div>
+
+<!-- CYBIT -->
+<div class="panel" id="cybit" role="tabpanel">
+
+  <h2>Cybit: website growth audit</h2>
+  <p>
+    Cybit is the priority site for the interview because the role is explicitly about turning this website into a more effective revenue platform. Publicly accessible pages show a service-led architecture across Data &amp; AI, Cyber Security, Modern Workspace, Hybrid Cloud and Managed IT, with service-specific calls to action, problem-led content, delivery frameworks, industry use cases, FAQs, partner logos and customer proof. The stack runs on WordPress with Elementor, Yoast SEO Premium, HubSpot, LeadForensics, Demandbase and Cloudflare. <span class="cite">[S3, S4]</span>
+  </p>
+
+  <h2>Performance baseline</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl">LCP (desktop)</div>
+      <div class="big success">~1.2s</div>
+      <div class="sub">Good. Speed is not the bottleneck.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">CLS (desktop)</div>
+      <div class="big danger">~0.9</div>
+      <div class="sub">Nine times the good threshold of 0.1.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">CLS (mobile)</div>
+      <div class="big danger">Poor</div>
+      <div class="sub">Degrades further on lower-CPU devices.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">TBT</div>
+      <div class="big warn">Needs improvement</div>
+      <div class="sub">Consistent with the third-party tag stack.</div>
+    </div>
+  </div>
+
+  <div class="bar-block">
+    <div class="bar-head"><span>Cybit CLS vs good threshold</span><span class="val">0.9 / 0.1</span></div>
+    <div class="bar bad"><span data-width="92%" style="width:92%"></span></div>
+  </div>
+
+  <h2>What is already working</h2>
+
+  <div class="two-col">
+    <div class="col-box working">
+      <h3>Clear service taxonomy</h3>
+      <p>Each top-level solution has a dedicated page rather than relying only on a broad corporate homepage.</p>
+    </div>
+    <div class="col-box working">
+      <h3>Problem-to-solution messaging</h3>
+      <p>The Data &amp; AI page addresses disconnected data, slow manual reporting, AI readiness and poor value from analytics tools. Cyber Security frames risk in business terms.</p>
+    </div>
+    <div class="col-box working">
+      <h3>Useful conversion language</h3>
+      <p>"Speak to a Data Automation Expert", "Book Your Assessment", "Let's Discuss Your Data Challenges" — all more relevant than one generic contact CTA.</p>
+    </div>
+    <div class="col-box working">
+      <h3>Proof and depth</h3>
+      <p>Delivery framework, use cases by sector, customer testimonials and case studies, partner logos and FAQs all support buyer confidence and answer-engine retrieval.</p>
+    </div>
+    <div class="col-box working">
+      <h3>Webinar and campaign funnel</h3>
+      <p>Homepage promotes upcoming webinars and campaign landing pages exist for Truth in Data, Threat and Cloud. This is conversion infrastructure that most sites in this stage do not have.</p>
+    </div>
+  </div>
+
+  <h2>Pressure touchpoints and proposed improvements</h2>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>CLS is a conversion leak</div>
+    <p>A CLS of ~0.9 on desktop, worse on mobile, suppresses form completion and webinar registration. Every layout shift is a moment where a prospect loses their place mid-form or mid-CTA. On a site whose commercial model runs on webinar sign-ups and campaign enquiries, that friction compounds into lost pipeline.</p>
+    <p><strong>Fix:</strong> trace the shift source in the PageSpeed filmstrip. Reserve space for HubSpot forms and banners. Set explicit dimensions on hero media. Defer non-critical third-party tags (LeadForensics, Demandbase, browser speed scripts) until after interaction.</p>
+    <p><strong>Measure:</strong> CLS ≤ 0.1. Form completion rate. Webinar registration rate. Field data (CrUX) once sample size allows.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>Measurement to CRM</div>
+    <p>No Cybit GA4, GSC or CRM baseline was available for this audit. This is a data gap, not proof that tracking is absent. But it means the current form-to-pipeline path cannot be verified from outside.</p>
+    <p><strong>Fix:</strong> audit GA4 events, consent state, HubSpot and CRM properties, Lead Forensics, Sales Navigator and webinar hand-offs. Map every form, assessment booking, phone and email click, gated asset and webinar registration.</p>
+    <p><strong>Measure:</strong> event QA pass rate. Lead-source completeness. Form-submit-to-CRM match rate. Visitor-to-lead conversion. Marketing-sourced and influenced pipeline.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Third-party script governance</div>
+    <p>Four tracking platforms (HubSpot, LeadForensics, Demandbase, browser speed) load on the homepage. Each competes for main-thread time and each contributes to layout shift unless explicitly controlled.</p>
+    <p><strong>Fix:</strong> load on interaction or after consent. Set explicit container dimensions. Audit which tags fire before the first paint.</p>
+    <p><strong>Measure:</strong> TBT, INP, consent rate, and CLS stability during releases.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Landing page conversion architecture</div>
+    <p>Service pages are content-rich, but buyers arriving with a specific problem may not find a crisp next step or relevant proof quickly enough.</p>
+    <p><strong>Experiment:</strong> for each priority page, test a clear primary CTA, a lower-commitment secondary CTA, one relevant case study or outcome, scope/fit qualifiers, and a concise "what happens next" section.</p>
+    <p><strong>Measure:</strong> CTA click-to-submit. Form completion. Assessment booking rate. Qualified-lead rate by page.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Information architecture</div>
+    <p>Multiple corporate and content destinations (service pages, technologies, blog, Press Centre, Engage Hub, On Demand, Store). That breadth is an asset but can complicate choice if paths are not clearly tiered.</p>
+    <p><strong>Fix:</strong> use GA4 path exploration and heatmaps to confirm whether target buyers find the right service route. Add prominent "I need to…" pathways and contextual links between problem, service, case study and CTA.</p>
+    <p><strong>Measure:</strong> path progression. Service-to-case-study CTR. Exits at key pages. Contact-page assist rate.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>AI visibility</div>
+    <p>The role explicitly expects visibility in ChatGPT, Copilot, Gemini, Claude and Google AI Overviews. No AI visibility baseline exists for Cybit.</p>
+    <p><strong>Fix:</strong> create a repeatable prompt set by buyer, vertical and solution. Record whether Cybit is mentioned or cited, which competitors appear, which source pages are cited and what content gaps recur.</p>
+    <p><strong>Measure:</strong> share of tracked prompts with a correct mention. Citation frequency. Cited page set. AI-assisted visits and leads.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Non-brand discoverability</div>
+    <p>No Cybit Search Console export or ranking data was available. Query gaps cannot be quantified without it.</p>
+    <p><strong>Fix:</strong> build a baseline around problem and solution searches for CIO, IT, CISO and data leaders. Map each intent cluster to one strong landing page and useful supporting content.</p>
+    <p><strong>Measure:</strong> non-brand clicks and impressions. Qualified organic leads. Priority-query coverage. Assisted pipeline.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p2">P2</span>Structured data depth</div>
+    <p>Yoast Premium outputs a basic schema graph, but Service, FAQ, Breadcrumb and Review markup on service and campaign pages is likely incomplete. For a B2B technology firm, this is unclaimed territory.</p>
+    <p><strong>Fix:</strong> deploy Service, FAQ, Breadcrumb and Review schema where eligible. Validate against visible content before publishing.</p>
+    <p><strong>Measure:</strong> rich result impressions. CTR on pages with structured data.</p>
+  </div>
+
+  <div class="quote">
+    <strong>The best next move is optimisation, not a wholesale redesign.</strong> The content foundation is strong and the conversion infrastructure exists. Use behavioural evidence to determine which entry pages fail to progress visitors, and test small changes against a control. Confirm templates, metadata, indexability, schema, internal linking and mobile behaviour with a crawl audit before marking anything as a defect.
+  </div>
+</div>
+
+<!-- NMKCA -->
+<div class="panel" id="nmkca" role="tabpanel">
+
+  <h2>NMKCA: Search Console and website audit</h2>
+  <p>
+    This section uses the Search Console workbook for <strong>nmkca.co.za</strong>, filtered to Web search and the last six months. Chart rows run from 11 June to 25 October 2026, so totals refer to the periods shown, not a full six calendar months.
+  </p>
+
+  <h2>Search performance snapshot</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Period</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Avg. position</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>11–30 Jun 2026</td><td class="num">37</td><td class="num">677</td><td class="num">5.47%</td><td class="num">7.6</td></tr>
+        <tr><td>Jul 2026</td><td class="num">58</td><td class="num">1,164</td><td class="num">4.98%</td><td class="num">6.8</td></tr>
+        <tr><td>Aug 2026</td><td class="num">39</td><td class="num">1,341</td><td class="num">2.91%</td><td class="num">9.8</td></tr>
+        <tr><td>Sep 2026</td><td class="num">68</td><td class="num">1,206</td><td class="num">5.64%</td><td class="num">9.4</td></tr>
+        <tr><td>1–25 Oct 2026</td><td class="num">33</td><td class="num">887</td><td class="num">3.72%</td><td class="num">9.5</td></tr>
+        <tr><td><strong>Total / calculated</strong></td><td class="num"><strong>235</strong></td><td class="num"><strong>5,275</strong></td><td class="num"><strong>4.45%</strong></td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    September had the strongest click volume (68) and CTR (5.64%). August had the highest impressions (1,341) but the lowest CTR (2.91%) and weaker average position (9.8). October is partial. This could reflect query mix, SERP presentation or ranking shifts; the export alone cannot isolate the cause.
+  </p>
+
+  <h2>Performance baseline</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl">LCP (desktop)</div>
+      <div class="big success">~1.2s</div>
+      <div class="sub">Same signature as Cybit. Speed is fine.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">CLS (desktop)</div>
+      <div class="big danger">~0.9</div>
+      <div class="sub">Identical layout instability to Cybit.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">CLS (mobile)</div>
+      <div class="big danger">Poor</div>
+      <div class="sub">Worse than desktop, as expected.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">Rich results</div>
+      <div class="big danger">~Zero</div>
+      <div class="sub">One impression each for review and product snippets.</div>
+    </div>
+  </div>
+
+  <h2>Query insights and opportunities</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Query or pattern</th><th>Evidence</th><th>Interpretation and action</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="site">"nmk chartered accountants"</td>
+          <td>113 clicks / 394 impressions / 28.68% CTR / position 1.45.</td>
+          <td>Strong branded demand. Preserve brand title, identity, contact details and trust signals. This query accounts for about 48% of the 235 clicks in the period chart.</td>
+        </tr>
+        <tr>
+          <td class="site">"nmk" variants</td>
+          <td>"nmk": 433 impressions, 5 clicks, 1.15% CTR, position 3.34. "mnk": 522 impressions, 1 click, 0.19% CTR, position 3.64.</td>
+          <td>Brand variants have impressions but weak CTR. Review SERP title, description, knowledge signals and branded snippets. Do not assume ranking alone is the issue.</td>
+        </tr>
+        <tr>
+          <td class="site">"accounting firms in johannesburg"</td>
+          <td>6 clicks / 37 impressions / 16.22% CTR / position 13.32.</td>
+          <td>High-intent local phrase averages beyond the top 10. Build or strengthen a relevant local service page and internal links, then monitor by device.</td>
+        </tr>
+        <tr>
+          <td class="site">"audit firms johannesburg"</td>
+          <td>3 clicks / 10 impressions / 30% CTR / position 15.5.</td>
+          <td>Small sample but relevant intent. Strengthen audit service content, differentiators, proof and conversion CTA.</td>
+        </tr>
+        <tr>
+          <td class="site">"chartered accountant johannesburg"</td>
+          <td>46 impressions, 0 clicks, position 1.35. "chartered accountant": 72 impressions, 0 clicks, position 3.4.</td>
+          <td>Worth a SERP review: check query context, title and description, intent match, branded prominence and whether the sample is too small to conclude. Avoid making a major decision on a single row.</td>
+        </tr>
+        <tr>
+          <td class="site">Broader variants</td>
+          <td>"accountants johannesburg" (32 impressions, 0 clicks, position 4.31), "tax returns 2026" (18, 0, 9.06), "management accounts sandton" (19, 0, 62.32).</td>
+          <td>Create a content map around actual service capability and geography. Separate opportunities with visible impressions and near-term ranking from topics too competitive or low-volume to prioritise.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Device and market signals</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Segment</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Avg. pos</th><th>Readout</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="site">Desktop</td><td class="num">119</td><td class="num">2,219</td><td class="num">5.36%</td><td class="num">11.81</td><td>Higher CTR despite weaker average position. Compare query mix and device-specific snippets.</td></tr>
+        <tr><td class="site">Mobile</td><td class="num">115</td><td class="num">3,012</td><td class="num">3.82%</td><td class="num">6.43</td><td>More impressions and stronger average position, but lower CTR. Test mobile SERP and landing experience.</td></tr>
+        <tr><td class="site">Tablet</td><td class="num">1</td><td class="num">44</td><td class="num">2.27%</td><td class="num">8.98</td><td>Too little volume for strategic conclusions.</td></tr>
+        <tr><td class="site">South Africa</td><td class="num">220</td><td class="num">4,634</td><td class="num">4.75%</td><td class="num">8.44</td><td>Primary market by a wide margin. Prioritise Johannesburg and Gauteng local intent and service clarity.</td></tr>
+        <tr><td class="site">United States</td><td class="num">1</td><td class="num">341</td><td class="num">0.29%</td><td class="num">7.21</td><td>Large impression volume with negligible clicks. Validate whether the visibility is relevant to the target market before spending effort.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Pressure touchpoints and recommended fixes</h2>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>Suspicious URL patterns</div>
+    <p>Search Console contains paths that do not fit an accounting website: "?goods/…", "?jp/…", "/outlet/…" and "/ctg/search/similarImageSearchResultView/".</p>
+    <p><strong>Action:</strong> inspect exact URLs in a browser and Search Console URL Inspection. Check response, canonical, indexability, sitemap, CMS records, plugins and users, and server/security logs. If confirmed invalid, clean up the source and return appropriate 404, 410 or redirects. Do not mass-redirect unrelated junk without validation.</p>
+    <p><strong>Measure:</strong> no unapproved spam URLs in the index. Clean sitemap. Stable indexed-page count. No recurring suspicious URL patterns.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>CLS is the same leak as Cybit</div>
+    <p>Desktop CLS is around 0.9. Mobile is worse. The site is unstable on load, which affects both engagement and search quality signals. WordPress with unmanaged script loading is a common cause.</p>
+    <p><strong>Action:</strong> trace the shift source, reserve space for dynamic elements, defer non-critical scripts, set explicit media dimensions.</p>
+    <p><strong>Measure:</strong> CLS ≤ 0.1. Engagement time. Contact form completion.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>Zero-value trust counters</div>
+    <p>Homepage text extraction shows multiple trust counters at 0, while the page copy separately states 24+ years of industry experience. Crawlers and assistive technology may see zeroes where the browser eventually shows numbers.</p>
+    <p><strong>Action:</strong> check the rendered page, count-up animation and server-rendered text. Make key proof points meaningful without JavaScript, and ensure counts are accurate.</p>
+    <p><strong>Measure:</strong> consistent counters across browser, accessibility tree and crawler extraction. No zero-value trust metrics.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Legacy PDF ranking</div>
+    <p>"NMK-Company-Profile-2017-emailer.pdf": 676 impressions, 14 clicks, 2.07% CTR, position 6.45. A nine-year-old PDF is the second-best performing asset on the site.</p>
+    <p><strong>Action:</strong> confirm whether the profile is current. Replace with a current branded PDF and accurate metadata. Update internal links and decide whether the legacy URL should be retained, redirected or retired based on link equity and user need.</p>
+    <p><strong>Measure:</strong> current asset receives clicks and downloads. Updated dates, service information and contact details. No stale company claims.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Homepage concentration</div>
+    <p>The homepage is the main indexed page (223 clicks, 5,188 impressions, 4.3% CTR, position 8.75). Service query intent is dispersed.</p>
+    <p><strong>Action:</strong> map each high-value service to a dedicated page with descriptive title and H1, clear scope, South African context, proof, FAQs and a single primary CTA. Link service, industry, about, leadership and contact pages logically.</p>
+    <p><strong>Measure:</strong> non-brand clicks. High-intent landing-page visits. Contact and consultation conversion by service.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Mobile CTR gap</div>
+    <p>Mobile has lower CTR than desktop (3.82% versus 5.36%) even though average position is stronger.</p>
+    <p><strong>Action:</strong> check mobile SERP appearance and run a device-specific journey audit covering viewport, speed, menu, text scale, tap targets, contact and WhatsApp link, and form friction. Segment by query before attributing cause.</p>
+    <p><strong>Measure:</strong> mobile CTR and mobile lead conversion by landing page. Fewer form drop-offs.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p2">P2</span>No meaningful rich-result signal</div>
+    <p>Search appearance rows show one impression each for review and product snippets across six months.</p>
+    <p><strong>Action:</strong> validate structured data against visible content — Organization, AccountingService or LocalBusiness, BreadcrumbList, Person where relevant. Use FAQ content to answer users, not to chase guaranteed rich snippets.</p>
+    <p><strong>Measure:</strong> valid structured data where eligible. Stronger SERP clarity. Qualified organic traffic.</p>
+  </div>
+
+  <h2>Recommended content map</h2>
+
+  <div class="two-col">
+    <div class="col-box">
+      <h3>Core service pages</h3>
+      <p>External audit, internal audit, independent reviews, audit committee support, tax compliance, payroll and PAYE, annual financial statements, management accounts, bookkeeping, company secretarial, business advisory.</p>
+    </div>
+    <div class="col-box">
+      <h3>Local intent</h3>
+      <p>Johannesburg, Bruma, Bedfordview and Gauteng, only where delivery capability and client value justify local pages. Avoid thin city-page duplication.</p>
+    </div>
+    <div class="col-box">
+      <h3>Proof pages</h3>
+      <p>Leadership credentials, practice and registration information, anonymised case examples, sectors served, approach and process, frequently asked compliance questions.</p>
+    </div>
+    <div class="col-box">
+      <h3>Conversion paths</h3>
+      <p>Each service page explains who it is for, the typical trigger problem, what is included, evidence of credibility, and the next step (consultation or request a call).</p>
+    </div>
+  </div>
+</div>
+
+<!-- PALISSON -->
+<div class="panel" id="palisson" role="tabpanel">
+
+  <h2>Palisson Tech &amp; Media: analytics and website audit</h2>
+  <p>
+    The GA4 Reports Snapshot covers 1 January to 27 October 2026 for the live production property at <strong>palisson-tech.co.za</strong>. The site is hand-coded with no page-builder dependencies, which makes it the useful technical benchmark in this comparison.
+  </p>
+
+  <h2>Performance baseline</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl">LCP (desktop)</div>
+      <div class="big success">Good</div>
+      <div class="sub">Hand-coded, no page builder overhead.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">CLS (desktop)</div>
+      <div class="big success">~0</div>
+      <div class="sub">Proves the layout-stability fix is achievable.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">CLS (mobile)</div>
+      <div class="big success">~0</div>
+      <div class="sub">Stable across devices.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">TBT</div>
+      <div class="big success">Low</div>
+      <div class="sub">Minimal third-party load.</div>
+    </div>
+  </div>
+
+  <div class="bar-block">
+    <div class="bar-head"><span>Palisson CLS vs good threshold</span><span class="val">~0 / 0.1</span></div>
+    <div class="bar good"><span data-width="3%" style="width:3%"></span></div>
+  </div>
+
+  <h2>GA4 baseline</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl">Active users</div>
+      <div class="big">676</div>
+      <div class="sub">Modest total. Segment before judging quality.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">New users</div>
+      <div class="big">677</div>
+      <div class="sub">Almost all marked new. Very low return rate.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">Avg engagement</div>
+      <div class="big warn">23s</div>
+      <div class="sub">Signal to segment, not proof of poor UX.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">Qualified after filtering</div>
+      <div class="big">~55</div>
+      <div class="sub">Organic, referral and AI traffic only.</div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Metric or dimension</th><th>Reported</th><th>Growth interpretation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="site">Key events</td><td class="danger">No data available</td><td>Potentially no key events configured, none fired in the report, or the card lacks data. Verify GA4 Admin and report configuration.</td></tr>
+        <tr><td class="site">Top source (first user)</td><td>(direct) / (none): 609 active users</td><td>About 90% of total. Validate UTMs, referrer loss and consent or browser effects before interpreting as true direct demand.</td></tr>
+        <tr><td class="site">Google organic sessions</td><td>13</td><td>Small. Check property coverage and organic landing pages before drawing an SEO conclusion.</td></tr>
+        <tr><td class="site">AI referral</td><td>chatgpt.com / ai-assistant: 4 first-user active users</td><td>Worth tracking as an emerging path. Sample too small to infer a trend.</td></tr>
+        <tr><td class="site">Geography</td><td>Des Moines 128; Flint Hill 102; Cape Town 46; Council Bluffs 43; Warsaw 24; Dublin 12; Moses Lake 10</td><td>Three of the top seven cities are known data-centre locations for Microsoft, Meta and AWS. That traffic is almost certainly scrapers or monitoring services, not humans.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Engagement signals</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Page</th><th>Views</th><th>Active users</th><th>Events</th><th>Bounce</th><th>Read</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="site">Homepage</td><td class="num">771</td><td class="num">555</td><td class="num">2.6k</td><td class="num warn">55.0%</td><td>Normal for a portfolio. Half the visitors do nothing.</td></tr>
+        <tr><td class="site">Resume page</td><td class="num">177</td><td class="num">107</td><td class="num">508</td><td class="num danger">80.7%</td><td>People land and leave without clicking anything else.</td></tr>
+        <tr><td class="site">Third page</td><td class="num">144</td><td class="num">9</td><td class="num">239</td><td class="num">31.8%</td><td>More engagement per user, but very few users.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Search visibility</h2>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th><th>Read</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="site">Clicks (6 months)</td><td class="num">9</td><td>Search is not a meaningful channel today.</td></tr>
+        <tr><td class="site">Branded domain query</td><td>47 impressions at position 1.51, zero clicks</td><td>Users type the URL directly. Same pattern as NMKCA's "mnk" anomaly.</td></tr>
+        <tr><td class="site">US impressions</td><td>162, zero clicks</td><td>No geo-targeting signals. Google shows the site to an audience it cannot serve.</td></tr>
+        <tr><td class="site">Impressions trend</td><td>135 in July to 27 in late October</td><td>80% decline in three months. Content velocity has stopped.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Pressure touchpoints and recommended fixes</h2>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>Key-event configuration is missing</div>
+    <p>3.4k events are recorded, but the key-event card shows no data. Events are being captured; conversions are not being defined.</p>
+    <p><strong>Action:</strong> define and test key events — contact or brief submit, WhatsApp click, phone and email click, book-a-call, portfolio and case-study engagement, downloads, newsletter submit. Mark only meaningful outcomes as key events.</p>
+    <p><strong>Measure:</strong> QA pass for every key event. Lead events visible in GA4 and matched to inbox or CRM.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p0">P0</span>Zero-value trust counters</div>
+    <p>Public page text extraction shows "0+" for Projects Completed, Years of Experience and Satisfied Clients. The visual page may animate these values after load, but crawlers and assistive technology see zeros.</p>
+    <p><strong>Action:</strong> ensure static, semantically readable values render to crawlers and assistive technology. If metrics are not verified, replace counts with factual proof statements rather than animated zeroes.</p>
+    <p><strong>Measure:</strong> consistent counters in rendered browser, crawl and accessibility review. Fewer trust inconsistencies.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Attribution is dominated by direct</div>
+    <p>GA4 lists 90% direct traffic, low Google organic sessions, and small social and referral counts.</p>
+    <p><strong>Action:</strong> apply consistent UTMs to social, outreach, email, portfolio links and campaigns. Document source and medium conventions. Investigate referrer loss and form and WhatsApp journeys.</p>
+    <p><strong>Measure:</strong> more attributable sessions and leads. Lower "unknown/direct" share where campaign tags are controllable.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Traffic quality needs segmentation</div>
+    <p>Average engagement is 23 seconds, but sources and geography may include irrelevant or low-quality traffic.</p>
+    <p><strong>Action:</strong> segment engagement by source, landing page, hostname, device, country and city, and event behaviour before excluding anything. Confirm internal traffic filters and bot and security signals.</p>
+    <p><strong>Measure:</strong> qualified engaged sessions. Lead conversion by source. Transparent, defensible traffic-quality filters.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>Content velocity has stopped</div>
+    <p>Impressions fell from 135 in July to 27 in late October. No new content, no internal linking refresh.</p>
+    <p><strong>Action:</strong> establish a content cadence tied to keyword clusters. Even a stable site loses relevance without one.</p>
+    <p><strong>Measure:</strong> non-brand impressions trend. New indexed pages. Returning visitor rate.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label"><span class="pri p1">P1</span>High bounce on the resume page</div>
+    <p>80.7% bounce on the resume page. People land and leave without clicking anything else. Same pattern as NMKCA's ranking PDF.</p>
+    <p><strong>Action:</strong> add onward paths from the resume page — case studies, contact, specific service pages. Make the next step obvious.</p>
+    <p><strong>Measure:</strong> resume-page exit rate. Portfolio-to-contact click-through. Qualified briefs.</p>
+  </div>
+
+  <div class="quote">
+    <strong>What Palisson is useful for in the interview.</strong> Palisson is a practical example of end-to-end understanding: you can build a site that scores well on performance, you can read the analytics honestly, and you can see why tracking and conversion design must be planned together. Present it as an honest diagnostic, not as a revenue-attribution case study. The gap between 676 users and 9 search clicks is the point.
+  </div>
+</div>
+
+<!-- PLAN -->
+<div class="panel" id="plan" role="tabpanel">
+
+  <h2>30 / 60 / 90-day action plan</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-head">Days 1–10 · Baseline</div>
+      <h3>Establish a trustworthy starting point</h3>
+      <p>Stakeholder and commercial discovery. Baseline analytics. Key conversion mapping. CRM and data-flow audit. Repeatable PageSpeed and crawl.</p>
+      <p><strong>Deliverables:</strong> growth KPI tree; event taxonomy; current funnel map; crawl and PageSpeed baseline for homepage and priority landing pages; integration map.</p>
+      <p><strong>Exit criteria:</strong> every priority conversion path can be tested end to end. Metric definitions and data limitations documented.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head">Days 11–30 · Remove friction</div>
+      <h3>Fix the P0s and tighten the top of the funnel</h3>
+      <p>Fix P0 tracking, indexing, security and trust issues. Prioritise highest-intent service pages. Define the AI visibility prompt set. Review mobile experience.</p>
+      <p><strong>Deliverables:</strong> P0 and P1 backlog; validated tracking fixes; metadata and internal-link fixes; revised CTA and form hypotheses; AI visibility baseline.</p>
+      <p><strong>Exit criteria:</strong> key events validated. Critical indexability issues triaged. Priority pages have one clear primary CTA and proof.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head">Days 31–60 · Experiment and publish</div>
+      <h3>Ship changes and start testing</h3>
+      <p>Ship 2 to 4 priority problem or solution assets, or page refreshes. Run first CRO tests. Strengthen contextual case-study links. Wire lead-source data to CRM.</p>
+      <p><strong>Deliverables:</strong> published and updated pages; test log; lead source and landing page reports; evidence-led AI and search content improvements.</p>
+      <p><strong>Exit criteria:</strong> results compared against baseline. Winning variants and pages identified, or tests clearly marked inconclusive.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head">Days 61–90 · Scale and report</div>
+      <h3>Scale what worked, report against pipeline</h3>
+      <p>Scale winning patterns. Refresh content where search data suggests demand. Review AI citations and competitor visibility. Report qualified pipeline.</p>
+      <p><strong>Deliverables:</strong> 90-day growth review; next-quarter roadmap; channel and landing-page dashboard; experiment backlog and lessons.</p>
+      <p><strong>Exit criteria:</strong> report includes non-brand search, qualified leads, lead-to-opportunity and pipeline contribution, not just sessions.</p>
+    </div>
+  </div>
+
+  <h2>Suggested first 10 working days</h2>
+  <ul class="list">
+    <li><strong>Day 1–2:</strong> align revenue goals, ideal customer profile, priority verticals and services, sales stages and the definition of a qualified lead.</li>
+    <li><strong>Day 2–4:</strong> confirm GA4 and GSC ownership, event coverage, CRM fields, lead-source persistence, consent behaviour and existing dashboards.</li>
+    <li><strong>Day 3–5:</strong> re-run PageSpeed for mobile and desktop, crawl the site, review indexing, metadata, canonicals and redirects, inspect priority templates.</li>
+    <li><strong>Day 5–7:</strong> map buyer intents to service pages, case studies, FAQs and CTA paths. Collect sales and support questions and lost-deal themes.</li>
+    <li><strong>Day 8–10:</strong> present a ranked backlog with impact, confidence, effort, owner, dependencies and expected metric. Agree one quick technical fix and one CRO experiment.</li>
+  </ul>
+</div>
+
+<!-- MEASUREMENT -->
+<div class="panel" id="measure" role="tabpanel">
+
+  <h2>Measurement framework</h2>
+  <p>
+    Every channel and landing page should be traceable from discovery to a qualified lead and, where possible, opportunity and pipeline. Sessions and rankings explain behaviour. They are not the final definition of growth.
+  </p>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th style="width:18%">Layer</th><th>Measures</th><th style="width:32%">Why it matters</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="site">Discovery</td>
+          <td>Non-brand organic impressions and clicks, priority-query coverage, organic landing pages, AI prompt mentions and citations, referral sources.</td>
+          <td>Are target buyers finding the right pages before they know Cybit?</td>
+        </tr>
+        <tr>
+          <td class="site">Engagement and intent</td>
+          <td>Engaged sessions by landing page, key content progression, CTA clicks, case-study assists, assessment starts, form start and abandonment.</td>
+          <td>Do visitors understand value and take the next step?</td>
+        </tr>
+        <tr>
+          <td class="site">Lead capture</td>
+          <td>Form completion rate, call, email and WhatsApp clicks, webinar registration, lead-source completeness, duplicate and error rate.</td>
+          <td>Are intent signals being captured accurately and consistently?</td>
+        </tr>
+        <tr>
+          <td class="site">Sales quality</td>
+          <td>MQL and SQL or accepted-lead rate, sales response time, opportunity creation, lead-to-opportunity conversion.</td>
+          <td>Are we generating leads sales can work?</td>
+        </tr>
+        <tr>
+          <td class="site">Commercial outcome</td>
+          <td>Marketing-sourced and influenced pipeline, won revenue, average deal value, cost per qualified opportunity, conversion lag.</td>
+          <td>Is the work contributing to commercial results rather than vanity metrics?</td>
+        </tr>
+        <tr>
+          <td class="site">Experience and technical</td>
+          <td>LCP, INP, CLS, error and 404 rate, indexing coverage, mobile conversion, accessibility blockers.</td>
+          <td>Are technical changes improving or protecting experience and discoverability?</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Reporting cadence</h2>
+  <div class="two-col">
+    <div class="col-box">
+      <h3>Weekly</h3>
+      <p>Operational review: technical blockers, lead capture and experiments.</p>
+    </div>
+    <div class="col-box">
+      <h3>Monthly</h3>
+      <p>Growth review by service, industry, source and sales stage.</p>
+    </div>
+    <div class="col-box">
+      <h3>Quarterly</h3>
+      <p>Roadmap reset against pipeline and customer acquisition goals.</p>
+    </div>
+  </div>
+  <p class="note">
+    Agree numeric targets only after a validated baseline and sales-cycle context.
+  </p>
+</div>
+
+<!-- INTERVIEW -->
+<div class="panel" id="interview" role="tabpanel">
+
+  <h2>60 to 90-second opening narrative</h2>
+
+  <div class="quote">
+    My background sits at the intersection of web development, UI/UX and technical SEO. At MRI Software I maintained 10+ regional WordPress sites and 20+ merger websites, worked with WP Engine, themes and plugins, and used Ahrefs, GA4 and Search Console for technical SEO audits. I also built landing pages in Salesforce and worked with marketing stakeholders. That gives me the technical ability to diagnose and ship changes.<br><br>
+    For a growth role, I would add a disciplined commercial loop: validate the data, map buyer intent to landing pages, remove technical friction, test conversion hypotheses, connect leads to the CRM, and report qualified pipeline. The sample audits here show how I prioritise: <strong>verify before assuming, fix risks first, then use the evidence to decide where to scale.</strong>
+  </div>
+
+  <h2>How to present the three-site work</h2>
+
+  <div class="finding">
+    <div class="label">Cybit</div>
+    <p>I reviewed the public service architecture and ran PageSpeed on mobile and desktop. The strongest opportunity is to measure how the problem-led pages, industry proof and tailored CTAs move a buyer from search to assessment or expert conversation. CLS of 0.9 is the biggest leak, and it is a configuration problem, not a platform limitation. I would preserve the strong content structure, then improve the weakest measured steps.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label">NMKCA</div>
+    <p>The Search Console export shows brand demand but also a path to non-brand local service acquisition. Same CLS signature as Cybit. I would first investigate strange indexed URL patterns, then improve the audit, accounting and tax landing pages and monitor mobile CTR and lead conversion.</p>
+  </div>
+
+  <div class="finding">
+    <div class="label">Palisson</div>
+    <p>The GA4 snapshot shows events but no visible key-event data and an attribution profile dominated by direct, with three data-centre cities in the top seven. CLS is around zero, which proves the layout fix is achievable. I would define conversion events, standardise campaign tagging and segment traffic quality before making growth claims. The gap between 676 users and 9 search clicks is the point.</p>
+  </div>
+
+  <h2>Questions that show commercial ownership</h2>
+
+  <ul class="list">
+    <li>Which services and verticals have the highest gross margin, win rate and sales capacity today? Which are the growth priorities for the next two quarters?</li>
+    <li>What counts as a qualified lead, and where is that definition stored: HubSpot, CRM, or a sales process outside the CRM?</li>
+    <li>How complete is the current GA4-to-CRM attribution path, including consent, source and medium, landing page and offline opportunity outcomes?</li>
+    <li>Which conversion points matter most: expert calls, assessments, webinars, resource downloads, store enquiries, or partner referrals?</li>
+    <li>What does Cybit already know about AI search mentions and citations? Which competitors most often appear for buyer problem statements?</li>
+    <li>What technical constraints exist in WordPress, analytics consent, tag governance, performance budgets or release process?</li>
+    <li>How will success be assessed at 30, 60 and 90 days: leading indicators, qualified opportunity volume, pipeline, or realised revenue?</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  function init() {
+    var tabsContainer = document.querySelector('.tabs');
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+    if (!tabsContainer || !tabs.length || !panels.length) return;
+
+    // Map panel IDs for O(1) lookup
+    var panelMap = {};
+    panels.forEach(function (p) { if (p.id) panelMap[p.id] = p; });
+
+    function animateBars(panel) {
+      if (!panel) return;
+      var bars = panel.querySelectorAll('.bar > span');
+      bars.forEach(function (bar) {
+        var target = bar.getAttribute('data-width');
+        if (!target) {
+          target = bar.style.width || '0%';
+          bar.setAttribute('data-width', target);
+        }
+        bar.style.transition = 'none';
+        bar.style.width = '0';
+        // Force reflow so the browser registers the zero state
+        void bar.offsetWidth;
+        bar.style.transition = '';
+        bar.style.width = target;
+      });
+    }
+
+    function activate(name, opts) {
+      opts = opts || {};
+      var panel = panelMap[name];
+      if (!panel) return;
+
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-tab') === name;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.setAttribute('tabindex', on ? '0' : '-1');
+      });
+
+      panels.forEach(function (p) {
+        p.classList.toggle('active', p === panel);
+      });
+
+      animateBars(panel);
+
+      if (opts.scroll !== false) {
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (e) {
+          window.scrollTo(0, 0);
+        }
+      }
+
+      if (opts.updateHash !== false && window.history && history.replaceState) {
+        try {
+          history.replaceState(null, '', '#' + name);
+        } catch (e) { /* ignore */ }
+      }
+    }
+
+    // Event delegation: works even if tabs are added later
+    tabsContainer.addEventListener('click', function (e) {
+      var btn = e.target;
+      while (btn && btn !== tabsContainer) {
+        if (btn.classList && btn.classList.contains('tab')) {
+          e.preventDefault();
+          var name = btn.getAttribute('data-tab');
+          if (name) activate(name);
+          return;
+        }
+        btn = btn.parentNode;
+      }
+    });
+
+    // Keyboard arrow navigation
+    tabsContainer.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft' && e.key !== 'Home' && e.key !== 'End') return;
+      var current = -1;
+      tabs.forEach(function (t, i) { if (t.classList.contains('active')) current = i; });
+      if (current < 0) return;
+      var next = current;
+      if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      e.preventDefault();
+      tabs[next].focus();
+      var name = tabs[next].getAttribute('data-tab');
+      if (name) activate(name);
+    });
+
+    // Initial state: hash if present, otherwise the panel that already has .active
+    var initial = window.location.hash.replace('#', '');
+    if (initial && panelMap[initial]) {
+      activate(initial, { scroll: false, updateHash: false });
+    } else {
+      var current = document.querySelector('.panel.active');
+      if (current) animateBars(current);
+    }
+
+    // React to browser back/forward and external hash changes
+    window.addEventListener('hashchange', function () {
+      var name = window.location.hash.replace('#', '');
+      if (name && panelMap[name]) activate(name, { scroll: false, updateHash: false });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
