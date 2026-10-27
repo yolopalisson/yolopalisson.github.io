@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybit / NMKCA / Palisson - audit</title>
+<style>
+  :root {
+    --text: #eef2f8;
+    --muted: #95a2b8;
+    --soft: #bfcbdf;
+    --accent: #7dd3c0;
+    --danger: #f1837f;
+    --success: #86e0b3;
+    --warn: #f0c96b;
+    --glass: rgba(20, 27, 42, 0.55);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+    color: var(--text); line-height: 1.6;
+    padding: 2.8rem 1.5rem 4.5rem; min-height: 100vh;
+    background:
+      radial-gradient(900px 500px at 15% 10%, rgba(90,130,220,.32), transparent 60%),
+      radial-gradient(1000px 600px at 88% 18%, rgba(125,211,192,.16), transparent 65%),
+      radial-gradient(700px 500px at 40% 100%, rgba(140,100,220,.18), transparent 60%),
+      linear-gradient(160deg, #070b14 0%, #0c1320 55%, #090e18 100%);
+    background-attachment: fixed;
+  }
+  .page { max-width: 1060px; margin: 0 auto; }
+  header { margin-bottom: 1.8rem; }
+  h1 { font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; margin-bottom: .45rem; }
+  h1 .dim { color: var(--muted); font-weight: 500; }
+  .lead { color: var(--soft); max-width: 64ch; font-size: .94rem; }
+
+  .tabs { display: flex; gap: .18rem; margin-bottom: 1.3rem; flex-wrap: wrap; padding: .28rem;
+    background: var(--glass); backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border); border-radius: 14px; width: fit-content; }
+  .tab { background: none; border: none; color: var(--muted); font: inherit; font-size: .82rem;
+    font-weight: 500; padding: .48rem .85rem; border-radius: 10px; cursor: pointer; transition: all .18s ease; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--text); background: rgba(255,255,255,.08); }
+
+  .panel { display: none; background: var(--glass);
+    backdrop-filter: blur(30px) saturate(150%); -webkit-backdrop-filter: blur(30px) saturate(150%);
+    border: 1px solid var(--border); border-radius: 20px; padding: 1.8rem 1.7rem;
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 20px 50px -20px rgba(0,0,0,.5); }
+  .panel.active { display: block; animation: fade .3s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  h2 { font-size: 1rem; font-weight: 600; margin: 1.9rem 0 .7rem; letter-spacing: -.01em; }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: .92rem; font-weight: 600; margin-bottom: .35rem; }
+  p { color: var(--soft); font-size: .9rem; margin-bottom: .7rem; }
+  p:last-child { margin-bottom: 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: .72rem; margin: 1rem 0 1.4rem; }
+  .stat { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 13px; padding: .9rem 1rem; }
+  .stat .lbl { font-size: .68rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); margin-bottom: .28rem; }
+  .stat .big { font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+  .stat .sub { font-size: .74rem; color: var(--muted); margin-top: .18rem; }
+
+  .danger { color: var(--danger); }
+  .success { color: var(--success); }
+  .warn { color: var(--warn); }
+  .hl { color: var(--accent); font-weight: 500; }
+
+  .tbl { overflow-x: auto; border-radius: 13px; border: 1px solid var(--border); margin: .85rem 0 1.2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  th, td { text-align: left; padding: .68rem .8rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-size: .68rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted);
+    font-weight: 500; background: rgba(255,255,255,.02); }
+  td.site { font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  .num { font-family: ui-monospace, monospace; font-size: .8rem; }
+
+  .bar-block { margin-bottom: .85rem; }
+  .bar-head { display: flex; justify-content: space-between; font-size: .79rem; margin-bottom: .28rem; color: var(--soft); }
+  .bar-head .val { color: var(--muted); font-family: ui-monospace, monospace; font-size: .75rem; }
+  .bar { height: 7px; background: rgba(255,255,255,.04); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+  .bar > span { display: block; height: 100%; border-radius: 999px; transition: width .7s cubic-bezier(.2,.8,.2,1); }
+  .bar.good > span { background: linear-gradient(90deg, #2e9c7f, var(--success)); }
+  .bar.bad > span { background: linear-gradient(90deg, #b34b48, var(--danger)); }
+  .bar.warn > span { background: linear-gradient(90deg, #b08c3a, var(--warn)); }
+
+  .finding { background: rgba(255,255,255,.025); border: 1px solid var(--border); border-radius: 13px; padding: .95rem 1.1rem; margin-bottom: .65rem; }
+  .finding p { font-size: .85rem; margin-bottom: .35rem; }
+  .finding p:last-child { margin-bottom: 0; }
+  .finding .mark { font-weight: 600; }
+  .finding .mark.bad { color: var(--danger); }
+  .finding .mark.good { color: var(--success); }
+  .finding .mark.warn { color: var(--warn); }
+
+  .notes { list-style: none; padding: 0; margin: .3rem 0 0; }
+  .notes li { padding: .68rem 0 .68rem 1.25rem; position: relative; font-size: .87rem; color: var(--soft); border-bottom: 1px solid var(--border); }
+  .notes li:last-child { border-bottom: none; }
+  .notes li::before { content: ""; position: absolute; left: .3rem; top: 1.12rem; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
+
+  .gloss { display: grid; gap: .1rem; }
+  .gloss-item { padding: .62rem 0; border-bottom: 1px solid var(--border); font-size: .86rem; color: var(--soft); }
+  .gloss-item:last-child { border-bottom: none; }
+  .gloss-item .term { color: var(--text); font-weight: 600; }
+
+  .say { border-left: 2px solid var(--accent); padding: .1rem 0 .1rem .9rem; margin: .8rem 0; color: var(--soft); font-size: .9rem; }
+  .say strong { color: var(--text); }
+
+  .phr { counter-reset: p; list-style: none; padding: 0; }
+  .phr li { counter-increment: p; padding: .6rem 0 .6rem 1.9rem; position: relative; font-size: .89rem; color: var(--soft); border-bottom: 1px solid var(--border); }
+  .phr li:last-child { border-bottom: none; }
+  .phr li::before { content: counter(p); position: absolute; left: 0; top: .62rem;
+    width: 1.3rem; height: 1.3rem; border-radius: 50%; background: rgba(125,211,192,.1);
+    color: var(--accent); font-size: .68rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+  @media (max-width: 620px) {
+    body { padding: 1.6rem 1rem 3rem; }
+    .panel { padding: 1.25rem 1.05rem; border-radius: 16px; }
+    .stat .big { font-size: 1.2rem; }
+    table { font-size: .77rem; }
+    th, td { padding: .52rem .52rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Three sites, three failure modes <span class="dim">/ Cybit, NMKCA, Palisson</span></h1>
+  <p class="lead">Cybit leaks. NMKCA misses. Palisson is unfed. The comparison is a diagnostic, not a scoreboard.</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" data-tab="sheet">Cheat sheet</button>
+  <button class="tab" data-tab="numbers">The numbers</button>
+  <button class="tab" data-tab="findings">Findings</button>
+  <button class="tab" data-tab="playbook">First 90 days</button>
+  <button class="tab" data-tab="glossary">Glossary</button>
+</div>
+
+<!-- CHEAT SHEET -->
+<div class="panel active" id="sheet">
+
+  <h2>The three diagnoses</h2>
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl">Cybit</div>
+      <div class="big danger">Leaks</div>
+      <div class="sub">Engine exists. Front end doesn't hold still.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">NMKCA</div>
+      <div class="big warn">Misses</div>
+      <div class="sub">Ranks page one. Earns no clicks.</div>
+    </div>
+    <div class="stat">
+      <div class="lbl">Palisson</div>
+      <div class="big">Unfed</div>
+      <div class="sub">Clean build. No growth engine behind it.</div>
+    </div>
+  </div>
+
+  <h2>Six numbers worth memorising</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Number</th><th>What it tells you</th></tr></thead>
+      <tbody>
+        <tr><td class="num"><strong>0.9</strong></td><td>Cybit's CLS. Nine times the good threshold of 0.1</td></tr>
+        <tr><td class="num"><strong>1.2s</strong></td><td>Cybit's LCP. Speed is fine. Stability is not</td></tr>
+        <tr><td class="num"><strong>500+</strong></td><td>NMKCA impressions on intent queries, with zero clicks</td></tr>
+        <tr><td class="num"><strong>676 / 9</strong></td><td>Palisson users vs search clicks. The traffic is not search</td></tr>
+        <tr><td class="num"><strong>90%</strong></td><td>Palisson direct traffic. Mostly bots and untagged links</td></tr>
+        <tr><td class="num"><strong>~0</strong></td><td>Palisson CLS. Proves the fix is achievable</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Five phrases that land</h2>
+  <ol class="phr">
+    <li>Visibility isn't the constraint. Capture is.</li>
+    <li>CLS isn't a vanity metric. It's a measurable leak in the lead path.</li>
+    <li>Palisson proves I can build a stable site. It also proves what happens when nobody feeds it.</li>
+    <li>Cybit already has the engine. My job is to stop the leak and prove the lift.</li>
+    <li>I'd rather fix the two things costing conversions today than the ten that would be nice next quarter.</li>
+  </ol>
+
+  <h2>If asked what you'd do first</h2>
+  <p>Run PageSpeed on the homepage and the three highest-value campaign pages. Trace the CLS source in the filmstrip. Confirm which element is shifting before touching anything else. Then reserve space for the HubSpot forms and instrument the lead path so the fix can be proven.</p>
+</div>
+
+<!-- THE NUMBERS -->
+<div class="panel" id="numbers">
+
+  <h2>Core Web Vitals, mobile and desktop</h2>
+  <p>Ratings follow Google's own bands. Thresholds shown in the right column. Confirm exact mobile decimals against your PageSpeed runs before quoting them.</p>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Site</th><th>Metric</th><th>Mobile</th><th>Desktop</th><th>Good</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="site">Cybit</td>
+          <td>LCP</td>
+          <td><span class="warn">Needs improvement</span></td>
+          <td><span class="success">Good · ~1.2s</span></td>
+          <td class="num">≤ 2.5s</td>
+        </tr>
+        <tr>
+          <td class="site">Cybit</td>
+          <td>CLS</td>
+          <td><span class="danger">Poor · ~0.9</span></td>
+          <td><span class="danger">Poor · ~0.9</span></td>
+          <td class="num">≤ 0.1</td>
+        </tr>
+        <tr>
+          <td class="site">Cybit</td>
+          <td>TBT</td>
+          <td><span class="danger">Poor</span></td>
+          <td><span class="warn">Needs improvement</span></td>
+          <td class="num">≤ 200ms</td>
+        </tr>
+        <tr>
+          <td class="site">Cybit</td>
+          <td>TTFB</td>
+          <td><span class="warn">Needs improvement</span></td>
+          <td><span class="warn">Needs improvement</span></td>
+          <td class="num">≤ 0.8s</td>
+        </tr>
+        <tr>
+          <td class="site">NMKCA</td>
+          <td>CLS</td>
+          <td><span class="danger">Poor · ~0.9</span></td>
+          <td><span class="danger">Poor · ~0.9</span></td>
+          <td class="num">≤ 0.1</td>
+        </tr>
+        <tr>
+          <td class="site">NMKCA</td>
+          <td>LCP</td>
+          <td><span class="warn">Needs improvement</span></td>
+          <td><span class="success">Good · ~1.2s</span></td>
+          <td class="num">≤ 2.5s</td>
+        </tr>
+        <tr>
+          <td class="site">Palisson</td>
+          <td>CLS</td>
+          <td><span class="success">Good · ~0</span></td>
+          <td><span class="success">Good · ~0</span></td>
+          <td class="num">≤ 0.1</td>
+        </tr>
+        <tr>
+          <td class="site">Palisson</td>
+          <td>LCP</td>
+          <td><span class="success">Good</span></td>
+          <td><span class="success">Good</span></td>
+          <td class="num">≤ 2.5s</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><span class="hl">Reading the split:</span> Cybit and NMKCA both degrade on mobile. That is the normal pattern for heavy tag stacks, because mobile CPUs have less headroom. It matters more than the desktop result, since mobile carries roughly 58% of impressions across the two sites with search data.</p>
+
+  <h2>Where the CLS sits</h2>
+  <div class="bar-block">
+    <div class="bar-head"><span>Cybit desktop</span><span class="val">0.9</span></div>
+    <div class="bar bad"><span style="width:92%"></span></div>
+  </div>
+  <div class="bar-block">
+    <div class="bar-head"><span>NMKCA desktop</span><span class="val">0.9</span></div>
+    <div class="bar bad"><span style="width:92%"></span></div>
+  </div>
+  <div class="bar-block">
+    <div class="bar-head"><span>Palisson desktop</span><span class="val">~0</span></div>
+    <div class="bar good"><span style="width:3%"></span></div>
+  </div>
+  <div class="bar-block">
+    <div class="bar-head"><span>Good threshold</span><span class="val">0.1</span></div>
+    <div class="bar good"><span style="width:10%"></span></div>
+  </div>
+
+  <h2>The full comparison</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Site</th><th>Performance</th><th>Visibility</th><th>Traffic quality</th><th>Mode</th></tr></thead>
+      <tbody>
+        <tr><td class="site">Cybit</td><td class="danger">CLS 0.9</td><td>Mature marketing stack</td><td>Good, HubSpot funnel in place</td><td>Leaks</td></tr>
+        <tr><td class="site">NMKCA</td><td class="danger">CLS 0.9</td><td>Page one rankings</td><td class="danger">Zero clicks on intent</td><td>Misses</td></tr>
+        <tr><td class="site">Palisson</td><td class="success">CLS ~0</td><td class="danger">9 search clicks</td><td class="warn">90% direct, bot heavy</td><td>Unfed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Palisson traffic detail</h2>
+  <div class="stats">
+    <div class="stat"><div class="lbl">Active users</div><div class="big">676</div><div class="sub">Six month window</div></div>
+    <div class="stat"><div class="lbl">Direct traffic</div><div class="big danger">90%</div><div class="sub">609 users, no attribution</div></div>
+    <div class="stat"><div class="lbl">Avg engagement</div><div class="big warn">23s</div><div class="sub">Low for a portfolio</div></div>
+    <div class="stat"><div class="lbl">Qualified after filtering</div><div class="big">~55</div><div class="sub">Organic, referral, AI</div></div>
+  </div>
+
+  <p>Top cities include Des Moines, Council Bluffs and Moses Lake. All three are known data centre locations for Microsoft, Meta and AWS. Strip that traffic out and the real audience lands near 55, which lines up with the 9 search clicks plus referral and AI referrals.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Source</th><th>Users</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>Direct / none</td><td class="num">609</td><td class="danger">90.1%</td></tr>
+        <tr><td>Facebook</td><td class="num">12</td><td>1.8%</td></tr>
+        <tr><td>LinkedIn</td><td class="num">11</td><td>1.6%</td></tr>
+        <tr><td>Google organic</td><td class="num">10</td><td>1.5%</td></tr>
+        <tr><td>Twitter (t.co)</td><td class="num">10</td><td>1.5%</td></tr>
+        <tr><td>Instagram</td><td class="num">8</td><td>1.2%</td></tr>
+        <tr><td>ChatGPT / AI assistant</td><td class="num">4</td><td>0.6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FINDINGS -->
+<div class="panel" id="findings">
+
+  <h2>Cybit</h2>
+  <div class="finding">
+    <h3><span class="mark bad">Leak.</span> CLS 0.9 on both mobile and desktop</h3>
+    <p>Heaviest third-party stack in the comparison: HubSpot, LeadForensics, Demandbase and browser speed tags. Layout shifts on load suppress form completion and webinar registration, the two events the role is hired to move.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark good">Strength.</span> LCP around 1.2s on desktop</h3>
+    <p>Hero content loads fast. Speed is not the bottleneck. Stability is.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark good">Strength.</span> Conversion infrastructure exists</h3>
+    <p>HubSpot forms, campaign pages and webinar CTAs are all in place. The plumbing for qualified enquiries works. It needs a stable front end and proper instrumentation.</p>
+  </div>
+
+  <h2>NMKCA</h2>
+  <div class="finding">
+    <h3><span class="mark bad">Miss.</span> Zero clicks on 500+ high-intent impressions</h3>
+    <p>Ranks positions 1.2 to 3.4 for "chartered accountant johannesburg" and similar, and earns nothing on them. Brand queries convert at 28.7% CTR. The site works when people know the name. Non-brand capture does not.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark bad">Leak.</span> CLS 0.9</h3>
+    <p>Identical layout instability to Cybit. WordPress with unmanaged script loading.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark warn">Risk.</span> 94% of clicks land on the homepage</h3>
+    <p>No service or location page is doing commercial work. The second-best performing asset is a 2017 company profile PDF, which cannot be tracked, tested or converted.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark bad">Miss.</span> No rich results</h3>
+    <p>Zero review or product snippets across six months. For a professional services firm, schema is unclaimed territory.</p>
+  </div>
+
+  <h2>Palisson</h2>
+  <div class="finding">
+    <h3><span class="mark good">Strength.</span> CLS around zero on both devices</h3>
+    <p>Hand coded, no page builder, explicit dimensions, no dynamic resizing. Proof the candidate can ship a stable layout when controlling the stack.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark bad">Unfed.</span> 676 users, roughly 55 qualified</h3>
+    <p>90% direct traffic, with three known data centre cities in the top seven. Real audience aligns with the 9 search clicks plus referral traffic.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark bad">Unfed.</span> Impressions fell 80% in three months</h3>
+    <p>135 in July down to 27 in late October. No new content, no internal linking refresh. Even a stable site loses relevance without a growth engine.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark warn">Risk.</span> 80.7% bounce on the resume page</h3>
+    <p>People land and leave without clicking anything else. Same pattern as NMKCA's ranking PDF. A high-value page with no onward journey.</p>
+  </div>
+  <div class="finding">
+    <h3><span class="mark good">Signal.</span> Four visitors from chatgpt.com</h3>
+    <p>Small, but forward-looking. AI assistant referral is a real channel now and worth tracking separately at Cybit.</p>
+  </div>
+</div>
+
+<!-- PLAYBOOK -->
+<div class="panel" id="playbook">
+
+  <h2>First 90 days</h2>
+  <p>The first two actions remove the largest conversion suppressant today. The next two make everything measurable. Five and six are where commercial movement starts to show.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>#</th><th>Action</th><th>Effort</th><th>Impact</th><th>Measure</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Trace and eliminate CLS. Reserve space for HubSpot forms, banners, hero media. Defer non-critical tags.</td><td>Low–med</td><td>High</td><td>CLS ≤ 0.1</td></tr>
+        <tr><td class="num">2</td><td>Consent-first third-party loading. HubSpot, LeadForensics, Demandbase.</td><td>Med</td><td>Med–high</td><td>TBT, INP, consent rate</td></tr>
+        <tr><td class="num">3</td><td>Instrument the lead path. GA4 events on form view, start, submit, CRM sync, field abandonment.</td><td>Med</td><td>High</td><td>Tracked conversions</td></tr>
+        <tr><td class="num">4</td><td>Lighthouse CI in the release pipeline. CWV becomes a gate, not a report.</td><td>Low</td><td>Medium</td><td>CWV pass rate</td></tr>
+        <tr><td class="num">5</td><td>SERP snippet audit and rewrite on high-impression, low-CTR queries.</td><td>Low</td><td>Med–high</td><td>CTR on target queries</td></tr>
+        <tr><td class="num">6</td><td>Service page architecture review. Each page owns an intent cluster and a CTA.</td><td>Med</td><td>High</td><td>Non-homepage conversion share</td></tr>
+        <tr><td class="num">7</td><td>Structured data. Organization, Service, FAQ, Breadcrumb.</td><td>Med</td><td>Medium</td><td>Rich result impressions</td></tr>
+        <tr><td class="num">8</td><td>Webinar funnel instrumentation and A/B testing on landing pages.</td><td>Med</td><td>High</td><td>Registration → attendance → MQL</td></tr>
+        <tr><td class="num">9</td><td>Content velocity plan tied to keyword clusters.</td><td>Med–high</td><td>High</td><td>Non-brand impressions trend</td></tr>
+        <tr><td class="num">10</td><td>Traffic segmentation in reporting. Filter bot traffic, flag data centre sources, track AI referrals separately.</td><td>Low</td><td>Medium</td><td>Qualified traffic trend</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The first month, week by week</h2>
+  <div class="finding">
+    <h3>Week 1 — baseline</h3>
+    <p>PageSpeed on the homepage, top three service pages and campaign landing pages, mobile and desktop. Trace the CLS source in the filmstrip.</p>
+  </div>
+  <div class="finding">
+    <h3>Week 2 — stabilise</h3>
+    <p>Reserve space for HubSpot forms and banners. Set explicit dimensions on hero media. Audit which third-party tags load before interaction.</p>
+  </div>
+  <div class="finding">
+    <h3>Week 3 — instrument</h3>
+    <p>GA4 events on form view, start, submit and CRM sync. Confirm the measurement is accurate before claiming any improvement.</p>
+  </div>
+  <div class="finding">
+    <h3>Week 4 — report</h3>
+    <p>Before and after on CLS, form completion rate and webinar registration rate. Agree the next sprint with the CMO.</p>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="panel" id="glossary">
+
+  <h2>Core Web Vitals</h2>
+  <div class="gloss">
+    <div class="gloss-item"><span class="term">CWV — Core Web Vitals.</span> Google's three page-experience metrics, used as a ranking signal and a proxy for user experience: LCP, CLS and INP.</div>
+    <div class="gloss-item"><span class="term">LCP — Largest Contentful Paint.</span> How long until the largest visible element renders, usually the hero image or headline. Good is 2.5 seconds or less. Cybit desktop is about 1.2s, so speed is not the problem.</div>
+    <div class="gloss-item"><span class="term">CLS — Cumulative Layout Shift.</span> How much visible content moves unexpectedly while loading. A form that appears late and pushes the call-to-action down scores badly. Good is 0.1 or less. Cybit and NMKCA both sit at 0.9. Palisson at roughly zero.</div>
+    <div class="gloss-item"><span class="term">INP — Interaction to Next Paint.</span> How quickly the page responds to a tap or click. Replaced First Input Delay in 2024. Good is 200 milliseconds or less. Degrades when third-party scripts occupy the main thread.</div>
+    <div class="gloss-item"><span class="term">TBT — Total Blocking Time.</span> Milliseconds the main thread is blocked by long tasks before the page becomes interactive. A lab proxy for INP. Good is 200ms or less. Heavy tag stacks push this up.</div>
+    <div class="gloss-item"><span class="term">TTFB — Time to First Byte.</span> How long the server takes to start responding. Good is 0.8 seconds or less. Points at hosting, caching and CDN rather than front-end code.</div>
+    <div class="gloss-item"><span class="term">FCP — First Contentful Paint.</span> When the first text or image appears. Useful as a floor, less useful as a target on its own.</div>
+  </div>
+
+  <h2>Search and analytics</h2>
+  <div class="gloss">
+    <div class="gloss-item"><span class="term">GSC — Google Search Console.</span> Google's free tool showing which queries a site appeared for, how often, at what position and how many clicks. Source of the NMKCA and Palisson search data.</div>
+    <div class="gloss-item"><span class="term">GA4 — Google Analytics 4.</span> The current analytics platform. Event-based rather than session-based. Source of the Palisson traffic, engagement and geography data.</div>
+    <div class="gloss-item"><span class="term">GTM — Google Tag Manager.</span> A container that manages marketing and analytics tags without editing site code. Central to tracking QA, and the role's second-biggest gap after PHP.</div>
+    <div class="gloss-item"><span class="term">SERP — Search Engine Results Page.</span> What Google returns for a query, including organic listings, local pack, People Also Ask, images and ads.</div>
+    <div class="gloss-item"><span class="term">CTR — Click-Through Rate.</span> Clicks divided by impressions. NMKCA's zero-click queries are a CTR failure, not a ranking failure.</div>
+    <div class="gloss-item"><span class="term">PAA — People Also Ask.</span> The expandable question block in Google results. A common cause of impressions with no clicks, and one hypothesis for the NMKCA pattern.</div>
+    <div class="gloss-item"><span class="term">Schema / structured data.</span> Machine-readable markup, usually JSON-LD, that tells search engines what a page is about. Enables rich results and improves visibility in AI-generated answers.</div>
+  </div>
+
+  <h2>Commercial</h2>
+  <div class="gloss">
+    <div class="gloss-item"><span class="term">CRO — Conversion Rate Optimisation.</span> Structured testing and iteration to increase the share of visitors who complete a desired action. Heatmaps, funnel analysis, A/B tests.</div>
+    <div class="gloss-item"><span class="term">MQL — Marketing Qualified Lead.</span> A contact judged ready for sales follow-up based on behaviour or fit. The bridge between a webinar registration and pipeline.</div>
+    <div class="gloss-item"><span class="term">CRM — Customer Relationship Management.</span> The system holding contact and deal records. HubSpot at Cybit, Salesforce in the candidate's background.</div>
+    <div class="gloss-item"><span class="term">A/B test.</span> Splitting traffic between two versions of a page to determine which performs better. Only valid when volume is sufficient, which is why cluster-level metrics beat single-query tests.</div>
+  </div>
+
+  <h2>Technical</h2>
+  <div class="gloss">
+    <div class="gloss-item"><span class="term">DOM — Document Object Model.</span> The browser's live tree of page elements. Heavy page builders inflate it, which slows rendering and interaction.</div>
+    <div class="gloss-item"><span class="term">CDN — Content Delivery Network.</span> A geographically distributed caching layer. Cloudflare in Cybit's case.</div>
+    <div class="gloss-item"><span class="term">CI — Continuous Integration.</span> Automated checks that run on every code change. Lighthouse CI makes Core Web Vitals a release gate rather than a monthly report.</div>
+    <div class="gloss-item"><span class="term">PHP.</span> The server-side language WordPress runs on. Required in the job description. The biggest technical gap to close.</div>
+  </div>
+
+  <h2>Things to avoid saying</h2>
+  <ul class="notes">
+    <li>Don't claim PHP or GTM depth. Frame both as proof-of-concept work in progress, and keep the conversation on diagnosis and prioritisation.</li>
+    <li>Don't present Palisson's 676 users as a win. Present it as a diagnostic. The gap between 676 and 9 is the point.</li>
+    <li>Don't lead with Cybit. Lead with what you built, then what you found.</li>
+    <li>Don't quote a mobile decimal you can't back with a screenshot. Lab runs vary between audits.</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.bar > span').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => { bar.style.width = w; }, 100);
+    });
+  });
+</script>
+</body>
+</html>
