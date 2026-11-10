@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Green Lumber Holdings | Sustainable Manufacturing</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- SEO Structured Data (LocalBusiness Schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Green Lumber Holdings",
+    "image": "https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1200&auto=format&fit=crop",
+    "description": "Green Lumber Leasing is a 100% B-BBEE Company, we specialize in the design & Manufacture of environmentally sustainable products using recycled plastic.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "16 Fisher Avenue, Epping 1 Industria",
+      "addressLocality": "Cape Town",
+      "postalCode": "7460",
+      "addressCountry": "ZA"
+    },
+    "telephone": "+27796674921",
+    "email": "info@greenlumber.co.za",
+    "url": "https://www.greenlumberholdings.co.za"
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #2fa72f;
+      --primary-dark: #1a6b1a;
+      --primary-light: #f0fdf4;
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-dark: rgba(15, 23, 42, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --glass-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+      
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 3rem;
+      --space-xl: 5rem;
+      
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-main); line-height: 1.1; }
+    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; letter-spacing: -1px; margin-bottom: var(--space-md); }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.5px; margin-bottom: var(--space-sm); }
+    h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--space-sm); }
+    p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: var(--space-md); }
+    
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding-inline: var(--space-md); }
+    .section { padding-block: var(--space-xl); }
+    
+    .glass {
+      background: var(--glass-bg);
+      -webkit-backdrop-filter: blur(16px) saturate(120%);
+      backdrop-filter: blur(16px) saturate(120%);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    /* --- NAVIGATION --- */
+    .nav-wrapper {
+      position: fixed; top: var(--space-sm); left: 0; width: 100%;
+      z-index: 1000; display: flex; justify-content: center; padding-inline: var(--space-sm);
+    }
+    
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1100px; padding: var(--space-xs) var(--space-md);
+      border-radius: 100px; position: relative;
+    }
+    
+    .logo { font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 8px; z-index: 2; }
+    .logo span { color: var(--primary); }
+    
+    .nav-links { display: none; gap: var(--space-xs); list-style: none; }
+    .nav-links a {
+      color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.9rem;
+      transition: all 0.2s; padding: 8px 16px; border-radius: 50px;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--primary-dark); color: #fff; }
+    
+    .nav-cta {
+      display: none; background: var(--primary-dark); color: #fff !important;
+      padding: 10px 24px; border-radius: 50px; text-decoration: none;
+      font-weight: 600; font-size: 0.95rem; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #124e12; }
+
+    .menu-toggle { 
+      display: block; background: none; border: none; cursor: pointer; 
+      padding: var(--space-xs); z-index: 2; color: var(--text-main);
+    }
+    .menu-toggle svg { width: 28px; height: 28px; }
+
+    .mobile-menu {
+      position: absolute; top: calc(100% + 10px); left: 0; width: 100%;
+      padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-xs);
+      opacity: 0; pointer-events: none; transform: translateY(-10px);
+      transition: all 0.3s var(--ease);
+    }
+    .mobile-menu.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .mobile-menu a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: 12px 16px; border-radius: 8px; }
+    .mobile-menu a.active { background: var(--primary-dark); color: #fff; }
+    .mobile-menu .nav-cta { display: block; text-align: center; margin-top: var(--space-xs); background: var(--primary-dark); color: #fff; }
+
+    /* --- HERO --- */
+    .hero { padding-top: calc(var(--space-xl) + 60px); padding-bottom: var(--space-xl); background: var(--primary-light); }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: center; }
+    .hero-text h1 span { color: var(--primary); }
+    .hero-text p { font-size: 1.15rem; max-width: 500px; }
+    
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 16px 32px; background: var(--primary-dark); color: #fff;
+      text-decoration: none; font-weight: 600; border-radius: 8px;
+      transition: background 0.2s, transform 0.2s; width: 100%;
+    }
+    .btn:hover { background: #124e12; transform: translateY(-2px); }
+    .btn-whatsapp { background: #25D366; color: #fff; }
+    .btn-whatsapp:hover { background: #1da851; }
+    
+    .hero-actions { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+    
+    .hero-image-wrapper {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 4/3; cursor: pointer;
+    }
+    .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* --- STATS BAND --- */
+    .stats-band { background: var(--text-main); padding-block: var(--space-lg); color: #fff; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); text-align: center; }
+    .stat-item h3 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--primary); margin-bottom: var(--space-xs); line-height: 1; }
+    .stat-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: #cbd5e1; margin-bottom: 0; }
+    .stat-icon { width: 48px; height: 48px; margin: 0 auto var(--space-xs); color: var(--primary); }
+    .stat-icon svg { width: 100%; height: 100%; }
+
+    /* --- CARDS --- */
+    .cards-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
+    .card {
+      background: var(--bg-surface); border-radius: 16px; border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--primary); }
+    .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #e2e8f0; cursor: pointer; }
+    .card-content { padding: var(--space-md); flex-grow: 1; }
+    .card-icon { width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-sm); }
+    .card-icon svg { width: 24px; height: 24px; }
+    .card ul { list-style: none; padding: 0; margin-top: var(--space-sm); }
+    .card ul li { position: relative; padding-left: 24px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; }
+    .card ul li::before { content: "✓"; color: var(--primary-dark); position: absolute; left: 0; font-weight: bold; font-size: 1.1rem; line-height: 1.2; }
+
+    /* --- GALLERY --- */
+    .gallery-section { background: var(--bg-surface); }
+    .gallery-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
+    .gallery-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* --- ABOUT --- */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: center; }
+    .about-image { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; position: relative; cursor: pointer; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .experience-badge { position: absolute; bottom: var(--space-sm); left: var(--space-sm); padding: 12px 20px; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--primary-dark); border-radius: 8px; }
+
+    /* --- TEAM --- */
+    .team-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
+    .team-card { background: var(--bg-surface); border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; }
+    .team-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+    .team-info { padding: var(--space-md); text-align: center; }
+    .team-info h4 { font-size: 1.1rem; margin-bottom: 4px; }
+    .team-info p { font-size: 0.85rem; color: var(--primary-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
+
+    /* --- TESTIMONIALS --- */
+    .testimonials { background: var(--primary-light); }
+    .testimonial-header { display: flex; flex-direction: column; gap: var(--space-sm); margin-bottom: var(--space-md); }
+    .carousel-controls { display: flex; gap: 12px; }
+    .control-btn {
+      width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: var(--bg-surface); border: 1px solid #e2e8f0; color: var(--text-main);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .control-btn:hover { background: var(--primary-dark); color: #fff; border-color: var(--primary-dark); }
+    .control-btn svg { width: 20px; height: 20px; }
+
+    .testimonial-track {
+      display: flex; gap: var(--space-sm); overflow-x: auto;
+      padding: var(--space-xs) 0 var(--space-md) 0;
+      scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .testimonial-track::-webkit-scrollbar { display: none; }
+    
+    .testimonial-card {
+      flex: 0 0 100%; min-width: 280px; scroll-snap-align: start;
+      background: var(--bg-surface); padding: var(--space-md); border-radius: 16px;
+      border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between;
+      transition: box-shadow 0.3s;
+    }
+    .testimonial-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+    .testimonial-card p { font-style: italic; font-size: 0.95rem; color: var(--text-muted); margin-bottom: var(--space-sm); flex-grow: 1; }
+    .testimonial-author { border-top: 1px solid #e2e8f0; padding-top: var(--space-sm); display: flex; align-items: center; gap: 12px; }
+    
+    /* Company Logo Placeholder */
+    .company-logo-placeholder {
+      width: 48px; height: 48px; background: #f1f5f9; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;
+      border: 1px dashed #cbd5e1; flex-shrink: 0;
+    }
+    .testimonial-author-text h4 { font-size: 1rem; margin-bottom: 2px; }
+    .testimonial-author-text span { font-size: 0.8rem; font-weight: 600; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Pagination Dots */
+    .testimonial-dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: var(--space-sm);
+    }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .dot.active { background: var(--primary-dark); transform: scale(1.3); }
+
+    /* --- CONTACT SECTION --- */
+    .contact-section { background: var(--bg-surface); }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin-top: var(--space-lg); }
+    .contact-info h3 { margin-bottom: var(--space-sm); }
+    .contact-info p { margin-bottom: var(--space-sm); }
+    .contact-detail { display: flex; align-items: flex-start; gap: 12px; margin-bottom: var(--space-sm); }
+    .contact-detail svg { width: 20px; height: 20px; color: var(--primary-dark); flex-shrink: 0; margin-top: 4px; }
+    .contact-detail a { color: var(--primary-dark); text-decoration: none; font-weight: 600; }
+    .contact-detail a:hover { text-decoration: underline; }
+    .map-wrapper { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(15,23,42,0.08); border: 1px solid #e2e8f0; }
+    .map-wrapper iframe { display: block; width: 100%; height: 400px; border: none; }
+
+    /* --- FOOTER --- */
+    .footer { background: var(--text-main); color: #fff; padding-block: var(--space-xl) var(--space-md); }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin-bottom: var(--space-lg); }
+    .footer h4 { color: #fff; font-size: 1.2rem; margin-bottom: var(--space-sm); }
+    .footer p { color: #94a3b8; font-size: 0.95rem; }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: var(--space-xs); }
+    .footer ul a { color: #94a3b8; text-decoration: none; transition: color 0.2s; display: inline-block; padding-block: 4px; }
+    .footer ul a:hover { color: var(--primary); }
+    .footer-bottom { border-top: 1px solid #334155; padding-top: var(--space-md); display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); color: #64748b; font-size: 0.85rem; text-align: center; }
+
+    /* --- FLOATING BUTTONS --- */
+    #back-to-top, #floating-whatsapp {
+      position: fixed; bottom: 24px; width: 50px; height: 50px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 999;
+      transition: all 0.3s var(--ease);
+    }
+    
+    #back-to-top {
+      right: 24px; background: var(--glass-bg); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border); color: var(--text-main); cursor: pointer;
+      opacity: 0; pointer-events: none; transform: translateY(20px);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #back-to-top:hover { background: var(--primary-dark); color: #fff; border-color: var(--primary-dark); }
+
+    #floating-whatsapp {
+      left: 24px; background: #25D366; color: #fff;
+    }
+    #floating-whatsapp:hover { background: #1da851; transform: scale(1.1); }
+
+    /* --- IMAGE MODAL --- */
+    .image-modal {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(15, 23, 42, 0.85);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      padding: var(--space-md);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .image-modal.active { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      position: relative; max-width: 95vw; max-height: 90vh;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      transform: scale(0.95); transition: transform 0.3s var(--ease);
+    }
+    .image-modal.active .modal-content { transform: scale(1); }
+    .modal-content img { display: block; max-width: 100%; max-height: 90vh; object-fit: contain; }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--glass-dark); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 24px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.2); }
+
+    /* --- ANIMATIONS --- */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* =========================================
+       DESKTOP (min-width: 768px)
+       ========================================= */
+    @media (min-width: 768px) {
+      :root { --space-xl: 6rem; }
+      
+      .menu-toggle { display: none; }
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-block; }
+      .mobile-menu { display: none !important; }
+      
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+      .btn { width: auto; }
+      .hero-actions { flex-direction: row; flex-wrap: wrap; }
+      .hero-image-wrapper { aspect-ratio: auto; height: 500px; }
+      
+      .stats-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+      
+      .cards-grid { grid-template-columns: repeat(3, 1fr); }
+      
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-item { aspect-ratio: 1/1; }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+      
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      
+      .team-grid { grid-template-columns: repeat(4, 1fr); }
+      
+      .testimonial-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+      .testimonial-card { flex: 0 0 calc(33.333% - var(--space-sm)); }
+      
+      .contact-grid { grid-template-columns: 1fr 1.2fr; align-items: start; }
+      
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+      .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <div class="nav-wrapper">
+    <nav class="nav glass">
+      <a href="#" class="logo">Green<span>Lumber.</span></a>
+      
+      <ul class="nav-links" id="desktop-nav">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#what-we-do" class="nav-link">Services</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#team" class="nav-link">Team</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+      
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+
+      <div class="mobile-menu glass" id="mobile-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#what-we-do" class="nav-link">Services</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#team" class="nav-link">Team</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#contact" class="nav-cta">Get a Quote</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-text reveal">
+        <h1>Saving forests by using <span>recycled plastic.</span></h1>
+        <p>Green Lumber Holdings is a 100% B-BBEE company specializing in the design and manufacture of environmentally sustainable products for industry needs.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn">Request a Quote</a>
+          <a href="https://wa.me/27796674921" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-image-wrapper reveal" data-modal-image="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1200&auto=format&fit=crop" alt="Green Lumber recycled plastic outdoor furniture">
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS BAND -->
+  <section class="stats-band">
+    <div class="container stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+        <h3 class="count" data-target="700">0</h3>
+        <p>Guard Huts</p>
+      </div>
+      <div class="stat-item reveal" style="transition-delay: 100ms;">
+        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div>
+        <h3 class="count" data-target="700">0</h3>
+        <p>Projects Finished</p>
+      </div>
+      <div class="stat-item reveal" style="transition-delay: 200ms;">
+        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+        <h3 class="count" data-target="600">0</h3>
+        <p>Recycled Tons</p>
+      </div>
+      <div class="stat-item reveal" style="transition-delay: 300ms;">
+        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <h3 class="count" data-target="300">0</h3>
+        <p>Clients Satisfied</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="section" id="what-we-do">
+    <div class="container">
+      <div class="reveal">
+        <h2>Design & Manufacture for Industry Needs.</h2>
+        <p style="max-width: 700px;">For us at Green Lumber, success comes in the form of leaving a light carbon footprint on the environment through conservation of resources, while balancing energy-efficient, cost-effective, and low-maintenance products.</p>
+      </div>
+      
+      <div class="cards-grid">
+        <div class="card reveal">
+          <img src="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=600&auto=format&fit=crop" alt="Guard Hut" class="card-img" data-modal-image="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=1200&auto=format&fit=crop">
+          <div class="card-content">
+            <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+            <h3>Guard Hut Sales</h3>
+            <ul>
+              <li>Aesthetically pleasing, virtually no maintenance</li>
+              <li>Reduce operating costs</li>
+              <li>Easy assembling</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card reveal" style="transition-delay: 100ms;">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" alt="Lease terms" class="card-img" data-modal-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">
+          <div class="card-content">
+            <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+            <h3>Other Services</h3>
+            <ul>
+              <li>Month-to-month lease caters for short contracts</li>
+              <li>We never miss a deadline</li>
+              <li>Call us to collect when your contract ends</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card reveal" style="transition-delay: 200ms;">
+          <img src="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=600&auto=format&fit=crop" alt="Environmental benefits" class="card-img" data-modal-image="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=1200&auto=format&fit=crop">
+          <div class="card-content">
+            <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+            <h3>Environmental Benefits</h3>
+            <ul>
+              <li>Reduce waste streams</li>
+              <li>Enhance and protect biodiversity</li>
+              <li>Reduce carbon footprint</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="reveal">
+        <h2>Our Work in Action.</h2>
+        <p>From security guard huts to outdoor furniture, see how our recycled plastic products stand up to the elements.</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=800&auto=format&fit=crop" alt="Guard hut installation" loading="lazy"></div>
+        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=600&auto=format&fit=crop" alt="Recycled plastic bench" loading="lazy"></div>
+        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" alt="Outdoor furniture" loading="lazy"></div>
+        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=600&auto=format&fit=crop" alt="Manufacturing process" loading="lazy"></div>
+        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=600&auto=format&fit=crop" alt="Picnic table" loading="lazy"></div>
+        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=600&auto=format&fit=crop" alt="Outdoor seating" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-image reveal" data-modal-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop" alt="Green Lumber Manufacturing Facility" loading="lazy">
+        <div class="experience-badge glass">20+ Years Experience</div>
+      </div>
+      
+      <div class="reveal">
+        <h2>Established. Reliable. Sustainable.</h2>
+        <p>Green Lumber Leasing is a 100% B-BBEE Company. We specialize in the design and manufacture of environmentally sustainable products using recycled plastic.</p>
+        <p>For over two decades, our success has been defined by leaving a light carbon footprint on the environment through the conservation of resources. We balance energy-efficient, cost-effective, and low-maintenance products for industry needs.</p>
+        <a href="#contact" class="btn" style="background: var(--text-main);">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section" id="team" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="reveal">
+        <h2>The Team Behind the Craft.</h2>
+        <p>Meet the dedicated professionals driving sustainable manufacturing forward.</p>
+      </div>
+      
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
+          <div class="team-info">
+            <h4>John Doe</h4>
+            <p>Managing Director</p>
+          </div>
+        </div>
+        <div class="team-card reveal" style="transition-delay: 50ms;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
+          <div class="team-info">
+            <h4>Jane Smith</h4>
+            <p>Operations Manager</p>
+          </div>
+        </div>
+        <div class="team-card reveal" style="transition-delay: 100ms;">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
+          <div class="team-info">
+            <h4>David Johnson</h4>
+            <p>Lead Engineer</p>
+          </div>
+        </div>
+        <div class="team-card reveal" style="transition-delay: 150ms;">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
+          <div class="team-info">
+            <h4>Sarah Williams</h4>
+            <p>Sales Director</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonial-header reveal">
+        <div>
+          <h2>Trusted by Industry Leaders.</h2>
+          <p style="margin-bottom: 0;">Read what our clients have to say about our service and product durability.</p>
+        </div>
+        <div class="carousel-controls">
+          <button class="control-btn" id="prev-testimonial" aria-label="Previous testimonials">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button class="control-btn" id="next-testimonial" aria-label="Next testimonials">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+      
+      <div class="testimonial-track" id="testimonial-track">
+        <div class="testimonial-card reveal">
+          <p>"Green Lumber has consistently delivered excellent, professional service and has fully met my needs as a client. The staff I’ve interacted with have been courteous and respectful, always responding promptly to any requests."</p>
+          <div class="testimonial-author">
+            <div class="company-logo-placeholder">Logo</div>
+            <div class="testimonial-author-text">
+              <h4>Anonymous</h4>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay: 50ms;">
+          <p>"My overall experience with Green Lumber has been excellent. I greatly appreciate their timely delivery of guard huts and their responsiveness to specific requests."</p>
+          <div class="testimonial-author">
+            <div class="company-logo-placeholder">Logo</div>
+            <div class="testimonial-author-text">
+              <h4>Tshidino</h4>
+              <span>Senior Area Manager, Tshedza</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay: 100ms;">
+          <p>"Our experience with Green Lumber has been outstanding. They consistently exceed my expectations by being highly responsive and accommodating even on short notice."</p>
+          <div class="testimonial-author">
+            <div class="company-logo-placeholder">Logo</div>
+            <div class="testimonial-author-text">
+              <h4>Natasha Japhta</h4>
+              <span>Logistics, Thorburn Security</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p>"It has always been a pleasure working with the team at Green Lumber. They always go beyond the desired expectation. We have never had concerns or disappointments."</p>
+          <div class="testimonial-author">
+            <div class="company-logo-placeholder">Logo</div>
+            <div class="testimonial-author-text">
+              <h4>Mr Mervin Van Willingh</h4>
+              <span>Operations Manager, All4Security</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p>"Their service has been reliable and effective, providing solid shelters for our guards in the field. The overall quality of the shelter materials meets our needs perfectly."</p>
+          <div class="testimonial-author">
+            <div class="company-logo-placeholder">Logo</div>
+            <div class="testimonial-author-text">
+              <h4>Keaton Samuels</h4>
+              <span>Financial Supervisor, ABC Security</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pagination Dots -->
+      <div class="testimonial-dots" id="testimonial-dots"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <h2>Contact Us</h2>
+        <p style="max-width: 700px;">View the information below to find out where we are situated and how to contact us.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Contact Info</h3>
+          
+          <div class="contact-detail">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <div>
+              <strong>Address</strong><br>
+              16 Fisher Avenue<br>
+              Epping 1 Industria<br>
+              Cape Town, 7460
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <div>
+              <strong>Phone</strong><br>
+              <a href="tel:0796674921">079 667 4921</a> / <a href="tel:0215341812">021 534 1812</a>
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <div>
+              <strong>Email</strong><br>
+              <a href="mailto:info@greenlumber.co.za">info@greenlumber.co.za</a>
+            </div>
+          </div>
+          
+          <div style="margin-top: var(--space-md);">
+            <a href="https://wa.me/27796674921" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width: auto; display: inline-flex;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+        
+        <div class="map-wrapper reveal" style="transition-delay: 100ms;">
+          <iframe 
+            src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=%2016%20Fisher%20Avenue,%20Epping%201%20Industria,%20Cape%20Town+(Green%20Lumber%20Holdings)&t=&z=14&ie=UTF8&iwloc=B&output=embed" 
+            width="100%" 
+            height="450" 
+            frameborder="0" 
+            scrolling="no" 
+            marginheight="0" 
+            marginwidth="0"
+            title="Green Lumber Holdings Location Map"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Green Lumber Holdings</h4>
+          <p>Green Lumber Leasing is a 100% B-BBEE Company, we specialize in the design & manufacture of environmentally sustainable products using recycled plastic.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#what-we-do">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <p style="margin-bottom: 8px;">16 Fisher Avenue, Epping 1 Industria, Cape Town, 7460</p>
+          <p style="margin-bottom: 8px;"><a href="tel:0796674921" style="color: #94a3b8; text-decoration: none;">079 667 4921</a></p>
+          <p><a href="mailto:info@greenlumber.co.za" style="color: var(--primary); text-decoration: none; font-weight: 600;">info@greenlumber.co.za</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Green Lumber Holdings. All Rights Reserved.</p>
+        <p>Designed by Palisson Tech & Media</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/27796674921" target="_blank" rel="noopener" id="floating-whatsapp" aria-label="Chat with us on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <button id="back-to-top" aria-label="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- IMAGE MODAL -->
+  <div class="image-modal" id="image-modal" role="dialog" aria-modal="true" aria-label="Expanded image view">
+    <div class="modal-content">
+      <img src="" alt="Expanded view" id="modal-img">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. Mobile Menu
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      
+      menuToggle.addEventListener("click", () => {
+        const isActive = mobileMenu.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", isActive);
+      });
+
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // 2. Active Navigation Pill
+      const sections = document.querySelectorAll("section[id], header[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      function updateActiveNav() {
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          const sectionHeight = section.offsetHeight;
+          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+      window.addEventListener("scroll", updateActiveNav);
+      updateActiveNav();
+
+      // 3. Testimonials Slider & Pagination Dots
+      const track = document.getElementById("testimonial-track");
+      const prevBtn = document.getElementById("prev-testimonial");
+      const nextBtn = document.getElementById("next-testimonial");
+      const dotsContainer = document.getElementById("testimonial-dots");
+      
+      const cards = track.querySelectorAll(".testimonial-card");
+      let cardsPerPage = window.innerWidth >= 768 ? 3 : 1;
+      let totalPages = Math.ceil(cards.length / cardsPerPage);
+
+      // Generate Dots
+      function generateDots() {
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < totalPages; i++) {
+          const dot = document.createElement("button");
+          dot.classList.add("dot");
+          dot.setAttribute("aria-label", `Go to testimonial page ${i + 1}`);
+          if (i === 0) dot.classList.add("active");
+          dot.addEventListener("click", () => {
+            const scrollAmount = (cards[0].offsetWidth + 24) * cardsPerPage * i;
+            track.scrollTo({ left: scrollAmount, behavior: "smooth" });
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+      generateDots();
+
+      // Update Dots on Scroll
+      track.addEventListener("scroll", () => {
+        const scrollPosition = track.scrollLeft;
+        const cardWidth = cards[0].offsetWidth + 24;
+        const activePage = Math.round(scrollPosition / (cardWidth * cardsPerPage));
+        
+        const dots = dotsContainer.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === activePage);
+        });
+      });
+
+      // Arrow Controls
+      const scrollAmount = () => {
+        return (cards[0].offsetWidth + 24) * cardsPerPage;
+      };
+
+      prevBtn.addEventListener("click", () => {
+        track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+      });
+
+      nextBtn.addEventListener("click", () => {
+        track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+      });
+
+      // Recalculate dots on resize
+      window.addEventListener("resize", () => {
+        const newCardsPerPage = window.innerWidth >= 768 ? 3 : 1;
+        if (newCardsPerPage !== cardsPerPage) {
+          cardsPerPage = newCardsPerPage;
+          totalPages = Math.ceil(cards.length / cardsPerPage);
+          generateDots();
+        }
+      });
+
+      // 4. Back to Top
+      const backToTopBtn = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+          backToTopBtn.classList.add("visible");
+        } else {
+          backToTopBtn.classList.remove("visible");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // 5. Scroll Reveal
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // 6. Stats Count-Up
+      const countElements = document.querySelectorAll(".count");
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.getAttribute("data-target"));
+            let count = 0;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+
+            const updateCount = () => {
+              count += increment;
+              if (count < target) {
+                el.innerText = Math.ceil(count);
+                requestAnimationFrame(updateCount);
+              } else {
+                el.innerText = target;
+              }
+            };
+            updateCount();
+            countObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      countElements.forEach(el => countObserver.observe(el));
+
+      // 7. Image Modal with Focus Trap
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("modal-img");
+      const modalClose = document.getElementById("modal-close");
+      let previousActiveElement;
+      
+      const expandableImages = document.querySelectorAll("[data-modal-image]");
+      
+      expandableImages.forEach(el => {
+        el.addEventListener("click", () => {
+          previousActiveElement = el;
+          const imageUrl = el.getAttribute("data-modal-image");
+          modalImg.src = imageUrl;
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+          modalClose.focus(); // Focus the close button
+        });
+      });
+
+      function closeModal() {
+        modal.classList.remove("active");
+        modalImg.src = "";
+        document.body.style.overflow = "";
+        if (previousActiveElement) {
+          previousActiveElement.focus(); // Return focus
+        }
+      }
+
+      modalClose.addEventListener("click", closeModal);
+      
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          closeModal();
+        }
+        // Focus trap
+        if (e.key === "Tab" && modal.classList.contains("active")) {
+          e.preventDefault();
+          modalClose.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
