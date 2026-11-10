@@ -25,7 +25,7 @@
       "addressCountry": "ZA"
     },
     "telephone": "+27796674921",
-    "email": "info@greenlumber.co.za",
+    "email": "info@greenlumber.co.za"
   }
   </script>
 
@@ -90,10 +90,11 @@
       backdrop-filter: blur(16px) saturate(120%);
       border: 1px solid var(--glass-border);
       border-radius: 16px;
+      corner-shape: squircle;
       box-shadow: var(--glass-shadow);
     }
 
-    /* --- NAVIGATION --- */
+    /* --- NAVIGATION (Excluded from squircle) --- */
     .nav-wrapper {
       position: fixed; top: var(--space-sm); left: 0; width: 100%;
       z-index: 1000; display: flex; justify-content: center; padding-inline: var(--space-sm);
@@ -148,7 +149,8 @@
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 16px 32px; background: var(--primary-dark); color: #fff;
-      text-decoration: none; font-weight: 600; border-radius: 8px;corner-shape: squircle;
+      text-decoration: none; font-weight: 600; border-radius: 8px;
+      corner-shape: squircle;
       transition: background 0.2s, transform 0.2s; width: 100%;
     }
     .btn:hover { background: #124e12; transform: translateY(-2px); }
@@ -158,7 +160,7 @@
     .hero-actions { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
     
     .hero-image-wrapper {
-      border-radius: 20px; overflow: hidden;corner-shape: squircle;
+      border-radius: 20px; corner-shape: squircle; overflow: hidden;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 4/3; cursor: pointer;
     }
     .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
@@ -174,14 +176,15 @@
     /* --- CARDS --- */
     .cards-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
     .card {
-      background: var(--bg-surface); border-radius: 16px; corner-shape: squircle; border: 1px solid #e2e8f0;
+      background: var(--bg-surface); border-radius: 16px; corner-shape: squircle;
+      border: 1px solid #e2e8f0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
       overflow: hidden; display: flex; flex-direction: column;
     }
     .card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--primary); }
     .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #e2e8f0; cursor: pointer; }
     .card-content { padding: var(--space-md); flex-grow: 1; }
-    .card-icon { width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-sm); }
+    .card-icon { width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); border-radius: 12px; corner-shape: squircle; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-sm); }
     .card-icon svg { width: 24px; height: 24px; }
     .card ul { list-style: none; padding: 0; margin-top: var(--space-sm); }
     .card ul li { position: relative; padding-left: 24px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; }
@@ -194,11 +197,26 @@
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
     .gallery-item:hover img { transform: scale(1.05); }
 
-    /* --- ABOUT --- */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: center; }
+    /* --- ABOUT (Expanded) --- */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: start; }
     .about-image { border-radius: 16px; corner-shape: squircle; overflow: hidden; aspect-ratio: 4/3; position: relative; cursor: pointer; }
     .about-image img { width: 100%; height: 100%; object-fit: cover; }
-    .experience-badge { position: absolute; bottom: var(--space-sm); left: var(--space-sm); padding: 12px 20px; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--primary-dark); border-radius: 8px; }
+    .experience-badge { position: absolute; bottom: var(--space-sm); left: var(--space-sm); padding: 12px 20px; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--primary-dark); border-radius: 8px; corner-shape: squircle; }
+
+    .about-content h3 { margin-top: var(--space-md); color: var(--primary-dark); }
+    .about-content h4 { margin-top: var(--space-sm); font-size: 1.1rem; }
+    .about-content ul { list-style: none; padding: 0; margin-bottom: var(--space-md); }
+    .about-content ul li { position: relative; padding-left: 24px; margin-bottom: 8px; color: var(--text-muted); }
+    .about-content ul li::before { content: "•"; color: var(--primary); position: absolute; left: 0; font-weight: bold; font-size: 1.2rem; }
+
+    /* Timeline */
+    .timeline { margin-top: var(--space-md); border-left: 3px solid var(--primary-light); padding-left: var(--space-md); }
+    .timeline-item { margin-bottom: var(--space-md); position: relative; }
+    .timeline-item::before {
+      content: ""; position: absolute; left: calc(-1 * var(--space-md) - 6px); top: 6px;
+      width: 12px; height: 12px; background: var(--primary); border-radius: 50%; corner-shape: squircle;
+    }
+    .timeline-year { font-family: var(--font-heading); font-weight: 700; color: var(--primary-dark); display: block; margin-bottom: 4px; }
 
     /* --- TEAM --- */
     .team-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
@@ -239,7 +257,7 @@
     
     /* Company Logo Placeholder */
     .company-logo-placeholder {
-      width: 48px; height: 48px; background: #f1f5f9; border-radius: 8px;
+      width: 48px; height: 48px; background: #f1f5f9; border-radius: 8px; corner-shape: squircle;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.6rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;
       border: 1px dashed #cbd5e1; flex-shrink: 0;
@@ -252,7 +270,7 @@
       display: flex; justify-content: center; gap: 8px; margin-top: var(--space-sm);
     }
     .dot {
-      width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1;
+      width: 10px; height: 10px; border-radius: 50%; corner-shape: squircle; background: #cbd5e1;
       border: none; cursor: pointer; transition: all 0.2s;
     }
     .dot.active { background: var(--primary-dark); transform: scale(1.3); }
@@ -283,7 +301,7 @@
     /* --- FLOATING BUTTONS --- */
     #back-to-top, #floating-whatsapp {
       position: fixed; bottom: 24px; width: 50px; height: 50px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; corner-shape: squircle; display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 999;
       transition: all 0.3s var(--ease);
     }
@@ -321,7 +339,7 @@
     .modal-content img { display: block; max-width: 100%; max-height: 90vh; object-fit: contain; }
     .modal-close {
       position: absolute; top: 12px; right: 12px;
-      width: 44px; height: 44px; border-radius: 50%;
+      width: 44px; height: 44px; border-radius: 50%; corner-shape: squircle;
       background: var(--glass-dark); backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.2);
       color: #fff; font-size: 24px; cursor: pointer;
@@ -523,7 +541,7 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT (Expanded with About Page Content) -->
   <section class="section" id="about">
     <div class="container about-grid">
       <div class="about-image reveal" data-modal-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop">
@@ -531,11 +549,46 @@
         <div class="experience-badge glass">20+ Years Experience</div>
       </div>
       
-      <div class="reveal">
+      <div class="about-content reveal">
         <h2>Established. Reliable. Sustainable.</h2>
         <p>Green Lumber Leasing is a 100% B-BBEE Company. We specialize in the design and manufacture of environmentally sustainable products using recycled plastic.</p>
-        <p>For over two decades, our success has been defined by leaving a light carbon footprint on the environment through the conservation of resources. We balance energy-efficient, cost-effective, and low-maintenance products for industry needs.</p>
-        <a href="#contact" class="btn" style="background: var(--text-main);">Contact Us</a>
+        
+        <h3>Our History</h3>
+        <p>Founded in 2017 in Epping, Cape Town, Green Lumber was created with a mission to produce high-quality products from recycled plastic. If it can be made from wood, we can craft it from recycled plastic, offering a sustainable and durable alternative. Our products are designed for outdoor use, capable of withstanding all weather conditions with little to no maintenance required. They are highly durable, weather-resistant, and insect-proof. Green Lumber specializes in producing a range of items, including security huts, bespoke furniture, decking, and dirt bin covers, while continuously innovating to meet industry demands. As a 100% BEE-rated company, we take pride in being owned by our dedicated staff and the IDH Foundation, a BEE Trust.</p>
+        
+        <h4>Our Journey</h4>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-year">2017</span>
+            <p>Green Lumber began as a community project in Bonteheuwel, committed to creating sustainable products from recycled materials.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2018</span>
+            <p>Leased 23 guard huts. Provided services to over 5 clients.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2019 - 2021</span>
+            <p>Continued growth and innovation in product offerings, enhancing durability and sustainability.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2022</span>
+            <p>Expanded our reach, servicing more clients and expanding our product line.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2023</span>
+            <p>Developed stronger partnerships and refined our manufacturing process, boosting our production capacity.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2024</span>
+            <p>Leased and sold 700 guard huts. Proudly serving over 300 clients to date.</p>
+          </div>
+        </div>
+
+        <h3>Vision & Mission</h3>
+        <p>At Green Lumber, we envision a future where sustainable practices are the foundation of every industry. By minimizing our carbon footprint and conserving natural resources, we strive to be leaders in environmental responsibility.</p>
+        <p>Our mission is to preserve forests through the innovative use of recycled materials in our manufacturing processes. We are committed to providing energy-efficient, cost-effective, and low-maintenance products that meet industry needs, all while keeping our customers at the heart of everything we do.</p>
+        
+        <a href="#contact" class="btn" style="background: var(--text-main); margin-top: var(--space-md);">Contact Us</a>
       </div>
     </div>
   </section>
