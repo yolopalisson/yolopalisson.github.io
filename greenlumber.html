@@ -16,7 +16,7 @@
     "@type": "LocalBusiness",
     "name": "Green Lumber Holdings",
     "image": "https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1200&auto=format&fit=crop",
-    "description": "Green Lumber Leasing is a 100% B-BBEE Company, we specialize in the design & Manufacture of environmentally sustainable products using recycled plastic.",
+    "description": "Green Lumber Holdings specialises in sustainable solutions through the manufacturing and leasing of products made from recycled plastic.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "16 Fisher Avenue, Epping 1 Industria",
@@ -67,7 +67,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a:focus-visible, button:focus-visible {
+    a:focus-visible, button:focus-visible, select:focus-visible {
       outline: 3px solid var(--primary);
       outline-offset: 3px;
       border-radius: 4px;
@@ -94,7 +94,7 @@
       box-shadow: var(--glass-shadow);
     }
 
-    /* --- NAVIGATION (Excluded from squircle) --- */
+    /* --- NAVIGATION --- */
     .nav-wrapper {
       position: fixed; top: var(--space-sm); left: 0; width: 100%;
       z-index: 1000; display: flex; justify-content: center; padding-inline: var(--space-sm);
@@ -118,8 +118,8 @@
     
     .nav-cta {
       display: none; background: var(--primary-dark); color: #fff !important;
-      padding: 10px 24px; border-radius: 50px; text-decoration: none;
-      font-weight: 600; font-size: 0.95rem; transition: background 0.2s;
+      padding: 8px 20px; border-radius: 50px; text-decoration: none;
+      font-weight: 600; font-size: 0.9rem; transition: background 0.2s;
     }
     .nav-cta:hover { background: #124e12; }
 
@@ -146,18 +146,30 @@
     .hero-text h1 span { color: var(--primary); }
     .hero-text p { font-size: 1.15rem; max-width: 500px; }
     
+    /* Slimmer Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 16px 32px; background: var(--primary-dark); color: #fff;
+      padding: 12px 24px; 
+      font-size: 0.95rem;
+      background: var(--primary-dark); color: #fff;
       text-decoration: none; font-weight: 600; border-radius: 8px;
       corner-shape: squircle;
       transition: background 0.2s, transform 0.2s; width: 100%;
+      text-align: center; cursor: pointer; border: none;
     }
     .btn:hover { background: #124e12; transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 2px solid var(--primary-dark); color: var(--primary-dark); }
+    .btn-outline:hover { background: var(--primary-dark); color: #fff; }
     .btn-whatsapp { background: #25D366; color: #fff; }
     .btn-whatsapp:hover { background: #1da851; }
     
-    .hero-actions { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+    /* Hero Actions Layout */
+    .hero-actions { 
+      display: flex; 
+      flex-direction: column; 
+      gap: var(--space-sm); 
+      margin-top: var(--space-md); 
+    }
     
     .hero-image-wrapper {
       border-radius: 20px; corner-shape: squircle; overflow: hidden;
@@ -173,31 +185,7 @@
     .stat-icon { width: 48px; height: 48px; margin: 0 auto var(--space-xs); color: var(--primary); }
     .stat-icon svg { width: 100%; height: 100%; }
 
-    /* --- CARDS --- */
-    .cards-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
-    .card {
-      background: var(--bg-surface); border-radius: 16px; corner-shape: squircle;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-      overflow: hidden; display: flex; flex-direction: column;
-    }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--primary); }
-    .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #e2e8f0; cursor: pointer; }
-    .card-content { padding: var(--space-md); flex-grow: 1; }
-    .card-icon { width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); border-radius: 12px; corner-shape: squircle; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-sm); }
-    .card-icon svg { width: 24px; height: 24px; }
-    .card ul { list-style: none; padding: 0; margin-top: var(--space-sm); }
-    .card ul li { position: relative; padding-left: 24px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; }
-    .card ul li::before { content: "✓"; color: var(--primary-dark); position: absolute; left: 0; font-weight: bold; font-size: 1.1rem; line-height: 1.2; }
-
-    /* --- GALLERY --- */
-    .gallery-section { background: var(--bg-surface); }
-    .gallery-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
-    .gallery-item { position: relative; border-radius: 12px; corner-shape: squircle; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
-    .gallery-item:hover img { transform: scale(1.05); }
-
-    /* --- ABOUT (Expanded) --- */
+    /* --- ABOUT & SUBSIDIARIES --- */
     .about-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: start; }
     .about-image { border-radius: 16px; corner-shape: squircle; overflow: hidden; aspect-ratio: 4/3; position: relative; cursor: pointer; }
     .about-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -205,33 +193,153 @@
 
     .about-content h3 { margin-top: var(--space-md); color: var(--primary-dark); }
     .about-content h4 { margin-top: var(--space-sm); font-size: 1.1rem; }
-    .about-content ul { list-style: none; padding: 0; margin-bottom: var(--space-md); }
-    .about-content ul li { position: relative; padding-left: 24px; margin-bottom: 8px; color: var(--text-muted); }
-    .about-content ul li::before { content: "•"; color: var(--primary); position: absolute; left: 0; font-weight: bold; font-size: 1.2rem; }
+    
+    .subsidiary-list { list-style: none; padding: 0; margin-bottom: var(--space-md); }
+    .subsidiary-list li { margin-bottom: var(--space-sm); padding-left: 24px; position: relative; }
+    .subsidiary-list li::before { content: "•"; color: var(--primary); position: absolute; left: 0; font-weight: bold; font-size: 1.2rem; }
+    .subsidiary-list strong { display: block; color: var(--text-main); font-size: 1.05rem; }
 
-    /* Timeline */
-    .timeline { margin-top: var(--space-md); border-left: 3px solid var(--primary-light); padding-left: var(--space-md); }
-    .timeline-item { margin-bottom: var(--space-md); position: relative; }
-    .timeline-item::before {
-      content: ""; position: absolute; left: calc(-1 * var(--space-md) - 6px); top: 6px;
-      width: 12px; height: 12px; background: var(--primary); border-radius: 50%;
+    /* Why Choose Us */
+    .why-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); margin-top: var(--space-md); }
+    .why-card { background: var(--bg-surface); padding: var(--space-md); border-radius: 12px; corner-shape: squircle; border: 1px solid #e2e8f0; }
+    .why-card h4 { color: var(--primary-dark); margin-bottom: 8px; font-size: 1rem; }
+    .why-card p { font-size: 0.9rem; margin-bottom: 0; }
+
+    /* --- SERVICES --- */
+    .services-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin-top: var(--space-lg); }
+    .service-card { background: var(--bg-surface); border-radius: 16px; corner-shape: squircle; overflow: hidden; border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+    .service-img { width: 100%; height: 250px; object-fit: cover; }
+    .service-content { padding: var(--space-lg) var(--space-md); flex-grow: 1; }
+    .service-content h3 { font-size: 1.5rem; margin-bottom: var(--space-sm); color: var(--text-main); }
+    .service-content p { margin-bottom: var(--space-md); }
+    .service-content ul { list-style: none; padding: 0; margin-bottom: var(--space-md); }
+    .service-content ul li { position: relative; padding-left: 24px; margin-bottom: 12px; color: var(--text-muted); }
+    .service-content ul li::before { content: "✓"; color: var(--primary-dark); position: absolute; left: 0; font-weight: bold; font-size: 1.1rem; line-height: 1.2; }
+
+    /* --- GALLERY FILTERS --- */
+    .gallery-section { background: var(--bg-surface); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--space-md); margin-bottom: var(--space-lg); }
+    .filter-btn {
+      padding: 8px 20px; border-radius: 50px; border: 1px solid #cbd5e1; background: transparent;
+      font-family: var(--font-body); font-weight: 500; color: var(--text-muted); cursor: pointer;
+      transition: all 0.2s;
     }
-    .timeline-year { font-family: var(--font-heading); font-weight: 700; color: var(--primary-dark); display: block; margin-bottom: 4px; }
+    .filter-btn:hover, .filter-btn.active { background: var(--primary-dark); color: #fff; border-color: var(--primary-dark); }
 
-    /* --- TEAM --- */
-    .team-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-lg); }
-    .team-card { background: var(--bg-surface); border-radius: 16px; corner-shape: squircle; overflow: hidden; border: 1px solid #e2e8f0; }
-    .team-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-    .team-info { padding: var(--space-md); text-align: center; }
-    .team-info h4 { font-size: 1.1rem; margin-bottom: 4px; }
-    .team-info p { font-size: 0.85rem; color: var(--primary-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
+    .gallery-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
+    .gallery-item { 
+      position: relative; border-radius: 12px; corner-shape: squircle; overflow: hidden; 
+      aspect-ratio: 4/3; cursor: pointer; display: none; 
+    }
+    .gallery-item.show { display: block; animation: fadeIn 0.4s ease forwards; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-label { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 24px 16px 12px; color: #fff; font-weight: 600; font-size: 0.9rem; pointer-events: none; }
+    
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- TEAM SECTION (New Layout) --- */
+    .team-grid { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: var(--space-lg); 
+      margin-top: var(--space-lg); 
+    }
+    
+    .department-col {
+      background: var(--bg-surface);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      corner-shape: squircle;
+      padding: var(--space-lg) var(--space-md);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .department-title {
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .department-members {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      flex-grow: 1;
+    }
+
+    .team-member-small {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--bg-body);
+      padding: var(--space-sm);
+      border-radius: 12px;
+      corner-shape: squircle;
+    }
+
+    .team-member-small img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      corner-shape: squircle;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .team-member-info h4 { font-size: 1rem; margin-bottom: 2px; }
+    .team-member-info p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0; }
+    .team-member-info a { font-size: 0.8rem; color: var(--primary-dark); text-decoration: none; font-weight: 500; display: block; margin-top: 2px; }
+
+    .department-action {
+      background: var(--primary-light);
+      padding: var(--space-md);
+      border-radius: 12px;
+      corner-shape: squircle;
+      border: 1px solid rgba(47, 167, 47, 0.2);
+    }
+
+    .action-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: var(--space-xs);
+    }
+    .action-label span { color: var(--primary-dark); }
+
+    .support-select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      corner-shape: squircle;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: var(--bg-surface);
+      color: var(--text-main);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231a6b1a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 10px auto;
+    }
+    .support-select:focus { border-color: var(--primary); }
 
     /* --- TESTIMONIALS --- */
     .testimonials { background: var(--primary-light); }
     .testimonial-header { display: flex; flex-direction: column; gap: var(--space-sm); margin-bottom: var(--space-md); }
     .carousel-controls { display: flex; gap: 12px; }
     .control-btn {
-      width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%; corner-shape: squircle; display: flex; align-items: center; justify-content: center;
       background: var(--bg-surface); border: 1px solid #e2e8f0; color: var(--text-main);
       cursor: pointer; transition: all 0.2s;
     }
@@ -255,24 +363,17 @@
     .testimonial-card p { font-style: italic; font-size: 0.95rem; color: var(--text-muted); margin-bottom: var(--space-sm); flex-grow: 1; }
     .testimonial-author { border-top: 1px solid #e2e8f0; padding-top: var(--space-sm); display: flex; align-items: center; gap: 12px; }
     
-    /* Company Logo Placeholder */
     .company-logo-placeholder {
-      width: 48px; height: 48px; background: #f1f5f9; border-radius: 8px; corner-shape: squircle;
+      width: 40px; height: 40px; background: #f1f5f9; border-radius: 8px; corner-shape: squircle;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.6rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;
       border: 1px dashed #cbd5e1; flex-shrink: 0;
     }
-    .testimonial-author-text h4 { font-size: 1rem; margin-bottom: 2px; }
-    .testimonial-author-text span { font-size: 0.8rem; font-weight: 600; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; }
+    .testimonial-author-text h4 { font-size: 0.95rem; margin-bottom: 2px; }
+    .testimonial-author-text span { font-size: 0.75rem; font-weight: 600; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* Pagination Dots */
-    .testimonial-dots {
-      display: flex; justify-content: center; gap: 8px; margin-top: var(--space-sm);
-    }
-    .dot {
-      width: 10px; height: 10px; border-radius: 50%; corner-shape: squircle; background: #cbd5e1;
-      border: none; cursor: pointer; transition: all 0.2s;
-    }
+    .testimonial-dots { display: flex; justify-content: center; gap: 8px; margin-top: var(--space-sm); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; corner-shape: squircle; background: #cbd5e1; border: none; cursor: pointer; transition: all 0.2s; }
     .dot.active { background: var(--primary-dark); transform: scale(1.3); }
 
     /* --- CONTACT SECTION --- */
@@ -297,6 +398,14 @@
     .footer ul a { color: #94a3b8; text-decoration: none; transition: color 0.2s; display: inline-block; padding-block: 4px; }
     .footer ul a:hover { color: var(--primary); }
     .footer-bottom { border-top: 1px solid #334155; padding-top: var(--space-md); display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); color: #64748b; font-size: 0.85rem; text-align: center; }
+    
+    .social-links { display: flex; gap: 16px; margin-top: var(--space-sm); }
+    .social-links a { color: #94a3b8; transition: color 0.2s; }
+    .social-links a:hover { color: var(--primary); }
+    .social-links svg { width: 24px; height: 24px; }
+
+    .makro-banner { background: var(--primary-light); padding: var(--space-md); border-radius: 12px; corner-shape: squircle; border: 1px solid var(--primary); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: var(--space-md); }
+    .makro-banner p { margin: 0; color: var(--primary-dark); font-weight: 600; }
 
     /* --- FLOATING BUTTONS --- */
     #back-to-top, #floating-whatsapp {
@@ -314,9 +423,7 @@
     #back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
     #back-to-top:hover { background: var(--primary-dark); color: #fff; border-color: var(--primary-dark); }
 
-    #floating-whatsapp {
-      left: 24px; background: #25D366; color: #fff;
-    }
+    #floating-whatsapp { left: 24px; background: #25D366; color: #fff; }
     #floating-whatsapp:hover { background: #1da851; transform: scale(1.1); }
 
     /* --- IMAGE MODAL --- */
@@ -364,21 +471,27 @@
       .mobile-menu { display: none !important; }
       
       .hero-grid { grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
-      .btn { width: auto; }
-      .hero-actions { flex-direction: row; flex-wrap: wrap; }
+      
+      .hero-actions { 
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: var(--space-sm); 
+      }
+      .hero-actions .btn { width: 100%; }
+
       .hero-image-wrapper { aspect-ratio: auto; height: 500px; }
       
       .stats-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
       
-      .cards-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      
+      .services-grid { grid-template-columns: 1fr 1fr; }
       
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-      .gallery-item { aspect-ratio: 1/1; }
-      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
       
-      .about-grid { grid-template-columns: 1fr 1fr; }
-      
-      .team-grid { grid-template-columns: repeat(4, 1fr); }
+      /* Updated Team Grid Layout */
+      .team-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
       
       .testimonial-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
       .testimonial-card { flex: 0 0 calc(33.333% - var(--space-sm)); }
@@ -428,19 +541,17 @@
   <header class="hero" id="home">
     <div class="container hero-grid">
       <div class="hero-text reveal">
-        <h1>Saving forests by using <span>recycled plastic.</span></h1>
-        <p>Green Lumber Holdings is a 100% B-BBEE company specializing in the design and manufacture of environmentally sustainable products for industry needs.</p>
+        <h1>Saving Forests by Using <span>Recycled Plastics</span></h1>
+        <p>At Green Lumber Holdings, we believe that plastic waste can be transformed into valuable, durable and practical products. Established in 2017 and based in Epping, Cape Town, we specialise in sustainable solutions through the manufacturing and leasing of products made from recycled plastic.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn">Request a Quote</a>
-          <a href="https://wa.me/27796674921" target="_blank" rel="noopener" class="btn btn-whatsapp">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp Us
-          </a>
+          <a href="#gallery" class="btn">Explore Our Products</a>
+          <a href="#what-we-do" class="btn btn-outline">Discover Our Services</a>
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
         </div>
       </div>
       
-      <div class="hero-image-wrapper reveal" data-modal-image="https://unsplash.com/photos/blue-recycling-bin-with-symbol-aI4RJ--Mw4I">
-        <img src="https://unsplash.com/photos/blue-recycling-bin-with-symbol-aI4RJ--Mw4I" alt="Green Lumber recycled plastic outdoor furniture">
+      <div class="hero-image-wrapper reveal" data-modal-image="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1200&auto=format&fit=crop" alt="Green Lumber recycled plastic outdoor furniture">
       </div>
     </div>
   </header>
@@ -471,51 +582,93 @@
     </div>
   </section>
 
-  <!-- WHAT WE DO -->
-  <section class="section" id="what-we-do">
-    <div class="container">
-      <div class="reveal">
-        <h2>Design & Manufacture for Industry Needs.</h2>
-        <p style="max-width: 700px;">For us at Green Lumber, success comes in the form of leaving a light carbon footprint on the environment through conservation of resources, while balancing energy-efficient, cost-effective, and low-maintenance products.</p>
+  <!-- ABOUT & WHY CHOOSE -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-image reveal" data-modal-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop" alt="Green Lumber Manufacturing Facility" loading="lazy">
+        <div class="experience-badge glass">Since 2017</div>
       </div>
       
-      <div class="cards-grid">
-        <div class="card reveal">
-          <img src="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=600&auto=format&fit=crop" alt="Guard Hut" class="card-img" data-modal-image="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=1200&auto=format&fit=crop">
-          <div class="card-content">
-            <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
-            <h3>Guard Hut Sales</h3>
+      <div class="about-content reveal">
+        <h2>Who We Are</h2>
+        <p>We are driven by the belief that plastic waste can be transformed into valuable products that offer durable, practical and environmentally responsible alternatives to traditional materials.</p>
+        
+        <p>Green Lumber Holdings operates through two subsidiaries:</p>
+        <ul class="subsidiary-list">
+          <li><strong>Green Lumber Manufacturing (Pty) Ltd</strong>Responsible for manufacturing a range of products using recycled plastic, offering durable and low-maintenance solutions for commercial, industrial and outdoor environments.</li>
+          <li><strong>Green Lumber Leasing (Pty) Ltd</strong>Provides security guard leasing solutions, making our products accessible to businesses through flexible rental arrangements.</li>
+        </ul>
+        <p>Together, the two divisions support our commitment to sustainability, quality, innovation and customer-focused service.</p>
+        
+        <h3>Why Choose Green Lumber?</h3>
+        <div class="why-grid">
+          <div class="why-card">
+            <h4>100% Recycled Plastic</h4>
+            <p>We transform recycled plastic waste into practical, durable and environmentally friendly products.</p>
+          </div>
+          <div class="why-card">
+            <h4>Durable & Low Maintenance</h4>
+            <p>Our products are designed for long-lasting performance, offering practical solutions for various environments.</p>
+          </div>
+          <div class="why-card">
+            <h4>Level 1 B-BBEE Contributor</h4>
+            <p>We are proud to be a Level 1 B-BBEE contributor, reflecting our commitment to inclusive economic participation.</p>
+          </div>
+          <div class="why-card">
+            <h4>Customer-Focused</h4>
+            <p>We provide products and solutions designed around the needs of our customers.</p>
+          </div>
+        </div>
+
+        <h3>Our Vision</h3>
+        <p>To become Africa's number one manufacturer of eco-friendly products, championing environmental innovation and social impact through local job creation.</p>
+        
+        <h3>Our Mission</h3>
+        <p>To be the leading provider of sustainable green products by recycling plastic waste into customised, environmentally friendly products for personal and workplace environments, while delivering customer-centric service, professionalism and the highest industry standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR SERVICES -->
+  <section class="section" id="what-we-do" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="reveal">
+        <h2>Our Business Divisions</h2>
+        <p style="max-width: 700px;">Through our specialised subsidiaries, we deliver sustainable products and practical solutions to meet different customer needs.</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Manufacturing Division -->
+        <div class="service-card reveal">
+          <img src="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=800&auto=format&fit=crop" alt="Manufacturing" class="service-img">
+          <div class="service-content">
+            <h3>Green Lumber Manufacturing (Pty) Ltd</h3>
+            <p>We manufacture a range of sustainable products using 100% recycled plastic, including guard huts and outdoor furniture.</p>
             <ul>
-              <li>Aesthetically pleasing, virtually no maintenance</li>
-              <li>Reduce operating costs</li>
-              <li>Easy assembling</li>
+              <li>Security guard huts</li>
+              <li>Picnic benches and outdoor furniture</li>
+              <li>Tables and chairs</li>
+              <li>Dustbins and bin covers</li>
+              <li>Compost bins</li>
             </ul>
+            <a href="#gallery" class="btn">Explore Manufacturing</a>
           </div>
         </div>
         
-        <div class="card reveal" style="transition-delay: 100ms;">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" alt="Lease terms" class="card-img" data-modal-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">
-          <div class="card-content">
-            <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
-            <h3>Other Services</h3>
+        <!-- Leasing Division -->
+        <div class="service-card reveal" style="transition-delay: 100ms;">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Leasing" class="service-img">
+          <div class="service-content">
+            <h3>Green Lumber Leasing (Pty) Ltd</h3>
+            <p>We provide flexible short- and long-term guard hut rental options, including delivery, set up and relocation to suit client's needs.</p>
             <ul>
-              <li>Month-to-month lease caters for short contracts</li>
-              <li>We never miss a deadline</li>
-              <li>Call us to collect when your contract ends</li>
+              <li>Guard hut rentals (1-man, 2-man, 3-man)</li>
+              <li>Delivery and set up</li>
+              <li>Relocation services and repairs</li>
+              <li>Month-to-month lease options</li>
             </ul>
-          </div>
-        </div>
-        
-        <div class="card reveal" style="transition-delay: 200ms;">
-          <img src="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=600&auto=format&fit=crop" alt="Environmental benefits" class="card-img" data-modal-image="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=1200&auto=format&fit=crop">
-          <div class="card-content">
-            <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
-            <h3>Environmental Benefits</h3>
-            <ul>
-              <li>Reduce waste streams</li>
-              <li>Enhance and protect biodiversity</li>
-              <li>Reduce carbon footprint</li>
-            </ul>
+            <a href="#contact" class="btn">Explore Leasing</a>
           </div>
         </div>
       </div>
@@ -526,70 +679,50 @@
   <section class="section gallery-section" id="gallery">
     <div class="container">
       <div class="reveal">
-        <h2>Our Work in Action.</h2>
-        <p>From security guard huts to outdoor furniture, see how our recycled plastic products stand up to the elements.</p>
+        <h2>Browse by Category</h2>
+        <p>Explore our range of sustainable products, outdoor furniture and completed projects.</p>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="huts">Guard Huts</button>
+          <button class="filter-btn" data-filter="benches">Picnic Benches</button>
+          <button class="filter-btn" data-filter="furniture">Outdoor Furniture</button>
+          <button class="filter-btn" data-filter="waste">Waste Management</button>
+          <button class="filter-btn" data-filter="projects">Projects & Installations</button>
+        </div>
       </div>
       
-      <div class="gallery-grid">
-        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=800&auto=format&fit=crop" alt="Guard hut installation" loading="lazy"></div>
-        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=600&auto=format&fit=crop" alt="Recycled plastic bench" loading="lazy"></div>
-        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" alt="Outdoor furniture" loading="lazy"></div>
-        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=600&auto=format&fit=crop" alt="Manufacturing process" loading="lazy"></div>
-        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=600&auto=format&fit=crop" alt="Picnic table" loading="lazy"></div>
-        <div class="gallery-item reveal" data-modal-image="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1600&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=600&auto=format&fit=crop" alt="Outdoor seating" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT (Expanded with About Page Content) -->
-  <section class="section" id="about">
-    <div class="container about-grid">
-      <div class="about-image reveal" data-modal-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop" alt="Green Lumber Manufacturing Facility" loading="lazy">
-        <div class="experience-badge glass">20+ Years Experience</div>
-      </div>
-      
-      <div class="about-content reveal">
-        <h2>Established. Reliable. Sustainable.</h2>
-        <p>Green Lumber Leasing is a 100% B-BBEE Company. We specialize in the design and manufacture of environmentally sustainable products using recycled plastic.</p>
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item show" data-category="huts" data-modal-image="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=1600&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1517480747041-77f4fe850086?q=80&w=800&auto=format&fit=crop" alt="1-Man Guard Hut" loading="lazy">
+          <div class="gallery-label">1-Man Guard Hut</div>
+        </div>
         
-        <h3>Our History</h3>
-        <p>Founded in 2017 in Epping, Cape Town, Green Lumber was created with a mission to produce high-quality products from recycled plastic. If it can be made from wood, we can craft it from recycled plastic, offering a sustainable and durable alternative. Our products are designed for outdoor use, capable of withstanding all weather conditions with little to no maintenance required. They are highly durable, weather-resistant, and insect-proof.</p>  
-        <p>Green Lumber specializes in producing a range of items, including security huts, bespoke furniture, decking, and dirt bin covers, while continuously innovating to meet industry demands. As a 100% BEE-rated company, we take pride in being owned by our dedicated staff and the IDH Foundation, a BEE Trust.</p>
+        <div class="gallery-item show" data-category="huts" data-modal-image="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=1600&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1598379502045-45b2b1c2f85f?q=80&w=800&auto=format&fit=crop" alt="2-Man Guard Hut" loading="lazy">
+          <div class="gallery-label">2-Man Guard Hut</div>
+        </div>
         
-        <h4>Our Journey</h4>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="timeline-year">2017</span>
-            <p>Green Lumber began as a community project in Bonteheuwel, committed to creating sustainable products from recycled materials.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2018</span>
-            <p>Leased 23 guard huts. Provided services to over 5 clients.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2019 - 2021</span>
-            <p>Continued growth and innovation in product offerings, enhancing durability and sustainability.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2022</span>
-            <p>Expanded our reach, servicing more clients and expanding our product line.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2023</span>
-            <p>Developed stronger partnerships and refined our manufacturing process, boosting our production capacity.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2024</span>
-            <p>Leased and sold 700 guard huts. Proudly serving over 300 clients to date.</p>
-          </div>
+        <div class="gallery-item show" data-category="huts" data-modal-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="3-Man Guard Hut" loading="lazy">
+          <div class="gallery-label">3-Man Guard Hut</div>
         </div>
 
-        <h3>Vision & Mission</h3>
-        <p>At Green Lumber, we envision a future where sustainable practices are the foundation of every industry. By minimizing our carbon footprint and conserving natural resources, we strive to be leaders in environmental responsibility.</p>
-        <p>Our mission is to preserve forests through the innovative use of recycled materials in our manufacturing processes. We are committed to providing energy-efficient, cost-effective, and low-maintenance products that meet industry needs, all while keeping our customers at the heart of everything we do.</p>
-        
-        <a href="#contact" class="btn" style="background: var(--text-main); margin-top: var(--space-md);">Contact Us</a>
+        <div class="gallery-item show" data-category="benches" data-modal-image="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=1600&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1541887842961-63775b2df8a2?q=80&w=800&auto=format&fit=crop" alt="4-Seater Picnic Bench" loading="lazy">
+          <div class="gallery-label">4-Seater Picnic Bench</div>
+        </div>
+
+        <div class="gallery-item show" data-category="furniture" data-modal-image="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=1600&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=800&auto=format&fit=crop" alt="Outdoor Furniture" loading="lazy">
+          <div class="gallery-label">Outdoor Furniture</div>
+        </div>
+
+        <div class="gallery-item show" data-category="waste" data-modal-image="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1600&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&auto=format&fit=crop" alt="Waste Management Bin" loading="lazy">
+          <div class="gallery-label">Waste Management Bin</div>
+        </div>
       </div>
     </div>
   </section>
@@ -598,39 +731,120 @@
   <section class="section" id="team" style="background: var(--bg-surface);">
     <div class="container">
       <div class="reveal">
-        <h2>The Team Behind the Craft.</h2>
-        <p>Meet the dedicated professionals driving sustainable manufacturing forward.</p>
+        <h2>Contact Our Departments</h2>
+        <p>Get in touch with the right team for your specific needs.</p>
       </div>
       
       <div class="team-grid">
-        <div class="team-card reveal">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
-          <div class="team-info">
-            <h4>John Doe</h4>
-            <p>Managing Director</p>
+        
+        <!-- Sales and Solutions -->
+        <div class="department-col reveal">
+          <h3 class="department-title">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Sales and Solutions
+          </h3>
+          <div class="department-members">
+            <div class="team-member-small">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" alt="Sales Rep">
+              <div class="team-member-info">
+                <h4>John Doe</h4>
+                <p>Sales Director</p>
+                <a href="mailto:john@greenlumber.co.za">john@greenlumber.co.za</a>
+                <a href="tel:0796674921">079 667 4921</a>
+              </div>
+            </div>
+          </div>
+          <div class="department-action">
+            <span class="action-label">New customer <span>> Get started</span></span>
+            <a href="#contact" class="btn" style="width: 100%;">Get a quote</a>
           </div>
         </div>
-        <div class="team-card reveal" style="transition-delay: 50ms;">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
-          <div class="team-info">
-            <h4>Jane Smith</h4>
-            <p>Operations Manager</p>
+
+        <!-- Client Relations & Support -->
+        <div class="department-col reveal" style="transition-delay: 100ms;">
+          <h3 class="department-title">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            Client Relations & Support
+          </h3>
+          <div class="department-members">
+            <div class="team-member-small">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" alt="Client Relations">
+              <div class="team-member-info">
+                <h4>Jane Smith</h4>
+                <p>Client Relations Manager</p>
+                <a href="mailto:jane@greenlumber.co.za">jane@greenlumber.co.za</a>
+                <a href="tel:0796674921">079 667 4921</a>
+              </div>
+            </div>
+            <div class="team-member-small">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" alt="Support Agent">
+              <div class="team-member-info">
+                <h4>Sarah Williams</h4>
+                <p>Support Agent</p>
+                <a href="mailto:sarah@greenlumber.co.za">sarah@greenlumber.co.za</a>
+                <a href="tel:0215341812">021 534 1812</a>
+              </div>
+            </div>
+            <div class="team-member-small">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Support Agent">
+              <div class="team-member-info">
+                <h4>Michael Brown</h4>
+                <p>Support Agent</p>
+                <a href="mailto:michael@greenlumber.co.za">michael@greenlumber.co.za</a>
+                <a href="tel:0215341812">021 534 1812</a>
+              </div>
+            </div>
+          </div>
+          <div class="department-action">
+            <span class="action-label">Existing customer <span>> Get support</span></span>
+            <select class="support-select" aria-label="Select support type">
+              <option value="" disabled selected>Select support type...</option>
+              <option value="delivery">Delivery & collection</option>
+              <option value="rental">Existing rental agreement</option>
+              <option value="repairs">Repairs & maintenance</option>
+              <option value="other">Other</option>
+            </select>
           </div>
         </div>
-        <div class="team-card reveal" style="transition-delay: 100ms;">
-          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
-          <div class="team-info">
-            <h4>David Johnson</h4>
-            <p>Lead Engineer</p>
+
+        <!-- Manufacturing & Site Support -->
+        <div class="department-col reveal" style="transition-delay: 200ms;">
+          <h3 class="department-title">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            Manufacturing & Site Support
+          </h3>
+          <div class="department-members">
+            <div class="team-member-small">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" alt="Site Manager">
+              <div class="team-member-info">
+                <h4>David Johnson</h4>
+                <p>Lead Engineer</p>
+                <a href="mailto:david@greenlumber.co.za">david@greenlumber.co.za</a>
+                <a href="tel:0796674921">079 667 4921</a>
+              </div>
+            </div>
+            <div class="team-member-small">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="Site Supervisor">
+              <div class="team-member-info">
+                <h4>James Wilson</h4>
+                <p>Site Supervisor</p>
+                <a href="mailto:james@greenlumber.co.za">james@greenlumber.co.za</a>
+                <a href="tel:0215341812">021 534 1812</a>
+              </div>
+            </div>
+          </div>
+          <div class="department-action">
+            <span class="action-label">Existing customer <span>> Service enquiries</span></span>
+            <select class="support-select" aria-label="Select support type">
+              <option value="" disabled selected>Select support type...</option>
+              <option value="delivery">Delivery & collection</option>
+              <option value="rental">Existing rental agreement</option>
+              <option value="repairs">Repairs & maintenance</option>
+              <option value="other">Other</option>
+            </select>
           </div>
         </div>
-        <div class="team-card reveal" style="transition-delay: 150ms;">
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" alt="Team Member" class="team-img" loading="lazy">
-          <div class="team-info">
-            <h4>Sarah Williams</h4>
-            <p>Sales Director</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -640,7 +854,7 @@
     <div class="container">
       <div class="testimonial-header reveal">
         <div>
-          <h2>Trusted by Industry Leaders.</h2>
+          <h2>Trusted by Industry Leaders</h2>
           <p style="margin-bottom: 0;">Read what our clients have to say about our service and product durability.</p>
         </div>
         <div class="carousel-controls">
@@ -705,7 +919,6 @@
         </div>
       </div>
       
-      <!-- Pagination Dots -->
       <div class="testimonial-dots" id="testimonial-dots"></div>
     </div>
   </section>
@@ -779,7 +992,23 @@
       <div class="footer-grid">
         <div>
           <h4>Green Lumber Holdings</h4>
-          <p>Green Lumber Leasing is a 100% B-BBEE Company, we specialize in the design & manufacture of environmentally sustainable products using recycled plastic.</p>
+          <p>We specialise in sustainable solutions through the manufacturing and leasing of products made from recycled plastic.</p>
+          
+          <div class="social-links">
+            <!-- Facebook Link (Placeholder) -->
+            <a href="https://www.facebook.com/share/1A56UoD7zr/" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+            </a>
+            <!-- LinkedIn Link (Placeholder) -->
+            <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+
+          <div class="makro-banner">
+            <p>Shop our outdoor range on Makro</p>
+            <a href="https://www.makro.co.za/grocery/household-care/floor-other-cleaners/green-lumber-manufacturing~brand/pr?sid=73z,cwl,sus&otracker=product_breadCrumbs_Green+Lumber+Manufacturing+Floor+%26+Other+Cleaners" target="_blank" rel="noopener" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Visit Makro</a>
+          </div>
         </div>
         <div>
           <h4>Navigation</h4>
@@ -800,8 +1029,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Green Lumber Holdings. All Rights Reserved.</p>
-        <p>Designed by Palisson Tech & Media</p>
+        <p>&copy; Green Lumber Holdings. All Rights Reserved.</p>
+        <p>Developed with <a href="https://palisson-tech.co.za" target="_blank" style="color: #94a3b8;">Palisson Tech & Media</a></p>
       </div>
     </div>
   </footer>
@@ -867,7 +1096,28 @@
       window.addEventListener("scroll", updateActiveNav);
       updateActiveNav();
 
-      // 3. Testimonials Slider & Pagination Dots
+      // 3. Gallery Filtering
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          
+          const filterValue = btn.getAttribute("data-filter");
+          
+          galleryItems.forEach(item => {
+            if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
+              item.classList.add("show");
+            } else {
+              item.classList.remove("show");
+            }
+          });
+        });
+      });
+
+      // 4. Testimonials Slider & Pagination Dots
       const track = document.getElementById("testimonial-track");
       const prevBtn = document.getElementById("prev-testimonial");
       const nextBtn = document.getElementById("next-testimonial");
@@ -877,7 +1127,6 @@
       let cardsPerPage = window.innerWidth >= 768 ? 3 : 1;
       let totalPages = Math.ceil(cards.length / cardsPerPage);
 
-      // Generate Dots
       function generateDots() {
         dotsContainer.innerHTML = "";
         for (let i = 0; i < totalPages; i++) {
@@ -894,7 +1143,6 @@
       }
       generateDots();
 
-      // Update Dots on Scroll
       track.addEventListener("scroll", () => {
         const scrollPosition = track.scrollLeft;
         const cardWidth = cards[0].offsetWidth + 24;
@@ -906,7 +1154,6 @@
         });
       });
 
-      // Arrow Controls
       const scrollAmount = () => {
         return (cards[0].offsetWidth + 24) * cardsPerPage;
       };
@@ -919,7 +1166,6 @@
         track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
       });
 
-      // Recalculate dots on resize
       window.addEventListener("resize", () => {
         const newCardsPerPage = window.innerWidth >= 768 ? 3 : 1;
         if (newCardsPerPage !== cardsPerPage) {
@@ -929,7 +1175,7 @@
         }
       });
 
-      // 4. Back to Top
+      // 5. Back to Top
       const backToTopBtn = document.getElementById("back-to-top");
       window.addEventListener("scroll", () => {
         if (window.scrollY > 500) {
@@ -943,7 +1189,7 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      // 5. Scroll Reveal
+      // 6. Scroll Reveal
       const revealElements = document.querySelectorAll(".reveal");
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -955,7 +1201,7 @@
       }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
       revealElements.forEach(el => revealObserver.observe(el));
 
-      // 6. Stats Count-Up
+      // 7. Stats Count-Up
       const countElements = document.querySelectorAll(".count");
       const countObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -982,7 +1228,7 @@
       }, { threshold: 0.5 });
       countElements.forEach(el => countObserver.observe(el));
 
-      // 7. Image Modal with Focus Trap
+      // 8. Image Modal with Focus Trap
       const modal = document.getElementById("image-modal");
       const modalImg = document.getElementById("modal-img");
       const modalClose = document.getElementById("modal-close");
@@ -997,7 +1243,7 @@
           modalImg.src = imageUrl;
           modal.classList.add("active");
           document.body.style.overflow = "hidden";
-          modalClose.focus(); // Focus the close button
+          modalClose.focus();
         });
       });
 
@@ -1006,7 +1252,7 @@
         modalImg.src = "";
         document.body.style.overflow = "";
         if (previousActiveElement) {
-          previousActiveElement.focus(); // Return focus
+          previousActiveElement.focus();
         }
       }
 
@@ -1020,7 +1266,6 @@
         if (e.key === "Escape" && modal.classList.contains("active")) {
           closeModal();
         }
-        // Focus trap
         if (e.key === "Tab" && modal.classList.contains("active")) {
           e.preventDefault();
           modalClose.focus();
