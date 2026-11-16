@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://palisson-tech.co.za/</loc>
+       <lastmod>2026-11-10T21:36:38+00:00</lastmod>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://palisson-tech.co.za/fintrack.html</loc>
+       <lastmod>2026-11-10T21:31:40+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://palisson-tech.co.za/harbourline-landing.html</loc>
+       <lastmod>2026-11-10T21:39:46+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+</urlset>
