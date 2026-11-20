@@ -1024,6 +1024,7 @@ section{padding-block:var(--section-y)}
       <li><a href="#case-bitfit" class="logo--bitfit">BitFit<span>.</span></a></li>
       <li><a href="#case-harbourline" class="logo--harbourline">HARBOURLINE</a></li>
       <li><a href="#case-ayana" class="logo--ayana">Ayana Learning Collective</a></li>
+      <li><a href="#case-green-lumber" class="logo--green-lumber">Green Lumber Holdings</a></li>
     </ul>
   </div>
 </section>
@@ -1052,6 +1053,7 @@ section{padding-block:var(--section-y)}
       <a href="#case-bitfit"><span>05</span>BitFit</a>
       <a href="#case-harbourline"><span>06</span>Harbourline</a>
       <a href="#case-ayana"><span>07</span>Ayana Learning Collective</a>
+      <a href="#case-green-lumber"><span>08</span>Green Lumber Holdings</a>
     </nav>
 
     <article class="case" id="case-nmk" data-reveal>
@@ -1249,11 +1251,14 @@ section{padding-block:var(--section-y)}
           <div class="case__expand-content">
 
             <div class="case__narrative-wrap">
-              <p class="case__narrative">A responsive, compliance-first loan simulation tool that guides customers through dynamic credit tiers and delivers indicative estimates with an accessibility-first mindset.</p>
+              <p class="case__narrative">A responsive, compliance-first loan simulation tool that guides customers through dynamic credit tiers and delivers indicative estimates with an accessibility-first mindset.
+                  The app uses React Hook Form and Zod for dynamically generated, API-driven validation, TanStack Query for server-state management, and MSW to mock a credit bureau check and loan-calculation API. This keeps the frontend backend-ready: switching to a real API is a one-line change, while allowing validation rules to update without redeploying the UI. Accessibility was treated as a core requirement: screen-reader announcements, keyboard navigation, visible focus states, reduced-motion support, and WCAG AA contrast. Testing is covered with Vitest and React Testing Library.
+
+              </p>
             </div>
             <dl class="case__meta">
               <div><dt>Stack</dt><dd>React · TypeScript · Tailwind · Vite · MSW · TanStack Query · React Hook Form · Zod · Vercel</dd></div>
-              <div><dt>Duration</dt><dd>4 weeks</dd></div>
+              <div><dt>Duration</dt><dd>5 weeks</dd></div>
               <div><dt>Team</dt><dd>Studio end to end</dd></div>
               <div><dt>Live</dt><dd>2026 → present</dd></div>
               <div><dt>View website</dt><dd><a href="https://loan-eligibility-simulator.vercel.app/" target="_blank" rel="noopener noreferrer">Open →</a></dd></div>
@@ -1389,7 +1394,9 @@ section{padding-block:var(--section-y)}
         <div class="case__expand-inner">
           <div class="case__expand-content">
             <div class="case__narrative-wrap">
-              <p class="case__narrative">We were brought on to develop a professional, static website that feels premium, communicates trust, and serves two distinct audiences: families looking for educational pathways, and organisations looking for corporate training.</p>
+              <p class="case__narrative">This platform was engineered as a zero-dependency, serverless static site hosted on Vercel, utilizing semantic HTML5, Vanilla JavaScript, and a modular CSS3 architecture. To avoid framework bloat, we used CSS custom properties and Grid/Flexbox to build a highly scalable design system that maintains strict visual consistency across multiple pages.</p>
+              <p class="case__narrative">The most complex technical hurdle was backend-less form handling. We integrated the Formspree API via Fetch and wrote a custom, accessible validation engine from scratch. This system dynamically manages ARIA attributes, focus states, and error summaries, while utilizing progressive enhancement to ensure native HTML form submissions still work if JavaScript is disabled.</p>
+              <p class="case__narrative">Finally, the build prioritizes performance and compliance, strictly adhering to WCAG 2.1 AA accessibility standards and implementing technical SEO configurations, including canonical routing, Open Graph metadata, and precise robots.txt directives.</p>
             </div>
             <dl class="case__meta">
               <div><dt>Stack</dt><dd>HTML · CSS · JavaScript</dd></div>
@@ -1397,6 +1404,75 @@ section{padding-block:var(--section-y)}
               <div><dt>Team</dt><dd>Studio end to end</dd></div>
               <div><dt>Live</dt><dd>2026 → present</dd></div>
               <div><dt>View website</dt><dd><a href="https://ayanalearning.com" target="_blank" rel="noopener noreferrer">Open →</a></dd></div>
+            </dl>
+            <!-- <div class="case__gallery">
+              <img src="img/harbourline-01.jpeg" alt="Harbourline commerce admin" width="800" height="600" loading="lazy" decoding="async">
+              <img src="img/harbourline-02.jpeg" alt="Harbourline subscription flow" width="800" height="600" loading="lazy" decoding="async">
+              <img src="img/harbourline-03.jpeg" alt="Harbourline POS integration" width="800" height="600" loading="lazy" decoding="async">
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case" id="case-green-lumber" data-reveal>
+      <header class="case__head">
+        <span class="case__num">08</span>
+        <h3 class="case__name">Green Lumber Holdings</h3>
+        <span class="case__scope"> Website · 2026</span>
+      </header>
+      <div class="case__grid">
+        <div class="case__image">
+          <img src="img/GreenLumber.png" alt="Green Lumber Holdings website" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="case__content">
+          <p class="case__brief">Green Lumber Holdings is a 100% B-BBEE, Cape Town-based manufacturer established in 2017. They specialize in producing durable outdoor furniture and security guard huts from 100% recycled plastic, operating through two distinct divisions: Manufacturing and Leasing.</p>
+          <ol class="case__journey">
+            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">01</span><div><h4>Challenge</h4><p>The existing site relied on heavy, outdated frameworks, lacked mobile responsiveness, and failed to visually convey the company's 10-year legacy and premium manufacturing capabilities. As a picture-heavy B2B site, it also struggled to present their extensive product range in an engaging, trustworthy way.</p></div></div></li>
+            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">02</span><div><h4>Approach</h4><p>We engineered a mobile-first, zero-dependency site using pure CSS and Vanilla JS to ensure lightning-fast performance. We introduced a premium Glassmorphism UI with a "corporate-meets-modern" aesthetic, active scroll-spy navigation, and a filterable product gallery with focus-trapped image modals. Accessibility was prioritized with strict WCAG contrast ratios and reduced-motion support.</p></div></div></li>
+            <li class="case__step"><div class="case__step-inner"><span class="case__step-num">03</span><div><h4>Outcome</h4><p>The redesign delivered a highly accessible, instantaneous digital experience that elevated the brand from a dated template to an industry leader. By integrating direct lead-generation tools (persistent WhatsApp CTAs, departmental contact routing, and LocalBusiness SEO schema), the site now serves as a high-converting B2B tool that builds instant trust with procurement managers.</p></div></div></li>
+          </ol>
+          <button class="case__cta" type="button" aria-expanded="false" aria-controls="case-green-lumber-expand" data-label-open="Read the full case study" data-label-close="Close case study">
+            <span class="case__cta-label">Read the full case study</span>
+            <span class="case__cta-icon" aria-hidden="true">+</span>
+          </button>
+        </div>
+      </div>
+      <div class="case__expand" id="case-green-lumber-expand" aria-hidden="true">
+        <div class="case__expand-inner">
+          <div class="case__expand-content">
+            <div class="case__narrative-wrap">
+              <p class="case__narrative"><b><em>Zero-Dependency Architecture</em></b>
+              <br/>
+                The site was built as a single, unified file without any external CSS frameworks (no Bootstrap, no Tailwind) or JavaScript libraries (no jQuery). This guarantees lightning-fast load times, zero render-blocking scripts, and ultimate control over the codebase.
+              </p>
+
+              <p class="case__narrative"><b><em>Modern CSS3 & Layout Strategy</em></b>
+              <br/>
+                The responsive architecture relies heavily on CSS Grid and Flexbox for complex, fluid layouts. We utilized CSS Custom Properties (Variables) for global theming (colors, spacing, typography) and clamp() to create fluid, scalable typography that adapts perfectly to any screen size without media query bloat.
+              </p>
+
+              <p class="case__narrative"><b><em>Premium Glassmorphism</em></b></b>
+              <br/>
+                The signature frosted glass aesthetic was achieved using modern CSS backdrop-filter: blur(), layered with semi-transparent RGBA backgrounds and subtle 1px borders. The cards feature the modern corner-shape: squircle property for a softened, premium edge.
+              </p>
+
+              <p class="case__narrative"><b><em>Lightweight Vanilla JavaScript</em></b></b>
+              <br/>
+                All interactivity was written in pure Vanilla JS, utilizing the Intersection Observer API to handle scroll-reveal animations and stat count-ups efficiently off the main thread. Custom logic was written for the gallery filtering, testimonial carousel, and keyboard-accessible image modals (including strict focus-trapping).
+              </p>
+
+              <p class="case__narrative"><b><em>Accessibility & Performance First</em></b></b>
+              <br/>
+                The build prioritizes WCAG 2.1 AA compliance through semantic HTML, ARIA labels, focus-visible states, and prefers-reduced-motion media queries to disable animations for users with vestibular disorders. Image assets utilize native loading="lazy" to further optimize page speed.
+              </p>
+            </div>
+            <dl class="case__meta">
+              <div><dt>Stack</dt><dd>HTML · CSS · JavaScript</dd></div>
+              <div><dt>Duration</dt><dd>2 weeks</dd></div>
+              <div><dt>Team</dt><dd>Studio end to end</dd></div>
+              <div><dt>Live</dt><dd>2026 → present</dd></div>
+              <div><dt>View website</dt><dd><a href="https://greenlumberholdings.co.za" target="_blank" rel="noopener noreferrer">Open →</a></dd></div>
             </dl>
             <!-- <div class="case__gallery">
               <img src="img/harbourline-01.jpeg" alt="Harbourline commerce admin" width="800" height="600" loading="lazy" decoding="async">
